@@ -1,0 +1,32 @@
+type Project @model {
+  id: ID!
+  projectNo: Int
+  name: String
+  allowedHours: Float
+  usedHours: Float
+  status: String
+  entries: [Entry] @connection(name: "ProjectEntries")
+  users: [UserProject] @connection(name: "ProjectUsers")
+}
+
+type UserProject @model(queries: null) {
+  id: ID!
+  user: User @connection(name: "UserProjects")
+  project: Project @connection(name: "ProjectUsers")
+}
+
+type User @model {
+  id: ID!
+  name: String
+  projects: [UserProject] @connection(name: "UserProjects")
+  entries: [Entry] @connection(name: "UserEntries")
+}
+
+type Entry @model {
+  id: ID!
+  project: Project @connection(name: "ProjectEntries")
+  user: User @connection(name: "UserEntries")
+  date: AWSDate
+  description: String
+  time: Float
+}

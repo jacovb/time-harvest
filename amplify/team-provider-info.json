@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-timeharvest-dev-63446-authRole",
+      "UnauthRoleArn": "arn:aws:iam::862323471321:role/amplify-timeharvest-dev-63446-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::862323471321:role/amplify-timeharvest-dev-63446-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-timeharvest-dev-63446-deployment",
+      "UnauthRoleName": "amplify-timeharvest-dev-63446-unauthRole",
+      "StackName": "amplify-timeharvest-dev-63446",
+      "StackId": "arn:aws:cloudformation:eu-west-2:862323471321:stack/amplify-timeharvest-dev-63446/15bcce00-61fc-11eb-b254-06dfe0db4c2c",
+      "AmplifyAppId": "d13ledzsxl0qxj"
+    }
+  }
+}
