@@ -9,7 +9,7 @@ export default function Users({userData, createUser, handleAddUser, users, delet
             <input 
                 type="text"
                 id="userField"
-                value={userData.userName}
+                value={userData.name}
                 name="userName"
                 onChange={handleAddUser}
                 required
@@ -21,7 +21,7 @@ export default function Users({userData, createUser, handleAddUser, users, delet
                 {users
                   .map((user, idx) => (
                     <div key={idx}>
-                      <div>{user.userName}</div>
+                      <div>{user.name}</div>
                       <button
                         onClick={() => deleteUser(user)}
                       >

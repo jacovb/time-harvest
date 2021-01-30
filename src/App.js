@@ -35,7 +35,7 @@ const startForm = {
 };
 
 const startUserForm = {
-  userName: "",
+  name: "",
 };
 
 function App() {
@@ -77,7 +77,7 @@ function App() {
   }
 
   async function createUser() {
-    if (!userData.userName) return;
+    if (!userData.name) return;
     await API.graphql({
       query: createUserMutation,
       variables: { input: userData },
