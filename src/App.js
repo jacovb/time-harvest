@@ -31,7 +31,6 @@ const startForm = {
   name: "",
   allowedHours: "",
   status: "",
-  users: "",
 };
 
 const startUserForm = {

@@ -10,7 +10,7 @@ export default function Users({userData, createUser, handleAddUser, users, delet
                 type="text"
                 id="userField"
                 value={userData.name}
-                name="userName"
+                name="name"
                 onChange={handleAddUser}
                 required
             />
