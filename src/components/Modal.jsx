@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 export default function Modal({ isShowing, hide, formData, updateProject, handleAddData }) {
     
-    
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
         <div className="modal-overlay" />

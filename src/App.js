@@ -13,9 +13,6 @@ import {
   deleteUser as deleteUserMutation,
 } from "./graphql/mutations";
 
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import EditIcon from "@material-ui/icons/Edit";
-
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import NewProjects from "./components/NewProjects";
@@ -23,7 +20,6 @@ import Timesheets from "./components/Timesheets";
 import Reports from "./components/Reports";
 import Users from "./components/Users";
 
-import Modal from "./components/Modal";
 import useModal from "./hooks/useModal";
 
 const startForm = {
@@ -153,46 +149,20 @@ function App() {
         <div id="mainContainer">
           <Switch>
             <Route exact path="/">
-              <div className="projectsList">
-                {projects
-                  .sort((a, b) => a.projectNo - b.projectNo)
-                  .map((project, idx) => (
-                    <div className="projectRow" key={idx}>
-                      <div className="gridProjectNo">{project.projectNo}</div>
-                      <div className="gridProjectName">{project.name}</div>
-                      <div className="gridProjectHours">
-                        {project.allowedHours}
-                      </div>
-                      <div className="gridProjectStatus">{project.status}</div>
-                      <button
-                        className="gridEditButton"
-                        onClick={() => {
-                          setFormData(project);
-                          toggle();
-                        }}
-                      >
-                        <EditIcon />
-                      </button>
-                      <button
-                        className="gridDeleteButton"
-                        onClick={() => deleteProject(project)}
-                      >
-                        <HighlightOffIcon />
-                      </button>
-                    </div>
-                  ))}
-                <Modal
-                  isShowing={isShowing}
-                  hide={toggle}
-                  formData={formData}
-                  updateProject={UpdateProject}
-                  handleAddData={handleAddData}
-                />
-              </div>
+              <p>Home</p>
             </Route>
 
             <Route exact path="/projects">
-              <Projects />
+              <Projects
+                projects={projects}
+                setFormData={setFormData}
+                deleteProject={deleteProject}
+                UpdateProject={UpdateProject}
+                formData={formData}
+                handleAddData={handleAddData}
+                isShowing={isShowing}
+                toggle={toggle}
+              />
             </Route>
 
             <Route exact path="/newProjects">
@@ -204,13 +174,7 @@ function App() {
             </Route>
 
             <Route exact path="/timesheets">
-              <Timesheets
-              // logData={logData}
-              // setLogData={setLogData}
-              // user={user}
-              // setUser={setUser}
-              // createEntry={createEntry}
-              />
+              <Timesheets />
             </Route>
 
             <Route exact path="/reports">
