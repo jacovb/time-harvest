@@ -9,7 +9,7 @@ export default function Projects({projects, setFormData, deleteProject, UpdatePr
     
     return (
         <>
-            <h1>Projects</h1>
+            <h2>Projects</h2>
             <div className="projectsList">
                 {projects
                   .sort((a, b) => a.projectNo - b.projectNo)

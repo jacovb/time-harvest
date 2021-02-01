@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+
 export default function Modal({ isShowing, hide, formData, updateProject, handleAddData }) {
     
     return isShowing ? ReactDOM.createPortal(
@@ -11,7 +13,7 @@ export default function Modal({ isShowing, hide, formData, updateProject, handle
                 <div className="modal-header">
                     <h1>Edit Project: {formData.name}</h1>  
                     <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"><HighlightOffIcon /></span>
                     </button>   
                 </div>
                 <label htmlFor="projNo">Project Number: </label>
