@@ -174,7 +174,7 @@ function App() {
             </Route>
 
             <Route exact path="/timesheets">
-              <Timesheets />
+              <Timesheets projects={projects} />
             </Route>
 
             <Route exact path="/reports">
