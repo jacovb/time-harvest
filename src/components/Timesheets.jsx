@@ -8,20 +8,14 @@ const startEntryForm = {
     time: null,
   };
 
-export default function Timesheets({projects}) {
+export default function Timesheets({projects, users}) {
     // const [entry, setEntry] = useState([])
     const [entryFormData, setEntryFormData] = useState(startEntryForm)
     
     return (
         <>
             <h2>Add Timesheet Entry</h2>
-            {/* {projects
-                .sort((a, b) => a.projectNo - b.projectNo)
-                .map((project, idx) => (
-                <div key={idx}>
-                    <p>{project.projectNo}</p>
-                </div>
-            ))}   */}
+            
             <label htmlFor="projNo">Project Number: </label>
             <select 
                 type="text"
@@ -31,9 +25,20 @@ export default function Timesheets({projects}) {
                     {projects
                         .sort((a, b) => a.projectNo - b.projectNo)
                         .map((project, idx) => (
-                        <div key={idx}>
-                            <option value={`${project.projectNo}`}>{project.projectNo}</option>
-                        </div>
+                            <option key={idx} value={project.id}>{project.projectNo}</option>
+                    ))}  
+            </select>
+
+            <label htmlFor="user">Project User: </label>
+            <select 
+                type="text"
+                id="user"
+                name="name"
+                onChange={console.log(entryFormData)}>
+                    {users
+                        .sort((a, b) => a.projectNo - b.projectNo)
+                        .map((user, idx) => (
+                            <option key={idx} value={user.id}>{user.name}</option>
                     ))}  
             </select>
         </>
