@@ -33,11 +33,20 @@ const startUserForm = {
   name: "",
 };
 
+const startEntryForm = {
+  projectNo: "",
+  user: "",
+  date: null,
+  description: "",
+  time: 0,
+};
+
 function App() {
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState(startForm);
   const [userData, setUserData] = useState(startUserForm);
+  const [entryData, setEntryData] = useState(startEntryForm);
   const { isShowing, toggle } = useModal();
   const [index, setIndex] = useState(null);
 
@@ -141,6 +150,10 @@ function App() {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   }
 
+  function handleAddEntry(e) {
+    setEntryData({ ...entryData, [e.target.name]: e.target.value });
+  }
+
   return (
     <div className="App">
       <h1>Timesheet-App</h1>
@@ -174,7 +187,12 @@ function App() {
             </Route>
 
             <Route exact path="/timesheets">
-              <Timesheets projects={projects} users={users} />
+              <Timesheets
+                projects={projects}
+                users={users}
+                handleAddEntry={handleAddEntry}
+                entryData={entryData}
+              />
             </Route>
 
             <Route exact path="/reports">
