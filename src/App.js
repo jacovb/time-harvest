@@ -4,7 +4,12 @@ import "./App.css";
 
 import { API } from "aws-amplify";
 
-import { listProjects, listUsers, listEntrys } from "./graphql/queries";
+import {
+  listProjects,
+  listUsers,
+  listEntrys,
+  getProject as getProjectQuery,
+} from "./graphql/queries";
 import {
   createProject as createProjectMutation,
   deleteProject as deleteProjectMutation,
@@ -49,6 +54,7 @@ function App() {
   const [formData, setFormData] = useState(startForm);
   const [userData, setUserData] = useState(startUserForm);
   const [entryData, setEntryData] = useState(startEntryForm);
+  const [projectData, setProjectData] = useState({});
   const { isShowing, toggle } = useModal();
   const [index, setIndex] = useState(null);
 
@@ -71,6 +77,15 @@ function App() {
   async function fetchEntries() {
     const apiData = await API.graphql({ query: listEntrys });
     setEntry(apiData.data.listEntrys.items);
+  }
+
+  async function getProject(id) {
+    const apiData = await API.graphql({
+      query: getProjectQuery,
+      variable: { input: { id } },
+    });
+    setProjectData(apiData);
+    console.log(projectData);
   }
 
   async function createProject() {
@@ -126,12 +141,6 @@ function App() {
           projectNo: formData.projectNo,
           status: formData.status,
           allowedHours: formData.allowedHours,
-          // users: {
-          //   items: {
-          //     id: "0bddfed7-effa-4cdf-a00f-52a21e9bc7e4",
-          //     userName: "Yaku",
-          //   },
-          // },
         },
       },
     });
@@ -212,6 +221,7 @@ function App() {
                 handleAddEntry={handleAddEntry}
                 entryData={entryData}
                 createEntry={createEntry}
+                getProject={getProject}
               />
             </Route>
 
