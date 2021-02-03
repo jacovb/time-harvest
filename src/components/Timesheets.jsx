@@ -1,15 +1,25 @@
 import React from "react";
 
-export default function Timesheets({projects, users, handleAddEntry, entryData}) {
+export default function Timesheets({projects, users, handleAddEntry, entryData, createEntry}) {
     return (
         <>
             <h2>Add Timesheet Entry</h2>
             
+            <label htmlFor="date">Date: </label>
+            <input 
+                type="date"
+                id="date"
+                value={entryData.date}
+                name="date"
+                onChange={handleAddEntry}
+            />
+            
+            <br/>
             <label htmlFor="projNo">Project Number: </label>
             <select 
                 type="text"
                 id="projNo"
-                name="projectNo"
+                name="entryProjectId"
                 onChange={handleAddEntry}>
                     {projects
                         .sort((a, b) => a.projectNo - b.projectNo)
@@ -23,7 +33,7 @@ export default function Timesheets({projects, users, handleAddEntry, entryData})
             <select 
                 type="text"
                 id="user"
-                name="user"
+                name="entryUserId"
                 onChange={handleAddEntry}>
                     {users
                         .sort((a, b) => a.projectNo - b.projectNo)
@@ -52,7 +62,8 @@ export default function Timesheets({projects, users, handleAddEntry, entryData})
                 onChange={handleAddEntry}
             />
 
-            {console.log(entryData)}
+<br/>
+            <button onClick={createEntry}>Submit Entry</button>
         </>
     )
 }

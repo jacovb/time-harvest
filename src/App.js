@@ -4,13 +4,14 @@ import "./App.css";
 
 import { API } from "aws-amplify";
 
-import { listProjects, listUsers } from "./graphql/queries";
+import { listProjects, listUsers, listEntrys } from "./graphql/queries";
 import {
   createProject as createProjectMutation,
   deleteProject as deleteProjectMutation,
   updateProject as updateProjectMutation,
   createUser as createUserMutation,
   deleteUser as deleteUserMutation,
+  createEntry as createEntryMutation,
 } from "./graphql/mutations";
 
 import Navbar from "./components/Navbar";
@@ -34,9 +35,9 @@ const startUserForm = {
 };
 
 const startEntryForm = {
-  projectNo: "",
-  user: "",
-  date: null,
+  entryProjectId: "",
+  entryUserId: "",
+  date: "",
   description: "",
   time: 0,
 };
@@ -44,6 +45,7 @@ const startEntryForm = {
 function App() {
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
+  const [entry, setEntry] = useState([]);
   const [formData, setFormData] = useState(startForm);
   const [userData, setUserData] = useState(startUserForm);
   const [entryData, setEntryData] = useState(startEntryForm);
@@ -53,6 +55,7 @@ function App() {
   useEffect(() => {
     fetchProjects();
     fetchUsers();
+    fetchEntries();
   }, []);
 
   async function fetchProjects() {
@@ -63,6 +66,11 @@ function App() {
   async function fetchUsers() {
     const apiData = await API.graphql({ query: listUsers });
     setUsers(apiData.data.listUsers.items);
+  }
+
+  async function fetchEntries() {
+    const apiData = await API.graphql({ query: listEntrys });
+    setEntry(apiData.data.listEntrys.items);
   }
 
   async function createProject() {
@@ -89,6 +97,17 @@ function App() {
     setUsers([...users, userData]);
     setUserData(startUserForm);
     fetchUsers();
+  }
+
+  async function createEntry() {
+    if (!entryData.date) return;
+    await API.graphql({
+      query: createEntryMutation,
+      variables: { input: entryData },
+    });
+    setEntry([...entry, entryData]);
+    setEntryData(startEntryForm);
+    fetchEntries();
   }
 
   async function UpdateProject({ id }) {
@@ -192,6 +211,7 @@ function App() {
                 users={users}
                 handleAddEntry={handleAddEntry}
                 entryData={entryData}
+                createEntry={createEntry}
               />
             </Route>
 
