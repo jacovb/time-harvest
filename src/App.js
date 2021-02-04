@@ -8,7 +8,7 @@ import {
   listProjects,
   listUsers,
   listEntrys,
-  getProject as getProjectQuery,
+  // getProject as getProjectQuery,
 } from "./graphql/queries";
 import {
   createProject as createProjectMutation,
@@ -54,7 +54,7 @@ function App() {
   const [formData, setFormData] = useState(startForm);
   const [userData, setUserData] = useState(startUserForm);
   const [entryData, setEntryData] = useState(startEntryForm);
-  const [projectData, setProjectData] = useState({});
+  //const [projectData, setProjectData] = useState({});
   const { isShowing, toggle } = useModal();
   const [index, setIndex] = useState(null);
 
@@ -79,14 +79,13 @@ function App() {
     setEntry(apiData.data.listEntrys.items);
   }
 
-  async function getProject(id) {
-    const apiData = await API.graphql({
-      query: getProjectQuery,
-      variable: { input: { id } },
-    });
-    setProjectData(apiData);
-    console.log(projectData);
-  }
+  // async function getProject(id) {
+  //   const apiData = await API.graphql(
+  //     graphqlOperation(getProjectQuery, { id: id })
+  //   );
+  //   setProjectData(apiData);
+  //   console.log(projectData);
+  // }
 
   async function createProject() {
     if (!formData.projectNo || !formData.name) return;
@@ -182,6 +181,11 @@ function App() {
     setEntryData({ ...entryData, [e.target.name]: e.target.value });
   }
 
+  function handleAddEntryProject(e) {
+    setEntryData({ ...entryData, [e.target.name]: e.target.value });
+    console.log(e.target);
+  }
+
   return (
     <div className="App">
       <h1>Timesheet-App</h1>
@@ -219,9 +223,9 @@ function App() {
                 projects={projects}
                 users={users}
                 handleAddEntry={handleAddEntry}
+                handleAddEntryProject={handleAddEntryProject}
                 entryData={entryData}
                 createEntry={createEntry}
-                getProject={getProject}
               />
             </Route>
 

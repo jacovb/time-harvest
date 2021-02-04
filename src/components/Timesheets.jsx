@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Timesheets({projects, users, handleAddEntry, entryData, createEntry, getProject}) {
+export default function Timesheets({projects, users, handleAddEntry, handleAddEntryProject, entryData, createEntry}) {
     return (
         <>
             <h2>Add Timesheet Entry</h2>
@@ -20,15 +20,16 @@ export default function Timesheets({projects, users, handleAddEntry, entryData, 
                 type="text"
                 id="projNo"
                 name="entryProjectId"
-                onChange={handleAddEntry}>
+                onChange={handleAddEntryProject}>
                     {projects
                         .sort((a, b) => a.projectNo - b.projectNo)
                         .map((project, idx) => (
                             <option key={idx} value={project.id}>{project.projectNo}</option>
                     ))}  
             </select>
-            {console.log("ProjectID ", entryData.entryProjectId)}
-            {/* {entryData.entryProjectId.length > 0 ? getProject(entryData.entryProjectId) : null} */}
+            
+            <p>{entryData.entryProjectId}</p>
+            
 
             <br/>
             <label htmlFor="user">Project User: </label>
