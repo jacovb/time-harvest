@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Timesheets({projects, users, handleAddEntry, handleAddEntryProject, entryData, createEntry}) {
-    const [projectData, setProjectData] = useState({})
     return (
         <>
             <h2>Add Timesheet Entry</h2>
@@ -29,7 +28,12 @@ export default function Timesheets({projects, users, handleAddEntry, handleAddEn
                     ))}  
             </select>
             
-            {console.log(projects.filter((project) => project.id === entryData.entryProjectId))}
+            {projects
+                .filter((project) => project.id === entryData.entryProjectId)
+                .map((project, idx) => (
+                    <p key={idx}>{project.name}</p>
+                ))
+            }
 
             <br/>
             <label htmlFor="user">Project User: </label>
