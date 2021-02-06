@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Timesheets({projects, users, handleAddEntry, handleAddEntryProject, entryData, createEntry}) {
+export default function Timesheets({projects, users, handleAddEntry, entryData, createEntry}) {
     return (
         <>
             <h2>Add Timesheet Entry</h2>
@@ -20,7 +20,7 @@ export default function Timesheets({projects, users, handleAddEntry, handleAddEn
                 type="text"
                 id="projNo"
                 name="entryProjectId"
-                onChange={handleAddEntryProject}>
+                onChange={handleAddEntry}>
                     {projects
                         .sort((a, b) => a.projectNo - b.projectNo)
                         .map((project, idx) => (

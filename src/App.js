@@ -181,11 +181,6 @@ function App() {
     setEntryData({ ...entryData, [e.target.name]: e.target.value });
   }
 
-  function handleAddEntryProject(e) {
-    setEntryData({ ...entryData, [e.target.name]: e.target.value });
-    console.log(e.target);
-  }
-
   return (
     <div className="App">
       <h1>Timesheet-App</h1>
@@ -223,7 +218,6 @@ function App() {
                 projects={projects}
                 users={users}
                 handleAddEntry={handleAddEntry}
-                handleAddEntryProject={handleAddEntryProject}
                 entryData={entryData}
                 createEntry={createEntry}
               />
