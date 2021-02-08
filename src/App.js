@@ -120,7 +120,13 @@ function App() {
       variables: { input: entryData },
     });
     setEntry([...entry, entryData]);
+    setEntryData(startEntryForm);
+    fetchEntries();
+  }
 
+  // console.log(index) gives null on first Project Choice
+
+  async function updateProjectUsedHours({ entryProjectId }) {
     const newProjectsArray = [...projects];
     setIndex(projects.findIndex((item) => item.id === entryProjectId));
     // if (newProjectsArray[index].usedHours === null) {
@@ -128,7 +134,7 @@ function App() {
     // } else {
     //   newProjectsArray[index].usedHours += entryData.time;
     // }
-    console.log(typeof newProjectsArray[index].usedHours);
+    console.log(index);
     // setProjects(newProjectsArray);
     // await API.graphql({
     //   query: updateProjectMutation,
@@ -139,9 +145,6 @@ function App() {
     //     },
     //   },
     // });
-
-    setEntryData(startEntryForm);
-    fetchEntries();
   }
 
   async function UpdateProject({ id }) {
@@ -240,6 +243,7 @@ function App() {
                 handleAddEntry={handleAddEntry}
                 entryData={entryData}
                 createEntry={createEntry}
+                updateProjectUsedHours={updateProjectUsedHours}
               />
             </Route>
 

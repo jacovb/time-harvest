@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Timesheets({projects, users, handleAddEntry, entryData, createEntry}) {
+export default function Timesheets({projects, users, handleAddEntry, entryData, createEntry, updateProjectUsedHours}) {
     return (
         <>
             <h2>Add Timesheet Entry</h2>
@@ -70,7 +70,13 @@ export default function Timesheets({projects, users, handleAddEntry, entryData, 
             />
 
 <br/>
-            <button onClick={() => createEntry(entryData)}>Submit Entry</button>
+            <button onClick={createEntry}>Submit Entry</button>
+            
+            <br/>
+            <br/>
+            <button onClick={() => updateProjectUsedHours(entryData)}>Show Hours</button>
+
+
         </>
     )
 }
