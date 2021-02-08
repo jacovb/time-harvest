@@ -70,7 +70,7 @@ export default function Timesheets({projects, users, handleAddEntry, entryData, 
             />
 
 <br/>
-            <button onClick={createEntry}>Submit Entry</button>
+            <button onClick={() => createEntry(entryData)}>Submit Entry</button>
         </>
     )
 }

@@ -113,13 +113,33 @@ function App() {
     fetchUsers();
   }
 
-  async function createEntry() {
+  async function createEntry({ entryProjectId }) {
     if (!entryData.date) return;
     await API.graphql({
       query: createEntryMutation,
       variables: { input: entryData },
     });
     setEntry([...entry, entryData]);
+
+    const newProjectsArray = [...projects];
+    setIndex(projects.findIndex((item) => item.id === entryProjectId));
+    // if (newProjectsArray[index].usedHours === null) {
+    //   newProjectsArray[index].usedHours = entryData.time;
+    // } else {
+    //   newProjectsArray[index].usedHours += entryData.time;
+    // }
+    console.log(typeof newProjectsArray[index].usedHours);
+    // setProjects(newProjectsArray);
+    // await API.graphql({
+    //   query: updateProjectMutation,
+    //   variables: {
+    //     input: {
+    //       id: entryData.entryProjectId,
+    //       usedHours: projects.usedHours,
+    //     },
+    //   },
+    // });
+
     setEntryData(startEntryForm);
     fetchEntries();
   }
