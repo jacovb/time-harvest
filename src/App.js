@@ -124,27 +124,27 @@ function App() {
     fetchEntries();
   }
 
-  // console.log(index) gives null on first Project Choice
-
   async function updateProjectUsedHours({ entryProjectId }) {
+    console.log(entryData);
     const newProjectsArray = [...projects];
-    setIndex(projects.findIndex((item) => item.id === entryProjectId));
-    // if (newProjectsArray[index].usedHours === null) {
-    //   newProjectsArray[index].usedHours = entryData.time;
-    // } else {
-    //   newProjectsArray[index].usedHours += entryData.time;
-    // }
-    console.log(index);
-    // setProjects(newProjectsArray);
-    // await API.graphql({
-    //   query: updateProjectMutation,
-    //   variables: {
-    //     input: {
-    //       id: entryData.entryProjectId,
-    //       usedHours: projects.usedHours,
-    //     },
-    //   },
-    // });
+    const idx = projects.findIndex((item) => item.id === entryProjectId);
+
+    newProjectsArray[idx].usedHours = entry
+      .filter((item) => item.project.id === entryProjectId)
+      .map((item) => item.time)
+      .reduce((a, b) => a + b, 0);
+
+    setProjects(newProjectsArray);
+
+    await API.graphql({
+      query: updateProjectMutation,
+      variables: {
+        input: {
+          id: entryData.entryProjectId,
+          usedHours: projects[idx].usedHours,
+        },
+      },
+    });
   }
 
   async function UpdateProject({ id }) {
