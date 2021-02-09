@@ -119,6 +119,32 @@ function App() {
       query: createEntryMutation,
       variables: { input: entryData },
     });
+
+    // -------
+    // try to put both awaits in a Promise.all([]) ????
+
+    const newProjectsArray = [...projects];
+    const idx = projects.findIndex((item) => item.id === entryProjectId);
+
+    newProjectsArray[idx].usedHours = entry
+      .filter((item) => item.project.id === entryProjectId)
+      .map((item) => item.time)
+      .reduce((a, b) => a + b, 0);
+
+    setProjects(newProjectsArray);
+
+    await API.graphql({
+      query: updateProjectMutation,
+      variables: {
+        input: {
+          id: entryData.entryProjectId,
+          usedHours: projects[idx].usedHours,
+        },
+      },
+    });
+
+    // -------
+
     setEntry([...entry, entryData]);
     setEntryData(startEntryForm);
     fetchEntries();
