@@ -112,7 +112,7 @@ function App() {
       variables: { input: entryData },
     });
 
-    setEntry([...entry, entryData]);
+    // setEntry([...entry, entryData]);
     fetchEntries();
 
     console.log(entry);
