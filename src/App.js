@@ -105,7 +105,7 @@ function App() {
     fetchUsers();
   }
 
-  async function createEntry() {
+  async function createEntry({ entryProjectId }) {
     if (!entryData.date) return;
     await API.graphql({
       query: createEntryMutation,
@@ -113,12 +113,35 @@ function App() {
     });
 
     setEntry([...entry, entryData]);
-    setEntryData(startEntryForm);
     fetchEntries();
+
+    console.log(entry);
+    const newProjectsArray = [...projects];
+    const idx = projects.findIndex((item) => item.id === entryProjectId);
+
+    newProjectsArray[idx].usedHours = entry
+      .filter((item) => item.project.id === entryProjectId)
+      .map((item) => item.time)
+      .reduce((a, b) => a + b, 0);
+
+    setProjects(newProjectsArray);
+
+    await API.graphql({
+      query: updateProjectMutation,
+      variables: {
+        input: {
+          id: entryData.entryProjectId,
+          usedHours: projects[idx].usedHours,
+        },
+      },
+    });
+
+    setEntryData(startEntryForm);
   }
 
   async function updateProjectUsedHours({ entryProjectId }) {
     console.log(entryData);
+    console.log(entry);
     const newProjectsArray = [...projects];
     const idx = projects.findIndex((item) => item.id === entryProjectId);
 
