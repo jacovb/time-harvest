@@ -135,10 +135,11 @@ function App() {
       variables: {
         input: {
           id: entryData.entryProjectId,
-          usedHours: projects[idx].usedHours,
+          usedHours: newProjectsArray[idx].usedHours,
         },
       },
     });
+    setEntryData(startEntryForm);
   }
 
   async function UpdateProject({ id }) {

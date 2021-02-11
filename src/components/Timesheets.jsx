@@ -73,8 +73,7 @@ export default function Timesheets({projects, users, handleAddEntry, startEntryF
             <button onClick={() => {
                 createEntry();
                 updateProjectUsedHours(entryData);
-                setEntryData(startEntryForm);
-                }}>Submit Entry</button>
+            }}>Submit Entry</button>
             
             <br/>
             <br/>
