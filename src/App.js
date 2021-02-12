@@ -4,12 +4,8 @@ import "./App.css";
 
 import { API } from "aws-amplify";
 
-import {
-  listProjects,
-  listUsers,
-  listEntrys,
-  // getProject as getProjectQuery,
-} from "./graphql/queries";
+import { listProjects, listUsers, listEntrys } from "./graphql/queries";
+
 import {
   createProject as createProjectMutation,
   deleteProject as deleteProjectMutation,
@@ -39,6 +35,10 @@ const startUserForm = {
   name: "",
 };
 
+// const startEntryUserId = {
+//   entryUserId: "",
+// };
+
 const startEntryForm = {
   entryProjectId: "",
   entryUserId: "",
@@ -54,7 +54,7 @@ function App() {
   const [formData, setFormData] = useState(startForm);
   const [userData, setUserData] = useState(startUserForm);
   const [entryData, setEntryData] = useState(startEntryForm);
-  //const [projectData, setProjectData] = useState({});
+  //const [entryUser, setEntryUser] = useState(startEntryUserId);
   const { isShowing, toggle } = useModal();
   const [index, setIndex] = useState(null);
 
@@ -112,9 +112,9 @@ function App() {
       variables: { input: entryData },
     });
 
-    // setEntry([...entry, entryData]);
+    setEntry([...entry, entryData]);
     fetchEntries();
-    // setEntryData(startEntryForm);
+    setEntryData(startEntryForm);
   }
 
   async function updateProjectUsedHours({ entryProjectId }) {
@@ -199,6 +199,10 @@ function App() {
     setEntryData({ ...entryData, [e.target.name]: e.target.value });
   }
 
+  // function handleSetEntryUser(e) {
+  //   setEntryUser({ [e.target.name]: e.target.value });
+  // }
+
   return (
     <div className="App">
       <h1>Timesheet-App</h1>
@@ -236,11 +240,11 @@ function App() {
                 projects={projects}
                 users={users}
                 handleAddEntry={handleAddEntry}
-                startEntryForm={startEntryForm}
+                // handleSetEntryUser={handleSetEntryUser}
                 entryData={entryData}
-                setEntryData={setEntryData}
                 createEntry={createEntry}
                 updateProjectUsedHours={updateProjectUsedHours}
+                // entryUser={entryUser}
               />
             </Route>
 

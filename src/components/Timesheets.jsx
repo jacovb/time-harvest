@@ -1,10 +1,32 @@
 import React from "react";
 
-export default function Timesheets({projects, users, handleAddEntry, startEntryForm, entryData, setEntryData, createEntry, updateProjectUsedHours}) {
+export default function Timesheets({projects, users, handleAddEntry, handleSetEntryUser, entryData, createEntry, updateProjectUsedHours, entryUser}) {
     return (
         <>
             <h2>Add Timesheet Entry</h2>
             
+            <label htmlFor="user">Project User: </label>
+            <select 
+                type="text"
+                id="user"
+                name="entryUserId"
+                onChange={handleAddEntry}>
+                    {users
+                        .sort((a, b) => a.name - b.name)
+                        .map((user, idx) => (
+                            <option key={idx} value={user.id}>{user.name}</option>
+                    ))}  
+            </select>
+            
+            {users
+                .filter((user) => user.id === entryData.entryUserId)
+                .map((user, idx) => (
+                    <p key={idx}>{user.name}</p>
+                ))
+            }
+            
+            <br/>
+            <br/>
             <label htmlFor="date">Date: </label>
             <input 
                 type="date"
@@ -36,20 +58,6 @@ export default function Timesheets({projects, users, handleAddEntry, startEntryF
             }
 
             <br/>
-            <label htmlFor="user">Project User: </label>
-            <select 
-                type="text"
-                id="user"
-                name="entryUserId"
-                onChange={handleAddEntry}>
-                    {users
-                        .sort((a, b) => a.projectNo - b.projectNo)
-                        .map((user, idx) => (
-                            <option key={idx} value={user.id}>{user.name}</option>
-                    ))}  
-            </select>
-
-            <br/>
             <label htmlFor="description">Description: </label>
             <input 
                 type="text"
@@ -70,10 +78,7 @@ export default function Timesheets({projects, users, handleAddEntry, startEntryF
             />
 
 <br/>
-            <button onClick={() => {
-                createEntry();
-                updateProjectUsedHours(entryData);
-            }}>Submit Entry</button>
+            <button onClick={createEntry}>Submit Entry</button>
             
             <br/>
             <br/>
