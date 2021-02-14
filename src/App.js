@@ -35,13 +35,12 @@ const startUserForm = {
   name: "",
 };
 
-// const startEntryUserId = {
-//   entryUserId: "",
-// };
+const startEntryUserId = {
+  entryUserId: "",
+};
 
 const startEntryForm = {
   entryProjectId: "",
-  entryUserId: "",
   date: "",
   description: "",
   time: 0,
@@ -54,7 +53,7 @@ function App() {
   const [formData, setFormData] = useState(startForm);
   const [userData, setUserData] = useState(startUserForm);
   const [entryData, setEntryData] = useState(startEntryForm);
-  //const [entryUser, setEntryUser] = useState(startEntryUserId);
+  const [entryUserId, setEntryUserId] = useState(startEntryUserId);
   const { isShowing, toggle } = useModal();
   const [index, setIndex] = useState(null);
 
@@ -107,6 +106,8 @@ function App() {
 
   async function createEntry() {
     if (!entryData.date) return;
+    entryData.entryUserId = entryUserId.entryUserId;
+    console.log(entryData);
     await API.graphql({
       query: createEntryMutation,
       variables: { input: entryData },
@@ -199,9 +200,9 @@ function App() {
     setEntryData({ ...entryData, [e.target.name]: e.target.value });
   }
 
-  // function handleSetEntryUser(e) {
-  //   setEntryUser({ [e.target.name]: e.target.value });
-  // }
+  function handleSetEntryUser(e) {
+    setEntryUserId({ [e.target.name]: e.target.value });
+  }
 
   return (
     <div className="App">
@@ -240,11 +241,11 @@ function App() {
                 projects={projects}
                 users={users}
                 handleAddEntry={handleAddEntry}
-                // handleSetEntryUser={handleSetEntryUser}
+                handleSetEntryUser={handleSetEntryUser}
                 entryData={entryData}
                 createEntry={createEntry}
                 updateProjectUsedHours={updateProjectUsedHours}
-                // entryUser={entryUser}
+                entryUserId={entryUserId}
               />
             </Route>
 
