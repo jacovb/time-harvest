@@ -113,13 +113,11 @@ function App() {
       variables: { input: entryData },
     });
 
-    setEntry([...entry, entryData]);
     fetchEntries();
     setEntryData(startEntryForm);
   }
 
   async function updateProjectUsedHours({ entryProjectId }) {
-    console.log(entryData);
     console.log(entry);
     const newProjectsArray = [...projects];
     const idx = projects.findIndex((item) => item.id === entryProjectId);

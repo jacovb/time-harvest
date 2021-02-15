@@ -1,5 +1,8 @@
 import React from "react";
 
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import EditIcon from "@material-ui/icons/Edit";
+
 export default function Timesheets({projects, users, entry, handleAddEntry, handleSetEntryUser, entryData, createEntry, updateProjectUsedHours, entryUserId}) {
     return (
         <>
@@ -83,12 +86,27 @@ export default function Timesheets({projects, users, entry, handleAddEntry, hand
             {entry
                 .filter((item) => item.user.id === entryUserId.entryUserId)
                 .map((item, idx) => (
-                <div key={idx}>
+                <div className="projectRow" key={idx}>
                     <div>{item.date}</div>
                     <div>{item.project.name}</div>
                     <div>{item.description}</div>
                     <div>{item.time}</div>
+                    <button
+                        className="gridEditButton"
+                        // onClick={() => {
+                        //   toggle();
+                        // }}
+                      >
+                        <EditIcon />
+                      </button>
+                      <button
+                        className="gridDeleteButton"
+                        // onClick={() => deleteProject(project)}
+                      >
+                        <HighlightOffIcon />
+                      </button>
                 </div>
+                
             ))}
         </>
     )
