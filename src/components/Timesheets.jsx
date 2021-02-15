@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Timesheets({projects, users, handleAddEntry, handleSetEntryUser, entryData, createEntry, updateProjectUsedHours, entryUserId}) {
+export default function Timesheets({projects, users, entry, handleAddEntry, handleSetEntryUser, entryData, createEntry, updateProjectUsedHours, entryUserId}) {
     return (
         <>
             <h2>Add Timesheet Entry</h2>
@@ -18,12 +18,7 @@ export default function Timesheets({projects, users, handleAddEntry, handleSetEn
                     ))}  
             </select>
             
-            {users
-                .filter((user) => user.id === entryData.entryUserId)
-                .map((user, idx) => (
-                    <p key={idx}>{user.name}</p>
-                ))
-            }
+            {console.log("user name: ", entryUserId.entryUserId)}
             
             <br/>
             <br/>
@@ -67,7 +62,7 @@ export default function Timesheets({projects, users, handleAddEntry, handleSetEn
                 onChange={handleAddEntry}
             />
 
-<br/>
+            <br/>
             <label htmlFor="time">Time Spent: </label>
             <input 
                 type="number"
@@ -77,14 +72,24 @@ export default function Timesheets({projects, users, handleAddEntry, handleSetEn
                 onChange={handleAddEntry}
             />
 
-<br/>
+            <br/>
             <button onClick={createEntry}>Submit Entry</button>
             
             <br/>
             <br/>
             <button onClick={() => updateProjectUsedHours(entryData)}>Update Project Hours</button>
 
-
+            {console.log(entry)}
+            {entry
+                .filter((item) => item.user.id === entryUserId.entryUserId)
+                .map((item, idx) => (
+                <div key={idx}>
+                    <div>{item.date}</div>
+                    <div>{item.project.name}</div>
+                    <div>{item.description}</div>
+                    <div>{item.time}</div>
+                </div>
+            ))}
         </>
     )
 }

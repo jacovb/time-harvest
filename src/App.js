@@ -240,6 +240,7 @@ function App() {
               <Timesheets
                 projects={projects}
                 users={users}
+                entry={entry}
                 handleAddEntry={handleAddEntry}
                 handleSetEntryUser={handleSetEntryUser}
                 entryData={entryData}
