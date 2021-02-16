@@ -20,7 +20,7 @@ export default function EditEntryModal({ isShowing, hide, entryData, updateEntry
                 <input 
                     type="text"
                     id="user"
-                    value={entryData.entryUserId}
+                    value={entryData.user.name}
                     name="entryUserId"
                     onChange={handleAddEntry}
                     required
