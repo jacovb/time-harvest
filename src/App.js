@@ -242,9 +242,12 @@ function App() {
                 handleAddEntry={handleAddEntry}
                 handleSetEntryUser={handleSetEntryUser}
                 entryData={entryData}
+                setEntryData={setEntryData}
                 createEntry={createEntry}
                 updateProjectUsedHours={updateProjectUsedHours}
                 entryUserId={entryUserId}
+                isShowing={isShowing}
+                toggle={toggle}
               />
             </Route>
 

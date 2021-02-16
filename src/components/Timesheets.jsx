@@ -2,8 +2,22 @@ import React from "react";
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import EditIcon from "@material-ui/icons/Edit";
+import EditEntryModal from "./EditEntryModal";
 
-export default function Timesheets({projects, users, entry, handleAddEntry, handleSetEntryUser, entryData, createEntry, updateProjectUsedHours, entryUserId}) {
+export default function Timesheets({
+    projects, 
+    users, 
+    entry, 
+    handleAddEntry, 
+    handleSetEntryUser, 
+    entryData,
+    setEntryData, 
+    createEntry, 
+    updateProjectUsedHours, 
+    entryUserId, 
+    toggle, 
+    isShowing
+}) {
     return (
         <>
             <h2>Add Timesheet Entry</h2>
@@ -83,31 +97,41 @@ export default function Timesheets({projects, users, entry, handleAddEntry, hand
             <button onClick={() => updateProjectUsedHours(entryData)}>Update Project Hours</button>
 
             {console.log(entry)}
-            {entry
-                .filter((item) => item.user.id === entryUserId.entryUserId)
-                .map((item, idx) => (
-                <div className="projectRow" key={idx}>
-                    <div>{item.date}</div>
-                    <div>{item.project.name}</div>
-                    <div>{item.description}</div>
-                    <div>{item.time}</div>
-                    <button
-                        className="gridEditButton"
-                        // onClick={() => {
-                        //   toggle();
-                        // }}
-                      >
-                        <EditIcon />
-                      </button>
-                      <button
-                        className="gridDeleteButton"
-                        // onClick={() => deleteProject(project)}
-                      >
-                        <HighlightOffIcon />
-                      </button>
-                </div>
-                
-            ))}
+            <div>
+                {entry
+                    .filter((item) => item.user.id === entryUserId.entryUserId)
+                    .map((item, idx) => (
+                    <div className="projectRow" key={idx}>
+                        <div>{item.date}</div>
+                        <div>{item.project.name}</div>
+                        <div>{item.description}</div>
+                        <div>{item.time}</div>
+                        <button
+                            className="gridEditButton"
+                            onClick={() => {
+                                setEntryData(item);
+                                toggle();
+                            }}
+                        >
+                            <EditIcon />
+                        </button>
+                        <button
+                            className="gridDeleteButton"
+                            // onClick={() => deleteProject(project)}
+                        >
+                            <HighlightOffIcon />
+                        </button>
+                    </div>
+                ))}
+                <EditEntryModal
+                    isShowing={isShowing}
+                    hide={toggle}
+                    entryData={entryData}
+                    // updateEntry={updateEntry}
+                    handleAddEntry={handleAddEntry}
+                    projects={projects}
+                />
+            </div>
         </>
     )
 }

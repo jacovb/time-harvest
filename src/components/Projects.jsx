@@ -1,6 +1,6 @@
 import React from "react";
 
-import Modal from "./Modal";
+import EditProjectModal from "./EditProjectModal";
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import EditIcon from "@material-ui/icons/Edit";
@@ -38,7 +38,7 @@ export default function Projects({projects, setFormData, deleteProject, UpdatePr
                       </button>
                     </div>
                   ))}
-                <Modal
+                <EditProjectModal
                   isShowing={isShowing}
                   hide={toggle}
                   formData={formData}
