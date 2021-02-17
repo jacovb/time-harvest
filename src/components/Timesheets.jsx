@@ -16,7 +16,9 @@ export default function Timesheets({
     updateProjectUsedHours, 
     entryUserId, 
     toggle, 
-    isShowing
+    isShowing,
+    deleteEntry,
+    UpdateEntry,
 }) {
     return (
         <>
@@ -111,13 +113,14 @@ export default function Timesheets({
                             onClick={() => {
                                 setEntryData(item);
                                 toggle();
+                                console.log("Edit Entry: " ,entryData);
                             }}
                         >
                             <EditIcon />
                         </button>
                         <button
                             className="gridDeleteButton"
-                            // onClick={() => deleteProject(project)}
+                            onClick={() => deleteEntry(item)}
                         >
                             <HighlightOffIcon />
                         </button>
@@ -127,9 +130,10 @@ export default function Timesheets({
                     isShowing={isShowing}
                     hide={toggle}
                     entryData={entryData}
-                    // updateEntry={updateEntry}
+                    UpdateEntry={UpdateEntry}
                     handleAddEntry={handleAddEntry}
                     projects={projects}
+                    users={users}
                 />
             </div>
         </>

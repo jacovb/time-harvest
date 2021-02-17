@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
-export default function EditEntryModal({ isShowing, hide, entryData, updateEntry, handleAddEntry, projects }) {
+export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry, handleAddEntry, projects, users }) {
     
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
@@ -16,15 +16,22 @@ export default function EditEntryModal({ isShowing, hide, entryData, updateEntry
                         <span aria-hidden="true"><HighlightOffIcon /></span>
                     </button>   
                 </div>
+                
                 <label htmlFor="user">Project User: </label>
-                <input 
+                <select 
                     type="text"
                     id="user"
-                    value={entryData.user.name}
+                    value={entryData.entryUserId ? entryData.entryUserId : entryData.user.name}
                     name="entryUserId"
-                    onChange={handleAddEntry}
-                    required
-                />
+                    onChange={handleAddEntry}>
+                    {users
+                        .sort((a, b) => a.name - b.name)
+                        .map((user, idx) => (
+                            <option key={idx} value={user.id}>{user.name}</option>
+                    ))}
+                </select>
+                
+                
                 <br/>
                 <label htmlFor="date">Date: </label>
                 <input 
@@ -34,6 +41,7 @@ export default function EditEntryModal({ isShowing, hide, entryData, updateEntry
                     name="date"
                     onChange={handleAddEntry}
                 />
+                
                 <br/>
                 <label htmlFor="projNo">Project Number: </label>
                 <select
@@ -72,7 +80,7 @@ export default function EditEntryModal({ isShowing, hide, entryData, updateEntry
                 />
                 
                 <br/>
-                {/* <button onClick={() => updateEntry(entryData)}>Update</button> */}
+                <button onClick={() => UpdateEntry(entryData)}>Update</button>
             </div>
         </div>
     </React.Fragment>, document.body

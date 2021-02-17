@@ -13,6 +13,8 @@ import {
   createUser as createUserMutation,
   deleteUser as deleteUserMutation,
   createEntry as createEntryMutation,
+  deleteEntry as deleteEntryMutation,
+  updateEntry as updateEntryMutation,
 } from "./graphql/mutations";
 
 import Navbar from "./components/Navbar";
@@ -63,6 +65,10 @@ function App() {
     fetchEntries();
   }, []);
 
+  // ===============
+  // List Properties
+  // ===============
+
   async function fetchProjects() {
     const apiData = await API.graphql({ query: listProjects });
     setProjects(apiData.data.listProjects.items);
@@ -77,6 +83,10 @@ function App() {
     const apiData = await API.graphql({ query: listEntrys });
     setEntry(apiData.data.listEntrys.items);
   }
+
+  // =================
+  // Create Properties
+  // =================
 
   async function createProject() {
     if (!formData.projectNo || !formData.name) return;
@@ -117,6 +127,10 @@ function App() {
     setEntryData(startEntryForm);
   }
 
+  // =================
+  // Update Properties
+  // =================
+
   async function updateProjectUsedHours({ entryProjectId }) {
     console.log(entry);
     const newProjectsArray = [...projects];
@@ -144,8 +158,6 @@ function App() {
   async function UpdateProject({ id }) {
     const newProjectsArray = [...projects];
     setIndex(projects.findIndex((item) => item.id === id));
-    // delete formData.createdAt;
-    // delete formData.updatedAt;
     newProjectsArray[index] = formData;
     setProjects(newProjectsArray);
     await API.graphql({
@@ -166,6 +178,34 @@ function App() {
     fetchProjects();
   }
 
+  async function UpdateEntry({ id }) {
+    const newEntriesArray = [...entry];
+    setIndex(entry.findIndex((item) => item.id === id));
+    newEntriesArray[index] = entryData;
+    setEntry(newEntriesArray);
+    await API.graphql({
+      query: updateEntryMutation,
+      variables: {
+        input: {
+          id: entryData.id,
+          entryUserId: entryData.entryUserId,
+          entryProjectId: entryData.entryProjectId,
+          date: entryData.date,
+          description: entryData.description,
+          time: entryData.time,
+        },
+      },
+    });
+    console.log(entryData);
+    setEntryData(startEntryForm);
+    toggle();
+    fetchEntries();
+  }
+
+  // =================
+  // Delete Properties
+  // =================
+
   async function deleteProject({ id }) {
     const newProjectsArray = projects.filter((proj) => proj.id !== id);
     setProjects(newProjectsArray);
@@ -185,6 +225,20 @@ function App() {
     });
     fetchUsers();
   }
+
+  async function deleteEntry({ id }) {
+    const newEntriesArray = entry.filter((item) => item.id !== id);
+    setEntry(newEntriesArray);
+    await API.graphql({
+      query: deleteEntryMutation,
+      variables: { input: { id } },
+    });
+    fetchEntries();
+  }
+
+  // ==============
+  // Event Handlers
+  // ==============
 
   function handleAddData(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -248,6 +302,8 @@ function App() {
                 entryUserId={entryUserId}
                 isShowing={isShowing}
                 toggle={toggle}
+                deleteEntry={deleteEntry}
+                UpdateEntry={UpdateEntry}
               />
             </Route>
 
