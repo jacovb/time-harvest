@@ -188,7 +188,6 @@ function App() {
       variables: {
         input: {
           id: entryData.id,
-          entryUserId: entryData.entryUserId,
           entryProjectId: entryData.entryProjectId,
           date: entryData.date,
           description: entryData.description,

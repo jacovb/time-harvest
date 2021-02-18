@@ -17,21 +17,6 @@ export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry
                     </button>   
                 </div>
                 
-                <label htmlFor="user">Project User: </label>
-                <select 
-                    type="text"
-                    id="user"
-                    value={entryData.entryUserId ? entryData.entryUserId : entryData.user.name}
-                    name="entryUserId"
-                    onChange={handleAddEntry}>
-                    {users
-                        .sort((a, b) => a.name - b.name)
-                        .map((user, idx) => (
-                            <option key={idx} value={user.id}>{user.name}</option>
-                    ))}
-                </select>
-                
-                
                 <br/>
                 <label htmlFor="date">Date: </label>
                 <input 
@@ -56,6 +41,13 @@ export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry
                             <option key={idx} value={project.id}>{project.projectNo}</option>
                     ))}  
                 </select>
+                
+                {projects
+                .filter((project) => project.id === entryData.entryProjectId)
+                .map((project, idx) => (
+                    <p key={idx}>{project.name}</p>
+                ))
+            }
 
                 <br/>
                 <label htmlFor="description">Description: </label>
