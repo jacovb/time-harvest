@@ -112,6 +112,7 @@ export default function Timesheets({
                             className="gridEditButton"
                             onClick={() => {
                                 setEntryData(item);
+                                // add entryUserId && entryProjectId to entryData to be able to have selected entry displayed in dropdown "select"
                                 toggle();
                                 console.log("Edit Entry: " ,entryData);
                             }}
