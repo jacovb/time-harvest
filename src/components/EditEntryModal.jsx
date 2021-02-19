@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
-export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry, handleAddEntry, projects, users, setEntryData, startEntryForm }) {
+export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry, handleAddEntry, projects, setEntryData, startEntryForm }) {
     
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>

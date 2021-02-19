@@ -135,7 +135,6 @@ export default function Timesheets({
                     UpdateEntry={UpdateEntry}
                     handleAddEntry={handleAddEntry}
                     projects={projects}
-                    users={users}
                     startEntryForm={startEntryForm}
                     setEntryData={setEntryData}
                 />
