@@ -12,8 +12,13 @@ export default function EditProjectModal({ isShowing, hide, formData, updateProj
             <div className="modal">
                 <div className="modal-header">
                     <h1>Edit Project: {formData.name}</h1>  
-                    <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
-                        <span aria-hidden="true"><HighlightOffIcon /></span>
+                    <button 
+                        type="button" 
+                        className="modal-close-button" 
+                        data-dismiss="modal" 
+                        aria-label="Close" 
+                        onClick={hide}>
+                            <span aria-hidden="true"><HighlightOffIcon /></span>
                     </button>   
                 </div>
                 <label htmlFor="projNo">Project Number: </label>

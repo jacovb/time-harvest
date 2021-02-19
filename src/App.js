@@ -303,6 +303,7 @@ function App() {
                 toggle={toggle}
                 deleteEntry={deleteEntry}
                 UpdateEntry={UpdateEntry}
+                startEntryForm={startEntryForm}
               />
             </Route>
 

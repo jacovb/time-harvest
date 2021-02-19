@@ -19,6 +19,7 @@ export default function Timesheets({
     isShowing,
     deleteEntry,
     UpdateEntry,
+    startEntryForm,
 }) {
     return (
         <>
@@ -135,6 +136,8 @@ export default function Timesheets({
                     handleAddEntry={handleAddEntry}
                     projects={projects}
                     users={users}
+                    startEntryForm={startEntryForm}
+                    setEntryData={setEntryData}
                 />
             </div>
         </>
