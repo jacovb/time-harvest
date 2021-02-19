@@ -105,14 +105,14 @@ export default function Timesheets({
                     .map((item, idx) => (
                     <div className="projectRow" key={idx}>
                         <div>{item.date}</div>
+                        <div>{item.project.projectNo}</div>
                         <div>{item.project.name}</div>
                         <div>{item.description}</div>
                         <div>{item.time}</div>
                         <button
                             className="gridEditButton"
                             onClick={() => {
-                                setEntryData(item);
-                                // add entryUserId && entryProjectId to entryData to be able to have selected entry displayed in dropdown "select"
+                                setEntryData({ ...item, entryProjectId: item.project.id})
                                 toggle();
                                 console.log("Edit Entry: " ,entryData);
                             }}

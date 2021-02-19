@@ -41,7 +41,7 @@ export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry
                             <option key={idx} value={project.id}>{project.projectNo}</option>
                     ))}  
                 </select>
-                
+
                 {projects
                 .filter((project) => project.id === entryData.entryProjectId)
                 .map((project, idx) => (
