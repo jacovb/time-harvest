@@ -99,7 +99,6 @@ export default function Timesheets({
             <br/>
             <button onClick={() => updateProjectUsedHours(entryData)}>Update Project Hours</button>
 
-            {console.log(entry)}
             <div>
                 {entry
                     .filter((item) => item.user.id === entryUserId.entryUserId)

@@ -65,6 +65,12 @@ function App() {
     fetchEntries();
   }, []);
 
+  useEffect(() => {
+    console.log("update entry");
+    console.log(entry);
+    updateProjectUsedHours(entryData);
+  }, [entry]);
+
   // ===============
   // List Properties
   // ===============
@@ -124,7 +130,7 @@ function App() {
     });
 
     fetchEntries();
-    setEntryData(startEntryForm);
+    // setEntryData(startEntryForm);
   }
 
   // =================
@@ -132,27 +138,26 @@ function App() {
   // =================
 
   async function updateProjectUsedHours({ entryProjectId }) {
-    console.log(entry);
-    const newProjectsArray = [...projects];
-    const idx = projects.findIndex((item) => item.id === entryProjectId);
+    if (entry === []) return;
 
-    newProjectsArray[idx].usedHours = entry
+    const usedHours = entry
       .filter((item) => item.project.id === entryProjectId)
       .map((item) => item.time)
       .reduce((a, b) => a + b, 0);
 
-    setProjects(newProjectsArray);
+    // setProjects(newProjectsArray);
 
     await API.graphql({
       query: updateProjectMutation,
       variables: {
         input: {
-          id: entryData.entryProjectId,
-          usedHours: newProjectsArray[idx].usedHours,
+          id: entryProjectId,
+          usedHours: usedHours,
         },
       },
     });
     setEntryData(startEntryForm);
+    fetchProjects();
   }
 
   async function UpdateProject({ id }) {
@@ -234,6 +239,8 @@ function App() {
     });
     fetchEntries();
   }
+
+  // when entry is deleted, projects usedHours should be updated
 
   // ==============
   // Event Handlers
