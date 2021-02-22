@@ -66,9 +66,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("update entry");
-    console.log(entry);
-    updateProjectUsedHours(entryData);
+    if (entryData === startEntryForm) return;
+    else {
+      updateProjectUsedHours(entryData);
+    }
   }, [entry]);
 
   // ===============
@@ -138,7 +139,7 @@ function App() {
   // =================
 
   async function updateProjectUsedHours({ entryProjectId }) {
-    if (entry === []) return;
+    if (entryProjectId === null || "" || undefined) return;
 
     const usedHours = entry
       .filter((item) => item.project.id === entryProjectId)
