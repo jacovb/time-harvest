@@ -70,6 +70,7 @@ function App() {
     else {
       updateProjectUsedHours(entryData);
     }
+    // eslint-disable-next-line
   }, [entry]);
 
   // ===============
@@ -131,7 +132,6 @@ function App() {
     });
 
     fetchEntries();
-    // setEntryData(startEntryForm);
   }
 
   // =================
@@ -139,14 +139,10 @@ function App() {
   // =================
 
   async function updateProjectUsedHours({ entryProjectId }) {
-    if (entryProjectId === null || "" || undefined) return;
-
     const usedHours = entry
       .filter((item) => item.project.id === entryProjectId)
       .map((item) => item.time)
       .reduce((a, b) => a + b, 0);
-
-    // setProjects(newProjectsArray);
 
     await API.graphql({
       query: updateProjectMutation,
@@ -202,7 +198,7 @@ function App() {
       },
     });
     console.log(entryData);
-    setEntryData(startEntryForm);
+    // setEntryData(startEntryForm);
     toggle();
     fetchEntries();
   }
@@ -232,13 +228,18 @@ function App() {
   }
 
   async function deleteEntry({ id }) {
-    const newEntriesArray = entry.filter((item) => item.id !== id);
-    setEntry(newEntriesArray);
-    await API.graphql({
-      query: deleteEntryMutation,
-      variables: { input: { id } },
-    });
-    fetchEntries();
+    console.log("All entry: ", entry);
+    const getProjectId = entry.filter((item) => item.id === id);
+    console.log("ProjectId: ", getProjectId.project.id);
+    setEntryData({ ...entryData, entryProjectId: getProjectId.project.id });
+
+    // const newEntriesArray = entry.filter((item) => item.id !== id);
+    // setEntry(newEntriesArray);
+    // await API.graphql({
+    //   query: deleteEntryMutation,
+    //   variables: { input: { id } },
+    // });
+    // fetchEntries();
   }
 
   // when entry is deleted, projects usedHours should be updated
