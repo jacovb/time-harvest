@@ -228,21 +228,17 @@ function App() {
   }
 
   async function deleteEntry({ id }) {
-    console.log("All entry: ", entry);
+    // need to get deleted entry's Project ID - this is needed to update Project Used Hours
     const getProjectId = entry.filter((item) => item.id === id);
-    console.log("ProjectId: ", getProjectId.project.id);
-    setEntryData({ ...entryData, entryProjectId: getProjectId.project.id });
+    setEntryData({ ...entryData, entryProjectId: getProjectId[0].project.id });
 
-    // const newEntriesArray = entry.filter((item) => item.id !== id);
-    // setEntry(newEntriesArray);
-    // await API.graphql({
-    //   query: deleteEntryMutation,
-    //   variables: { input: { id } },
-    // });
-    // fetchEntries();
+    // delete entry from DynamoDB and fetch all entries when done
+    await API.graphql({
+      query: deleteEntryMutation,
+      variables: { input: { id } },
+    });
+    fetchEntries();
   }
-
-  // when entry is deleted, projects usedHours should be updated
 
   // ==============
   // Event Handlers
