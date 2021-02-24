@@ -180,11 +180,8 @@ function App() {
     fetchProjects();
   }
 
+  // no need to pass {id} || entryData as argument in UpdateEntry ?
   async function UpdateEntry({ id }) {
-    const newEntriesArray = [...entry];
-    setIndex(entry.findIndex((item) => item.id === id));
-    newEntriesArray[index] = entryData;
-    setEntry(newEntriesArray);
     await API.graphql({
       query: updateEntryMutation,
       variables: {
@@ -197,8 +194,6 @@ function App() {
         },
       },
     });
-    console.log(entryData);
-    // setEntryData(startEntryForm);
     toggle();
     fetchEntries();
   }
