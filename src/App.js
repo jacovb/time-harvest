@@ -180,8 +180,7 @@ function App() {
     fetchProjects();
   }
 
-  // no need to pass {id} || entryData as argument in UpdateEntry ?
-  async function UpdateEntry({ id }) {
+  async function UpdateEntry(entryData) {
     await API.graphql({
       query: updateEntryMutation,
       variables: {
