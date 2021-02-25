@@ -139,6 +139,35 @@ function App() {
   // =================
 
   async function updateProjectUsedHours({ entryProjectId }) {
+    // function getUsedHours(projectId) {
+    //   const usedHours = entry
+    //   .filter((item) => item.project.id === projectId)
+    //   .map((item) => item.time)
+    //   .reduce((a, b) => a + b, 0);
+    //   return usedHours
+    // }
+
+    if (
+      entryData.prevProjectId &&
+      entryData.entryProjectId !== entryData.prevProjectId
+    ) {
+      console.log("Project Changed!");
+      const usedHours = entry
+        .filter((item) => item.project.id === entryData.prevProjectId)
+        .map((item) => item.time)
+        .reduce((a, b) => a + b, 0);
+
+      await API.graphql({
+        query: updateProjectMutation,
+        variables: {
+          input: {
+            id: entryData.prevProjectId,
+            usedHours: usedHours,
+          },
+        },
+      });
+    }
+
     const usedHours = entry
       .filter((item) => item.project.id === entryProjectId)
       .map((item) => item.time)

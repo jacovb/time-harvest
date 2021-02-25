@@ -10,6 +10,7 @@ export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry
         <div className="modal-overlay" />
         <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
             <div className="modal">
+                {console.log("Edit Entry: " ,entryData)}
                 <div className="modal-header">
                     <h1>Edit Entry:</h1>  
                     <button 

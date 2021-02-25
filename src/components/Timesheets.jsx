@@ -38,8 +38,6 @@ export default function Timesheets({
                     ))}  
             </select>
             
-            {console.log("user name: ", entryUserId.entryUserId)}
-            
             <br/>
             <br/>
             <label htmlFor="date">Date: </label>
@@ -112,9 +110,12 @@ export default function Timesheets({
                         <button
                             className="gridEditButton"
                             onClick={() => {
-                                setEntryData({ ...item, entryProjectId: item.project.id})
+                                setEntryData({ 
+                                    ...item, 
+                                    entryProjectId: item.project.id,
+                                    prevProjectId: item.project.id
+                                })
                                 toggle();
-                                console.log("Edit Entry: " ,entryData);
                             }}
                         >
                             <EditIcon />
