@@ -103,8 +103,7 @@ export default function Timesheets({
                     .map((item, idx) => (
                     <div className="projectRow" key={idx}>
                         <div>{item.date}</div>
-                        <div>{item.project.projectNo}</div>
-                        <div>{item.project.name}</div>
+                        <div>{item.project.projectNo} - {item.project.name}</div>
                         <div>{item.description}</div>
                         <div>{item.time}</div>
                         <button
