@@ -1,7 +1,13 @@
 import React from "react";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
-export default function Users({userData, createUser, handleAddUser, users, deleteUser}) {
+export default function Users({
+  userData, 
+  createUser, 
+  handleAddUser, 
+  users, 
+  deleteUser
+}) {
     return (
         <>
             <p>Add New Users</p>

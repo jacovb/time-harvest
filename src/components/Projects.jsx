@@ -5,7 +5,16 @@ import EditProjectModal from "./EditProjectModal";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import EditIcon from "@material-ui/icons/Edit";
 
-export default function Projects({projects, setFormData, deleteProject, UpdateProject, formData, handleAddData, isShowing, toggle}) {
+export default function Projects({
+  projects, 
+  setFormData, 
+  deleteProject, 
+  UpdateProject, 
+  formData, 
+  handleAddData, 
+  isShowing, 
+  toggle
+}) {
     
     return (
         <>

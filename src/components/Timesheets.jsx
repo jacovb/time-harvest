@@ -13,7 +13,6 @@ export default function Timesheets({
     entryData,
     setEntryData, 
     createEntry, 
-    updateProjectUsedHours, 
     entryUserId, 
     toggle, 
     isShowing,
@@ -34,7 +33,9 @@ export default function Timesheets({
                     {users
                         .sort((a, b) => a.name - b.name)
                         .map((user, idx) => (
-                            <option key={idx} value={user.id}>{user.name}</option>
+                            <option key={idx} value={user.id}>
+                                {user.name}
+                            </option>
                     ))}  
             </select>
             
@@ -59,7 +60,9 @@ export default function Timesheets({
                     {projects
                         .sort((a, b) => a.projectNo - b.projectNo)
                         .map((project, idx) => (
-                            <option key={idx} value={project.id}>{project.projectNo}</option>
+                            <option key={idx} value={project.id}>
+                                {project.projectNo}
+                            </option>
                     ))}  
             </select>
             
@@ -95,11 +98,11 @@ export default function Timesheets({
             
             <br/>
             <br/>
-            <button onClick={() => updateProjectUsedHours(entryData)}>Update Project Hours</button>
 
             <div>
                 {entry
                     .filter((item) => item.user.id === entryUserId.entryUserId)
+                    .sort((a, b) => new Date(a.date) - new Date(b.date))
                     .map((item, idx) => (
                     <div className="projectRow" key={idx}>
                         <div>{item.date}</div>

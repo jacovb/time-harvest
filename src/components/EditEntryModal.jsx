@@ -3,12 +3,27 @@ import ReactDOM from 'react-dom';
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
-export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry, handleAddEntry, projects, setEntryData, startEntryForm }) {
+export default function EditEntryModal({ 
+        isShowing, 
+        hide, 
+        entryData, 
+        UpdateEntry, 
+        handleAddEntry, 
+        projects, 
+        setEntryData, 
+        startEntryForm 
+    }) {
     
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
         <div className="modal-overlay" />
-        <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
+        <div 
+            className="modal-wrapper" 
+            aria-modal 
+            aria-hidden 
+            tabIndex={-1} 
+            role="dialog"
+        >
             <div className="modal">
                 {console.log("Edit Entry: " ,entryData)}
                 <div className="modal-header">
@@ -22,7 +37,9 @@ export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry
                             hide();
                             setEntryData(startEntryForm);
                         }}>
-                            <span aria-hidden="true"><HighlightOffIcon /></span>
+                            <span aria-hidden="true">
+                                <HighlightOffIcon />
+                            </span>
                     </button>   
                 </div>
                 
@@ -47,7 +64,9 @@ export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry
                     {projects
                         .sort((a, b) => a.projectNo - b.projectNo)
                         .map((project, idx) => (
-                            <option key={idx} value={project.id}>{project.projectNo}</option>
+                            <option key={idx} value={project.id}>
+                                {project.projectNo}
+                            </option>
                     ))}  
                 </select>
 
@@ -81,7 +100,9 @@ export default function EditEntryModal({ isShowing, hide, entryData, UpdateEntry
                 />
                 
                 <br/>
-                <button onClick={() => UpdateEntry(entryData)}>Update</button>
+                <button onClick={() => UpdateEntry(entryData)}>
+                    Update
+                </button>
             </div>
         </div>
     </React.Fragment>, document.body

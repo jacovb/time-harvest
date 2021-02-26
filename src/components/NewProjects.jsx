@@ -2,18 +2,7 @@ import React from "react";
 
 export default function NewProjects({formData, createProject, handleAddData}) {
     
-    // function handleAddProjects() { 
-    //     if (projects.some((item) => item.projectNo === newProject.projectNo)) {
-    //         alert("Project Number Already Exists") 
-    //     } else {
-    //         setProjects([...projects, newProject])
-    //         setNewProject({
-    //             projectNo: "",
-    //             projectName: "",
-    //             projectAllowedHours: "", 
-    //         }) 
-    //     }
-    // }
+    // needs to check if project number already exists
 
     return (
         <>

@@ -139,46 +139,35 @@ function App() {
   // =================
 
   async function updateProjectUsedHours({ entryProjectId }) {
-    // function getUsedHours(projectId) {
-    //   const usedHours = entry
-    //   .filter((item) => item.project.id === projectId)
-    //   .map((item) => item.time)
-    //   .reduce((a, b) => a + b, 0);
-    //   return usedHours
-    // }
+    function getUsedHours(projectId) {
+      const usedHours = entry
+        .filter((item) => item.project.id === projectId)
+        .map((item) => item.time)
+        .reduce((a, b) => a + b, 0);
+      return usedHours;
+    }
 
     if (
       entryData.prevProjectId &&
       entryData.entryProjectId !== entryData.prevProjectId
     ) {
-      console.log("Project Changed!");
-      const usedHours = entry
-        .filter((item) => item.project.id === entryData.prevProjectId)
-        .map((item) => item.time)
-        .reduce((a, b) => a + b, 0);
-
       await API.graphql({
         query: updateProjectMutation,
         variables: {
           input: {
             id: entryData.prevProjectId,
-            usedHours: usedHours,
+            usedHours: getUsedHours(entryData.prevProjectId),
           },
         },
       });
     }
-
-    const usedHours = entry
-      .filter((item) => item.project.id === entryProjectId)
-      .map((item) => item.time)
-      .reduce((a, b) => a + b, 0);
 
     await API.graphql({
       query: updateProjectMutation,
       variables: {
         input: {
           id: entryProjectId,
-          usedHours: usedHours,
+          usedHours: getUsedHours(entryProjectId),
         },
       },
     });
@@ -251,7 +240,7 @@ function App() {
   }
 
   async function deleteEntry({ id }) {
-    // need to get deleted entry's Project ID - this is needed to update Project Used Hours
+    // get deleted entry's Project ID - this is needed to update Project Used Hours
     const getProjectId = entry.filter((item) => item.id === id);
     setEntryData({ ...entryData, entryProjectId: getProjectId[0].project.id });
 
@@ -325,7 +314,6 @@ function App() {
                 entryData={entryData}
                 setEntryData={setEntryData}
                 createEntry={createEntry}
-                updateProjectUsedHours={updateProjectUsedHours}
                 entryUserId={entryUserId}
                 isShowing={isShowing}
                 toggle={toggle}
