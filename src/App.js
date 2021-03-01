@@ -138,7 +138,7 @@ function App() {
   // Update Properties
   // =================
 
-  async function updateProjectUsedHours({ entryProjectId }) {
+  async function updateProjectUsedHours(entryData) {
     function getUsedHours(projectId) {
       const usedHours = entry
         .filter((item) => item.project.id === projectId)
@@ -166,8 +166,8 @@ function App() {
       query: updateProjectMutation,
       variables: {
         input: {
-          id: entryProjectId,
-          usedHours: getUsedHours(entryProjectId),
+          id: entryData.entryProjectId,
+          usedHours: getUsedHours(entryData.entryProjectId),
         },
       },
     });

@@ -29,6 +29,21 @@ export default function Projects({
                       <div className="gridProjectHours">
                         {project.allowedHours}
                       </div>
+                      <svg
+                        className="progress-ring"
+                        height="90"
+                        width="90"
+                      >
+                        <circle
+                          className="progress-ring__circle"
+                          stroke-width="4"
+                          fill="transparent"
+                          r="37"
+                          cx="45"
+                          cy="45"
+                          stroke="blue"
+                        />
+                      </svg>
                       <div className="gridProjectStatus">{project.status}</div>
                       <button
                         className="gridEditButton"
