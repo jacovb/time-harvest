@@ -39,7 +39,7 @@ export default function Projects({
                       >
                         <circle
                           className="background-circle"
-                          stroke-width="2"
+                          strokeWidth="2"
                           fill="transparent"
                           r={radius}
                           cx="45"
@@ -49,7 +49,7 @@ export default function Projects({
                         />
                         <circle
                           className="progress-circle"
-                          stroke-width="5"
+                          strokeWidth="5"
                           fill="transparent"
                           r={radius}
                           cx="45"
@@ -59,6 +59,13 @@ export default function Projects({
                           strokeDashoffset={circum * ((100 - (project.usedHours / project.allowedHours * 100)) / 100)}
                           transform="rotate(-90) translate(-90 0)"
                         />
+                        <text
+                          className="svg-circle-text"
+                          x="45"
+                          y="45"
+                        >
+                          {Math.round(project.usedHours / project.allowedHours * 100)}%
+                        </text>
                       </svg>
                       <div className="gridProjectStatus">{project.status}</div>
                       <button
