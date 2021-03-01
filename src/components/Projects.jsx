@@ -15,7 +15,10 @@ export default function Projects({
   isShowing, 
   toggle
 }) {
-    
+  
+    const radius = 36;
+    const circum = 2 * Math.PI * radius;
+  
     return (
         <>
             <h2>Projects</h2>
@@ -35,13 +38,26 @@ export default function Projects({
                         width="90"
                       >
                         <circle
-                          className="progress-ring__circle"
-                          stroke-width="4"
+                          className="background-circle"
+                          stroke-width="2"
                           fill="transparent"
-                          r="37"
+                          r={radius}
+                          cx="45"
+                          cy="45"
+                          stroke="lightgrey"
+                          transform="rotate(-90) translate(-90 0)"
+                        />
+                        <circle
+                          className="progress-circle"
+                          stroke-width="5"
+                          fill="transparent"
+                          r={radius}
                           cx="45"
                           cy="45"
                           stroke="blue"
+                          strokeDasharray={circum}
+                          strokeDashoffset={circum * ((100 - (project.usedHours / project.allowedHours * 100)) / 100)}
+                          transform="rotate(-90) translate(-90 0)"
                         />
                       </svg>
                       <div className="gridProjectStatus">{project.status}</div>
