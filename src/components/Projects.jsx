@@ -1,6 +1,7 @@
 import React from "react";
 
 import EditProjectModal from "./EditProjectModal";
+import ProgressRing from "./ProgressRing";
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import EditIcon from "@material-ui/icons/Edit";
@@ -16,9 +17,6 @@ export default function Projects({
   toggle
 }) {
   
-    const radius = 36;
-    const circum = 2 * Math.PI * radius;
-  
     return (
         <>
             <h2>Projects</h2>
@@ -32,42 +30,10 @@ export default function Projects({
                       <div className="gridProjectHours">
                         {project.allowedHours}
                       </div>
-                      <svg
-                        className="progress-ring"
-                        height="90"
-                        width="90"
-                      >
-                        <circle
-                          className="background-circle"
-                          strokeWidth="2"
-                          fill="transparent"
-                          r={radius}
-                          cx="45"
-                          cy="45"
-                          stroke="lightgrey"
-                          transform="rotate(-90) translate(-90 0)"
-                        />
-                        <circle
-                          className="progress-circle"
-                          strokeWidth="5"
-                          fill="transparent"
-                          r={radius}
-                          cx="45"
-                          cy="45"
-                          stroke="blue"
-                          strokeDasharray={circum}
-                          strokeDashoffset={circum * ((100 - (project.usedHours / project.allowedHours * 100)) / 100)}
-                          transform="rotate(-90) translate(-90 0)"
-                        />
-                        <text
-                          className="svg-circle-text"
-                          x="45"
-                          y="45"
-                        >
-                          {Math.round(project.usedHours / project.allowedHours * 100)}%
-                        </text>
-                      </svg>
                       <div className="gridProjectStatus">{project.status}</div>
+                      <ProgressRing 
+                        className="gridProgress-ring"
+                        project={project}/>
                       <button
                         className="gridEditButton"
                         onClick={() => {

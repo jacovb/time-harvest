@@ -26,7 +26,7 @@
 
 .projectRow {
   display: grid;
-  grid-template-columns: 100px auto 100px 100px 40px 40px;
+  grid-template-columns: 100px auto 100px 100px 100px 40px 40px;
   column-gap: 5px;
   align-items: center;
   padding: 5px;
@@ -49,8 +49,12 @@
   grid-column: 4 / 5;
 }
 
-.gridEditButton {
+.gridProgress-ring {
   grid-column: 5 / 6;
+}
+
+.gridEditButton {
+  grid-column: 6 / 7;
   color: navy;
   align-items: center;
   padding: 0;
@@ -58,7 +62,7 @@
 }
 
 .gridDeleteButton {
-  grid-column: 6 / 7;
+  grid-column: 7 / 8;
   color: darkred;
   align-items: center;
   padding: 0;

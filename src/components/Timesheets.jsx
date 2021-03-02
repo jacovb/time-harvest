@@ -102,7 +102,7 @@ export default function Timesheets({
             <div>
                 {entry
                     .filter((item) => item.user.id === entryUserId.entryUserId)
-                    .sort((a, b) => new Date(a.date) - new Date(b.date))
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
                     .map((item, idx) => (
                     <div className="projectRow" key={idx}>
                         <div>{item.date}</div>
