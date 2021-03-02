@@ -2,6 +2,8 @@ import React from "react";
 
 export default function ProgressRing({project}) {
     
+    const size = 90
+    // add StrokeWidth(full circle) & StrokeWidth(progress) to calculate radius below
     const radius = 36;
     const circum = 2 * Math.PI * radius;
     const progressPercent = (project.usedHours / project.allowedHours * 100)
@@ -10,16 +12,16 @@ export default function ProgressRing({project}) {
         <>
             <svg
                 // className="gridProgress-ring"
-                height="90"
-                width="90"
+                height={size}
+                width={size}
             >
                 <circle
                     className="background-circle"
                     strokeWidth="2"
                     fill="transparent"
                     r={radius}
-                    cx="45"
-                    cy="45"
+                    cx={size/2}
+                    cy={size/2}
                     stroke="lightgrey"
                     transform="rotate(-90) translate(-90 0)"
                 />
@@ -28,8 +30,8 @@ export default function ProgressRing({project}) {
                     strokeWidth="5"
                     fill="transparent"
                     r={radius}
-                    cx="45"
-                    cy="45"
+                    cx={size/2}
+                    cy={size/2}
                     stroke="blue"
                     strokeDasharray={circum}
                     strokeDashoffset={circum * ((100 - progressPercent) / 100)}
