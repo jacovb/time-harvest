@@ -99,18 +99,20 @@ export default function Timesheets({
             <br/>
             <br/>
 
-            <div>
+            <div className="entryList">
                 {entry
                     .filter((item) => item.user.id === entryUserId.entryUserId)
                     .sort((a, b) => new Date(b.date) - new Date(a.date))
                     .map((item, idx) => (
-                    <div className="projectRow" key={idx}>
-                        <div>{item.date}</div>
-                        <div>{item.project.projectNo} - {item.project.name}</div>
-                        <div>{item.description}</div>
-                        <div>{item.time}</div>
+                    <div className="entryRow" key={idx}>
+                        <div className="entryDate">{item.date}</div>
+                        <div className="entryProjectName">
+                            {item.project.projectNo} - {item.project.name}
+                        </div>
+                        <div className="entryDescription">{item.description}</div>
+                        <div className="entryTime">{item.time}</div>
                         <button
-                            className="gridEditButton"
+                            className="entryEditButton"
                             onClick={() => {
                                 setEntryData({ 
                                     ...item, 
@@ -123,7 +125,7 @@ export default function Timesheets({
                             <EditIcon />
                         </button>
                         <button
-                            className="gridDeleteButton"
+                            className="entryDeleteButton"
                             onClick={() => deleteEntry(item)}
                         >
                             <HighlightOffIcon />

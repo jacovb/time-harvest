@@ -3,8 +3,9 @@ import React from "react";
 export default function ProgressRing({project}) {
     
     const size = 90
-    // add StrokeWidth(full circle) & StrokeWidth(progress) to calculate radius below
-    const radius = 36;
+    const backCircleWidth = 2;
+    const frontCircleWidth = 5;
+    const radius = (size / 2) - (frontCircleWidth * 2);
     const circum = 2 * Math.PI * radius;
     const progressPercent = (project.usedHours / project.allowedHours * 100)
     
@@ -17,7 +18,7 @@ export default function ProgressRing({project}) {
             >
                 <circle
                     className="background-circle"
-                    strokeWidth="2"
+                    strokeWidth={backCircleWidth}
                     fill="transparent"
                     r={radius}
                     cx={size/2}
@@ -27,7 +28,7 @@ export default function ProgressRing({project}) {
                 />
                 <circle
                     className="progress-circle"
-                    strokeWidth="5"
+                    strokeWidth={frontCircleWidth}
                     fill="transparent"
                     r={radius}
                     cx={size/2}

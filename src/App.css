@@ -20,6 +20,10 @@
   color: black;
 }
 
+/* =============================================================== */
+/* PROJECTS LAYOUT */
+/* =============================================================== */
+
 .projectsList {
   margin: auto;
 }
@@ -30,6 +34,10 @@
   column-gap: 5px;
   align-items: center;
   padding: 5px;
+  margin: 2px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
 }
 
 .gridProjectNo {
@@ -68,6 +76,57 @@
   padding: 0;
   padding-top: 2px;
 }
+
+/* =============================================================== */
+/* ENTRY LAYOUT */
+/* =============================================================== */
+
+.entryList {
+  margin: auto;
+}
+
+.entryRow {
+  display: grid;
+  grid-template-columns: 150px auto 150px 100px 40px 40px;
+  column-gap: 5px;
+  align-items: center;
+  padding: 5px;
+}
+
+.entryDate {
+  grid-column: 1 / 2;
+}
+
+.entryProjectName {
+  grid-column: 2 / 3;
+  text-align: left;
+}
+
+.entryDescription {
+  grid-column: 3 / 4;
+}
+
+.entryTime {
+  grid-column: 4 / 5;
+}
+
+.entryEditButton {
+  grid-column: 5 / 6;
+  color: navy;
+  align-items: center;
+  padding: 0;
+  padding-top: 2px;
+}
+
+.entryDeleteButton {
+  grid-column: 6 / 7;
+  color: darkred;
+  align-items: center;
+  padding: 0;
+  padding-top: 2px;
+}
+
+/* =============================================================== */
 
 .modal-overlay {
   position: fixed;
