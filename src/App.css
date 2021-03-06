@@ -21,10 +21,81 @@
 }
 
 /* =============================================================== */
+/* NEW PROJECTS FLOAT LABEL - DEV ED */
+/* =============================================================== */
+
+.projNo-section,
+.projName-section,
+.projHours-section,
+.projStatus-section {
+  width: 50%;
+  position: relative;
+  height: 70px;
+  margin-top: 50px;
+  overflow: hidden;
+}
+
+.projNo-section input,
+.projName-section input,
+.projHours-section input,
+.projStatus-section select {
+  width: 100%;
+  height: 100%;
+  color: gray;
+  padding-top: 20px;
+  border: none;
+  outline: none;
+}
+
+.projNo-section .label-projNo,
+.projName-section .label-projName,
+.projHours-section .label-projHours,
+.projStatus-section .label-projStatus {
+  position: absolute;
+  bottom: 0px;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid black;
+}
+
+.projNo-section .label-projNo::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid lightblue;
+  transform: translateX(-100%);
+  transition: all 0.3s ease;
+}
+
+.content-name {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  transition: all 0.3s ease;
+}
+
+.projNo-section input:focus + .label-projNo .content-name,
+.projNo-section input:valid + .label-projNo .content-name {
+  transform: translateY(-150%);
+  font-size: 14px;
+  color: red;
+}
+
+.projNo-section input:focus + .label-projNo::after,
+.projNo-section input:valid + .label-projNo::after {
+  transform: translateX(0%);
+}
+
+/* =============================================================== */
 /* NEW PROJECTS FORM LAYOUT */
 /* =============================================================== */
 
-form {
+/* form {
   width: 320px;
   float: left;
   margin: 20px;
@@ -47,7 +118,7 @@ form select {
 }
 form input:valid,
 form select:valid {
-  /* hides the label */
+  hides the label
   background: white;
 }
 form input:focus,
@@ -97,7 +168,7 @@ form.label-to-bottom input:focus + label,
 form.label-to-bottom select:focus + label {
   top: 100%;
   margin-top: -16px;
-}
+} */
 
 /* =============================================================== */
 /* PROJECTS LAYOUT */
