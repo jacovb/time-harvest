@@ -8,7 +8,9 @@ export default function EditProjectModal({
     hide, 
     formData, 
     updateProject, 
-    handleAddData 
+    handleAddData,
+    startForm,
+    setFormData 
 }) {
     
     return isShowing ? ReactDOM.createPortal(
@@ -29,11 +31,12 @@ export default function EditProjectModal({
                         className="modal-close-button" 
                         data-dismiss="modal" 
                         aria-label="Close" 
-                        onClick={hide}>
+                        onClick={() => {
+                            hide();
+                            setFormData(startForm);
+                        }}>
                             <span aria-hidden="true">
-                                
                                 <HighlightOffIcon />
-                            
                             </span>
                     </button>   
                 </div>

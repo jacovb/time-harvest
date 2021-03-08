@@ -293,6 +293,7 @@ function App() {
                 handleAddData={handleAddData}
                 isShowing={isShowing}
                 toggle={toggle}
+                startForm={startForm}
               />
             </Route>
 

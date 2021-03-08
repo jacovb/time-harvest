@@ -24,21 +24,16 @@
 /* NEW PROJECTS FLOAT LABEL - DEV ED */
 /* =============================================================== */
 
-.projNo-section,
-.projName-section,
-.projHours-section,
-.projStatus-section {
+.fullwidth-input {
   width: 50%;
   position: relative;
+  left: 25%;
   height: 70px;
-  margin-top: 50px;
   overflow: hidden;
 }
 
-.projNo-section input,
-.projName-section input,
-.projHours-section input,
-.projStatus-section select {
+.fullwidth-input input,
+.fullwidth-input select {
   width: 100%;
   height: 100%;
   color: gray;
@@ -47,10 +42,7 @@
   outline: none;
 }
 
-.projNo-section .label-projNo,
-.projName-section .label-projName,
-.projHours-section .label-projHours,
-.projStatus-section .label-projStatus {
+.fullwidth-input .label-name {
   position: absolute;
   bottom: 0px;
   left: 0%;
@@ -60,7 +52,7 @@
   border-bottom: 1px solid black;
 }
 
-.projNo-section .label-projNo::after {
+.fullwidth-input .label-name::after {
   content: "";
   position: absolute;
   left: 0px;
@@ -79,15 +71,15 @@
   transition: all 0.3s ease;
 }
 
-.projNo-section input:focus + .label-projNo .content-name,
-.projNo-section input:valid + .label-projNo .content-name {
+.fullwidth-input input:focus + .label-name .content-name,
+.fullwidth-input input:valid + .label-name .content-name {
   transform: translateY(-150%);
   font-size: 14px;
   color: red;
 }
 
-.projNo-section input:focus + .label-projNo::after,
-.projNo-section input:valid + .label-projNo::after {
+.fullwidth-input input:focus + .label-name::after,
+.fullwidth-input input:valid + .label-name::after {
   transform: translateX(0%);
 }
 

@@ -5,9 +5,23 @@ export default function NewProjects({formData, createProject, handleAddData}) {
     // needs to check if project number already exists
 
     return (
-        <form className="label-to-bottom">
+        <form className="newproject-form">
             <h2>Add New Projects</h2>
-            <div className="projNo-section">
+            <div className="fullwidth-input">
+                <input 
+                    type="text"
+                    id="projName"
+                    value={formData.name}
+                    name="name"
+                    onChange={handleAddData}
+                    autoComplete="off"
+                    required
+                />
+                <label htmlFor="projName" className="label-name">
+                    <span className="content-name">Project Name:</span> 
+                </label>
+            </div>
+            <div className="fullwidth-input">
                 <input 
                     type="text"
                     id="projNo"
@@ -17,45 +31,34 @@ export default function NewProjects({formData, createProject, handleAddData}) {
                     autoComplete="off"
                     required
                 />
-                <label htmlFor="projNo" className="label-projNo">
+                <label htmlFor="projNo" className="label-name">
                     <span className="content-name">Project Number:</span>
                 </label>
             </div>
-            <div className="projName-section">
-                <input 
-                    type="text"
-                    id="projName"
-                    value={formData.name}
-                    name="name"
-                    onChange={handleAddData}
-                    autoComplete="off"
-                />
-                <label htmlFor="projName" className="label-projName">
-                    <span className="content-name">Project Name:</span> 
-                </label>
-            </div>
-            <div className="projHours-section">
+            <div className="fullwidth-input">
                 <input 
                     type="number"
                     id="projHours"
                     value={formData.allowedHours}
                     name="allowedHours"
                     onChange={handleAddData}
+                    required
                 />
-                <label htmlFor="projHours" className="label-projHours">
+                <label htmlFor="projHours" className="label-name">
                     <span className="content-name">Allowed Hours:</span>
                 </label>
             </div>
-            <div className="projStatus-section">
+            <div className="fullwidth-input">
                 <select type="text"
                     id="status"
                     name="status"
+                    required
                     onChange={handleAddData}>
                         <option value="Quote">Quote</option>
                         <option value="Current">Current</option>
                         <option value="Complete">Complete</option>   
                 </select>
-                <label htmlFor="status" className="label-projStatus">
+                <label htmlFor="status" className="label-name">
                     <span className="content-name">Project Status:</span>
                 </label>
             </div>

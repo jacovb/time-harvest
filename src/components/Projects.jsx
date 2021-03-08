@@ -14,7 +14,8 @@ export default function Projects({
   formData, 
   handleAddData, 
   isShowing, 
-  toggle
+  toggle,
+  startForm
 }) {
   
     return (
@@ -57,6 +58,8 @@ export default function Projects({
                   formData={formData}
                   updateProject={UpdateProject}
                   handleAddData={handleAddData}
+                  startForm={startForm}
+                  setFormData={setFormData}
                 />
               </div>
         </>
