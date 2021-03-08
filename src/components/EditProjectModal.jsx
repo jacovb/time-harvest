@@ -73,7 +73,9 @@ export default function EditProjectModal({
                     id="status"
                     name="status"
                     value={formData.status}
+                    required
                     onChange={handleAddData}>
+                        <option value="" disabled hidden>Please select Project Status...</option>
                         <option value="Quote">Quote</option>
                         <option value="Current">Current</option>
                         <option value="Complete">Complete</option>   
