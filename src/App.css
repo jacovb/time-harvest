@@ -27,7 +27,8 @@
 .fullwidth-input {
   width: 50%;
   position: relative;
-  left: 25%;
+  left: 50%;
+  transform: translateX(-50%);
   height: 70px;
   overflow: hidden;
 }
