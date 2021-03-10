@@ -21,7 +21,7 @@ export default function NewProjects({formData, createProject, handleAddData}) {
                     <span className="content-name">Project Name:</span> 
                 </label>
             </div>
-            <div className="fullwidth-input">
+            <div className="halfwidth-input-left">
                 <input 
                     type="text"
                     id="projNo"
@@ -35,7 +35,7 @@ export default function NewProjects({formData, createProject, handleAddData}) {
                     <span className="content-name">Project Number:</span>
                 </label>
             </div>
-            <div className="fullwidth-input">
+            <div className="halfwidth-input-right">
                 <input 
                     type="number"
                     id="projHours"
