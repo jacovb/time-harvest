@@ -24,6 +24,12 @@
 /* NEW PROJECTS FLOAT LABEL - DEV ED */
 /* =============================================================== */
 
+.newproject-form {
+  display: grid;
+  width: 50%;
+  margin: auto;
+}
+
 .fullwidth-input {
   width: 100%;
   position: relative;
