@@ -49,20 +49,20 @@ export default function NewProjects({formData, createProject, handleAddData}) {
                 </label>
             </div>
             <div className="fullwidth-input">
+                <label htmlFor="status" className="label-status">
+                    <span className="content-status">Project Status:</span>
+                </label>
                 <select type="text"
                     id="status"
                     name="status"
                     value={formData.status}
                     required
                     onChange={handleAddData}>
-                        <option value="" disabled hidden>Please select Project Status...</option>
+                        <option value="" disabled hidden>-- Select Project Status --</option>
                         <option value="Quote">Quote</option>
                         <option value="Current">Current</option>
                         <option value="Complete">Complete</option>   
                 </select>
-                <label htmlFor="status" className="label-name">
-                    <span className="content-name">Project Status:</span>
-                </label>
             </div>
             <button onClick={createProject}>Add New Project</button>
         </form>

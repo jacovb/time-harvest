@@ -28,42 +28,45 @@
   display: grid;
   width: 50%;
   margin: auto;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
 }
 
 .fullwidth-input {
+  grid-column-start: 1;
+  grid-column-end: 3;
   width: 100%;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  height: 60px;
+  height: 70px;
   overflow: hidden;
 }
 
 .halfwidth-input-left {
-  width: 23%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  width: 100%;
   position: relative;
-  left: 25%;
-  /* transform: translateX(-25%); */
-  height: 60px;
+  height: 70px;
   overflow: hidden;
 }
 
 .halfwidth-input-right {
-  width: 23%;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  width: 100%;
   position: relative;
-  left: 52%;
-  /* transform: translateX(-25%); */
-  height: 60px;
+  height: 70px;
   overflow: hidden;
 }
 
 .fullwidth-input input,
 .halfwidth-input-left input,
-.halfwidth-input-right input,
-.fullwidth-input select {
+.halfwidth-input-right input {
   width: 100%;
   height: 100%;
-  color: gray;
+  color: black;
   padding: 20px 0 0 0;
   border: none;
   outline: none;
@@ -90,7 +93,7 @@
   bottom: -1px;
   height: 100%;
   width: 100%;
-  border-bottom: 3px solid lightblue;
+  border-bottom: 3px solid rgb(128, 128, 128);
   transform: translateX(-100%);
   transition: all 0.3s ease;
 }
@@ -110,7 +113,7 @@
 .halfwidth-input-right input:valid + .label-name .content-name {
   transform: translateY(-150%);
   font-size: 14px;
-  color: red;
+  color: rgb(128, 128, 128);
 }
 
 .fullwidth-input input:focus + .label-name::after,
@@ -120,6 +123,15 @@
 .halfwidth-input-right input:focus + .label-name::after,
 .halfwidth-input-right input:valid + .label-name::after {
   transform: translateX(0%);
+}
+
+.fullwidth-input select {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 100%;
+  height: 40px;
+  margin-top: 5px;
+  background: lightgray;
 }
 
 /* =============================================================== */
