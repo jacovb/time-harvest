@@ -20,7 +20,7 @@ export default function Projects({
   
     return (
         <>
-            <h2>Projects</h2>
+            <h2 className="projListHeading">Projects</h2>
             <div className="projectsList">
                 {projects
                   .sort((a, b) => a.projectNo - b.projectNo)
