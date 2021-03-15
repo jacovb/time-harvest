@@ -57,6 +57,23 @@ h1 {
   box-shadow: 5px 5px 5px var(--shadow);
 }
 
+.halfwidth-input-right input[type="number"]::-webkit-inner-spin-button,
+.halfwidth-input-right input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media screen and (max-width: 650px) {
+  .newproject-form {
+    display: grid;
+    width: 75%;
+    margin: auto;
+    margin-top: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+}
+
 @media screen and (max-width: 550px) {
   .newproject-form {
     display: grid;
@@ -71,6 +88,9 @@ h1 {
 .newproject-form h2 {
   grid-column-start: 1;
   grid-column-end: 3;
+  height: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .fullwidth-input {
@@ -108,9 +128,10 @@ h1 {
   width: 100%;
   height: 100%;
   color: black;
-  padding: 20px 0 0 0;
+  padding: 20px 0 0 5px;
   border: none;
   outline: none;
+  font-size: 17px;
 }
 
 .fullwidth-input .label-name,
@@ -119,30 +140,17 @@ h1 {
   position: absolute;
   bottom: 0px;
   left: 0%;
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 2px);
+  height: 70%;
   pointer-events: none;
-  border-bottom: 1px solid black;
-}
-
-.fullwidth-input .label-name::after,
-.halfwidth-input-left .label-name::after,
-.halfwidth-input-right .label-name::after {
-  content: "";
-  position: absolute;
-  left: 0px;
-  bottom: -1px;
-  height: 100%;
-  width: 100%;
-  border-bottom: 3px solid var(--light-blue);
-  transform: translateX(-100%);
-  transition: all 0.3s ease;
+  border: 1px solid var(--dark-grey);
+  border-radius: 5px;
 }
 
 .content-name {
   position: absolute;
   bottom: 5px;
-  left: 0px;
+  left: 5px;
   transition: all 0.3s ease;
 }
 
@@ -155,6 +163,12 @@ h1 {
   transform: translateY(-150%);
   font-size: 14px;
   color: var(--light-blue);
+}
+
+.fullwidth-input input:focus + .label-name,
+.halfwidth-input-left input:focus + .label-name,
+.halfwidth-input-right input:focus + .label-name {
+  border: 1px solid var(--light-blue);
 }
 
 .fullwidth-input input:focus + .label-name::after,
