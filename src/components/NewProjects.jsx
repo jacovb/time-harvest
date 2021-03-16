@@ -5,7 +5,7 @@ export default function NewProjects({formData, createProject, handleAddData}) {
     // needs to check if project number already exists
 
     return (
-        <form className="newproject-form">
+        <form className="project-form">
             <h2>Add New Projects</h2>
             <div className="fullwidth-input">
                 <input 

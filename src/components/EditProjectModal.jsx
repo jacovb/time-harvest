@@ -23,7 +23,7 @@ export default function EditProjectModal({
             tabIndex={-1} 
             role="dialog"
         >
-            <div className="newproject-form modal">
+            <div className="project-form modal">
                 <div className="modal-header">
                     <h1>Edit Project: {formData.name}</h1>  
                     <button 
@@ -40,47 +40,67 @@ export default function EditProjectModal({
                             </span>
                     </button>   
                 </div>
-                <label htmlFor="projNo">Project Number: </label>
-                <input 
-                    type="text"
-                    id="projNo"
-                    value={formData.projectNo}
-                    name="projectNo"
-                    onChange={handleAddData}
-                    required
-                />
-                <br/>
-                <label htmlFor="projName">Project Name: </label>
-                <input 
-                    type="text"
-                    id="projName"
-                    value={formData.name}
-                    name="name"
-                    onChange={handleAddData}
-                />
-                <br/>
-                <label htmlFor="projHours">Allowed Hours: </label>
-                <input 
-                    type="number"
-                    id="projHours"
-                    value={formData.allowedHours}
-                    name="allowedHours"
-                    onChange={handleAddData}
-                />
-                <br/>
-                <label htmlFor="status">Project Status: </label>
-                <select type="text"
-                    id="status"
-                    name="status"
-                    value={formData.status}
-                    required
-                    onChange={handleAddData}>
-                        <option value="" disabled hidden>Please select Project Status...</option>
-                        <option value="Quote">Quote</option>
-                        <option value="Current">Current</option>
-                        <option value="Complete">Complete</option>   
-                </select>
-                <br/>
+
+                <div className="fullwidth-input">
+                    <input 
+                        type="text"
+                        id="projName"
+                        value={formData.name}
+                        name="name"
+                        onChange={handleAddData}
+                        autoComplete="off"
+                        required
+                    />
+                    <label htmlFor="projName" className="label-name">
+                        <span className="content-name">Project Name:</span>
+                    </label>
+                </div>
+
+                <div className="halfwidth-input-left">
+                    <input 
+                        type="text"
+                        id="projNo"
+                        value={formData.projectNo}
+                        name="projectNo"
+                        onChange={handleAddData}
+                        autoComplete="off"
+                        required
+                    />
+                    <label htmlFor="projNo" className="label-name">
+                        <span className="content-name">Project Number:</span>
+                    </label>
+                </div>
+                
+                <div className="halfwidth-input-right">
+                    <input 
+                        type="number"
+                        id="projHours"
+                        value={formData.allowedHours}
+                        name="allowedHours"
+                        onChange={handleAddData}
+                    />
+                    <label htmlFor="projHours" className="label-name">
+                        <span className="content-name">Allowed Hours:</span>
+                    </label>
+                </div>
+                
+                <div className="fullwidth-input">
+                    <label htmlFor="status" className="label-status">
+                        <span className="content-status">Project Status:</span>
+                    </label>
+                    <select type="text"
+                        id="status"
+                        name="status"
+                        value={formData.status}
+                        required
+                        onChange={handleAddData}>
+                            <option value="" disabled hidden>Please select Project Status...</option>
+                            <option value="Quote">Quote</option>
+                            <option value="Current">Current</option>
+                            <option value="Complete">Complete</option>   
+                    </select>
+                </div>
+                
                 <button onClick={() => updateProject(formData)}>
                     Update
                 </button>

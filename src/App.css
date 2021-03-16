@@ -50,7 +50,7 @@ h1 {
 /* NEW PROJECTS FLOAT LABEL - HELP FROM DEV ED */
 /* =============================================================== */
 
-.newproject-form {
+.project-form {
   display: grid;
   width: 50%;
   margin: 1.75rem auto;
@@ -72,7 +72,7 @@ h1 {
 }
 
 @media screen and (max-width: 650px) {
-  .newproject-form {
+  .project-form {
     display: grid;
     width: 75%;
     margin: auto;
@@ -83,7 +83,7 @@ h1 {
 }
 
 @media screen and (max-width: 550px) {
-  .newproject-form {
+  .project-form {
     display: grid;
     width: 90%;
     margin: auto;
@@ -93,7 +93,7 @@ h1 {
   }
 }
 
-.newproject-form h2 {
+.project-form h2 {
   grid-column-start: 1;
   grid-column-end: 3;
   height: 20px;
@@ -198,7 +198,7 @@ h1 {
   border-radius: 5px;
 }
 
-.newproject-form button {
+.project-form button {
   grid-column-start: 1;
   grid-column-end: 3;
   width: 50%;
@@ -364,8 +364,15 @@ h1 {
 } */
 
 .modal-header {
-  display: flex;
-  justify-content: space-between;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  height: 100px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.modal-header h1 {
+  color: black;
 }
 
 .modal-close-button {
