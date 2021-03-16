@@ -23,7 +23,7 @@ export default function EditProjectModal({
             tabIndex={-1} 
             role="dialog"
         >
-            <div className="modal">
+            <div className="newproject-form modal">
                 <div className="modal-header">
                     <h1>Edit Project: {formData.name}</h1>  
                     <button 

@@ -10,6 +10,7 @@ export default function ProgressRing({project}) {
     const progressPercent = (project.usedHours / project.allowedHours * 100)
     const darkBlue = "#006ba6";
     const mustard = "#ffbc42";
+    const midGreen = "#84dcc6";
     
     return (
         <>
@@ -35,7 +36,7 @@ export default function ProgressRing({project}) {
                     r={radius}
                     cx={size/2}
                     cy={size/2}
-                    stroke={mustard}
+                    stroke={midGreen}
                     strokeDasharray={circum}
                     strokeDashoffset={circum * ((100 - progressPercent) / 100)}
                     transform="rotate(-90) translate(-90 0)"

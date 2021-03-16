@@ -1,9 +1,17 @@
 :root {
+  --dark-green: #3c787e;
+  --mid-green: #84dcc6;
+  --light-green: #a5ffd6;
+  --light-watermelon: #ffa69e;
+  --mid-watermelon: #ff686b;
+
   --dark-red: #8f2d56;
   --deep-pink: #d81159;
   --mustard: #ffbc42;
   --light-blue: #0496ff;
   --dark-blue: #006ba6;
+  --light-grey: #e9ecef;
+  --medium-grey: #adb5bd;
   --dark-grey: #343a40;
   --shadow: #212529;
 }
@@ -13,7 +21,7 @@
 }
 
 #navbar {
-  background-color: var(--dark-red);
+  background-color: var(--mid-watermelon);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -26,8 +34,8 @@
 }
 
 #navButton:hover {
-  background-color: var(--deep-pink);
-  color: white;
+  background-color: var(--light-watermelon);
+  color: black;
 }
 
 body {
@@ -45,15 +53,15 @@ h1 {
 .newproject-form {
   display: grid;
   width: 50%;
-  margin: auto;
+  margin: 1.75rem auto;
   margin-top: 20px;
-  padding: 10px;
+  padding: 1rem;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
   font-size: 16px;
   background-color: white;
   border-radius: 10px;
-  border: 2px solid var(--dark-blue);
+  border: 2px solid var(--medium-grey);
   box-shadow: 5px 5px 5px var(--shadow);
 }
 
@@ -186,7 +194,7 @@ h1 {
   width: 100%;
   height: 35px;
   margin-top: 5px;
-  background: lightgray;
+  background: var(--light-grey);
   border-radius: 5px;
 }
 
@@ -195,12 +203,12 @@ h1 {
   grid-column-end: 3;
   width: 50%;
   margin: auto;
-  height: 45px;
-  background: var(--dark-blue);
-  color: white;
+  height: 35px;
+  background: var(--light-green);
   border-radius: 5px;
-  box-shadow: 2px 2px 2px var(--shadow);
+  box-shadow: 2px 2px 2px var(--medium-grey);
   font-size: 16px;
+  border: 1px solid var(--dark-grey);
 }
 
 /* =============================================================== */
@@ -223,7 +231,7 @@ h1 {
   padding: 5px;
   margin: auto;
   margin-top: 5px;
-  border: 2px solid var(--dark-blue);
+  border: 2px solid var(--medium-grey);
   border-radius: 10px;
   background-color: white;
   width: 95%;
@@ -343,13 +351,17 @@ h1 {
 
 .modal {
   z-index: 100;
+}
+
+/* .modal {
+  z-index: 100;
   background: white;
   position: relative;
   margin: 1.75rem auto;
-  border-radius: 3px;
-  max-width: 500px;
+  border-radius: 5px;
+  max-width: 50%;
   padding: 2rem;
-}
+} */
 
 .modal-header {
   display: flex;
