@@ -351,24 +351,13 @@ h1 {
 
 .modal {
   z-index: 100;
-}
-
-/* .modal {
-  z-index: 100;
-  background: white;
   position: relative;
-  margin: 1.75rem auto;
-  border-radius: 5px;
-  max-width: 50%;
-  padding: 2rem;
-} */
+}
 
 .modal-header {
   grid-column-start: 1;
   grid-column-end: 3;
-  height: 50px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  height: 30px;
   place-self: center;
 }
 
@@ -378,17 +367,20 @@ h1 {
 
 .project-form .modal-close-button {
   position: absolute;
-  grid-area: 1 / 2;
+  top: 1.25rem;
+  right: 0;
   background: none;
   box-shadow: none;
   border: none;
-  width: 40px;
+  width: 30px;
+  height: 35px;
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1;
   color: #000;
   opacity: 0.3;
   cursor: pointer;
+  padding: 0;
 }
 
 /* button {
