@@ -25,21 +25,21 @@ export default function EditProjectModal({
         >
             <div className="project-form modal">
                 <div className="modal-header">
-                    <h1>Edit Project: {formData.name}</h1>  
-                    <button 
-                        type="button" 
-                        className="modal-close-button" 
-                        data-dismiss="modal" 
-                        aria-label="Close" 
-                        onClick={() => {
-                            hide();
-                            setFormData(startForm);
-                        }}>
-                            <span aria-hidden="true">
-                                <HighlightOffIcon />
-                            </span>
-                    </button>   
+                    <h2>Edit Project:</h2> 
                 </div>
+                <button 
+                    type="button" 
+                    className="modal-close-button" 
+                    data-dismiss="modal" 
+                    aria-label="Close" 
+                    onClick={() => {
+                        hide();
+                        setFormData(startForm);
+                    }}>
+                        <span aria-hidden="true">
+                            <HighlightOffIcon />
+                        </span>
+                </button>   
 
                 <div className="fullwidth-input">
                     <input 

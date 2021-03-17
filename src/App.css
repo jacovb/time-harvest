@@ -366,23 +366,29 @@ h1 {
 .modal-header {
   grid-column-start: 1;
   grid-column-end: 3;
-  height: 100px;
+  height: 50px;
   margin-top: 5px;
   margin-bottom: 5px;
+  place-self: center;
 }
 
-.modal-header h1 {
+.modal-header h2 {
   color: black;
 }
 
-.modal-close-button {
+.project-form .modal-close-button {
+  position: absolute;
+  grid-area: 1 / 2;
+  background: none;
+  box-shadow: none;
+  border: none;
+  width: 40px;
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1;
   color: #000;
   opacity: 0.3;
   cursor: pointer;
-  border: none;
 }
 
 /* button {
