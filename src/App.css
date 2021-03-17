@@ -267,6 +267,18 @@ h1 {
   padding-top: 2px;
   border: none;
   background: none;
+  position: relative;
+}
+
+/* style the "edit" tooltip */
+
+.gridEditButton .edit-tooltip {
+  visibility: hidden;
+  position: absolute;
+}
+
+.gridEditButton:hover .edit-tooltip {
+  visibility: visible;
 }
 
 .gridEditButton:hover {

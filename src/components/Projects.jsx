@@ -42,6 +42,7 @@ export default function Projects({
                         }}
                       >
                         <MoreHorizIcon />
+                        <span className="edit-tooltip">Edit</span>
                       </button>
                     </div>
                   ))}
