@@ -7,7 +7,8 @@ export default function EditProjectModal({
     isShowing, 
     hide, 
     formData, 
-    updateProject, 
+    updateProject,
+    deleteProject, 
     handleAddData,
     startForm,
     setFormData 
@@ -26,20 +27,20 @@ export default function EditProjectModal({
             <div className="project-form modal">
                 <div className="modal-header">
                     <h2>Edit Project:</h2> 
+                    <button 
+                        type="button" 
+                        className="modal-close-button" 
+                        data-dismiss="modal" 
+                        aria-label="Close" 
+                        onClick={() => {
+                            hide();
+                            setFormData(startForm);
+                        }}>
+                            <span aria-hidden="true">
+                                <HighlightOffIcon />
+                            </span>
+                    </button>   
                 </div>
-                <button 
-                    type="button" 
-                    className="modal-close-button" 
-                    data-dismiss="modal" 
-                    aria-label="Close" 
-                    onClick={() => {
-                        hide();
-                        setFormData(startForm);
-                    }}>
-                        <span aria-hidden="true">
-                            <HighlightOffIcon />
-                        </span>
-                </button>   
 
                 <div className="fullwidth-input">
                     <input 
@@ -101,8 +102,16 @@ export default function EditProjectModal({
                     </select>
                 </div>
                 
-                <button onClick={() => updateProject(formData)}>
+                <button 
+                    className="update-button" 
+                    onClick={() => updateProject(formData)}>
                     Update
+                </button>
+
+                <button 
+                    className="delete-button" 
+                    onClick={() => deleteProject(formData)}>
+                    Delete Project
                 </button>
             </div>
         </div>

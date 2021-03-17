@@ -227,6 +227,7 @@ function App() {
       variables: { input: { id } },
     });
     fetchProjects();
+    toggle();
   }
 
   async function deleteUser({ id }) {

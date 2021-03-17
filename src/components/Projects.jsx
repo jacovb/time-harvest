@@ -3,8 +3,7 @@ import React from "react";
 import EditProjectModal from "./EditProjectModal";
 import ProgressRing from "./ProgressRing";
 
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import EditIcon from "@material-ui/icons/Edit";
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 export default function Projects({
   projects, 
@@ -42,13 +41,7 @@ export default function Projects({
                           toggle();
                         }}
                       >
-                        <EditIcon />
-                      </button>
-                      <button
-                        className="gridDeleteButton"
-                        onClick={() => deleteProject(project)}
-                      >
-                        <HighlightOffIcon />
+                        <MoreHorizIcon />
                       </button>
                     </div>
                   ))}
@@ -60,6 +53,7 @@ export default function Projects({
                   handleAddData={handleAddData}
                   startForm={startForm}
                   setFormData={setFormData}
+                  deleteProject={deleteProject}
                 />
               </div>
         </>
