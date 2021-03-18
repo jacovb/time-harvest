@@ -31,7 +31,7 @@ export default function Timesheets({
                 name="entryUserId"
                 value={entryData.entryUserId}
                 onChange={handleSetEntryUser}>
-                    <option value="" hidden>-- Select Project User --</option>
+                    {/* <option value="" hidden>-- Select Project User --</option> */}
                     {users
                         .sort((a, b) => a.name - b.name)
                         .map((user, idx) => (
