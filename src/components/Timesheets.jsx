@@ -1,7 +1,7 @@
 import React from "react";
 
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import EditIcon from "@material-ui/icons/Edit";
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+
 import EditEntryModal from "./EditEntryModal";
 
 export default function Timesheets({
@@ -22,7 +22,7 @@ export default function Timesheets({
 }) {
     return (
         <>
-            <h2>Add Timesheet Entry</h2>
+            <h2 className="entryListHeading">Add Timesheet Entry</h2>
             
             <label htmlFor="user">Project User: </label>
             <select 
@@ -108,13 +108,16 @@ export default function Timesheets({
                     .map((item, idx) => (
                     <div className="entryRow" key={idx}>
                         <div className="entryDate">{item.date}</div>
+                        <div className="entryProjectNo">
+                            {item.project.projectNo}
+                        </div>
                         <div className="entryProjectName">
-                            {item.project.projectNo} - {item.project.name}
+                            {item.project.name}
                         </div>
                         <div className="entryDescription">{item.description}</div>
                         <div className="entryTime">{item.time}</div>
                         <button
-                            className="entryEditButton"
+                            className="editButton"
                             onClick={() => {
                                 setEntryData({ 
                                     ...item, 
@@ -124,13 +127,8 @@ export default function Timesheets({
                                 toggle();
                             }}
                         >
-                            <EditIcon />
-                        </button>
-                        <button
-                            className="entryDeleteButton"
-                            onClick={() => deleteEntry(item)}
-                        >
-                            <HighlightOffIcon />
+                            <MoreHorizIcon />
+                            <span className="edit-tooltip">Edit</span>
                         </button>
                     </div>
                 ))}
@@ -139,6 +137,7 @@ export default function Timesheets({
                     hide={toggle}
                     entryData={entryData}
                     UpdateEntry={UpdateEntry}
+                    deleteEntry={deleteEntry}
                     handleAddEntry={handleAddEntry}
                     projects={projects}
                     startEntryForm={startEntryForm}

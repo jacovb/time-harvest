@@ -35,7 +35,7 @@ export default function Projects({
                         className="gridProgress-ring"
                         project={project}/>
                       <button
-                        className="gridEditButton"
+                        className="editButton"
                         onClick={() => {
                           setFormData(project);
                           toggle();

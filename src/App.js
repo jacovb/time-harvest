@@ -251,6 +251,7 @@ function App() {
       variables: { input: { id } },
     });
     fetchEntries();
+    toggle();
   }
 
   // ==============

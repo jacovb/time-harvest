@@ -7,7 +7,8 @@ export default function EditEntryModal({
         isShowing, 
         hide, 
         entryData, 
-        UpdateEntry, 
+        UpdateEntry,
+        deleteEntry, 
         handleAddEntry, 
         projects, 
         setEntryData, 
@@ -24,10 +25,10 @@ export default function EditEntryModal({
             tabIndex={-1} 
             role="dialog"
         >
-            <div className="modal">
+            <div className="project-form modal">
                 {console.log("Edit Entry: " ,entryData)}
                 <div className="modal-header">
-                    <h1>Edit Entry:</h1>  
+                    <h2>Edit Entry:</h2>  
                     <button 
                         type="button" 
                         className="modal-close-button" 
@@ -100,8 +101,16 @@ export default function EditEntryModal({
                 />
                 
                 <br/>
-                <button onClick={() => UpdateEntry(entryData)}>
-                    Update
+                <button 
+                    className="update-button"
+                    onClick={() => UpdateEntry(entryData)}>
+                        Update
+                </button>
+
+                <button 
+                    className="delete-button"
+                    onClick={() => deleteEntry(entryData)}>
+                        Delete Entry
                 </button>
             </div>
         </div>
