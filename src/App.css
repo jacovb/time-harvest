@@ -133,7 +133,7 @@ h1 {
 .fullwidth-input input,
 .halfwidth-input-left input,
 .halfwidth-input-right input {
-  width: 100%;
+  width: calc(100% - 5px);
   height: 100%;
   color: black;
   padding: 20px 0 0 5px;

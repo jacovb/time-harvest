@@ -44,7 +44,6 @@ export default function EditEntryModal({
                     </button>   
                 </div>
                 
-                <br/>
                 <label htmlFor="date">Date: </label>
                 <input 
                     type="date"
@@ -54,7 +53,6 @@ export default function EditEntryModal({
                     onChange={handleAddEntry}
                 />
                 
-                <br/>
                 <label htmlFor="projNo">Project Number: </label>
                 <select
                     type="text"
@@ -78,7 +76,6 @@ export default function EditEntryModal({
                 ))
             }
 
-                <br/>
                 <label htmlFor="description">Description: </label>
                 <input 
                     type="text"
@@ -89,7 +86,6 @@ export default function EditEntryModal({
                     required
                 />
 
-                <br/>
                 <label htmlFor="time">Time: </label>
                 <input 
                     type="text"
@@ -100,7 +96,6 @@ export default function EditEntryModal({
                     required
                 />
                 
-                <br/>
                 <button 
                     className="update-button"
                     onClick={() => UpdateEntry(entryData)}>
