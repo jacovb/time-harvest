@@ -142,6 +142,11 @@ h1 {
   font-size: 17px;
 }
 
+.halfwidth-input-left .datepicker-input {
+  width: calc(100% - 5px);
+  padding: 20px 0 0 5px;
+}
+
 .fullwidth-input .label-name,
 .halfwidth-input-left .label-name,
 .halfwidth-input-right .label-name {
@@ -190,6 +195,16 @@ h1 {
 
 .fullwidth-input select {
   grid-column-start: 1;
+  grid-column-end: 3;
+  width: 100%;
+  height: 35px;
+  margin-top: 5px;
+  background: var(--light-grey);
+  border-radius: 5px;
+}
+
+.halfwidth-input-right select {
+  grid-column-start: 2;
   grid-column-end: 3;
   width: 100%;
   height: 35px;

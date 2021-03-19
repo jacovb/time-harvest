@@ -22,8 +22,6 @@ export default function Timesheets({
 }) {
     return (
         <>
-            <h2 className="entryListHeading">Add Timesheet Entry</h2>
-            
             <label htmlFor="user">Project User: </label>
             <select 
                 type="text"
@@ -40,66 +38,83 @@ export default function Timesheets({
                             </option>
                     ))}  
             </select>
-            
-            <br/>
-            <br/>
-            <label htmlFor="date">Date: </label>
-            <input 
-                type="date"
-                id="date"
-                value={entryData.date}
-                name="date"
-                onChange={handleAddEntry}
-            />
-            
-            <br/>
-            <label htmlFor="projNo">Project Number: </label>
-            <select 
-                type="text"
-                id="projNo"
-                name="entryProjectId"
-                onChange={handleAddEntry}>
+            <div className="project-form">
+                <h2>Add Timesheet Entry</h2>
+                <div className="halfwidth-input-left">
+                    <input 
+                        type="date"
+                        id="date"
+                        value={entryData.date}
+                        name="date"
+                        onChange={handleAddEntry}
+                        className="datepicker-input"
+                        
+                    />
+                    <label htmlFor="date" className="label-name">
+                        <span className="content-name">Date:</span>
+                    </label>
+                </div>
+                
+                <div className="halfwidth-input-right">
+                    <label htmlFor="projNo" className="label-status">
+                        <span className="content-status">Project Number:</span>
+                    </label>
+                    <select 
+                        type="text"
+                        id="projNo"
+                        name="entryProjectId"
+                        required
+                        onChange={handleAddEntry}>
+                            {projects
+                                .sort((a, b) => a.projectNo - b.projectNo)
+                                .map((project, idx) => (
+                                    <option key={idx} value={project.id}>
+                                        {project.projectNo}
+                                    </option>
+                            ))}  
+                    </select>
+                </div>
+                    
+                <div className="halfwitdh-input-right">
                     {projects
-                        .sort((a, b) => a.projectNo - b.projectNo)
+                        .filter((project) => project.id === entryData.entryProjectId)
                         .map((project, idx) => (
-                            <option key={idx} value={project.id}>
-                                {project.projectNo}
-                            </option>
-                    ))}  
-            </select>
+                            <p key={idx}>{project.name}</p>
+                        ))
+                    }
+                </div>
+                
+                <div className="halfwidth-input-left">
+                    <input 
+                        type="number"
+                        id="time"
+                        value={entryData.time}
+                        name="time"
+                        onChange={handleAddEntry}
+                        required
+                    />
+                    <label htmlFor="time" className="label-name">
+                        <span className="content-name">Time Spent:</span>
+                    </label>
+                </div>
+
+                <div className="halfwidth-input-right">
+                    <input 
+                        type="text"
+                        id="description"
+                        value={entryData.description}
+                        name="description"
+                        onChange={handleAddEntry}
+                        required
+                    />
+                    <label htmlFor="description" className="label-name">
+                        <span className="content-name">Description:</span>
+                    </label>
+                </div>
+
+                <button onClick={createEntry}>Submit Entry</button>
+            </div>
             
-            {projects
-                .filter((project) => project.id === entryData.entryProjectId)
-                .map((project, idx) => (
-                    <p key={idx}>{project.name}</p>
-                ))
-            }
-
-            <br/>
-            <label htmlFor="description">Description: </label>
-            <input 
-                type="text"
-                id="description"
-                value={entryData.description}
-                name="description"
-                onChange={handleAddEntry}
-            />
-
-            <br/>
-            <label htmlFor="time">Time Spent: </label>
-            <input 
-                type="number"
-                id="time"
-                value={entryData.time}
-                name="time"
-                onChange={handleAddEntry}
-            />
-
-            <br/>
-            <button onClick={createEntry}>Submit Entry</button>
-            
-            <br/>
-            <br/>
 
             <div className="entryList">
                 {entry
@@ -144,6 +159,7 @@ export default function Timesheets({
                     setEntryData={setEntryData}
                 />
             </div>
+            
         </>
     )
 }

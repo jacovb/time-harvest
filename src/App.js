@@ -45,7 +45,7 @@ const startEntryForm = {
   entryProjectId: "",
   date: "",
   description: "",
-  time: 0,
+  time: "",
 };
 
 function App() {
