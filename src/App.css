@@ -16,7 +16,7 @@
   --shadow: #212529;
 }
 
-.App {
+.App h1 {
   text-align: center;
 }
 
@@ -99,6 +99,7 @@ h1 {
   height: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
+  text-align: center;
 }
 
 .fullwidth-input {
@@ -108,8 +109,7 @@ h1 {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  height: 60px;
-  overflow: hidden;
+  height: 65px;
 }
 
 .halfwidth-input-left {
@@ -117,8 +117,7 @@ h1 {
   grid-column-end: 2;
   width: 100%;
   position: relative;
-  height: 60px;
-  overflow: hidden;
+  height: 65px;
 }
 
 .halfwidth-input-right {
@@ -126,71 +125,44 @@ h1 {
   grid-column-end: 3;
   width: 100%;
   position: relative;
-  height: 60px;
-  overflow: hidden;
+  height: 65px;
 }
 
 .fullwidth-input input,
 .halfwidth-input-left input,
 .halfwidth-input-right input {
-  width: calc(100% - 5px);
-  height: 100%;
+  width: calc(100% - 12px);
+  height: calc(100% - 2px);
   color: black;
-  padding: 12px 0 0 5px;
-  border: none;
-  outline: none;
+  height: 60%;
+  padding: 0 5px 0 5px;
+  border: 1px solid var(--dark-grey);
   font-size: 17px;
+  border-radius: 5px;
+  margin-top: 5px;
 }
 
 .halfwidth-input-left .datepicker-input {
   width: calc(100% - 5px);
-  padding: 12px 0 0 5px;
+  padding: 0 0 0 5px;
 }
 
-.fullwidth-input .label-name,
-.halfwidth-input-left .label-name,
-.halfwidth-input-right .label-name {
-  position: absolute;
-  bottom: 0px;
-  left: 0%;
-  width: calc(100% - 2px);
-  height: 60%;
-  pointer-events: none;
-  border: 1px solid var(--dark-grey);
-  border-radius: 5px;
+.fullwidth-input label,
+.halfwidth-input-left label,
+.halfwidth-input-right label {
+  margin-bottom: 20px;
+  padding-left: 6px;
 }
 
-.content-name {
-  position: absolute;
-  bottom: 10px;
-  left: 5px;
-  transition: all 0.3s ease;
+input:focus,
+select:focus {
+  outline: none;
+  border: 1px solid var(--medium-grey);
 }
 
-.fullwidth-input input:focus + .label-name .content-name,
-.fullwidth-input input:valid + .label-name .content-name,
-.halfwidth-input-left input:focus + .label-name .content-name,
-.halfwidth-input-left input:valid + .label-name .content-name,
-.halfwidth-input-right input:focus + .label-name .content-name,
-.halfwidth-input-right input:valid + .label-name .content-name {
-  transform: translateY(-190%);
-  font-size: 14px;
-  color: var(--light-blue);
-}
-
-.fullwidth-input input:focus + .label-name,
-.halfwidth-input-left input:focus + .label-name,
-.halfwidth-input-right input:focus + .label-name {
-  border: 1px solid var(--light-blue);
-}
-
-.fullwidth-input input:focus + .label-name::after,
-.fullwidth-input input:valid + .label-name::after,
-.halfwidth-input-left input:focus + .label-name::after,
-.halfwidth-input-left input:valid + .label-name::after,
-.halfwidth-input-right input:focus + .label-name::after,
-.halfwidth-input-right input:valid + .label-name::after {
-  transform: translateX(0%);
+input:focus + .label-name,
+select:focus + .label-status {
+  color: var(--medium-grey);
 }
 
 .fullwidth-input select {
@@ -198,16 +170,16 @@ h1 {
   grid-column-end: 3;
   width: 100%;
   height: 60%;
-  margin-top: 5px;
   background: var(--light-grey);
   border-radius: 5px;
+  margin-top: 5px;
 }
 
 .halfwidth-input-right select {
   grid-column-start: 2;
   grid-column-end: 3;
   width: 100%;
-  height: 35px;
+  height: 60%;
   margin-top: 5px;
   background: var(--light-grey);
   border-radius: 5px;
@@ -232,6 +204,7 @@ h1 {
 
 .projListHeading {
   color: white;
+  text-align: center;
 }
 
 .projectsList {
@@ -255,6 +228,7 @@ h1 {
 
 .gridProjectNo {
   grid-column: 1 / 2;
+  text-align: center;
 }
 
 .gridProjectName {

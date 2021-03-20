@@ -8,6 +8,9 @@ export default function NewProjects({formData, createProject, handleAddData}) {
         <form className="project-form">
             <h2>Add New Projects</h2>
             <div className="fullwidth-input">
+                <label htmlFor="projName" className="label-name">
+                    Project Name:
+                </label>
                 <input 
                     type="text"
                     id="projName"
@@ -17,11 +20,11 @@ export default function NewProjects({formData, createProject, handleAddData}) {
                     autoComplete="off"
                     required
                 />
-                <label htmlFor="projName" className="label-name">
-                    <span className="content-name">Project Name:</span> 
-                </label>
             </div>
             <div className="halfwidth-input-left">
+                <label htmlFor="projNo" className="label-name">
+                    Project Number:
+                </label>
                 <input 
                     type="text"
                     id="projNo"
@@ -31,11 +34,11 @@ export default function NewProjects({formData, createProject, handleAddData}) {
                     autoComplete="off"
                     required
                 />
-                <label htmlFor="projNo" className="label-name">
-                    <span className="content-name">Project Number:</span>
-                </label>
             </div>
             <div className="halfwidth-input-right">
+                <label htmlFor="projHours" className="label-name">
+                    Allowed Hours:
+                </label>
                 <input 
                     type="number"
                     id="projHours"
@@ -44,13 +47,10 @@ export default function NewProjects({formData, createProject, handleAddData}) {
                     onChange={handleAddData}
                     required
                 />
-                <label htmlFor="projHours" className="label-name">
-                    <span className="content-name">Allowed Hours:</span>
-                </label>
             </div>
             <div className="fullwidth-input">
                 <label htmlFor="status" className="label-status">
-                    <span className="content-status">Project Status:</span>
+                    Project Status:
                 </label>
                 <select type="text"
                     id="status"

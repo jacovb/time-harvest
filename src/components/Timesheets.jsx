@@ -41,23 +41,22 @@ export default function Timesheets({
             <div className="project-form">
                 <h2>Add Timesheet Entry</h2>
                 <div className="halfwidth-input-left">
+                    <label htmlFor="date" className="label-name">
+                        Date:
+                    </label>
                     <input 
                         type="date"
                         id="date"
                         value={entryData.date}
                         name="date"
                         onChange={handleAddEntry}
-                        className="datepicker-input"
-                        
+                        className="datepicker-input"   
                     />
-                    <label htmlFor="date" className="label-name">
-                        <span className="content-name">Date:</span>
-                    </label>
                 </div>
                 
                 <div className="halfwidth-input-right">
                     <label htmlFor="projNo" className="label-status">
-                        <span className="content-status">Project Number:</span>
+                        Project Number:
                     </label>
                     <select 
                         type="text"
@@ -85,6 +84,9 @@ export default function Timesheets({
                 </div>
                 
                 <div className="halfwidth-input-left">
+                    <label htmlFor="time" className="label-name">
+                        Time Spent:
+                    </label>
                     <input 
                         type="number"
                         id="time"
@@ -93,12 +95,12 @@ export default function Timesheets({
                         onChange={handleAddEntry}
                         required
                     />
-                    <label htmlFor="time" className="label-name">
-                        <span className="content-name">Time Spent:</span>
-                    </label>
                 </div>
 
                 <div className="halfwidth-input-right">
+                    <label htmlFor="description" className="label-name">
+                        Description:
+                    </label>
                     <input 
                         type="text"
                         id="description"
@@ -107,9 +109,6 @@ export default function Timesheets({
                         onChange={handleAddEntry}
                         required
                     />
-                    <label htmlFor="description" className="label-name">
-                        <span className="content-name">Description:</span>
-                    </label>
                 </div>
 
                 <button onClick={createEntry}>Submit Entry</button>
