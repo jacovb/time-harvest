@@ -22,25 +22,27 @@ export default function Timesheets({
 }) {
     return (
         <>
-            <label htmlFor="user">Project User: </label>
-            <select 
-                type="text"
-                id="user"
-                name="entryUserId"
-                value={entryData.entryUserId}
-                onChange={handleSetEntryUser}>
-                    {/* <option value="" hidden>-- Select Project User --</option> */}
-                    {users
-                        .sort((a, b) => a.name - b.name)
-                        .map((user, idx) => (
-                            <option key={idx} value={user.id}>
-                                {user.name}
-                            </option>
-                    ))}  
-            </select>
             <div className="project-form">
+                <label htmlFor="user">Project User: </label>
+                <select 
+                    type="text"
+                    id="user"
+                    name="entryUserId"
+                    value={entryData.entryUserId}
+                    onChange={handleSetEntryUser}>
+                        {/* <option value="" hidden>-- Select Project User --</option> */}
+                        {users
+                            .sort((a, b) => a.name - b.name)
+                            .map((user, idx) => (
+                                <option key={idx} value={user.id}>
+                                    {user.name}
+                                </option>
+                        ))}  
+                </select>
+            </div>
+            <div className="timesheet-form">
                 <h2>Add Timesheet Entry</h2>
-                <div className="halfwidth-input-left">
+                <div className="fullwidth-input">
                     <label htmlFor="date" className="label-name">
                         Date:
                     </label>
@@ -54,7 +56,7 @@ export default function Timesheets({
                     />
                 </div>
                 
-                <div className="halfwidth-input-right">
+                <div className="halfwidth-input-left">
                     <label htmlFor="projNo" className="label-status">
                         Project Number:
                     </label>
@@ -74,7 +76,7 @@ export default function Timesheets({
                     </select>
                 </div>
                     
-                <div className="halfwitdh-input-right">
+                <div className="halfwidth-input-right">
                     {projects
                         .filter((project) => project.id === entryData.entryProjectId)
                         .map((project, idx) => (
@@ -97,7 +99,7 @@ export default function Timesheets({
                     />
                 </div>
 
-                <div className="halfwidth-input-right">
+                <div className="fullwidth-input">
                     <label htmlFor="description" className="label-name">
                         Description:
                     </label>

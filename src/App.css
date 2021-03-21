@@ -65,6 +65,21 @@ h1 {
   box-shadow: 5px 5px 5px var(--shadow);
 }
 
+.timesheet-form {
+  display: grid;
+  width: 40%;
+  margin: 1.75rem auto;
+  margin-top: 20px;
+  padding: 1rem;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  font-size: 16px;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid var(--medium-grey);
+  box-shadow: 5px 5px 5px var(--shadow);
+}
+
 .halfwidth-input-right input[type="number"]::-webkit-inner-spin-button,
 .halfwidth-input-right input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -93,7 +108,8 @@ h1 {
   }
 }
 
-.project-form h2 {
+.project-form h2,
+.timesheet-form h2 {
   grid-column-start: 1;
   grid-column-end: 3;
   height: 20px;
@@ -128,6 +144,12 @@ h1 {
   height: 65px;
 }
 
+.halfwidth-input-right p {
+  position: absolute;
+  bottom: 0px;
+  left: -40%;
+}
+
 .fullwidth-input input,
 .halfwidth-input-left input,
 .halfwidth-input-right input {
@@ -151,13 +173,16 @@ h1 {
 .halfwidth-input-left label,
 .halfwidth-input-right label {
   margin-bottom: 20px;
-  padding-left: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 0px;
 }
 
 input:focus,
 select:focus {
   outline: none;
   border: 1px solid var(--medium-grey);
+  background: var(--light-grey);
   transition: all 0.3s ease;
 }
 
@@ -171,26 +196,31 @@ select:focus + .label-status {
   grid-column-end: 3;
   width: 100%;
   height: 60%;
-  background: var(--light-grey);
+  background: white;
+  border: 1px solid var(--dark-grey);
   border-radius: 5px;
   margin-top: 5px;
+  font-size: 17px;
 }
 
-.halfwidth-input-right select {
+.halfwidth-input-left select {
   grid-column-start: 2;
   grid-column-end: 3;
-  width: 100%;
+  width: 50%;
   height: 60%;
   margin-top: 5px;
   background: var(--light-grey);
   border-radius: 5px;
 }
 
-.project-form button {
+.project-form button,
+.timesheet-form button {
   grid-column-start: 1;
   grid-column-end: 3;
   width: 50%;
   margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: 35px;
   background: var(--light-green);
   border-radius: 5px;
@@ -400,9 +430,10 @@ select:focus + .label-status {
   color: black;
 }
 
-.project-form .modal-close-button {
+.project-form .modal-close-button,
+.timesheet-form .modal-close-button {
   position: absolute;
-  top: 1.25rem;
+  top: 0.8rem;
   right: 0;
   background: none;
   box-shadow: none;
