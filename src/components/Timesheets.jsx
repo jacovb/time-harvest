@@ -20,6 +20,17 @@ export default function Timesheets({
     UpdateEntry,
     startEntryForm,
 }) {
+    
+    const entryDates = entry
+                    .filter((item) => item.user.id === entryUserId.entryUserId)
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .map((item, idx) => (item.date))
+                    .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
+
+    const userEntries = entry
+                        .filter((item) => item.user.id === entryUserId.entryUserId)
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))           
+    
     return (
         <>
             <div className="project-form">
@@ -118,9 +129,9 @@ export default function Timesheets({
             
 
             <div className="entryList">
-                {entry
-                    .filter((item) => item.user.id === entryUserId.entryUserId)
-                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                {console.log(entryDates)}
+                {console.log(userEntries)}
+                {userEntries
                     .map((item, idx) => (
                     <div className="entryRow" key={idx}>
                         <div className="entryDate">{item.date}</div>
