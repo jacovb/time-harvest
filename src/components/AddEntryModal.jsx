@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom';
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
-export default function EditEntryModal({ 
+export default function AddEntryModal({ 
         isShowing, 
         hide, 
         entryData, 
-        UpdateEntry,
-        deleteEntry, 
+        createEntry, 
         handleAddEntry, 
         projects, 
         setEntryData, 
         startEntryForm,
-        setEditModal 
+        setAddModal 
     }) {
     
     return isShowing ? ReactDOM.createPortal(
@@ -28,7 +27,7 @@ export default function EditEntryModal({
         >
             <div className="timesheet-form modal">
                 <div className="modal-header">
-                    <h2>Edit Entry:</h2>  
+                    <h2>Add Timesheet Entry:</h2>  
                     <button 
                         type="button" 
                         className="modal-close-button" 
@@ -36,8 +35,8 @@ export default function EditEntryModal({
                         aria-label="Close" 
                         onClick={() => {
                             hide();
+                            setAddModal(false);
                             setEntryData(startEntryForm);
-                            setEditModal(false);
                         }}>
                             <span aria-hidden="true">
                                 <HighlightOffIcon />
@@ -55,6 +54,7 @@ export default function EditEntryModal({
                         value={entryData.date}
                         name="date"
                         onChange={handleAddEntry}
+                        className="datepicker-input"
                     />
                 </div>
                 
@@ -67,6 +67,7 @@ export default function EditEntryModal({
                         id="projNo"
                         value={entryData.entryProjectId}
                         name="entryProjectId"
+                        required
                         onChange={handleAddEntry}>
                         {projects
                             .sort((a, b) => a.projectNo - b.projectNo)
@@ -88,26 +89,26 @@ export default function EditEntryModal({
 
 
                 <div className="halfwidth-input-left">
-                    <label htmlFor="editTime" className="label-name">
+                    <label htmlFor="time" className="label-name">
                         Time:
                     </label>
                     <input 
                         type="text"
-                        id="editTime"
+                        id="time"
                         value={entryData.time}
                         name="time"
                         onChange={handleAddEntry}
                         required
                     />
                 </div>
-
+                
                 <div className="fullwidth-input">
-                    <label htmlFor="editDescription" className="label-name">
+                    <label htmlFor="description" className="label-name">
                         Description:
                     </label>
                     <input 
                         type="text"
-                        id="editDescription"
+                        id="description"
                         value={entryData.description}
                         name="description"
                         onChange={handleAddEntry}
@@ -116,21 +117,11 @@ export default function EditEntryModal({
                 </div>
                 
                 <button 
-                    className="update-button"
                     onClick={() => {
-                      setEditModal(false);
-                      UpdateEntry(entryData)
+                      setAddModal(false);
+                      createEntry(entryData)
                       }}>
-                        Update
-                </button>
-
-                <button 
-                    className="delete-button"
-                    onClick={() => {
-                      setEditModal(false);
-                      deleteEntry(entryData);
-                    }}>
-                        Delete Entry
+                        Submit Entry
                 </button>
             </div>
         </div>

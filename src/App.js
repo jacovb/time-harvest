@@ -132,6 +132,7 @@ function App() {
     });
 
     fetchEntries();
+    toggle();
   }
 
   // =================

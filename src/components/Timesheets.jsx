@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
+import AddEntryModal from "./AddEntryModal";
 import EditEntryModal from "./EditEntryModal";
 
 export default function Timesheets({
@@ -20,7 +21,10 @@ export default function Timesheets({
   UpdateEntry,
   startEntryForm,
 }) {
-    
+  
+    const [addModal, setAddModal] = useState(false);
+    const [editModal, setEditModal] = useState(false);
+
     const entryDates = 
       entry
         .filter((item) => item.user.id === entryUserId.entryUserId)
@@ -53,7 +57,24 @@ export default function Timesheets({
               ))}  
           </select>
         </div>
-        <div className="timesheet-form">
+        <button onClick={() => {
+          setAddModal(true)
+          toggle()
+          }}>Add Entry</button>
+        
+        {addModal && <AddEntryModal
+            isShowing={isShowing}
+            hide={toggle}
+            entryData={entryData}
+            createEntry={createEntry}
+            handleAddEntry={handleAddEntry}
+            projects={projects}
+            startEntryForm={startEntryForm}
+            setEntryData={setEntryData}
+            setAddModal={setAddModal}
+          />}
+        
+        {/* <div className="timesheet-form">
           <h2>Add Timesheet Entry</h2>
           <div className="fullwidth-input">
             <label htmlFor="date" className="label-name">
@@ -127,10 +148,13 @@ export default function Timesheets({
           </div>
 
           <button onClick={createEntry}>Submit Entry</button>
-        </div>
+        </div> */}
         
 
         <div className="entryList">
+          {/* {console.log(userEntries
+                        .filter((obj) => obj.date === item)
+                        .reduce((acc, cur) => acc + cur))} */}
           {entryDates
             .map((item, idx) => (
               <div className="entryRow" key={idx}>
@@ -155,6 +179,7 @@ export default function Timesheets({
                               entryProjectId: obj.project.id,
                               prevProjectId: obj.project.id
                           })
+                          setEditModal(true);
                           toggle();
                       }}
                     >
@@ -165,7 +190,7 @@ export default function Timesheets({
                 ))}
               </div>
             ))}
-          <EditEntryModal
+          {editModal && <EditEntryModal
             isShowing={isShowing}
             hide={toggle}
             entryData={entryData}
@@ -175,7 +200,8 @@ export default function Timesheets({
             projects={projects}
             startEntryForm={startEntryForm}
             setEntryData={setEntryData}
-          />
+            setEditModal={setEditModal}
+          />}
         </div>
           
       </>
