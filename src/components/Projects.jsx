@@ -4,6 +4,7 @@ import EditProjectModal from "./EditProjectModal";
 import ProgressRing from "./ProgressRing";
 
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import AddIcon from '@material-ui/icons/Add';
 
 export default function Projects({
   projects, 
@@ -20,6 +21,12 @@ export default function Projects({
     return (
       <>
         <h2 className="projListHeading">Projects</h2>
+        
+        <button className="addButton">
+            <AddIcon />
+          <span className="edit-tooltip">New Project</span>
+        </button>
+
         <div className="projectsList">
             {projects
               .sort((a, b) => a.projectNo - b.projectNo)

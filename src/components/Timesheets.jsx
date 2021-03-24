@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import AddIcon from '@material-ui/icons/Add';
 
 import AddEntryModal from "./AddEntryModal";
 import EditEntryModal from "./EditEntryModal";
@@ -39,28 +40,36 @@ export default function Timesheets({
     
     return (
       <>
-        <div className="project-form">
-          <label htmlFor="user">Project User: </label>
-          <select 
-            type="text"
-            id="user"
-            name="entryUserId"
-            value={entryData.entryUserId}
-            onChange={handleSetEntryUser}>
-              {/* <option value="" hidden>-- Select Project User --</option> */}
-              {users
-                .sort((a, b) => a.name - b.name)
-                .map((user, idx) => (
-                    <option key={idx} value={user.id}>
-                      {user.name}
-                    </option>
-              ))}  
-          </select>
+        <div className="entryHeader">
+          <div className="project-form">
+            <label htmlFor="user">Project User: </label>
+            <select 
+              type="text"
+              id="user"
+              name="entryUserId"
+              value={entryData.entryUserId}
+              onChange={handleSetEntryUser}>
+                {/* <option value="" hidden>-- Select Project User --</option> */}
+                {users
+                  .sort((a, b) => a.name - b.name)
+                  .map((user, idx) => (
+                      <option key={idx} value={user.id}>
+                        {user.name}
+                      </option>
+                ))}  
+            </select>
+          </div>
+          
+          <button
+            className="addButton" 
+            onClick={() => {
+              setAddModal(true)
+              toggle()
+            }}>
+              <AddIcon />
+            <span className="edit-tooltip">Add Entry</span>
+          </button>
         </div>
-        <button onClick={() => {
-          setAddModal(true)
-          toggle()
-          }}>Add Entry</button>
         
         {addModal && <AddEntryModal
             isShowing={isShowing}
@@ -74,87 +83,8 @@ export default function Timesheets({
             setAddModal={setAddModal}
           />}
         
-        {/* <div className="timesheet-form">
-          <h2>Add Timesheet Entry</h2>
-          <div className="fullwidth-input">
-            <label htmlFor="date" className="label-name">
-              Date:
-            </label>
-            <input 
-              type="date"
-              id="date"
-              value={entryData.date}
-              name="date"
-              onChange={handleAddEntry}
-              className="datepicker-input"   
-            />
-          </div>
-            
-          <div className="halfwidth-input-left">
-            <label htmlFor="projNo" className="label-status">
-              Project Number:
-            </label>
-            <select 
-              type="text"
-              id="projNo"
-              name="entryProjectId"
-              required
-              onChange={handleAddEntry}>
-                  {projects
-                      .sort((a, b) => a.projectNo - b.projectNo)
-                      .map((project, idx) => (
-                          <option key={idx} value={project.id}>
-                              {project.projectNo}
-                          </option>
-                  ))}  
-            </select>
-          </div>
-                
-          <div className="halfwidth-input-right">
-            {projects
-              .filter((project) => project.id === entryData.entryProjectId)
-              .map((project, idx) => (
-                  <p key={idx}>{project.name}</p>
-              ))
-            }
-          </div>
-          
-          <div className="halfwidth-input-left">
-            <label htmlFor="time" className="label-name">
-              Time Spent:
-            </label>
-            <input 
-              type="number"
-              id="time"
-              value={entryData.time}
-              name="time"
-              onChange={handleAddEntry}
-              required
-            />
-          </div>
-
-          <div className="fullwidth-input">
-            <label htmlFor="description" className="label-name">
-              Description:
-            </label>
-            <input 
-              type="text"
-              id="description"
-              value={entryData.description}
-              name="description"
-              onChange={handleAddEntry}
-              required
-            />
-          </div>
-
-          <button onClick={createEntry}>Submit Entry</button>
-        </div> */}
-        
 
         <div className="entryList">
-          {/* {console.log(userEntries
-                        .filter((obj) => obj.date === item)
-                        .reduce((acc, cur) => acc + cur))} */}
           {entryDates
             .map((item, idx) => (
               <div className="entryRow" key={idx}>
