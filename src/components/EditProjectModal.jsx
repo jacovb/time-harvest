@@ -109,6 +109,7 @@ export default function EditProjectModal({
                     onClick={() => {
                       setEditModal(false);
                       updateProject(formData);
+                      setFormData(startForm);
                       }}>
                     Update
                 </button>
@@ -118,6 +119,7 @@ export default function EditProjectModal({
                     onClick={() => {
                       setEditModal(false);
                       deleteProject(formData);
+                      setFormData(startForm);
                       }}>
                     Delete Project
                 </button>
