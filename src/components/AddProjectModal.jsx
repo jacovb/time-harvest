@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom';
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
-export default function EditProjectModal({ 
+export default function AddProjectModal({ 
     isShowing, 
     hide, 
     formData, 
-    updateProject,
-    deleteProject, 
     handleAddData,
     startForm,
     setFormData,
-    setEditModal 
+    createProject,
+    setAddModal,
 }) {
     
     return isShowing ? ReactDOM.createPortal(
@@ -27,7 +26,7 @@ export default function EditProjectModal({
         >
             <div className="project-form modal">
                 <div className="modal-header">
-                    <h2>Edit Project:</h2> 
+                    <h2>Add New Project:</h2> 
                     <button 
                         type="button" 
                         className="modal-close-button" 
@@ -35,7 +34,7 @@ export default function EditProjectModal({
                         aria-label="Close" 
                         onClick={() => {
                             hide();
-                            setEditModal(false);
+                            setAddModal(false);
                             setFormData(startForm);
                         }}>
                             <span aria-hidden="true">
@@ -45,12 +44,12 @@ export default function EditProjectModal({
                 </div>
 
                 <div className="fullwidth-input">
-                    <label htmlFor="projName" className="label-name">
+                    <label htmlFor="addProjName" className="label-name">
                         Project Name:
                     </label>
                     <input 
                         type="text"
-                        id="projName"
+                        id="addProjName"
                         value={formData.name}
                         name="name"
                         onChange={handleAddData}
@@ -60,12 +59,12 @@ export default function EditProjectModal({
                 </div>
 
                 <div className="halfwidth-input-left">
-                    <label htmlFor="projNo" className="label-name">
+                    <label htmlFor="addProjNo" className="label-name">
                         Project Number:
                     </label>
                     <input 
                         type="text"
-                        id="projNo"
+                        id="addProjNo"
                         value={formData.projectNo}
                         name="projectNo"
                         onChange={handleAddData}
@@ -75,12 +74,12 @@ export default function EditProjectModal({
                 </div>
                 
                 <div className="halfwidth-input-right">
-                    <label htmlFor="projHours" className="label-name">
+                    <label htmlFor="addProjHours" className="label-name">
                         Allowed Hours:
                     </label>
                     <input 
                         type="number"
-                        id="projHours"
+                        id="addProjHours"
                         value={formData.allowedHours}
                         name="allowedHours"
                         onChange={handleAddData}
@@ -88,39 +87,29 @@ export default function EditProjectModal({
                 </div>
                 
                 <div className="fullwidth-input">
-                    <label htmlFor="status" className="label-status">
+                    <label htmlFor="addStatus" className="label-status">
                         Project Status:
                     </label>
                     <select type="text"
-                        id="status"
+                        id="addStatus"
                         name="status"
                         value={formData.status}
                         required
                         onChange={handleAddData}>
-                            <option value="" disabled hidden>Please select Project Status...</option>
+                            <option value="" disabled hidden>-- Select Project Status --</option>
                             <option value="Quote">Quote</option>
                             <option value="Current">Current</option>
                             <option value="Complete">Complete</option>   
                     </select>
                 </div>
                 
-                <button 
-                    className="update-button" 
-                    onClick={() => {
-                      setEditModal(false);
-                      updateProject(formData);
+                <button onClick={() => {
+                      setAddModal(false);
+                      createProject(formData);
                       }}>
-                    Update
+                    Add New Project
                 </button>
 
-                <button 
-                    className="delete-button" 
-                    onClick={() => {
-                      setEditModal(false);
-                      deleteProject(formData);
-                      }}>
-                    Delete Project
-                </button>
             </div>
         </div>
     </React.Fragment>, document.body

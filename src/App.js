@@ -290,6 +290,7 @@ function App() {
               <Projects
                 projects={projects}
                 setFormData={setFormData}
+                createProject={createProject}
                 deleteProject={deleteProject}
                 UpdateProject={UpdateProject}
                 formData={formData}

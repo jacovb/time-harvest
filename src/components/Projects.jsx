@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import EditProjectModal from "./EditProjectModal";
+import AddProjectModal from "./AddProjectModal";
 import ProgressRing from "./ProgressRing";
 
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -8,7 +9,8 @@ import AddIcon from '@material-ui/icons/Add';
 
 export default function Projects({
   projects, 
-  setFormData, 
+  setFormData,
+  createProject, 
   deleteProject, 
   UpdateProject, 
   formData, 
@@ -17,15 +19,36 @@ export default function Projects({
   toggle,
   startForm
 }) {
-  
+
+    const [addModal, setAddModal] = useState(false);
+    const [editModal, setEditModal] = useState(false);
+
     return (
       <>
-        <h2 className="projListHeading">Projects</h2>
+        <div className="projListHeading">
+          <h2>Projects</h2>
+          
+          <button 
+            className="addButton"
+            onClick={() => {
+              setAddModal(true);
+              toggle()
+            }}>
+              <AddIcon />
+            <span className="edit-tooltip">New Project</span>
+          </button>
+        </div>
         
-        <button className="addButton">
-            <AddIcon />
-          <span className="edit-tooltip">New Project</span>
-        </button>
+        {addModal && <AddProjectModal 
+          isShowing={isShowing}
+          hide={toggle}
+          formData={formData}
+          handleAddData={handleAddData}
+          startForm={startForm}
+          setFormData={setFormData}
+          createProject={createProject}
+          setAddModal={setAddModal}
+        />}
 
         <div className="projectsList">
             {projects
@@ -45,6 +68,7 @@ export default function Projects({
                     className="editButton"
                     onClick={() => {
                       setFormData(project);
+                      setEditModal(true);
                       toggle();
                     }}
                   >
@@ -53,7 +77,7 @@ export default function Projects({
                   </button>
                 </div>
               ))}
-            <EditProjectModal
+            {editModal && <EditProjectModal
               isShowing={isShowing}
               hide={toggle}
               formData={formData}
@@ -62,7 +86,8 @@ export default function Projects({
               startForm={startForm}
               setFormData={setFormData}
               deleteProject={deleteProject}
-            />
+              setEditModal={setEditModal}
+            />}
         </div>
       </>
     )

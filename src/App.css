@@ -222,6 +222,14 @@ select:focus + .label-status {
 /* =============================================================== */
 
 .projListHeading {
+  position: relative;
+  height: 55px;
+  margin: 20px 0 20px 0;
+}
+
+.projListHeading h2 {
+  position: relative;
+  top: 10px;
   color: white;
   text-align: center;
 }
