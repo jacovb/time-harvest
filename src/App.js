@@ -19,7 +19,6 @@ import {
 
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
-import NewProjects from "./components/NewProjects";
 import Timesheets from "./components/Timesheets";
 import Reports from "./components/Reports";
 import Users from "./components/Users";
@@ -193,7 +192,6 @@ function App() {
         },
       },
     });
-    console.log(formData);
     setFormData(startForm);
     toggle();
     fetchProjects();
@@ -272,7 +270,7 @@ function App() {
   }
 
   function handleSetEntryUser(e) {
-    setEntryUserId({ [e.target.name]: e.target.value });
+    setEntryUserId({ ...entryUserId, [e.target.name]: e.target.value });
   }
 
   return (
@@ -298,14 +296,6 @@ function App() {
                 isShowing={isShowing}
                 toggle={toggle}
                 startForm={startForm}
-              />
-            </Route>
-
-            <Route exact path="/newProjects">
-              <NewProjects
-                formData={formData}
-                createProject={createProject}
-                handleAddData={handleAddData}
               />
             </Route>
 

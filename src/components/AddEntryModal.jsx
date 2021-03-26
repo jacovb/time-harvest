@@ -69,6 +69,7 @@ export default function AddEntryModal({
                         name="entryProjectId"
                         required
                         onChange={handleAddEntry}>
+                        <option value="" disabled hidden></option>
                         {projects
                             .sort((a, b) => a.projectNo - b.projectNo)
                             .map((project, idx) => (

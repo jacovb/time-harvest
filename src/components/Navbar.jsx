@@ -10,9 +10,6 @@ export default function Navbar() {
             <Link to="/Projects" id="navButton">
                 Projects
             </Link>
-            <Link to="/newProjects" id="navButton">
-                New Projects
-            </Link>
             <Link to="/timesheets" id="navButton">
                 Time Sheets
             </Link>
