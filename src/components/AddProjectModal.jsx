@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
+import useKeypress from '../hooks/useKeypress';
+
 export default function AddProjectModal({ 
     isShowing, 
     hide, 
@@ -13,7 +15,11 @@ export default function AddProjectModal({
     createProject,
     setAddModal,
 }) {
-    
+  
+    useKeypress('Escape', () => {
+      alert('you pressed escape!')
+    });
+
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
         <div className="modal-overlay" />
