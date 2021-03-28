@@ -37,6 +37,11 @@ export default function EditEntryModal({
             aria-hidden 
             tabIndex={-1} 
             role="dialog"
+            onClick={(e) => {
+              if (e.target.className === "modal-wrapper") {
+                closeModal();
+              }
+            }}
         >
             <div className="timesheet-form modal">
                 <div className="modal-header">
