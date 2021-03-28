@@ -16,8 +16,14 @@ export default function AddProjectModal({
     setAddModal,
 }) {
   
-    useKeypress('Escape', () => {
-      alert('you pressed escape!')
+  function closeModal() {
+    hide();
+    setAddModal(false);
+    setFormData(startForm);
+  }  
+  
+  useKeypress('Escape', () => {
+      closeModal();
     });
 
     return isShowing ? ReactDOM.createPortal(
@@ -38,11 +44,7 @@ export default function AddProjectModal({
                         className="modal-close-button" 
                         data-dismiss="modal" 
                         aria-label="Close" 
-                        onClick={() => {
-                            hide();
-                            setAddModal(false);
-                            setFormData(startForm);
-                        }}>
+                        onClick={closeModal}>
                             <span aria-hidden="true">
                                 <HighlightOffIcon />
                             </span>

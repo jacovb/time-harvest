@@ -3,18 +3,30 @@ import ReactDOM from 'react-dom';
 
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
+import useKeypress from '../hooks/useKeypress';
+
 export default function AddEntryModal({ 
-        isShowing, 
-        hide, 
-        entryData, 
-        createEntry, 
-        handleAddEntry, 
-        projects, 
-        setEntryData, 
-        startEntryForm,
-        setAddModal 
+      isShowing, 
+      hide, 
+      entryData, 
+      createEntry, 
+      handleAddEntry, 
+      projects, 
+      setEntryData, 
+      startEntryForm,
+      setAddModal 
     }) {
     
+    function closeModal() {
+      hide();
+      setAddModal(false);
+      setEntryData(startEntryForm);
+    }  
+    
+    useKeypress('Escape', () => {
+        closeModal();
+      });  
+
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
         <div className="modal-overlay" />
@@ -33,11 +45,7 @@ export default function AddEntryModal({
                         className="modal-close-button" 
                         data-dismiss="modal" 
                         aria-label="Close" 
-                        onClick={() => {
-                            hide();
-                            setAddModal(false);
-                            setEntryData(startEntryForm);
-                        }}>
+                        onClick={closeModal}>
                             <span aria-hidden="true">
                                 <HighlightOffIcon />
                             </span>
