@@ -275,6 +275,7 @@ function App() {
 
   return (
     <div className="App">
+      {console.log(projects)}
       <h1>Timesheet-App</h1>
       <Router>
         <Navbar />

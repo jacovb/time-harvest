@@ -8,7 +8,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import AddIcon from '@material-ui/icons/Add';
 
 export default function Projects({
-  projects, 
+  projects,
   setFormData,
   createProject, 
   deleteProject, 
@@ -38,7 +38,7 @@ export default function Projects({
             <span className="edit-tooltip">New Project</span>
           </button>
         </div>
-        
+
         {addModal && <AddProjectModal 
           isShowing={isShowing}
           hide={toggle}
@@ -68,6 +68,7 @@ export default function Projects({
                     className="editButton"
                     onClick={() => {
                       setFormData(project);
+                      console.log(project);
                       setEditModal(true);
                       toggle();
                     }}
