@@ -2,8 +2,8 @@ type Project @model {
   id: ID!
   projectNo: Int
   name: String
-  allowedHours: Float
-  usedHours: Float
+  allowedHours: Allowed @connection(name: "ProjectAllowed")
+  usedHours: Used @connection(name: "ProjectUsed")
   status: String
   entries: [Entry] @connection(name: "ProjectEntries")
   users: [UserProject] @connection(name: "ProjectUsers")
@@ -18,6 +18,7 @@ type UserProject @model(queries: null) {
 type User @model {
   id: ID!
   name: String
+  department: String
   projects: [UserProject] @connection(name: "UserProjects")
   entries: [Entry] @connection(name: "UserEntries")
 }
@@ -29,4 +30,20 @@ type Entry @model {
   date: AWSDate
   description: String
   time: Float
+}
+
+type Allowed @model {
+  project: Project @connection(name: "ProjectAllowed")
+  technical: Float
+  engineering: Float
+  coordination: Float
+  construction: Float
+}
+
+type Used @model {
+  project: Project @connection(name: "ProjectUsed")
+  technical: Float
+  engineering: Float
+  coordination: Float
+  construction: Float
 }

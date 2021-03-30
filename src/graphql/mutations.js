@@ -10,8 +10,40 @@ export const createProject = /* GraphQL */ `
       id
       projectNo
       name
-      allowedHours
-      usedHours
+      allowedHours {
+        id
+        project {
+          id
+          projectNo
+          name
+          status
+          createdAt
+          updatedAt
+        }
+        technical
+        engineering
+        coordination
+        construction
+        createdAt
+        updatedAt
+      }
+      usedHours {
+        id
+        project {
+          id
+          projectNo
+          name
+          status
+          createdAt
+          updatedAt
+        }
+        technical
+        engineering
+        coordination
+        construction
+        createdAt
+        updatedAt
+      }
       status
       entries {
         items {
@@ -46,8 +78,40 @@ export const updateProject = /* GraphQL */ `
       id
       projectNo
       name
-      allowedHours
-      usedHours
+      allowedHours {
+        id
+        project {
+          id
+          projectNo
+          name
+          status
+          createdAt
+          updatedAt
+        }
+        technical
+        engineering
+        coordination
+        construction
+        createdAt
+        updatedAt
+      }
+      usedHours {
+        id
+        project {
+          id
+          projectNo
+          name
+          status
+          createdAt
+          updatedAt
+        }
+        technical
+        engineering
+        coordination
+        construction
+        createdAt
+        updatedAt
+      }
       status
       entries {
         items {
@@ -82,8 +146,40 @@ export const deleteProject = /* GraphQL */ `
       id
       projectNo
       name
-      allowedHours
-      usedHours
+      allowedHours {
+        id
+        project {
+          id
+          projectNo
+          name
+          status
+          createdAt
+          updatedAt
+        }
+        technical
+        engineering
+        coordination
+        construction
+        createdAt
+        updatedAt
+      }
+      usedHours {
+        id
+        project {
+          id
+          projectNo
+          name
+          status
+          createdAt
+          updatedAt
+        }
+        technical
+        engineering
+        coordination
+        construction
+        createdAt
+        updatedAt
+      }
       status
       entries {
         items {
@@ -119,6 +215,7 @@ export const createUserProject = /* GraphQL */ `
       user {
         id
         name
+        department
         projects {
           nextToken
         }
@@ -132,8 +229,24 @@ export const createUserProject = /* GraphQL */ `
         id
         projectNo
         name
-        allowedHours
-        usedHours
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
         status
         entries {
           nextToken
@@ -159,6 +272,7 @@ export const updateUserProject = /* GraphQL */ `
       user {
         id
         name
+        department
         projects {
           nextToken
         }
@@ -172,8 +286,24 @@ export const updateUserProject = /* GraphQL */ `
         id
         projectNo
         name
-        allowedHours
-        usedHours
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
         status
         entries {
           nextToken
@@ -199,6 +329,7 @@ export const deleteUserProject = /* GraphQL */ `
       user {
         id
         name
+        department
         projects {
           nextToken
         }
@@ -212,8 +343,24 @@ export const deleteUserProject = /* GraphQL */ `
         id
         projectNo
         name
-        allowedHours
-        usedHours
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
         status
         entries {
           nextToken
@@ -237,6 +384,7 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       name
+      department
       projects {
         items {
           id
@@ -269,6 +417,7 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       name
+      department
       projects {
         items {
           id
@@ -301,6 +450,7 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       name
+      department
       projects {
         items {
           id
@@ -336,8 +486,24 @@ export const createEntry = /* GraphQL */ `
         id
         projectNo
         name
-        allowedHours
-        usedHours
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
         status
         entries {
           nextToken
@@ -351,6 +517,7 @@ export const createEntry = /* GraphQL */ `
       user {
         id
         name
+        department
         projects {
           nextToken
         }
@@ -379,8 +546,24 @@ export const updateEntry = /* GraphQL */ `
         id
         projectNo
         name
-        allowedHours
-        usedHours
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
         status
         entries {
           nextToken
@@ -394,6 +577,7 @@ export const updateEntry = /* GraphQL */ `
       user {
         id
         name
+        department
         projects {
           nextToken
         }
@@ -422,8 +606,24 @@ export const deleteEntry = /* GraphQL */ `
         id
         projectNo
         name
-        allowedHours
-        usedHours
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
         status
         entries {
           nextToken
@@ -437,6 +637,7 @@ export const deleteEntry = /* GraphQL */ `
       user {
         id
         name
+        department
         projects {
           nextToken
         }
@@ -449,6 +650,294 @@ export const deleteEntry = /* GraphQL */ `
       date
       description
       time
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createAllowed = /* GraphQL */ `
+  mutation CreateAllowed(
+    $input: CreateAllowedInput!
+    $condition: ModelAllowedConditionInput
+  ) {
+    createAllowed(input: $input, condition: $condition) {
+      id
+      project {
+        id
+        projectNo
+        name
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        status
+        entries {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      technical
+      engineering
+      coordination
+      construction
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateAllowed = /* GraphQL */ `
+  mutation UpdateAllowed(
+    $input: UpdateAllowedInput!
+    $condition: ModelAllowedConditionInput
+  ) {
+    updateAllowed(input: $input, condition: $condition) {
+      id
+      project {
+        id
+        projectNo
+        name
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        status
+        entries {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      technical
+      engineering
+      coordination
+      construction
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteAllowed = /* GraphQL */ `
+  mutation DeleteAllowed(
+    $input: DeleteAllowedInput!
+    $condition: ModelAllowedConditionInput
+  ) {
+    deleteAllowed(input: $input, condition: $condition) {
+      id
+      project {
+        id
+        projectNo
+        name
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        status
+        entries {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      technical
+      engineering
+      coordination
+      construction
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createUsed = /* GraphQL */ `
+  mutation CreateUsed(
+    $input: CreateUsedInput!
+    $condition: ModelUsedConditionInput
+  ) {
+    createUsed(input: $input, condition: $condition) {
+      id
+      project {
+        id
+        projectNo
+        name
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        status
+        entries {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      technical
+      engineering
+      coordination
+      construction
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateUsed = /* GraphQL */ `
+  mutation UpdateUsed(
+    $input: UpdateUsedInput!
+    $condition: ModelUsedConditionInput
+  ) {
+    updateUsed(input: $input, condition: $condition) {
+      id
+      project {
+        id
+        projectNo
+        name
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        status
+        entries {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      technical
+      engineering
+      coordination
+      construction
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteUsed = /* GraphQL */ `
+  mutation DeleteUsed(
+    $input: DeleteUsedInput!
+    $condition: ModelUsedConditionInput
+  ) {
+    deleteUsed(input: $input, condition: $condition) {
+      id
+      project {
+        id
+        projectNo
+        name
+        allowedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        usedHours {
+          id
+          technical
+          engineering
+          coordination
+          construction
+          createdAt
+          updatedAt
+        }
+        status
+        entries {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      technical
+      engineering
+      coordination
+      construction
       createdAt
       updatedAt
     }
