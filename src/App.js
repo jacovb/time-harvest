@@ -28,7 +28,12 @@ import useModal from "./hooks/useModal";
 const startForm = {
   projectNo: "",
   name: "",
-  allowedHours: "",
+  allowedHours: {
+    technical: "",
+    coordination: "",
+    engineering: "",
+    construction: "",
+  },
   status: "",
 };
 
@@ -261,6 +266,11 @@ function App() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
+  function handleHours(e) {
+    console.log(e);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
   function handleAddUser(e) {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   }
@@ -275,7 +285,6 @@ function App() {
 
   return (
     <div className="App">
-      {console.log(projects)}
       <h1>Timesheet-App</h1>
       <Router>
         <Navbar />
@@ -294,6 +303,7 @@ function App() {
                 UpdateProject={UpdateProject}
                 formData={formData}
                 handleAddData={handleAddData}
+                handleHours={handleHours}
                 isShowing={isShowing}
                 toggle={toggle}
                 startForm={startForm}

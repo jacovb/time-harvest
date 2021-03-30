@@ -14,7 +14,8 @@ export default function Projects({
   deleteProject, 
   UpdateProject, 
   formData, 
-  handleAddData, 
+  handleAddData,
+  handleHours, 
   isShowing, 
   toggle,
   startForm
@@ -44,6 +45,7 @@ export default function Projects({
           hide={toggle}
           formData={formData}
           handleAddData={handleAddData}
+          handleHours={handleHours}
           startForm={startForm}
           setFormData={setFormData}
           createProject={createProject}
@@ -58,12 +60,15 @@ export default function Projects({
                   <div className="gridProjectNo">{project.projectNo}</div>
                   <div className="gridProjectName">{project.name}</div>
                   <div className="gridProjectHours">
-                    {project.allowedHours}
+                    {project.allowedHours.technical +
+                    project.allowedHours.coordination +
+                    project.allowedHours.engineering +
+                    project.allowedHours.construction }
                   </div>
                   <div className="gridProjectStatus">{project.status}</div>
-                  <ProgressRing 
+                  {/* <ProgressRing 
                     className="gridProgress-ring"
-                    project={project}/>
+                    project={project}/> */}
                   <button
                     className="editButton"
                     onClick={() => {
