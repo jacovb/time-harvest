@@ -29,7 +29,6 @@ export default function AddProjectModal({
 
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
-        {console.log(formData)}
         <div className="modal-overlay" />
         <div 
             className="modal-wrapper" 

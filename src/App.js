@@ -267,8 +267,13 @@ function App() {
   }
 
   function handleHours(e) {
-    console.log(e);
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      allowedHours: {
+        ...formData.allowedHours,
+        [e.target.name]: e.target.value,
+      },
+    });
   }
 
   function handleAddUser(e) {
