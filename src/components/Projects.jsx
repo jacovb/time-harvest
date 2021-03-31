@@ -24,9 +24,16 @@ export default function Projects({
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
 
+    function totalHours(data) {
+      return data.technical +
+      data.coordination +
+      data.engineering +
+      data.construction
+    }
+
     return (
       <>
-        {console.log(projects)}
+        {/* {console.log(projects)} */}
         <div className="projListHeading">
           <h2>Projects</h2>
           
@@ -61,10 +68,7 @@ export default function Projects({
                   <div className="gridProjectNo">{project.projectNo}</div>
                   <div className="gridProjectName">{project.name}</div>
                   <div className="gridProjectHours">
-                    {project.allowedHours.technical +
-                    project.allowedHours.coordination +
-                    project.allowedHours.engineering +
-                    project.allowedHours.construction }
+                    {totalHours(project.allowedHours)}
                   </div>
                   <div className="gridProjectStatus">{project.status}</div>
                   {/* <ProgressRing 
@@ -90,6 +94,7 @@ export default function Projects({
               formData={formData}
               updateProject={UpdateProject}
               handleAddData={handleAddData}
+              handleHours={handleHours}
               startForm={startForm}
               setFormData={setFormData}
               deleteProject={deleteProject}

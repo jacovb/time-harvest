@@ -12,6 +12,7 @@ export default function EditProjectModal({
     updateProject,
     deleteProject, 
     handleAddData,
+    handleHours,
     startForm,
     setFormData,
     setEditModal 
@@ -29,6 +30,7 @@ export default function EditProjectModal({
     
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
+        {console.log(formData)}
         <div className="modal-overlay" />
         <div 
             className="modal-wrapper" 
@@ -88,15 +90,54 @@ export default function EditProjectModal({
                 </div>
                 
                 <div className="halfwidth-input-right">
-                    <label htmlFor="projHours" className="label-name">
-                        Allowed Hours:
+                    <label htmlFor="addProjHours" className="label-name">
+                        Allowed Hours (Technical):
                     </label>
                     <input 
                         type="number"
-                        id="projHours"
-                        value={formData.allowedHours}
-                        name="allowedHours"
-                        onChange={handleAddData}
+                        id="addProjHours"
+                        value={formData.allowedHours.technical}
+                        name="technical"
+                        onChange={handleHours}
+                    />
+                </div>
+
+                <div className="halfwidth-input-right">
+                    <label htmlFor="addProjHours" className="label-name">
+                        Allowed Hours (Coordination):
+                    </label>
+                    <input 
+                        type="number"
+                        id="addProjHours"
+                        value={formData.allowedHours.coordination}
+                        name="coordination"
+                        onChange={handleHours}
+                    />
+                </div>
+
+                <div className="halfwidth-input-right">
+                    <label htmlFor="addProjHours" className="label-name">
+                        Allowed Hours (Engineering):
+                    </label>
+                    <input 
+                        type="number"
+                        id="addProjHours"
+                        value={formData.allowedHours.engineering}
+                        name="engineering"
+                        onChange={handleHours}
+                    />
+                </div>
+
+                <div className="halfwidth-input-right">
+                    <label htmlFor="addProjHours" className="label-name">
+                        Allowed Hours (Construction):
+                    </label>
+                    <input 
+                        type="number"
+                        id="addProjHours"
+                        value={formData.allowedHours.construction}
+                        name="construction"
+                        onChange={handleHours}
                     />
                 </div>
                 

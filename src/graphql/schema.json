@@ -634,17 +634,6 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "total",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
           "name" : "createdAt",
           "description" : null,
           "args" : [ ],
@@ -762,17 +751,6 @@
           "deprecationReason" : null
         }, {
           "name" : "construction",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "total",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2293,15 +2271,6 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "total",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelFloatInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
           "name" : "and",
           "description" : null,
           "type" : {
@@ -2409,15 +2378,6 @@
           "defaultValue" : null
         }, {
           "name" : "construction",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelFloatInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "total",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3850,15 +3810,6 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "total",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
           "name" : "allowedProjectId",
           "description" : null,
           "type" : {
@@ -3905,15 +3856,6 @@
           "defaultValue" : null
         }, {
           "name" : "construction",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelFloatInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "total",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3994,15 +3936,6 @@
           "defaultValue" : null
         }, {
           "name" : "construction",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "total",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -4092,15 +4025,6 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "total",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
           "name" : "usedProjectId",
           "description" : null,
           "type" : {
@@ -4147,15 +4071,6 @@
           "defaultValue" : null
         }, {
           "name" : "construction",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelFloatInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "total",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -4236,15 +4151,6 @@
           "defaultValue" : null
         }, {
           "name" : "construction",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "total",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",

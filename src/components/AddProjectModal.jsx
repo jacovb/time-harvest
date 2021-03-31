@@ -144,7 +144,10 @@ export default function AddProjectModal({
                     <label htmlFor="addProjHours" className="label-name">
                         Total:
                     </label>
-                    <h2>{formData.allowedHours.total}</h2>
+                    <h2>{formData.allowedHours.technical +
+                    formData.allowedHours.coordination +
+                    formData.allowedHours.engineering +
+                    formData.allowedHours.construction}</h2>
                 </div>
                 
                 <div className="fullwidth-input">

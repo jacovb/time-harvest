@@ -38,7 +38,6 @@ type Allowed @model {
   engineering: Float
   coordination: Float
   construction: Float
-  total: Float
 }
 
 type Used @model {
@@ -47,5 +46,4 @@ type Used @model {
   engineering: Float
   coordination: Float
   construction: Float
-  total: Float
 }

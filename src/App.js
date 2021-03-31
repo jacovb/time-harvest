@@ -10,6 +10,7 @@ import {
   createProject as createProjectMutation,
   deleteProject as deleteProjectMutation,
   updateProject as updateProjectMutation,
+  updateAllowed as updateAllowedMutation,
   createUser as createUserMutation,
   deleteUser as deleteUserMutation,
   createEntry as createEntryMutation,
@@ -195,7 +196,18 @@ function App() {
           name: formData.name,
           projectNo: formData.projectNo,
           status: formData.status,
-          allowedHours: formData.allowedHours,
+        },
+      },
+    });
+    await API.graphql({
+      query: updateAllowedMutation,
+      variables: {
+        input: {
+          id: formData.allowedHours.id,
+          technical: formData.allowedHours.technical,
+          coordination: formData.allowedHours.coordination,
+          engineering: formData.allowedHours.engineering,
+          construction: formData.allowedHours.construction,
         },
       },
     });
@@ -269,20 +281,6 @@ function App() {
   }
 
   function handleHours(e) {
-    // function updateTotal() {
-    //   setFormData({
-    //     ...formData,
-    //     allowedHours: {
-    //       ...formData.allowedHours,
-    //       total: parseFloat(
-    //         formData.allowedHours.technical +
-    //           formData.allowedHours.coordination +
-    //           formData.allowedHours.engineering +
-    //           formData.allowedHours.construction
-    //       ),
-    //     },
-    //   });
-    // }
     setFormData({
       ...formData,
       allowedHours: {
