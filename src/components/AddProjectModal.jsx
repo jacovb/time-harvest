@@ -138,6 +138,14 @@ export default function AddProjectModal({
                         onChange={handleHours}
                     />
                 </div>
+
+                {console.log(formData)}
+                <div className="halfwidth-input-right">
+                    <label htmlFor="addProjHours" className="label-name">
+                        Total:
+                    </label>
+                    <h2>{formData.allowedHours.total}</h2>
+                </div>
                 
                 <div className="fullwidth-input">
                     <label htmlFor="addStatus" className="label-status">

@@ -33,6 +33,7 @@ const startForm = {
     coordination: "",
     engineering: "",
     construction: "",
+    total: "",
   },
   status: "",
 };
@@ -268,11 +269,25 @@ function App() {
   }
 
   function handleHours(e) {
+    // function updateTotal() {
+    //   setFormData({
+    //     ...formData,
+    //     allowedHours: {
+    //       ...formData.allowedHours,
+    //       total: parseFloat(
+    //         formData.allowedHours.technical +
+    //           formData.allowedHours.coordination +
+    //           formData.allowedHours.engineering +
+    //           formData.allowedHours.construction
+    //       ),
+    //     },
+    //   });
+    // }
     setFormData({
       ...formData,
       allowedHours: {
         ...formData.allowedHours,
-        [e.target.name]: e.target.value,
+        [e.target.name]: parseFloat(e.target.value),
       },
     });
   }

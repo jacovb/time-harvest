@@ -21,6 +21,7 @@ export const getProject = /* GraphQL */ `
         engineering
         coordination
         construction
+        total
         createdAt
         updatedAt
       }
@@ -38,6 +39,7 @@ export const getProject = /* GraphQL */ `
         engineering
         coordination
         construction
+        total
         createdAt
         updatedAt
       }
@@ -83,6 +85,7 @@ export const listProjects = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -92,6 +95,7 @@ export const listProjects = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -177,6 +181,7 @@ export const getEntry = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -186,6 +191,7 @@ export const getEntry = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -268,6 +274,7 @@ export const getAllowed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -277,6 +284,7 @@ export const getAllowed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -294,6 +302,7 @@ export const getAllowed = /* GraphQL */ `
       engineering
       coordination
       construction
+      total
       createdAt
       updatedAt
     }
@@ -320,6 +329,7 @@ export const listAlloweds = /* GraphQL */ `
         engineering
         coordination
         construction
+        total
         createdAt
         updatedAt
       }
@@ -341,6 +351,7 @@ export const getUsed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -350,6 +361,7 @@ export const getUsed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -367,6 +379,7 @@ export const getUsed = /* GraphQL */ `
       engineering
       coordination
       construction
+      total
       createdAt
       updatedAt
     }
@@ -393,6 +406,7 @@ export const listUseds = /* GraphQL */ `
         engineering
         coordination
         construction
+        total
         createdAt
         updatedAt
       }

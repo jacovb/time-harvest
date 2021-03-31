@@ -24,6 +24,7 @@ export const createProject = /* GraphQL */ `
         engineering
         coordination
         construction
+        total
         createdAt
         updatedAt
       }
@@ -41,6 +42,7 @@ export const createProject = /* GraphQL */ `
         engineering
         coordination
         construction
+        total
         createdAt
         updatedAt
       }
@@ -92,6 +94,7 @@ export const updateProject = /* GraphQL */ `
         engineering
         coordination
         construction
+        total
         createdAt
         updatedAt
       }
@@ -109,6 +112,7 @@ export const updateProject = /* GraphQL */ `
         engineering
         coordination
         construction
+        total
         createdAt
         updatedAt
       }
@@ -160,6 +164,7 @@ export const deleteProject = /* GraphQL */ `
         engineering
         coordination
         construction
+        total
         createdAt
         updatedAt
       }
@@ -177,6 +182,7 @@ export const deleteProject = /* GraphQL */ `
         engineering
         coordination
         construction
+        total
         createdAt
         updatedAt
       }
@@ -235,6 +241,7 @@ export const createUserProject = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -244,6 +251,7 @@ export const createUserProject = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -292,6 +300,7 @@ export const updateUserProject = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -301,6 +310,7 @@ export const updateUserProject = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -349,6 +359,7 @@ export const deleteUserProject = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -358,6 +369,7 @@ export const deleteUserProject = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -492,6 +504,7 @@ export const createEntry = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -501,6 +514,7 @@ export const createEntry = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -552,6 +566,7 @@ export const updateEntry = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -561,6 +576,7 @@ export const updateEntry = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -612,6 +628,7 @@ export const deleteEntry = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -621,6 +638,7 @@ export const deleteEntry = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -672,6 +690,7 @@ export const createAllowed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -681,6 +700,7 @@ export const createAllowed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -698,6 +718,7 @@ export const createAllowed = /* GraphQL */ `
       engineering
       coordination
       construction
+      total
       createdAt
       updatedAt
     }
@@ -720,6 +741,7 @@ export const updateAllowed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -729,6 +751,7 @@ export const updateAllowed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -746,6 +769,7 @@ export const updateAllowed = /* GraphQL */ `
       engineering
       coordination
       construction
+      total
       createdAt
       updatedAt
     }
@@ -768,6 +792,7 @@ export const deleteAllowed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -777,6 +802,7 @@ export const deleteAllowed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -794,6 +820,7 @@ export const deleteAllowed = /* GraphQL */ `
       engineering
       coordination
       construction
+      total
       createdAt
       updatedAt
     }
@@ -816,6 +843,7 @@ export const createUsed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -825,6 +853,7 @@ export const createUsed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -842,6 +871,7 @@ export const createUsed = /* GraphQL */ `
       engineering
       coordination
       construction
+      total
       createdAt
       updatedAt
     }
@@ -864,6 +894,7 @@ export const updateUsed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -873,6 +904,7 @@ export const updateUsed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -890,6 +922,7 @@ export const updateUsed = /* GraphQL */ `
       engineering
       coordination
       construction
+      total
       createdAt
       updatedAt
     }
@@ -912,6 +945,7 @@ export const deleteUsed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -921,6 +955,7 @@ export const deleteUsed = /* GraphQL */ `
           engineering
           coordination
           construction
+          total
           createdAt
           updatedAt
         }
@@ -938,6 +973,7 @@ export const deleteUsed = /* GraphQL */ `
       engineering
       coordination
       construction
+      total
       createdAt
       updatedAt
     }
