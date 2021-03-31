@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import EditProjectModal from "./EditProjectModal";
 import AddProjectModal from "./AddProjectModal";
-import ProgressRing from "./ProgressRing";
+// import ProgressRing from "./ProgressRing";
 
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import AddIcon from '@material-ui/icons/Add';

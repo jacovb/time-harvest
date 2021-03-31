@@ -203,7 +203,7 @@ function App() {
       query: updateAllowedMutation,
       variables: {
         input: {
-          id: formData.allowedHours.id,
+          allowedProjectId: formData.id,
           technical: formData.allowedHours.technical,
           coordination: formData.allowedHours.coordination,
           engineering: formData.allowedHours.engineering,
