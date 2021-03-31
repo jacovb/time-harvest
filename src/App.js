@@ -39,6 +39,7 @@ const startForm = {
 
 const startUserForm = {
   name: "",
+  department: "",
 };
 
 const startEntryUserId = {
