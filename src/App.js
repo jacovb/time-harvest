@@ -144,12 +144,20 @@ function App() {
   // =================
 
   async function updateProjectUsedHours(entryData) {
+    // const departments = [
+    //   "Technical",
+    //   "Coordination",
+    //   "Engineering",
+    //   "Construction",
+    // ];
+
     function getUsedHours(projectId) {
-      const usedHours = entry
+      const usedTime = entry
         .filter((item) => item.project.id === projectId)
+        // .filter((item) => item.user.department === dept)
         .map((item) => item.time)
         .reduce((a, b) => a + b, 0);
-      return usedHours;
+      return usedTime;
     }
 
     if (
@@ -161,7 +169,7 @@ function App() {
         variables: {
           input: {
             id: entryData.prevProjectId,
-            usedHours: getUsedHours(entryData.prevProjectId),
+            usedTime: getUsedHours(entryData.prevProjectId),
           },
         },
       });
@@ -172,7 +180,7 @@ function App() {
       variables: {
         input: {
           id: entryData.entryProjectId,
-          usedHours: getUsedHours(entryData.entryProjectId),
+          usedTime: getUsedHours(entryData.entryProjectId),
         },
       },
     });
