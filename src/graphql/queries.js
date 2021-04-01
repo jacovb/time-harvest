@@ -7,40 +7,6 @@ export const getProject = /* GraphQL */ `
       id
       projectNo
       name
-      allowedHours {
-        id
-        project {
-          id
-          projectNo
-          name
-          status
-          createdAt
-          updatedAt
-        }
-        technical
-        engineering
-        coordination
-        construction
-        createdAt
-        updatedAt
-      }
-      usedHours {
-        id
-        project {
-          id
-          projectNo
-          name
-          status
-          createdAt
-          updatedAt
-        }
-        technical
-        engineering
-        coordination
-        construction
-        createdAt
-        updatedAt
-      }
       status
       entries {
         items {
@@ -61,6 +27,14 @@ export const getProject = /* GraphQL */ `
         }
         nextToken
       }
+      allowTimeTechnical
+      allowTimeEngineering
+      allowTimeCoordination
+      allowTimeConstruction
+      usedTimeTechnical
+      usedTimeEngineering
+      usedTimeCoordination
+      usedTimeConstruction
       createdAt
       updatedAt
     }
@@ -77,24 +51,6 @@ export const listProjects = /* GraphQL */ `
         id
         projectNo
         name
-        allowedHours {
-          id
-          technical
-          engineering
-          coordination
-          construction
-          createdAt
-          updatedAt
-        }
-        usedHours {
-          id
-          technical
-          engineering
-          coordination
-          construction
-          createdAt
-          updatedAt
-        }
         status
         entries {
           nextToken
@@ -102,6 +58,14 @@ export const listProjects = /* GraphQL */ `
         users {
           nextToken
         }
+        allowTimeTechnical
+        allowTimeEngineering
+        allowTimeCoordination
+        allowTimeConstruction
+        usedTimeTechnical
+        usedTimeEngineering
+        usedTimeCoordination
+        usedTimeConstruction
         createdAt
         updatedAt
       }
@@ -171,24 +135,6 @@ export const getEntry = /* GraphQL */ `
         id
         projectNo
         name
-        allowedHours {
-          id
-          technical
-          engineering
-          coordination
-          construction
-          createdAt
-          updatedAt
-        }
-        usedHours {
-          id
-          technical
-          engineering
-          coordination
-          construction
-          createdAt
-          updatedAt
-        }
         status
         entries {
           nextToken
@@ -196,6 +142,14 @@ export const getEntry = /* GraphQL */ `
         users {
           nextToken
         }
+        allowTimeTechnical
+        allowTimeEngineering
+        allowTimeCoordination
+        allowTimeConstruction
+        usedTimeTechnical
+        usedTimeEngineering
+        usedTimeCoordination
+        usedTimeConstruction
         createdAt
         updatedAt
       }
@@ -234,6 +188,14 @@ export const listEntrys = /* GraphQL */ `
           projectNo
           name
           status
+          allowTimeTechnical
+          allowTimeEngineering
+          allowTimeCoordination
+          allowTimeConstruction
+          usedTimeTechnical
+          usedTimeEngineering
+          usedTimeCoordination
+          usedTimeConstruction
           createdAt
           updatedAt
         }
@@ -247,152 +209,6 @@ export const listEntrys = /* GraphQL */ `
         date
         description
         time
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getAllowed = /* GraphQL */ `
-  query GetAllowed($id: ID!) {
-    getAllowed(id: $id) {
-      id
-      project {
-        id
-        projectNo
-        name
-        allowedHours {
-          id
-          technical
-          engineering
-          coordination
-          construction
-          createdAt
-          updatedAt
-        }
-        usedHours {
-          id
-          technical
-          engineering
-          coordination
-          construction
-          createdAt
-          updatedAt
-        }
-        status
-        entries {
-          nextToken
-        }
-        users {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      technical
-      engineering
-      coordination
-      construction
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listAlloweds = /* GraphQL */ `
-  query ListAlloweds(
-    $filter: ModelAllowedFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listAlloweds(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        project {
-          id
-          projectNo
-          name
-          status
-          createdAt
-          updatedAt
-        }
-        technical
-        engineering
-        coordination
-        construction
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getUsed = /* GraphQL */ `
-  query GetUsed($id: ID!) {
-    getUsed(id: $id) {
-      id
-      project {
-        id
-        projectNo
-        name
-        allowedHours {
-          id
-          technical
-          engineering
-          coordination
-          construction
-          createdAt
-          updatedAt
-        }
-        usedHours {
-          id
-          technical
-          engineering
-          coordination
-          construction
-          createdAt
-          updatedAt
-        }
-        status
-        entries {
-          nextToken
-        }
-        users {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      technical
-      engineering
-      coordination
-      construction
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listUseds = /* GraphQL */ `
-  query ListUseds(
-    $filter: ModelUsedFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUseds(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        project {
-          id
-          projectNo
-          name
-          status
-          createdAt
-          updatedAt
-        }
-        technical
-        engineering
-        coordination
-        construction
         createdAt
         updatedAt
       }
