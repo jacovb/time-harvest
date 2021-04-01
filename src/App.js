@@ -144,17 +144,19 @@ function App() {
   // =================
 
   async function updateProjectUsedHours(entryData) {
-    // const departments = [
-    //   "Technical",
-    //   "Coordination",
-    //   "Engineering",
-    //   "Construction",
-    // ];
+    function getDept(entryUserId) {
+      const deptUser = users.filter((item) => item.id === entryUserId)[0];
+      return deptUser.department;
+    }
+
+    console.log(getDept(entryData.entryUserId));
+    const dept = getDept(entryData.entryUserId);
+    const timeVar = `usedTime${dept}`;
 
     function getUsedHours(projectId) {
       const usedTime = entry
         .filter((item) => item.project.id === projectId)
-        // .filter((item) => item.user.department === dept)
+        .filter((item) => item.user.department === dept)
         .map((item) => item.time)
         .reduce((a, b) => a + b, 0);
       return usedTime;
@@ -169,7 +171,7 @@ function App() {
         variables: {
           input: {
             id: entryData.prevProjectId,
-            usedTime: getUsedHours(entryData.prevProjectId),
+            [timeVar]: getUsedHours(entryData.prevProjectId),
           },
         },
       });
@@ -180,7 +182,7 @@ function App() {
       variables: {
         input: {
           id: entryData.entryProjectId,
-          usedTime: getUsedHours(entryData.entryProjectId),
+          [timeVar]: getUsedHours(entryData.entryProjectId),
         },
       },
     });

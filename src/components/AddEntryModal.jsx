@@ -29,7 +29,6 @@ export default function AddEntryModal({
 
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
-        {console.log(entryData)}
         <div className="modal-overlay" />
         <div 
             className="modal-wrapper" 
