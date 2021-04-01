@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function ProgressRing({project}) {
+export default function ProgressRing({usedHours, allowedHours}) {
     
     const size = 90
     const backCircleWidth = 2;
     const frontCircleWidth = 5;
     const radius = (size / 2) - (frontCircleWidth * 2);
     const circum = 2 * Math.PI * radius;
-    const progressPercent = (project.usedHours / project.allowedHours * 100);
+    const progressPercent = (usedHours / allowedHours * 100);
     const progressStroke = (circum * ((100 - progressPercent) / 100));
     
     return (

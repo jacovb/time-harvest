@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import EditProjectModal from "./EditProjectModal";
 import AddProjectModal from "./AddProjectModal";
-// import ProgressRing from "./ProgressRing";
+import ProgressRing from "./ProgressRing";
 
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import AddIcon from '@material-ui/icons/Add';
@@ -28,6 +28,13 @@ export default function Projects({
       (+data.allowTimeCoordination) +
       (+data.allowTimeEngineering) +
       (+data.allowTimeConstruction)
+    }
+
+    function totalUsedTime(data) {
+      return (+data.usedTimeTechnical) +
+      (+data.usedTimeCoordination) +
+      (+data.usedTimeEngineering) +
+      (+data.usedTimeConstruction)
     }
 
     return (
@@ -68,9 +75,11 @@ export default function Projects({
                     {totalAllowedTime(project)}
                   </div>
                   <div className="gridProjectStatus">{project.status}</div>
-                  {/* <ProgressRing 
+                  <ProgressRing 
                     className="gridProgress-ring"
-                    project={project}/> */}
+                    usedHours={totalUsedTime(project)}
+                    allowedHours={totalAllowedTime(project)}
+                    />
                   <button
                     className="editButton"
                     onClick={() => {

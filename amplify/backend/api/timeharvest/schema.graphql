@@ -33,6 +33,7 @@ type Entry @model {
   id: ID!
   project: Project @connection(name: "ProjectEntries")
   user: User @connection(name: "UserEntries")
+  department: String
   date: AWSDate
   description: String
   time: Float

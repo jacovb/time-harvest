@@ -42,6 +42,7 @@ const startUserForm = {
 
 const startEntryUserId = {
   entryUserId: "",
+  entryUserDept: "",
 };
 
 const startEntryForm = {
@@ -277,7 +278,12 @@ function App() {
   }
 
   function handleSetEntryUser(e) {
-    setEntryUserId({ ...entryUserId, [e.target.name]: e.target.value });
+    let user = users.filter((item) => item.id === e.target.value)[0];
+    setEntryUserId({
+      ...entryUserId,
+      [e.target.name]: e.target.value,
+      entryUserDept: user.department,
+    });
   }
 
   return (

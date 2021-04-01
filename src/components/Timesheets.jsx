@@ -40,6 +40,7 @@ export default function Timesheets({
     
     return (
       <>
+        {console.log(entry)}
         <div className="entryHeader">
           <div className="project-form">
             <label htmlFor="user">Project User: </label>
