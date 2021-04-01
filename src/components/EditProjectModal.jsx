@@ -12,12 +12,18 @@ export default function EditProjectModal({
     updateProject,
     deleteProject, 
     handleAddData,
-    handleHours,
     startForm,
     setFormData,
     setEditModal 
 }) {
 
+  function totalAllowedTime(data) {
+    return (+data.allowTimeTechnical) +
+    (+data.allowTimeCoordination) +
+    (+data.allowTimeEngineering) +
+    (+data.allowTimeConstruction)
+  }
+  
   function closeModal() {
     hide();
     setEditModal(false);
@@ -30,7 +36,6 @@ export default function EditProjectModal({
     
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
-        {console.log(formData)}
         <div className="modal-overlay" />
         <div 
             className="modal-wrapper" 
@@ -96,9 +101,9 @@ export default function EditProjectModal({
                     <input 
                         type="number"
                         id="addProjHours"
-                        value={formData.allowedHours.technical}
-                        name="technical"
-                        onChange={handleHours}
+                        value={formData.allowTimeTechnical}
+                        name="allowTimeTechnical"
+                        onChange={handleAddData}
                     />
                 </div>
 
@@ -109,9 +114,9 @@ export default function EditProjectModal({
                     <input 
                         type="number"
                         id="addProjHours"
-                        value={formData.allowedHours.coordination}
-                        name="coordination"
-                        onChange={handleHours}
+                        value={formData.allowTimeCoordination}
+                        name="allowTimeCoordination"
+                        onChange={handleAddData}
                     />
                 </div>
 
@@ -122,9 +127,9 @@ export default function EditProjectModal({
                     <input 
                         type="number"
                         id="addProjHours"
-                        value={formData.allowedHours.engineering}
-                        name="engineering"
-                        onChange={handleHours}
+                        value={formData.allowTimeEngineering}
+                        name="allowTimeEngineering"
+                        onChange={handleAddData}
                     />
                 </div>
 
@@ -135,12 +140,19 @@ export default function EditProjectModal({
                     <input 
                         type="number"
                         id="addProjHours"
-                        value={formData.allowedHours.construction}
-                        name="construction"
-                        onChange={handleHours}
+                        value={formData.allowTimeConstruction}
+                        name="allowTimeConstruction"
+                        onChange={handleAddData}
                     />
                 </div>
-                
+
+                <div className="halfwidth-input-right">
+                    <label className="label-name">
+                        Total:
+                    </label>
+                    <h2>{totalAllowedTime(formData)}</h2>
+                </div>
+
                 <div className="fullwidth-input">
                     <label htmlFor="status" className="label-status">
                         Project Status:

@@ -14,8 +14,7 @@ export default function Projects({
   deleteProject, 
   UpdateProject, 
   formData, 
-  handleAddData,
-  handleHours, 
+  handleAddData, 
   isShowing, 
   toggle,
   startForm
@@ -24,16 +23,15 @@ export default function Projects({
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
 
-    function totalHours(data) {
-      return data.technical +
-      data.coordination +
-      data.engineering +
-      data.construction
+    function totalAllowedTime(data) {
+      return (+data.allowTimeTechnical) +
+      (+data.allowTimeCoordination) +
+      (+data.allowTimeEngineering) +
+      (+data.allowTimeConstruction)
     }
 
     return (
       <>
-        {/* {console.log(projects)} */}
         <div className="projListHeading">
           <h2>Projects</h2>
           
@@ -53,7 +51,6 @@ export default function Projects({
           hide={toggle}
           formData={formData}
           handleAddData={handleAddData}
-          handleHours={handleHours}
           startForm={startForm}
           setFormData={setFormData}
           createProject={createProject}
@@ -68,7 +65,7 @@ export default function Projects({
                   <div className="gridProjectNo">{project.projectNo}</div>
                   <div className="gridProjectName">{project.name}</div>
                   <div className="gridProjectHours">
-                    {totalHours(project.allowedHours)}
+                    {totalAllowedTime(project)}
                   </div>
                   <div className="gridProjectStatus">{project.status}</div>
                   {/* <ProgressRing 
@@ -78,7 +75,6 @@ export default function Projects({
                     className="editButton"
                     onClick={() => {
                       setFormData(project);
-                      console.log(project);
                       setEditModal(true);
                       toggle();
                     }}
@@ -94,7 +90,6 @@ export default function Projects({
               formData={formData}
               updateProject={UpdateProject}
               handleAddData={handleAddData}
-              handleHours={handleHours}
               startForm={startForm}
               setFormData={setFormData}
               deleteProject={deleteProject}

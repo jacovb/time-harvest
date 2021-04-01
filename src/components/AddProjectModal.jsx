@@ -10,12 +10,18 @@ export default function AddProjectModal({
     hide, 
     formData, 
     handleAddData,
-    handleHours,
     startForm,
     setFormData,
     createProject,
     setAddModal,
 }) {
+  
+  function totalAllowedTime(data) {
+    return (+data.allowTimeTechnical) +
+    (+data.allowTimeCoordination) +
+    (+data.allowTimeEngineering) +
+    (+data.allowTimeConstruction)
+  }
   
   function closeModal() {
     hide();
@@ -94,9 +100,9 @@ export default function AddProjectModal({
                     <input 
                         type="number"
                         id="addProjHours"
-                        value={formData.allowedHours.technical}
-                        name="technical"
-                        onChange={handleHours}
+                        value={formData.allowTimeTechnical}
+                        name="allowTimeTechnical"
+                        onChange={handleAddData}
                     />
                 </div>
 
@@ -107,9 +113,9 @@ export default function AddProjectModal({
                     <input 
                         type="number"
                         id="addProjHours"
-                        value={formData.allowedHours.coordination}
-                        name="coordination"
-                        onChange={handleHours}
+                        value={formData.allowTimeCoordination}
+                        name="allowTimeCoordination"
+                        onChange={handleAddData}
                     />
                 </div>
 
@@ -120,9 +126,9 @@ export default function AddProjectModal({
                     <input 
                         type="number"
                         id="addProjHours"
-                        value={formData.allowedHours.engineering}
-                        name="engineering"
-                        onChange={handleHours}
+                        value={formData.allowTimeEngineering}
+                        name="allowTimeEngineering"
+                        onChange={handleAddData}
                     />
                 </div>
 
@@ -133,21 +139,17 @@ export default function AddProjectModal({
                     <input 
                         type="number"
                         id="addProjHours"
-                        value={formData.allowedHours.construction}
-                        name="construction"
-                        onChange={handleHours}
+                        value={formData.allowTimeConstruction}
+                        name="allowTimeConstruction"
+                        onChange={handleAddData}
                     />
                 </div>
 
-                {console.log(formData)}
                 <div className="halfwidth-input-right">
-                    <label htmlFor="addProjHours" className="label-name">
+                    <label className="label-name">
                         Total:
                     </label>
-                    <h2>{formData.allowedHours.technical +
-                    formData.allowedHours.coordination +
-                    formData.allowedHours.engineering +
-                    formData.allowedHours.construction}</h2>
+                    <h2>{totalAllowedTime(formData)}</h2>
                 </div>
                 
                 <div className="fullwidth-input">

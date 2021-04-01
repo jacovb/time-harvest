@@ -10,7 +10,6 @@ import {
   createProject as createProjectMutation,
   deleteProject as deleteProjectMutation,
   updateProject as updateProjectMutation,
-  updateAllowed as updateAllowedMutation,
   createUser as createUserMutation,
   deleteUser as deleteUserMutation,
   createEntry as createEntryMutation,
@@ -29,13 +28,10 @@ import useModal from "./hooks/useModal";
 const startForm = {
   projectNo: "",
   name: "",
-  allowedHours: {
-    technical: "",
-    coordination: "",
-    engineering: "",
-    construction: "",
-    total: "",
-  },
+  allowTimeTechnical: "",
+  allowTimeCoordination: "",
+  allowTimeEngineering: "",
+  allowTimeConstruction: "",
   status: "",
 };
 
@@ -196,18 +192,10 @@ function App() {
           name: formData.name,
           projectNo: formData.projectNo,
           status: formData.status,
-        },
-      },
-    });
-    await API.graphql({
-      query: updateAllowedMutation,
-      variables: {
-        input: {
-          allowedProjectId: formData.id,
-          technical: formData.allowedHours.technical,
-          coordination: formData.allowedHours.coordination,
-          engineering: formData.allowedHours.engineering,
-          construction: formData.allowedHours.construction,
+          allowTimeTechnical: formData.allowTimeTechnical,
+          allowTimeCoordination: formData.allowTimeCoordination,
+          allowTimeEngineering: formData.allowTimeEngineering,
+          allowTimeConstruction: formData.allowTimeConstruction,
         },
       },
     });
@@ -280,16 +268,6 @@ function App() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  function handleHours(e) {
-    setFormData({
-      ...formData,
-      allowedHours: {
-        ...formData.allowedHours,
-        [e.target.name]: parseFloat(e.target.value),
-      },
-    });
-  }
-
   function handleAddUser(e) {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   }
@@ -322,7 +300,6 @@ function App() {
                 UpdateProject={UpdateProject}
                 formData={formData}
                 handleAddData={handleAddData}
-                handleHours={handleHours}
                 isShowing={isShowing}
                 toggle={toggle}
                 startForm={startForm}
