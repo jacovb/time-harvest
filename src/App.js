@@ -151,7 +151,6 @@ function App() {
 
     console.log(getDept(entryData.entryUserId));
     const dept = getDept(entryData.entryUserId);
-    const timeVar = `usedTime${dept}`;
 
     function getUsedHours(projectId) {
       const usedTime = entry
@@ -171,7 +170,7 @@ function App() {
         variables: {
           input: {
             id: entryData.prevProjectId,
-            [timeVar]: getUsedHours(entryData.prevProjectId),
+            [`usedTime${dept}`]: getUsedHours(entryData.prevProjectId),
           },
         },
       });
@@ -182,7 +181,7 @@ function App() {
       variables: {
         input: {
           id: entryData.entryProjectId,
-          [timeVar]: getUsedHours(entryData.entryProjectId),
+          [`usedTime${dept}`]: getUsedHours(entryData.entryProjectId),
         },
       },
     });
