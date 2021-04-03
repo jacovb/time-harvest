@@ -149,8 +149,8 @@ function App() {
       return deptUser.department;
     }
 
-    console.log(getDept(entryData.entryUserId));
-    const dept = getDept(entryData.entryUserId);
+    console.log(getDept(entryUserId.entryUserId));
+    const dept = getDept(entryUserId.entryUserId);
 
     function getUsedHours(projectId) {
       const usedTime = entry
