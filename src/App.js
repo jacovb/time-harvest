@@ -341,7 +341,7 @@ function App() {
             </Route>
 
             <Route exact path="/reports">
-              <Reports />
+              <Reports projects={projects} />
             </Route>
 
             <Route exact path="/users">
