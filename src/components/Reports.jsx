@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import ProgressRing from "./ProgressRing";
 
@@ -10,7 +11,26 @@ export default function Reports({
           <div className="projListHeading">
             <h2>Reports</h2>
           </div>
-          <div className="projectsList">
+
+          <Link to="/ProjectOverview">
+            <button>
+              Project Overview
+            </button>
+          </Link>
+
+          <Link to="/ProjectOverview">
+            <button>
+              Project Overview
+            </button>
+          </Link>
+
+          <Link to="/ProjectOverview">
+            <button>
+              Project Overview
+            </button>
+          </Link>
+
+          {/* <div className="projectsList">
             {projects
               .sort((a, b) => a.projectNo - b.projectNo)
               .map((project, idx) => (
@@ -40,7 +60,7 @@ export default function Reports({
                       />
               </div>
             ))}
-          </div>
+          </div> */}
         </>
     )
 }
