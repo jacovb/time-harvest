@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function ProgressRing({usedHours, allowedHours}) {
+export default function ProgressRing({usedHours, allowedHours, className, circleSize}) {
     
-    const size = 90
-    const backCircleWidth = 2;
-    const frontCircleWidth = 5;
+    const size = circleSize
+    const backCircleWidth = circleSize > 90 ? 4 : 2;
+    const frontCircleWidth = circleSize > 90 ? 8 : 5;
     const radius = (size / 2) - (frontCircleWidth * 2);
     const circum = 2 * Math.PI * radius;
     const progressPercent = (usedHours / allowedHours * 100);
@@ -13,7 +13,7 @@ export default function ProgressRing({usedHours, allowedHours}) {
     return (
         <>
             <svg
-                // className="gridProgress-ring"
+                className={className}
                 height={size}
                 width={size}
             >
@@ -25,7 +25,7 @@ export default function ProgressRing({usedHours, allowedHours}) {
                     cx={size/2}
                     cy={size/2}
                     // stroke="lightgrey"
-                    transform="rotate(-90) translate(-90 0)"
+                    transform={`rotate(-90) translate(-${size} 0)`}
                 />
                 <circle
                     className="progress-circle"
@@ -37,7 +37,7 @@ export default function ProgressRing({usedHours, allowedHours}) {
                     // stroke={midGreen}
                     strokeDasharray={circum}
                     strokeDashoffset={progressStroke}
-                    transform="rotate(-90) translate(-90 0)"
+                    transform={`rotate(-90) translate(-${size} 0)`}
                 />
                 <text
                     className="svg-circle-text"

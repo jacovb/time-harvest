@@ -22,6 +22,7 @@ import Projects from "./components/Projects";
 import Timesheets from "./components/Timesheets";
 import Reports from "./components/Reports";
 import Users from "./components/Users";
+import ProjectOverview from "./components/ProjectOverview";
 
 import useModal from "./hooks/useModal";
 
@@ -341,7 +342,11 @@ function App() {
             </Route>
 
             <Route exact path="/reports">
-              <Reports projects={projects} />
+              <Reports />
+            </Route>
+
+            <Route exact path="/projectOverview">
+              <ProjectOverview projects={projects} />
             </Route>
 
             <Route exact path="/users">

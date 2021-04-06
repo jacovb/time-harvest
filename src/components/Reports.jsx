@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import ProgressRing from "./ProgressRing";
-
 export default function Reports({
   projects,
 }) {
@@ -12,7 +10,13 @@ export default function Reports({
             <h2>Reports</h2>
           </div>
 
-          <Link to="/ProjectOverview">
+          <Link to="/projectOverview">
+            <button>
+              Project Overview
+            </button>
+          </Link>
+
+          {/* <Link to="/ProjectOverview">
             <button>
               Project Overview
             </button>
@@ -22,13 +26,7 @@ export default function Reports({
             <button>
               Project Overview
             </button>
-          </Link>
-
-          <Link to="/ProjectOverview">
-            <button>
-              Project Overview
-            </button>
-          </Link>
+          </Link> */}
 
           {/* <div className="projectsList">
             {projects

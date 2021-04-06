@@ -80,6 +80,7 @@ export default function Projects({
                     className="gridProgress-ring"
                     usedHours={totalUsedTime(project)}
                     allowedHours={totalAllowedTime(project)}
+                    circleSize="90"
                     />
                   <button
                     className="editButton"
