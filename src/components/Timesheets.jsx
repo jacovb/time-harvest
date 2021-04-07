@@ -63,7 +63,7 @@ export default function Timesheets({
           </div>
           
           <CalendarHeatmap
-            startDate={new Date('2020-04-01')}
+            startDate={new Date('2020-09-01')}
             endDate={new Date('2021-04-01')}
             values={userEntries.map((entry) => {
               return {date: entry.date, count: entry.time}
@@ -75,7 +75,7 @@ export default function Timesheets({
               return `color-github-${value.count}`;
             }}
             showWeekdayLabels
-            onMouseOver={(event, value) => value ? console.log(value.date, value.count) : null}
+            onMouseOver={(e, value) => value ? console.log(value.date, value.count) : null}
           />
 
           <button
