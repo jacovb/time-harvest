@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CalendarHeatmap from 'react-calendar-heatmap';
 
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import AddIcon from '@material-ui/icons/Add';
@@ -40,7 +41,7 @@ export default function Timesheets({
     
     return (
       <>
-        {/* {console.log(entry)} */}
+        {console.log(userEntries)}
         <div className="entryHeader">
           <div className="project-form">
             <label htmlFor="user">Project User: </label>
@@ -61,6 +62,22 @@ export default function Timesheets({
             </select>
           </div>
           
+          <CalendarHeatmap
+            startDate={new Date('2020-04-01')}
+            endDate={new Date('2021-04-01')}
+            values={userEntries.map((entry) => {
+              return {date: entry.date, count: entry.time}
+            })}
+            classForValue={(value) => {
+              if (!value) {
+                return 'color-empty';
+              }
+              return `color-github-${value.count}`;
+            }}
+            showWeekdayLabels
+            onMouseOver={(event, value) => value ? console.log(value.date, value.count) : null}
+          />
+
           <button
             className="addButton" 
             onClick={() => {
