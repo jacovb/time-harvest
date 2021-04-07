@@ -642,8 +642,21 @@ select:focus + .label-status {
  * The github and gitlab color scales are provided for reference.
  */
 
+.calender-heatmap-container {
+  margin: auto;
+  padding: 5px 5px 10px 5px;
+  border: 2px solid var(--medium-grey);
+  border-radius: 10px;
+  width: 95%;
+  max-height: 200px;
+}
+
+.react-calendar-heatmap {
+  max-height: 190px;
+}
+
 .react-calendar-heatmap text {
-  font-size: 10px;
+  font-size: 7px;
   fill: #aaa;
 }
 
@@ -686,24 +699,4 @@ select:focus + .label-status {
 }
 .react-calendar-heatmap .color-github-4 {
   fill: #1e6823;
-}
-
-/*
- * Gitlab color scale
- */
-
-.react-calendar-heatmap .color-gitlab-0 {
-  fill: #ededed;
-}
-.react-calendar-heatmap .color-gitlab-1 {
-  fill: #acd5f2;
-}
-.react-calendar-heatmap .color-gitlab-2 {
-  fill: #7fa8d1;
-}
-.react-calendar-heatmap .color-gitlab-3 {
-  fill: #49729b;
-}
-.react-calendar-heatmap .color-gitlab-4 {
-  fill: #254e77;
 }

@@ -37,7 +37,7 @@ export default function Timesheets({
     const userEntries = 
       entry
         .filter((item) => item.user.id === entryUserId.entryUserId)
-        .sort((a, b) => new Date(b.date) - new Date(a.date))           
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
     
     return (
       <>
@@ -61,22 +61,6 @@ export default function Timesheets({
                 ))}  
             </select>
           </div>
-          
-          <CalendarHeatmap
-            startDate={new Date('2020-09-01')}
-            endDate={new Date('2021-04-01')}
-            values={userEntries.map((entry) => {
-              return {date: entry.date, count: entry.time}
-            })}
-            classForValue={(value) => {
-              if (!value) {
-                return 'color-empty';
-              }
-              return `color-github-${value.count}`;
-            }}
-            showWeekdayLabels
-            onMouseOver={(e, value) => value ? console.log(value.date, value.count) : null}
-          />
 
           <button
             className="addButton" 
@@ -103,6 +87,31 @@ export default function Timesheets({
         
 
         <div className="entryList">
+          <div className="calender-heatmap-container">
+            <CalendarHeatmap
+              startDate={new Date('2020-09-01')}
+              endDate={new Date()}
+              values={userEntries.map((entry) => {
+                const totalDailyTime = userEntries.filter((item) => item.date === entry.date).reduce((acc, curr) => acc + curr.time, 0)
+                return {date: entry.date, count: totalDailyTime}
+              })}
+              classForValue={(value) => {
+                if (!value) {
+                  return 'color-empty';
+                } else if (value.count < 8) {
+                  return 'color-github-1';
+                } else if (value.count === 8) {
+                  return 'color-github-2';
+                } else if (value.count > 8) {
+                  return 'color-github-3';
+                }
+              }}
+              onMouseOver={(e, value) => value ? console.log(value.date, value.count) : null}
+              onClick={(e) => console.log(e)}
+              // onClick={(value) => !value ? null : alert(value.date, value.count)}
+            />
+          </div>
+          
           {entryDates
             .map((item, idx) => (
               <div className="entryRow" key={idx}>
