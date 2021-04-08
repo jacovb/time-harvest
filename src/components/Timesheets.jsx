@@ -28,7 +28,7 @@ export default function Timesheets({
     const [editModal, setEditModal] = useState(false);
 
     const endDate = new Date().toISOString().split('T')[0]
-    const startDate = new Date(new Date().setMonth(new Date().getMonth() - 7)).toISOString().split('T')[0]
+    const startDate = new Date(new Date().setMonth(new Date().getMonth() - 6)).toISOString().split('T')[0]
 
     const getDatesBetween = (startDate, endDate) => {
       let dates = []
@@ -57,9 +57,7 @@ export default function Timesheets({
     
     return (
       <>
-        {console.log(endDate)}
-        {console.log(startDate)}
-        {console.log(dateRange)}
+        {console.log(new Date().toISOString())}
         <div className="entryHeader">
           <div className="project-form">
             <label htmlFor="user">Project User: </label>
@@ -109,13 +107,14 @@ export default function Timesheets({
             <CalendarHeatmap
               startDate={new Date(startDate)}
               endDate={new Date(endDate)}
-              // values={dateRange.map((item) => {
-              //   return {date: item, count: 0}
-              // })}
-              values={userEntries.map((entry) => {
-                const totalDailyTime = userEntries.filter((item) => item.date === entry.date).reduce((acc, curr) => acc + curr.time, 0)
-                return {date: entry.date, count: totalDailyTime}
+              values={dateRange.map((item) => {
+                const totalDailyTime = userEntries.filter((obj) => obj.date === item).reduce((acc, curr) => acc + curr.time, 0)
+                return {date: item, count: totalDailyTime}
               })}
+              // values={userEntries.map((entry) => {
+              //   const totalDailyTime = userEntries.filter((item) => item.date === entry.date).reduce((acc, curr) => acc + curr.time, 0)
+              //   return {date: entry.date, count: totalDailyTime}
+              // })}
               classForValue={(value) => {
                 if (!value || value.count === 0) {
                   return 'color-empty';
@@ -127,8 +126,17 @@ export default function Timesheets({
                   return 'color-github-3';
                 }
               }}
-              onMouseOver={(e, value) => value ? console.log(value.date, value.count) : null}
-              onClick={(e) => console.log(e)}
+              titleForValue={(value) =>`Date is ${value.date}`}
+              // onMouseOver={(e, value) => console.log(value.date, value.count)}
+              onClick={(e) => {
+                setEntryData({
+                  ...entryData,
+                  date: e.date
+                })
+                setAddModal(true)
+                toggle()
+              }}
+              // tooltipDataAttrs={"tooltip"}
             />
           </div>
           
