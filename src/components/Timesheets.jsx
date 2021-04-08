@@ -126,7 +126,7 @@ export default function Timesheets({
                   return 'color-github-3';
                 }
               }}
-              titleForValue={(value) =>`Date is ${value.date}`}
+              // titleForValue={(value) =>`Date is ${value.date}`}
               // onMouseOver={(e, value) => console.log(value.date, value.count)}
               onClick={(e) => {
                 setEntryData({
