@@ -27,6 +27,10 @@ export default function Timesheets({
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
 
+    const endDate = new Date().toISOString().split('T')[0]
+    const startDate = new Date(new Date().setMonth(new Date().getMonth() - 7)).toISOString().split('T')[0]
+
+
     const entryDates = 
       entry
         .filter((item) => item.user.id === entryUserId.entryUserId)
@@ -41,7 +45,8 @@ export default function Timesheets({
     
     return (
       <>
-        {console.log(userEntries)}
+        {console.log(endDate)}
+        {console.log(startDate)}
         <div className="entryHeader">
           <div className="project-form">
             <label htmlFor="user">Project User: </label>
@@ -89,8 +94,8 @@ export default function Timesheets({
         <div className="entryList">
           <div className="calender-heatmap-container">
             <CalendarHeatmap
-              startDate={new Date('2020-09-01')}
-              endDate={new Date()}
+              startDate={new Date(startDate)}
+              endDate={new Date(endDate)}
               values={userEntries.map((entry) => {
                 const totalDailyTime = userEntries.filter((item) => item.date === entry.date).reduce((acc, curr) => acc + curr.time, 0)
                 return {date: entry.date, count: totalDailyTime}
@@ -108,7 +113,6 @@ export default function Timesheets({
               }}
               onMouseOver={(e, value) => value ? console.log(value.date, value.count) : null}
               onClick={(e) => console.log(e)}
-              // onClick={(value) => !value ? null : alert(value.date, value.count)}
             />
           </div>
           
