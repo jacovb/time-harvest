@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CalendarHeatmap from 'react-calendar-heatmap';
+import ReactTooltip from 'react-tooltip';
 
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import AddIcon from '@material-ui/icons/Add';
@@ -57,7 +58,6 @@ export default function Timesheets({
     
     return (
       <>
-        {console.log(new Date().toISOString())}
         <div className="entryHeader">
           <div className="project-form">
             <label htmlFor="user">Project User: </label>
@@ -136,8 +136,13 @@ export default function Timesheets({
                 setAddModal(true)
                 toggle()
               }}
-              // tooltipDataAttrs={"tooltip"}
+              tooltipDataAttrs={value => {
+                return {
+                  'data-tip': `${value.date} : ${value.count} Hours`,
+                };
+              }}
             />
+            <ReactTooltip />
           </div>
           
           {entryDates
