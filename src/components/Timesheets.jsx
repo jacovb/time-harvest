@@ -30,6 +30,18 @@ export default function Timesheets({
     const endDate = new Date().toISOString().split('T')[0]
     const startDate = new Date(new Date().setMonth(new Date().getMonth() - 7)).toISOString().split('T')[0]
 
+    const getDatesBetween = (startDate, endDate) => {
+      let dates = []
+      const theDate = new Date(startDate)
+      while (new Date(theDate) <= new Date(endDate)) {
+        dates = [...dates, new Date(theDate).toISOString().split('T')[0]]
+        theDate.setDate(theDate.getDate() + 1)
+      }
+      dates = [...dates, endDate]
+      return dates
+    }
+
+    const dateRange = getDatesBetween(startDate, endDate);
 
     const entryDates = 
       entry
@@ -47,6 +59,7 @@ export default function Timesheets({
       <>
         {console.log(endDate)}
         {console.log(startDate)}
+        {console.log(dateRange)}
         <div className="entryHeader">
           <div className="project-form">
             <label htmlFor="user">Project User: </label>
@@ -96,12 +109,15 @@ export default function Timesheets({
             <CalendarHeatmap
               startDate={new Date(startDate)}
               endDate={new Date(endDate)}
+              // values={dateRange.map((item) => {
+              //   return {date: item, count: 0}
+              // })}
               values={userEntries.map((entry) => {
                 const totalDailyTime = userEntries.filter((item) => item.date === entry.date).reduce((acc, curr) => acc + curr.time, 0)
                 return {date: entry.date, count: totalDailyTime}
               })}
               classForValue={(value) => {
-                if (!value) {
+                if (!value || value.count === 0) {
                   return 'color-empty';
                 } else if (value.count < 8) {
                   return 'color-github-1';
