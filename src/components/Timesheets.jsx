@@ -28,8 +28,8 @@ export default function Timesheets({
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
 
-    const endDate = new Date().toISOString().split('T')[0]
-    const startDate = new Date(new Date().setMonth(new Date().getMonth() - 6)).toISOString().split('T')[0]
+    const endDate = new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split('T')[0]
+    const startDate = new Date(new Date().setMonth(new Date().getMonth() - 5)).toISOString().split('T')[0]
 
     const getDatesBetween = (startDate, endDate) => {
       let dates = []
@@ -81,8 +81,13 @@ export default function Timesheets({
           <button
             className="addButton" 
             onClick={() => {
-              setAddModal(true)
-              toggle()
+              if (entryUserId.entryUserId === "") {
+                alert("Please select a User");
+                return;
+              } else {
+                setAddModal(true)
+                toggle()
+              }
             }}>
               <AddIcon />
             <span className="edit-tooltip">Add Entry</span>
@@ -100,8 +105,7 @@ export default function Timesheets({
             setEntryData={setEntryData}
             setAddModal={setAddModal}
           />}
-        
-
+          
         <div className="entryList">
           <div className="calender-heatmap-container">
             <CalendarHeatmap
@@ -111,10 +115,6 @@ export default function Timesheets({
                 const totalDailyTime = userEntries.filter((obj) => obj.date === item).reduce((acc, curr) => acc + curr.time, 0)
                 return {date: item, count: totalDailyTime}
               })}
-              // values={userEntries.map((entry) => {
-              //   const totalDailyTime = userEntries.filter((item) => item.date === entry.date).reduce((acc, curr) => acc + curr.time, 0)
-              //   return {date: entry.date, count: totalDailyTime}
-              // })}
               classForValue={(value) => {
                 if (!value || value.count === 0) {
                   return 'color-empty';
@@ -123,18 +123,21 @@ export default function Timesheets({
                 } else if (value.count === 8) {
                   return 'color-github-2';
                 } else if (value.count > 8) {
-                  return 'color-github-3';
+                  return 'color-github-4';
                 }
               }}
-              // titleForValue={(value) =>`Date is ${value.date}`}
-              // onMouseOver={(e, value) => console.log(value.date, value.count)}
               onClick={(e) => {
-                setEntryData({
-                  ...entryData,
-                  date: e.date
-                })
-                setAddModal(true)
-                toggle()
+                if (entryUserId.entryUserId === "") {
+                  alert("Please select a User");
+                  return;
+                } else {
+                  setEntryData({
+                    ...entryData,
+                    date: e.date
+                  })
+                  setAddModal(true)
+                  toggle()
+                }
               }}
               tooltipDataAttrs={value => {
                 return {
@@ -169,13 +172,13 @@ export default function Timesheets({
                     <button
                       className="editButton"
                       onClick={() => {
-                          setEntryData({ 
-                              ...obj, 
-                              entryProjectId: obj.project.id,
-                              prevProjectId: obj.project.id
-                          })
-                          setEditModal(true);
-                          toggle();
+                            setEntryData({ 
+                                ...obj, 
+                                entryProjectId: obj.project.id,
+                                prevProjectId: obj.project.id
+                            })
+                            setEditModal(true);
+                            toggle();
                       }}
                     >
                       <MoreHorizIcon />

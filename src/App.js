@@ -128,7 +128,7 @@ function App() {
   }
 
   async function createEntry() {
-    if (!entryData.date) return;
+    if (!entryData.date || entryUserId.entryUserId === "") return;
     entryData.entryUserId = entryUserId.entryUserId;
     console.log(entryData);
     await API.graphql({
