@@ -138,11 +138,16 @@ export default function Timesheets({
               }}
               tooltipDataAttrs={value => {
                 return {
-                  'data-tip': `${value.date} : ${value.count} Hours`,
+                  'data-tip': value.count === 0 
+                    ? `${value.date}` 
+                    : `${value.date} : ${value.count} Hours`,
                 };
               }}
             />
-            <ReactTooltip />
+            <ReactTooltip 
+              delayShow={3}
+              delayHide={3}
+            />
           </div>
           
           {entryDates

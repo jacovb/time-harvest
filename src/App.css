@@ -645,8 +645,8 @@ select:focus + .label-status {
 .calender-heatmap-container {
   margin: auto;
   padding: 5px 5px 10px 5px;
-  border: 2px solid var(--medium-grey);
-  border-radius: 10px;
+  /* border: 2px solid var(--medium-grey);
+  border-radius: 10px; */
   width: 95%;
   max-height: 200px;
 }
