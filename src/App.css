@@ -21,7 +21,7 @@
 }
 
 #navbar {
-  background-color: var(--mid-watermelon);
+  background-color: var(--dark-green);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -34,7 +34,7 @@
 }
 
 #navButton:hover {
-  background-color: var(--light-watermelon);
+  background-color: var(--light-green);
   color: black;
 }
 
