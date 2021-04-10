@@ -75,6 +75,7 @@ export default function AddEntryModal({
                     <label htmlFor="projNo" className="label-name">
                         Project Number:
                     </label>
+                    <br/>
                     <select
                         type="text"
                         id="projNo"

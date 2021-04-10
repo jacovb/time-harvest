@@ -63,21 +63,6 @@ export default function AddProjectModal({
                     </button>   
                 </div>
 
-                <div className="fullwidth-input">
-                    <label htmlFor="addProjName" className="label-name">
-                        Project Name:
-                    </label>
-                    <input 
-                        type="text"
-                        id="addProjName"
-                        value={formData.name}
-                        name="name"
-                        onChange={handleAddData}
-                        autoComplete="off"
-                        required
-                    />
-                </div>
-
                 <div className="halfwidth-input-left">
                     <label htmlFor="addProjNo" className="label-name">
                         Project Number:
@@ -93,7 +78,22 @@ export default function AddProjectModal({
                     />
                 </div>
                 
-                <div className="halfwidth-input-right">
+                <div className="double-input-23">
+                    <label htmlFor="addProjName" className="label-name">
+                        Project Name:
+                    </label>
+                    <input 
+                        type="text"
+                        id="addProjName"
+                        value={formData.name}
+                        name="name"
+                        onChange={handleAddData}
+                        autoComplete="off"
+                        required
+                    />
+                </div>
+                
+                <div className="halfwidth-input-left">
                     <label htmlFor="addProjHours" className="label-name">
                         Allowed Hours (Technical):
                     </label>
@@ -106,7 +106,7 @@ export default function AddProjectModal({
                     />
                 </div>
 
-                <div className="halfwidth-input-right">
+                <div className="halfwidth-input-left">
                     <label htmlFor="addProjHours" className="label-name">
                         Allowed Hours (Coordination):
                     </label>
@@ -119,7 +119,7 @@ export default function AddProjectModal({
                     />
                 </div>
 
-                <div className="halfwidth-input-right">
+                <div className="halfwidth-input-left">
                     <label htmlFor="addProjHours" className="label-name">
                         Allowed Hours (Engineering):
                     </label>
@@ -132,7 +132,7 @@ export default function AddProjectModal({
                     />
                 </div>
 
-                <div className="halfwidth-input-right">
+                <div className="halfwidth-input-left">
                     <label htmlFor="addProjHours" className="label-name">
                         Allowed Hours (Construction):
                     </label>
