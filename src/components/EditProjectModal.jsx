@@ -50,7 +50,7 @@ export default function EditProjectModal({
             }}
         >
             <div className="project-form modal">
-                <div className="modal-header">
+                <div className="modal-header-projects">
                     <h2>Edit Project:</h2> 
                     <button 
                         type="button" 
@@ -64,22 +64,7 @@ export default function EditProjectModal({
                     </button>   
                 </div>
 
-                <div className="fullwidth-input">
-                    <label htmlFor="projName" className="label-name">
-                        Project Name:
-                    </label>
-                    <input 
-                        type="text"
-                        id="projName"
-                        value={formData.name}
-                        name="name"
-                        onChange={handleAddData}
-                        autoComplete="off"
-                        required
-                    />
-                </div>
-
-                <div className="halfwidth-input-left">
+                <div className="input-left">
                     <label htmlFor="projNo" className="label-name">
                         Project Number:
                     </label>
@@ -94,9 +79,30 @@ export default function EditProjectModal({
                     />
                 </div>
                 
-                <div className="halfwidth-input-right">
+                <div className="double-input-23">
+                    <label htmlFor="projName" className="label-name">
+                        Project Name:
+                    </label>
+                    <input 
+                        type="text"
+                        id="projName"
+                        value={formData.name}
+                        name="name"
+                        onChange={handleAddData}
+                        autoComplete="off"
+                        required
+                    />
+                </div>
+                
+                <div className="input-left">
                     <label htmlFor="addProjHours" className="label-name">
-                        Allowed Hours (Technical):
+                        Allowed Hours:
+                    </label>
+                </div>
+
+                <div className="input-middle">
+                    <label htmlFor="addProjHours" className="label-name">
+                        Technical:
                     </label>
                     <input 
                         type="number"
@@ -107,9 +113,9 @@ export default function EditProjectModal({
                     />
                 </div>
 
-                <div className="halfwidth-input-right">
+                <div className="input-middle">
                     <label htmlFor="addProjHours" className="label-name">
-                        Allowed Hours (Coordination):
+                        Coordination:
                     </label>
                     <input 
                         type="number"
@@ -120,9 +126,9 @@ export default function EditProjectModal({
                     />
                 </div>
 
-                <div className="halfwidth-input-right">
+                <div className="input-middle">
                     <label htmlFor="addProjHours" className="label-name">
-                        Allowed Hours (Engineering):
+                        Engineering:
                     </label>
                     <input 
                         type="number"
@@ -133,9 +139,9 @@ export default function EditProjectModal({
                     />
                 </div>
 
-                <div className="halfwidth-input-right">
+                <div className="input-middle">
                     <label htmlFor="addProjHours" className="label-name">
-                        Allowed Hours (Construction):
+                        Construction:
                     </label>
                     <input 
                         type="number"
@@ -146,14 +152,14 @@ export default function EditProjectModal({
                     />
                 </div>
 
-                <div className="halfwidth-input-right">
-                    <label className="label-name">
+                <div className="input-right">
+                    <h3 className="label-name">
                         Total:
-                    </label>
+                    </h3>
                     <h2>{totalAllowedTime(formData)}</h2>
                 </div>
 
-                <div className="fullwidth-input">
+                <div className="double-input-23">
                     <label htmlFor="status" className="label-status">
                         Project Status:
                     </label>
@@ -171,23 +177,23 @@ export default function EditProjectModal({
                 </div>
                 
                 <button 
-                    className="update-button" 
-                    onClick={() => {
-                      setEditModal(false);
-                      updateProject(formData);
-                      setFormData(startForm);
-                      }}>
-                    Update
-                </button>
-
-                <button 
-                    className="delete-button" 
+                    className="delete-button-projects" 
                     onClick={() => {
                       setEditModal(false);
                       deleteProject(formData);
                       setFormData(startForm);
                       }}>
                     Delete Project
+                </button>
+                
+                <button 
+                    className="update-button-projects" 
+                    onClick={() => {
+                      setEditModal(false);
+                      updateProject(formData);
+                      setFormData(startForm);
+                      }}>
+                    Update
                 </button>
             </div>
         </div>

@@ -49,7 +49,7 @@ export default function AddProjectModal({
             }}
         >
             <div className="project-form modal">
-                <div className="modal-header">
+                <div className="modal-header-projects">
                     <h2>Add New Project:</h2> 
                     <button 
                         type="button" 
@@ -152,9 +152,9 @@ export default function AddProjectModal({
                 </div>
 
                 <div className="input-right">
-                    <label className="label-name">
+                    <h3 className="label-name">
                         Total:
-                    </label>
+                    </h3>
                     <h2>{totalAllowedTime(formData)}</h2>
                 </div>
 

@@ -43,7 +43,7 @@ export default function AddEntryModal({
             }}
         >
             <div className="timesheet-form modal">
-                <div className="modal-header">
+                <div className="modal-header-entry">
                     <h2>Add Timesheet Entry:</h2>  
                     <button 
                         type="button" 

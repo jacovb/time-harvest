@@ -45,7 +45,7 @@ export default function EditEntryModal({
             }}
         >
             <div className="timesheet-form modal">
-                <div className="modal-header">
+                <div className="modal-header-entry">
                     <h2>Edit Entry:</h2>  
                     <button 
                         type="button" 
@@ -131,7 +131,7 @@ export default function EditEntryModal({
                 </div>
                 
                 <button 
-                    className="update-button"
+                    className="update-button-entry"
                     onClick={() => {
                       setEditModal(false);
                       UpdateEntry(entryData)
@@ -140,7 +140,7 @@ export default function EditEntryModal({
                 </button>
 
                 <button 
-                    className="delete-button"
+                    className="delete-button-entry"
                     onClick={() => {
                       setEditModal(false);
                       deleteEntry(entryData);
