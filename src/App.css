@@ -47,23 +47,8 @@ h1 {
 }
 
 /* =============================================================== */
-/* NEW PROJECTS FLOAT LABEL - HELP FROM DEV ED */
+/* NEW PROJECTS FLOAT LABEL */
 /* =============================================================== */
-
-.timesheet-form {
-  display: grid;
-  width: 50%;
-  margin: 1.75rem auto;
-  margin-top: 20px;
-  padding: 1rem;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-  font-size: 16px;
-  background-color: white;
-  border-radius: 10px;
-  border: 2px solid var(--medium-grey);
-  box-shadow: 5px 5px 5px var(--shadow);
-}
 
 .project-form {
   display: grid;
@@ -80,19 +65,13 @@ h1 {
   box-shadow: 5px 5px 5px var(--shadow);
 }
 
-.halfwidth-input-right input[type="number"]::-webkit-inner-spin-button,
-.halfwidth-input-right input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
 @media screen and (max-width: 680px) {
   .project-form {
     display: grid;
     width: 75%;
     margin: auto;
     margin-top: 20px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
   }
 }
@@ -103,15 +82,14 @@ h1 {
     width: 90%;
     margin: auto;
     margin-top: 20px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
   }
 }
 
-.project-form h2,
-.timesheet-form h2 {
+.project-form h2 {
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 4;
   height: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -138,7 +116,7 @@ h1 {
   height: 65px;
 }
 
-.halfwidth-input-left {
+.input-left {
   grid-column-start: 1;
   grid-column-end: 2;
   width: 100%;
@@ -146,7 +124,7 @@ h1 {
   height: 65px;
 }
 
-.halfwidth-input-right {
+.input-middle {
   grid-column-start: 2;
   grid-column-end: 3;
   width: 100%;
@@ -154,7 +132,15 @@ h1 {
   height: 65px;
 }
 
-.halfwidth-input-right p {
+.input-right {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  width: 100%;
+  position: relative;
+  height: 65px;
+}
+
+.input-middle p {
   position: absolute;
   bottom: 0px;
   left: -40%;
@@ -163,7 +149,9 @@ h1 {
 .fullwidth-input input,
 .double-input-23 input,
 .halfwidth-input-left input,
-.halfwidth-input-right input {
+.halfwidth-input-right input,
+.input-left input,
+.input-middle input {
   width: calc(100% - 12px);
   height: calc(100% - 2px);
   color: black;
@@ -182,11 +170,19 @@ h1 {
 
 .fullwidth-input label,
 .halfwidth-input-left label,
-.halfwidth-input-right label {
+.halfwidth-input-right label,
+.input-left label,
+.input-middle label,
+.input-right label,
+.double-input-23 label {
   margin-bottom: 20px;
   font-size: 14px;
   font-weight: 300;
   padding-left: 0px;
+}
+
+.input-right label {
+  justify-self: center;
 }
 
 input:focus,
@@ -202,6 +198,18 @@ select:focus + .label-status {
   color: var(--medium-grey);
 }
 
+.double-input-23 select {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  width: 100%;
+  height: 60%;
+  background: white;
+  border: 1px solid var(--dark-grey);
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 17px;
+}
+
 .fullwidth-input select {
   grid-column-start: 1;
   grid-column-end: 3;
@@ -214,7 +222,7 @@ select:focus + .label-status {
   font-size: 17px;
 }
 
-.halfwidth-input-left select {
+.input-left select {
   grid-column-start: 2;
   grid-column-end: 3;
   width: 50%;
@@ -227,11 +235,10 @@ select:focus + .label-status {
   justify-self: start;
 }
 
-.project-form button,
-.timesheet-form button {
-  grid-column-start: 1;
+.project-form button {
+  grid-column-start: 2;
   grid-column-end: 3;
-  width: 50%;
+  width: 100%;
   margin: auto;
   margin-top: 10px;
   margin-bottom: 5px;
@@ -353,6 +360,96 @@ select:focus + .label-status {
 /* =============================================================== */
 /* ENTRY LAYOUT */
 /* =============================================================== */
+
+.timesheet-form {
+  display: grid;
+  width: 50%;
+  margin: 1.75rem auto;
+  margin-top: 20px;
+  padding: 1rem;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  font-size: 16px;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid var(--medium-grey);
+  box-shadow: 5px 5px 5px var(--shadow);
+}
+
+.halfwidth-input-right input[type="number"]::-webkit-inner-spin-button,
+.halfwidth-input-right input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.timesheet-form h2 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  height: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.fullwidth-input {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 65px;
+}
+
+.halfwidth-input-left {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  width: 100%;
+  position: relative;
+  height: 65px;
+}
+
+.halfwidth-input-right {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  width: 100%;
+  position: relative;
+  height: 65px;
+}
+
+.halfwidth-input-right p {
+  position: absolute;
+  bottom: 0px;
+  left: -40%;
+}
+
+.halfwidth-input-left select {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  width: 50%;
+  height: 60%;
+  margin-top: 5px;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid var(--dark-grey);
+  font-size: 17px;
+  justify-self: start;
+}
+
+.timesheet-form button {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  height: 35px;
+  background: var(--light-green);
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px var(--medium-grey);
+  font-size: 16px;
+  border: 1px solid var(--dark-grey);
+}
 
 .entryList {
   margin: auto;
