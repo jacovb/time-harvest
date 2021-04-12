@@ -4,6 +4,8 @@ import ProgressRing from "./ProgressRing";
 
 export default function ProjectOverview({
   projects,
+  selectFilter,
+  handleFilter,
 }) {
     
   function totalAllowedTime(data) {
@@ -19,15 +21,64 @@ export default function ProjectOverview({
     (+data.usedTimeEngineering) +
     (+data.usedTimeConstruction)
   }
-    
+
+  let projectFilter = projects;
+
+  projectFilter = selectFilter.status === ""
+    ? projectFilter
+    : projects.filter((obj) => obj.status === selectFilter.status);
+
+  projectFilter = selectFilter.projNo === ""
+    ? projectFilter
+    : projects.filter((obj) => obj.id === selectFilter.projNo);
+
   return (
     <>
       <div className="projListHeading">
         <h2>Project Overview</h2>
       </div>
 
+      <div className="filter-bar">
+        <label>Filter by: </label>
+        <label htmlFor="projStatus">Project Status: </label>
+        <select
+          type="text"
+          id="projStatus"
+          value={selectFilter.status}
+          name="status"
+          required
+          onChange={handleFilter}>
+            <option value="">Show All</option>
+            <option value="Quote">Quote</option>
+            <option value="Current">Current</option>
+            <option value="Complete">Complete</option> 
+        </select>
+        <label htmlFor="projNo" className="label-name">
+            Project Number:
+        </label>
+        <br/>
+        <select
+            type="text"
+            id="projNo"
+            value={selectFilter.projNo}
+            name="projNo"
+            required
+            onChange={handleFilter}>
+            <option value="">Show All</option>
+            {projects
+                .sort((a, b) => a.projectNo - b.projectNo)
+                .map((project, idx) => (
+                    <option key={idx} value={project.id}>
+                        {project.projectNo}
+                    </option>
+            ))}  
+        </select>
+      </div>
+
+      {console.log(selectFilter)}
+      
       <div className="projectsList">
-        {projects
+        {projectFilter
           .sort((a, b) => a.projectNo - b.projectNo)
           .map((project, idx) => (
             <div className="projectContainer" key={idx}>

@@ -53,6 +53,11 @@ const startEntryForm = {
   time: "",
 };
 
+const startSelectFilter = {
+  status: "",
+  projNo: "",
+};
+
 function App() {
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
@@ -61,6 +66,7 @@ function App() {
   const [userData, setUserData] = useState(startUserForm);
   const [entryData, setEntryData] = useState(startEntryForm);
   const [entryUserId, setEntryUserId] = useState(startEntryUserId);
+  const [selectFilter, setSelectFilter] = useState(startSelectFilter);
   const { isShowing, toggle } = useModal();
   const [index, setIndex] = useState(null);
 
@@ -287,6 +293,10 @@ function App() {
     setEntryData({ ...entryData, [e.target.name]: e.target.value });
   }
 
+  function handleFilter(e) {
+    setSelectFilter({ ...selectFilter, [e.target.name]: e.target.value });
+  }
+
   function handleSetEntryUser(e) {
     let user = users.filter((item) => item.id === e.target.value)[0];
     setEntryUserId({
@@ -346,7 +356,11 @@ function App() {
             </Route>
 
             <Route exact path="/projectOverview">
-              <ProjectOverview projects={projects} />
+              <ProjectOverview
+                projects={projects}
+                selectFilter={selectFilter}
+                handleFilter={handleFilter}
+              />
             </Route>
 
             <Route exact path="/users">
