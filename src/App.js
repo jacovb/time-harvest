@@ -360,6 +360,7 @@ function App() {
                 projects={projects}
                 selectFilter={selectFilter}
                 handleFilter={handleFilter}
+                startSelectFilter={startSelectFilter}
               />
             </Route>
 

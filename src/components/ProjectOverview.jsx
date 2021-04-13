@@ -6,6 +6,7 @@ export default function ProjectOverview({
   projects,
   selectFilter,
   handleFilter,
+  startSelectFilter,
 }) {
     
   function totalAllowedTime(data) {
@@ -22,24 +23,17 @@ export default function ProjectOverview({
     (+data.usedTimeConstruction)
   }
 
-  // let projectFilter = projects;
-
   function projectsFilter(projArray, selection) {
-    let filterKeys = Object.keys(selection);
-    return projArray.filter((proj) => {
-      return filterKeys.some((eachKey) => {
-        return selection[eachKey].includes(proj[eachKey]);
-      });
-    });
-  };
-  
-  // projectFilter = selectFilter.status === ""
-  //   ? projectFilter
-  //   : projects.filter((obj) => obj.status === selectFilter.status);
-
-  // projectFilter = selectFilter.id === ""
-  //   ? projectFilter
-  //   : projects.filter((obj) => obj.id === selectFilter.id);
+    if (selection.id.length === 0 && selection.status.length === 0) {
+      return projects;
+    } else if (selection.id === "") {
+      return projArray.filter((proj) => selection.status === proj.status);
+    } else if (selection.status === "") {
+      return projArray.filter((proj) => selection.id === proj.id);
+    } else if (selection !== startSelectFilter) {
+      return projArray.filter((proj) => selection.id === proj.id && selection.status === proj.status);
+    }
+  }
 
   let projectFilter = projectsFilter(projects, selectFilter);
 
@@ -76,18 +70,18 @@ export default function ProjectOverview({
             required
             onChange={handleFilter}>
             <option value="">Show All</option>
-            {projects
+            {projectFilter
                 .sort((a, b) => a.projectNo - b.projectNo)
                 .map((project, idx) => (
                     <option key={idx} value={project.id}>
-                        {project.projectNo}
+                        {project.projectNo} - {project.name}
                     </option>
             ))}  
         </select>
       </div>
 
       {console.log(selectFilter)}
-      {console.log(projectsFilter(projects, selectFilter))}
+      {console.log(projectFilter)}
       
       <div className="projectsList">
         {projectFilter
