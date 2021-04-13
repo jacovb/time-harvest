@@ -22,15 +22,26 @@ export default function ProjectOverview({
     (+data.usedTimeConstruction)
   }
 
-  let projectFilter = projects;
+  // let projectFilter = projects;
 
-  projectFilter = selectFilter.status === ""
-    ? projectFilter
-    : projects.filter((obj) => obj.status === selectFilter.status);
+  function projectsFilter(projArray, selection) {
+    let filterKeys = Object.keys(selection);
+    return projArray.filter((proj) => {
+      return filterKeys.some((eachKey) => {
+        return selection[eachKey].includes(proj[eachKey]);
+      });
+    });
+  };
+  
+  // projectFilter = selectFilter.status === ""
+  //   ? projectFilter
+  //   : projects.filter((obj) => obj.status === selectFilter.status);
 
-  projectFilter = selectFilter.projNo === ""
-    ? projectFilter
-    : projects.filter((obj) => obj.id === selectFilter.projNo);
+  // projectFilter = selectFilter.id === ""
+  //   ? projectFilter
+  //   : projects.filter((obj) => obj.id === selectFilter.id);
+
+  let projectFilter = projectsFilter(projects, selectFilter);
 
   return (
     <>
@@ -53,15 +64,15 @@ export default function ProjectOverview({
             <option value="Current">Current</option>
             <option value="Complete">Complete</option> 
         </select>
-        <label htmlFor="projNo" className="label-name">
+        <label htmlFor="projId" className="label-name">
             Project Number:
         </label>
         <br/>
         <select
             type="text"
-            id="projNo"
-            value={selectFilter.projNo}
-            name="projNo"
+            id="projId"
+            value={selectFilter.id}
+            name="id"
             required
             onChange={handleFilter}>
             <option value="">Show All</option>
@@ -76,6 +87,7 @@ export default function ProjectOverview({
       </div>
 
       {console.log(selectFilter)}
+      {console.log(projectsFilter(projects, selectFilter))}
       
       <div className="projectsList">
         {projectFilter
