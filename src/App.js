@@ -89,18 +89,33 @@ function App() {
   // ===============
 
   async function fetchProjects() {
-    const apiData = await API.graphql({ query: listProjects });
-    setProjects(apiData.data.listProjects.items);
+    try {
+      const apiData = await API.graphql({ query: listProjects });
+      setProjects(apiData.data.listProjects.items);
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function fetchUsers() {
-    const apiData = await API.graphql({ query: listUsers });
-    setUsers(apiData.data.listUsers.items);
+    try {
+      const apiData = await API.graphql({ query: listUsers });
+      setUsers(apiData.data.listUsers.items);
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
 
   async function fetchEntries() {
-    const apiData = await API.graphql({ query: listEntrys });
-    setEntry(apiData.data.listEntrys.items);
+    try {
+      const apiData = await API.graphql({ query: listEntrys });
+      setEntry(apiData.data.listEntrys.items);
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 
   // =================
@@ -124,26 +139,35 @@ function App() {
 
   async function createUser() {
     if (!userData.name) return;
-    await API.graphql({
-      query: createUserMutation,
-      variables: { input: userData },
-    });
-    setUsers([...users, userData]);
-    setUserData(startUserForm);
-    fetchUsers();
+    try {
+      await API.graphql({
+        query: createUserMutation,
+        variables: { input: userData },
+      });
+      setUsers([...users, userData]);
+      setUserData(startUserForm);
+      fetchUsers();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function createEntry() {
     if (!entryData.date || entryUserId.entryUserId === "") return;
     entryData.entryUserId = entryUserId.entryUserId;
     console.log(entryData);
-    await API.graphql({
-      query: createEntryMutation,
-      variables: { input: entryData },
-    });
+    try {
+      await API.graphql({
+        query: createEntryMutation,
+        variables: { input: entryData },
+      });
 
-    fetchEntries();
-    toggle();
+      fetchEntries();
+      toggle();
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
 
   // =================
@@ -172,28 +196,37 @@ function App() {
       entryData.prevProjectId &&
       entryData.entryProjectId !== entryData.prevProjectId
     ) {
+
+      try {
+        await API.graphql({
+          query: updateProjectMutation,
+          variables: {
+            input: {
+              id: entryData.prevProjectId,
+              [`usedTime${dept}`]: getUsedHours(entryData.prevProjectId),
+            },
+          },
+        });
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    try {
       await API.graphql({
         query: updateProjectMutation,
         variables: {
           input: {
-            id: entryData.prevProjectId,
-            [`usedTime${dept}`]: getUsedHours(entryData.prevProjectId),
+            id: entryData.entryProjectId,
+            [`usedTime${dept}`]: getUsedHours(entryData.entryProjectId),
           },
         },
       });
+      setEntryData(startEntryForm);
+      fetchProjects();
+    } catch (error) {
+      console.log(error);
     }
-
-    await API.graphql({
-      query: updateProjectMutation,
-      variables: {
-        input: {
-          id: entryData.entryProjectId,
-          [`usedTime${dept}`]: getUsedHours(entryData.entryProjectId),
-        },
-      },
-    });
-    setEntryData(startEntryForm);
-    fetchProjects();
+    
   }
 
   async function UpdateProject({ id }) {

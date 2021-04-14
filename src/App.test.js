@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { renderWithRouter } from './utils/test-utils';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('the title is rendered', () => {
+  renderWithRouter(<App />);
+  const title = screen.getByText(/Timesheet-App/i);
+  expect(title).toBeInTheDocument();
 });
