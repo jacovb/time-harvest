@@ -39,14 +39,21 @@ export default function ProjectOverview({
 
   return (
     <>
-      <div className="projListHeading">
+      <div className="overviewHeading">
         <h2>Project Overview</h2>
       </div>
 
       <div className="filter-bar">
-        <label>Filter by: </label>
-        <label htmlFor="projStatus">Project Status: </label>
+        <label className="main-label">Filter by: </label>
+        <label htmlFor="projStatus" className="label">
+          Project Status: 
+        </label>
+        <label htmlFor="projId" className="label">
+            Project Number:
+        </label>
+        
         <select
+          className="select-status"
           type="text"
           id="projStatus"
           value={selectFilter.status}
@@ -58,11 +65,9 @@ export default function ProjectOverview({
             <option value="Current">Current</option>
             <option value="Complete">Complete</option> 
         </select>
-        <label htmlFor="projId" className="label-name">
-            Project Number:
-        </label>
-        <br/>
+        
         <select
+            className="select-no"
             type="text"
             id="projId"
             value={selectFilter.id}

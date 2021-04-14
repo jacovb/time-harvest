@@ -730,6 +730,54 @@ select:focus + .label-status {
 /* PROJECTS OVERVIEW LAYOUT */
 /* =============================================================== */
 
+.overviewHeading {
+  position: relative;
+  height: 35px;
+  margin: 10px 0 10px 0;
+}
+
+.overviewHeading h2 {
+  color: white;
+  text-align: center;
+  height: 35px;
+  margin: 0;
+}
+
+.filter-bar {
+  display: grid;
+  grid-template-columns: auto 200px 200px;
+  column-gap: 5px;
+  align-items: center;
+  padding: 5px;
+  margin: auto;
+  margin-top: 5px;
+  border: 2px solid var(--medium-grey);
+  border-radius: 10px;
+  background-color: white;
+  width: 95%;
+  max-width: 615px;
+  box-shadow: 5px 5px 5px var(--shadow);
+  position: relative;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.filter-bar .select-status {
+  grid-column: 2 / 3;
+}
+
+.filter-bar .select-no {
+  grid-column: 3 / 4;
+}
+
+.filter-bar select {
+  font-size: 16px;
+  height: 30px;
+  border: 1px solid var(--dark-grey);
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
 .projectContainer {
   display: grid;
   grid-template-columns: 150px 150px 150px 150px;
@@ -864,4 +912,26 @@ select:focus + .label-status {
 }
 .react-calendar-heatmap .color-github-4 {
   fill: #1e6823;
+}
+
+/* =============================================================== */
+/* REPORTS PAGE LAYOUT */
+/* =============================================================== */
+
+.report-links {
+  align-items: center;
+  width: 300px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 300px;
+}
+
+.report-links a button {
+  justify-self: center;
+  margin: 5px 50px 0 50px;
+  width: 250px;
+  height: 35px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
 }
