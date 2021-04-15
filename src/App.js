@@ -89,18 +89,30 @@ function App() {
   // ===============
 
   async function fetchProjects() {
-    const apiData = await API.graphql({ query: listProjects });
-    setProjects(apiData.data.listProjects.items);
+    try {
+      const apiData = await API.graphql({ query: listProjects });
+      setProjects(apiData.data.listProjects.items);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function fetchUsers() {
-    const apiData = await API.graphql({ query: listUsers });
-    setUsers(apiData.data.listUsers.items);
+    try {
+      const apiData = await API.graphql({ query: listUsers });
+      setUsers(apiData.data.listUsers.items);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function fetchEntries() {
-    const apiData = await API.graphql({ query: listEntrys });
-    setEntry(apiData.data.listEntrys.items);
+    try {
+      const apiData = await API.graphql({ query: listEntrys });
+      setEntry(apiData.data.listEntrys.items);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // =================
@@ -112,38 +124,49 @@ function App() {
     if (projects.some((item) => item.projectNo === formData.projectNo)) {
       alert("Project Number Already Exists ");
     } else {
-      await API.graphql({
-        query: createProjectMutation,
-        variables: { input: formData },
-      });
-      setProjects([...projects, formData]);
-      setFormData(startForm);
-      fetchProjects();
+      try {
+        await API.graphql({
+          query: createProjectMutation,
+          variables: { input: formData },
+        });
+        setProjects([...projects, formData]);
+        setFormData(startForm);
+        fetchProjects();
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
   async function createUser() {
     if (!userData.name) return;
-    await API.graphql({
-      query: createUserMutation,
-      variables: { input: userData },
-    });
-    setUsers([...users, userData]);
-    setUserData(startUserForm);
-    fetchUsers();
+    try {
+      await API.graphql({
+        query: createUserMutation,
+        variables: { input: userData },
+      });
+      setUsers([...users, userData]);
+      setUserData(startUserForm);
+      fetchUsers();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function createEntry() {
     if (!entryData.date || entryUserId.entryUserId === "") return;
     entryData.entryUserId = entryUserId.entryUserId;
     console.log(entryData);
-    await API.graphql({
-      query: createEntryMutation,
-      variables: { input: entryData },
-    });
-
-    fetchEntries();
-    toggle();
+    try {
+      await API.graphql({
+        query: createEntryMutation,
+        variables: { input: entryData },
+      });
+      fetchEntries();
+      toggle();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // =================
@@ -172,28 +195,36 @@ function App() {
       entryData.prevProjectId &&
       entryData.entryProjectId !== entryData.prevProjectId
     ) {
+      try {
+        await API.graphql({
+          query: updateProjectMutation,
+          variables: {
+            input: {
+              id: entryData.prevProjectId,
+              [`usedTime${dept}`]: getUsedHours(entryData.prevProjectId),
+            },
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    try {
       await API.graphql({
         query: updateProjectMutation,
         variables: {
           input: {
-            id: entryData.prevProjectId,
-            [`usedTime${dept}`]: getUsedHours(entryData.prevProjectId),
+            id: entryData.entryProjectId,
+            [`usedTime${dept}`]: getUsedHours(entryData.entryProjectId),
           },
         },
       });
+      setEntryData(startEntryForm);
+      fetchProjects();
+    } catch (error) {
+      console.log(error);
     }
-
-    await API.graphql({
-      query: updateProjectMutation,
-      variables: {
-        input: {
-          id: entryData.entryProjectId,
-          [`usedTime${dept}`]: getUsedHours(entryData.entryProjectId),
-        },
-      },
-    });
-    setEntryData(startEntryForm);
-    fetchProjects();
   }
 
   async function UpdateProject({ id }) {
@@ -201,41 +232,49 @@ function App() {
     setIndex(projects.findIndex((item) => item.id === id));
     newProjectsArray[index] = formData;
     setProjects(newProjectsArray);
-    await API.graphql({
-      query: updateProjectMutation,
-      variables: {
-        input: {
-          id: formData.id,
-          name: formData.name,
-          projectNo: formData.projectNo,
-          status: formData.status,
-          allowTimeTechnical: formData.allowTimeTechnical,
-          allowTimeCoordination: formData.allowTimeCoordination,
-          allowTimeEngineering: formData.allowTimeEngineering,
-          allowTimeConstruction: formData.allowTimeConstruction,
+    try {
+      await API.graphql({
+        query: updateProjectMutation,
+        variables: {
+          input: {
+            id: formData.id,
+            name: formData.name,
+            projectNo: formData.projectNo,
+            status: formData.status,
+            allowTimeTechnical: formData.allowTimeTechnical,
+            allowTimeCoordination: formData.allowTimeCoordination,
+            allowTimeEngineering: formData.allowTimeEngineering,
+            allowTimeConstruction: formData.allowTimeConstruction,
+          },
         },
-      },
-    });
-    setFormData(startForm);
-    toggle();
-    fetchProjects();
+      });
+      setFormData(startForm);
+      toggle();
+      fetchProjects();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function UpdateEntry(entryData) {
-    await API.graphql({
-      query: updateEntryMutation,
-      variables: {
-        input: {
-          id: entryData.id,
-          entryProjectId: entryData.entryProjectId,
-          date: entryData.date,
-          description: entryData.description,
-          time: entryData.time,
+    try {
+      await API.graphql({
+        query: updateEntryMutation,
+        variables: {
+          input: {
+            id: entryData.id,
+            entryProjectId: entryData.entryProjectId,
+            date: entryData.date,
+            description: entryData.description,
+            time: entryData.time,
+          },
         },
-      },
-    });
-    toggle();
-    fetchEntries();
+      });
+      toggle();
+      fetchEntries();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // =================
@@ -245,22 +284,30 @@ function App() {
   async function deleteProject({ id }) {
     const newProjectsArray = projects.filter((proj) => proj.id !== id);
     setProjects(newProjectsArray);
-    await API.graphql({
-      query: deleteProjectMutation,
-      variables: { input: { id } },
-    });
-    fetchProjects();
-    toggle();
+    try {
+      await API.graphql({
+        query: deleteProjectMutation,
+        variables: { input: { id } },
+      });
+      fetchProjects();
+      toggle();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function deleteUser({ id }) {
     const newUsersArray = users.filter((user) => user.id !== id);
     setUsers(newUsersArray);
-    await API.graphql({
-      query: deleteUserMutation,
-      variables: { input: { id } },
-    });
-    fetchUsers();
+    try {
+      await API.graphql({
+        query: deleteUserMutation,
+        variables: { input: { id } },
+      });
+      fetchUsers();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function deleteEntry({ id }) {
@@ -269,12 +316,16 @@ function App() {
     setEntryData({ ...entryData, entryProjectId: getProjectId[0].project.id });
 
     // delete entry from DynamoDB and fetch all entries when done
-    await API.graphql({
-      query: deleteEntryMutation,
-      variables: { input: { id } },
-    });
-    fetchEntries();
-    toggle();
+    try {
+      await API.graphql({
+        query: deleteEntryMutation,
+        variables: { input: { id } },
+      });
+      fetchEntries();
+      toggle();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // ==============
