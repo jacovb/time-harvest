@@ -23,6 +23,7 @@ import Timesheets from "./components/Timesheets";
 import Reports from "./components/Reports";
 import Users from "./components/Users";
 import ProjectOverview from "./components/ProjectOverview";
+import MonthlyHoursBreakdown from "./components/MonthlyHoursBreakdown";
 
 import useModal from "./hooks/useModal";
 
@@ -413,6 +414,10 @@ function App() {
                 handleFilter={handleFilter}
                 startSelectFilter={startSelectFilter}
               />
+            </Route>
+
+            <Route exact path="/monthlyHours">
+              <MonthlyHoursBreakdown />
             </Route>
 
             <Route exact path="/users">
