@@ -12,31 +12,38 @@ export default function MonthlyHoursBreakdown({
           {console.log("Users", users)}
 
           <div className="projListHeading">
-            <h2>Hours by Month</h2>
+            <h2>Hours per Person</h2>
           </div>
 
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Table Heading 1</th>
-                  <th>Table Heading 2</th>
-                  <th>Table Heading 3</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Data 1</td>
-                  <td>Data 2</td>
-                  <td>Data 3</td>
-                </tr>
-                <tr>
-                  <td>Data 4</td>
-                  <td>Data 5</td>
-                  <td>Data 6</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="table-person">
+            {users.map((user) => (
+              <table>
+                <thead>
+                  <h2>{user.name}</h2>
+                  <tr>
+                    <th>Date</th>
+                    <th>Project No.</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                {entry
+                  .filter((obj) => obj.user.id === user.id)
+                  .sort((a, b) => new Date(a.date) - new Date(b.date))
+                  .map((obj) => (
+                  <tbody>
+                    <tr>
+                      <td>{obj.date}</td>
+                      <td>{obj.project.projectNo}</td>
+                      <td>{obj.project.name}</td>
+                      <td>{obj.description}</td>
+                      <td>{obj.time}</td>
+                    </tr>
+                  </tbody>
+                ))}
+              </table>
+            ))}
 
           </div>
         </>
