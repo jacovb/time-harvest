@@ -84,9 +84,6 @@ export default function ProjectOverview({
             ))}  
         </select>
       </div>
-
-      {console.log(selectFilter)}
-      {console.log(projectFilter)}
       
       <div className="projectsList">
         {projectFilter

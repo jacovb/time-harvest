@@ -417,7 +417,11 @@ function App() {
             </Route>
 
             <Route exact path="/monthlyHours">
-              <MonthlyHoursBreakdown />
+              <MonthlyHoursBreakdown
+                projects={projects}
+                users={users}
+                entry={entry}
+              />
             </Route>
 
             <Route exact path="/users">
