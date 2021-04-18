@@ -26,7 +26,8 @@ export default function MonthlyHoursBreakdown({
           <div className="projListHeading">
             <h2>Hours per Person</h2>
           </div>
-
+          {/* Map through users, map through entryDates(months), 
+          then map through all entries and use Users and entryDates to group */}
           <div className="table-person">
             {users.map((user, idx) => (
               <table key={idx}>
