@@ -938,19 +938,46 @@ select:focus + .label-status {
 
 .table-person {
   align-items: center;
-  width: 600px;
+  width: 700px;
   margin: auto;
 }
 
-.table-person table {
+.table-person .table {
   border: 2px solid var(--medium-grey);
   border-radius: 10px;
   background-color: white;
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 150px 100px 200px 200px 50px;
 }
 
 .table-person h2 {
+  margin: 0;
+  grid-column: 1 /6;
+}
+
+.table .c-1 {
+  grid-column: 1 / 2;
+}
+
+.table .c-2 {
+  grid-column: 2 / 3;
+}
+
+.table .c-3 {
+  grid-column: 3 / 4;
+}
+
+.table .c-4 {
+  grid-column: 4 / 5;
+}
+
+.table .c-5 {
+  grid-column: 5 / 6;
+}
+
+.table h5 {
   margin: 0;
 }

@@ -26,43 +26,38 @@ export default function MonthlyHoursBreakdown({
           then map through all entries and use Users and entryDates to group */}
           <div className="table-person">
             {users.map((user, idx) => (
-              <table key={idx}>
-                <thead>
-                  <h2>{user.name}</h2>
-                  <tr>
-                    <th>Date</th>
-                    <th>Project No.</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Time</th>
-                  </tr>
-                </thead>
+              <div className="table" key={idx}>
+                <h2>{user.name}</h2>
+                <div className="c-1">Date</div>
+                <div className="c-2">Project No.</div>
+                <div className="c-3">Name</div>
+                <div className="c-4">Description</div>
+                <div className="c-5">Time</div>
                 {entryDates[idx].map((month, idx) => (
                   <React.Fragment key={idx}>
-                    <h5>{month}</h5>
+                    <h5 className="c-1">{month}</h5>
                     {entry
                       .filter((obj) => obj.user.id === user.id)
                       .filter((obj) => new Date(obj.date).toLocaleString('default', { month: 'long' }) === month.split(" ")[0])
                       .sort((a, b) => new Date(a.date) - new Date(b.date))
                       .map((obj, idx) => (
-                      <tbody key={idx}>
-                        <tr>
-                          <td>{obj.date}</td>
-                          <td>{obj.project.projectNo}</td>
-                          <td>{obj.project.name}</td>
-                          <td>{obj.description}</td>
-                          <td>{obj.time}</td>
-                        </tr>
-                      </tbody>
+                      <React.Fragment key={idx}>
+                        <div className="c-1">{obj.date}</div>
+                        <div className="c-2">{obj.project.projectNo}</div>
+                        <div className="c-3">{obj.project.name}</div>
+                        <div className="c-4">{obj.description}</div>
+                        <div className="c-5">{obj.time}</div>
+                      </React.Fragment>
                     ))}
-                    <p>{entry
+                    <div className="c-5">
+                      {entry
                         .filter((obj) => obj.user.id === user.id)
                         .filter((obj) => new Date(obj.date).toLocaleString('default', { month: 'long' }) === month.split(" ")[0])
                         .reduce((acc, curr) => acc + curr.time, 0)}
-                    </p>
+                    </div>
                   </React.Fragment>
                 ))}
-              </table>
+              </div>
             ))}
 
           </div>
