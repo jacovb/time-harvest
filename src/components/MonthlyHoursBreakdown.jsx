@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function MonthlyHoursBreakdown({
-  projects,
   users,
   entry,
 }) {
@@ -10,19 +9,16 @@ export default function MonthlyHoursBreakdown({
     users.map((user) => {
       return entry
         .filter((item) => item.user.id === user.id)
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .sort((a, b) => new Date(a.date) - new Date(b.date))
         .map((item, idx) => new Date(item.date)
-          .toLocaleString('default', { month: 'long' }))
+          .toLocaleString('default', { month: 'long' })
+          + " "
+          + new Date(item.date).getFullYear())
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
     })
     
     return (
         <>
-          {console.log("Projects", projects)}
-          {console.log("Entries", entry)}
-          {console.log("Users", users)}
-          {console.log("Entry Dates",entryDates)}
-
           <div className="projListHeading">
             <h2>Hours per Person</h2>
           </div>
@@ -41,13 +37,13 @@ export default function MonthlyHoursBreakdown({
                     <th>Time</th>
                   </tr>
                 </thead>
-                {entryDates[idx].map((month) => (
-                  <>
+                {entryDates[idx].map((month, idx) => (
+                  <React.Fragment key={idx}>
                     <h5>{month}</h5>
                     {entry
                       .filter((obj) => obj.user.id === user.id)
-                      .filter((obj) => new Date(obj.date).toLocaleString('default', { month: 'long' }) === month)
-                      .sort((a, b) => new Date(b.date) - new Date(a.date))
+                      .filter((obj) => new Date(obj.date).toLocaleString('default', { month: 'long' }) === month.split(" ")[0])
+                      .sort((a, b) => new Date(a.date) - new Date(b.date))
                       .map((obj, idx) => (
                       <tbody key={idx}>
                         <tr>
@@ -59,7 +55,12 @@ export default function MonthlyHoursBreakdown({
                         </tr>
                       </tbody>
                     ))}
-                  </>
+                    <p>{entry
+                        .filter((obj) => obj.user.id === user.id)
+                        .filter((obj) => new Date(obj.date).toLocaleString('default', { month: 'long' }) === month.split(" ")[0])
+                        .reduce((acc, curr) => acc + curr.time, 0)}
+                    </p>
+                  </React.Fragment>
                 ))}
               </table>
             ))}
