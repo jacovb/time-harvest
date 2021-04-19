@@ -958,6 +958,12 @@ select:focus + .label-status {
   grid-column: 1 /6;
 }
 
+.table .thead {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 5px 0 5px 0;
+}
+
 .table .c-1 {
   grid-column: 1 / 2;
 }
@@ -979,5 +985,5 @@ select:focus + .label-status {
 }
 
 .table h5 {
-  margin: 0;
+  margin: 10px 0 10px 0;
 }

@@ -28,11 +28,11 @@ export default function MonthlyHoursBreakdown({
             {users.map((user, idx) => (
               <div className="table" key={idx}>
                 <h2>{user.name}</h2>
-                <div className="c-1">Date</div>
-                <div className="c-2">Project No.</div>
-                <div className="c-3">Name</div>
-                <div className="c-4">Description</div>
-                <div className="c-5">Time</div>
+                <div className="c-1 thead">Date</div>
+                <div className="c-2 thead">Project No.</div>
+                <div className="c-3 thead">Name</div>
+                <div className="c-4 thead">Description</div>
+                <div className="c-5 thead">Time</div>
                 {entryDates[idx].map((month, idx) => (
                   <React.Fragment key={idx}>
                     <h5 className="c-1">{month}</h5>
