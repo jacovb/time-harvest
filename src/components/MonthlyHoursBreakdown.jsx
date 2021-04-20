@@ -1,8 +1,12 @@
 import React from "react";
 
 export default function MonthlyHoursBreakdown({
+  projects,
   users,
   entry,
+  selectFilter,
+  startSelectFilter,
+  handleFilter,
 }) {
     
     const entryDates = 
@@ -16,12 +20,71 @@ export default function MonthlyHoursBreakdown({
           + new Date(item.date).getFullYear())
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
     })
+
+    function projectsFilter(projArray, selection) {
+      if (selection.id.length === 0 && selection.status.length === 0) {
+        return projects;
+      } else if (selection.id === "") {
+        return projArray.filter((proj) => selection.status === proj.status);
+      } else if (selection.status === "") {
+        return projArray.filter((proj) => selection.id === proj.id);
+      } else if (selection !== startSelectFilter) {
+        return projArray.filter((proj) => selection.id === proj.id && selection.status === proj.status);
+      }
+    }
+  
+    let projectFilter = projectsFilter(projects, selectFilter);
     
     return (
         <>
           <div className="projListHeading">
             <h2>Hours per Person</h2>
           </div>
+
+          {console.log(entryDates)}
+
+          {/* <div className="filter-bar">
+            <label className="main-label">Filter by: </label>
+            <label htmlFor="entryUser" className="label">
+              User: 
+            </label>
+            <label htmlFor="entryMonth" className="label">
+              Month:
+            </label>
+            
+            <select
+              className="select-user"
+              type="text"
+              id="entryUser"
+              value={selectFilter.entryUserId}
+              name="entryUserId"
+              required
+              onChange={handleFilter}>
+                <option value="">Show All</option>
+                <option value="Quote">Quote</option>
+                <option value="Current">Current</option>
+                <option value="Complete">Complete</option> 
+            </select>
+            
+            <select
+                className="select-month"
+                type="text"
+                id="entryMonth"
+                value={selectFilter.month}
+                name="month"
+                required
+                onChange={handleFilter}>
+                <option value="">Show All</option>
+                {entryDates
+                    .sort((a, b) => new Date(a) - new Date(b))
+                    .map((obj, idx) => (
+                        <option key={idx} value={obj.id}>
+                            {project.projectNo} - {project.name}
+                        </option>
+                ))}  
+            </select>
+          </div> */}
+
           {/* Map through users, map through entryDates(months), 
           then map through all entries and use Users and entryDates to group */}
           <div className="table-person">

@@ -57,6 +57,8 @@ const startEntryForm = {
 const startSelectFilter = {
   status: "",
   id: "",
+  entryUserId: "",
+  month: "",
 };
 
 function App() {
@@ -417,7 +419,14 @@ function App() {
             </Route>
 
             <Route exact path="/monthlyHours">
-              <MonthlyHoursBreakdown users={users} entry={entry} />
+              <MonthlyHoursBreakdown
+                projects={projects}
+                users={users}
+                entry={entry}
+                selectFilter={selectFilter}
+                startSelectFilter={startSelectFilter}
+                handleFilter={handleFilter}
+              />
             </Route>
 
             <Route exact path="/users">
