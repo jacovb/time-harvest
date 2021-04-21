@@ -21,6 +21,17 @@ export default function MonthlyHoursBreakdown({
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
     })
 
+    function getEntryDates(userId) {
+      return entry
+        .filter((item) => item.user.id === userId)
+        .sort((a, b) => new Date(a.date) - new Date(b.date))
+        .map((item, idx) => new Date(item.date)
+          .toLocaleString('default', { month: 'long' })
+          + " "
+          + new Date(item.date).getFullYear())
+        .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
+    }
+
     const entryDateArray = 
       entryDates
         .reduce((a, b) => {
@@ -51,7 +62,6 @@ export default function MonthlyHoursBreakdown({
     
     let entryFilter = entriesFilter(entry, selectFilter);
     let userFilter = usersFilter(users, selectFilter)
-    console.log(userFilter)
     
     return (
         <>
@@ -60,6 +70,7 @@ export default function MonthlyHoursBreakdown({
           </div>
 
           {console.log(selectFilter)}
+          {console.log(getEntryDates(selectFilter.entryUserId))}
 
           <div className="filter-bar">
             <label className="main-label">Filter by: </label>
