@@ -30,7 +30,7 @@ export default function ProjectOverview({
       return projArray.filter((proj) => selection.status === proj.status);
     } else if (selection.status === "") {
       return projArray.filter((proj) => selection.id === proj.id);
-    } else if (selection !== startSelectFilter) {
+    } else if (selection.id.length > 0 && selection.status.length > 0) {
       return projArray.filter((proj) => selection.id === proj.id && selection.status === proj.status);
     }
   }

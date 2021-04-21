@@ -762,11 +762,13 @@ select:focus + .label-status {
   font-weight: 300;
 }
 
-.filter-bar .select-status {
+.filter-bar .select-status,
+.filter-bar .select-user {
   grid-column: 2 / 3;
 }
 
-.filter-bar .select-no {
+.filter-bar .select-no,
+.filter-bar .select-month {
   grid-column: 3 / 4;
 }
 

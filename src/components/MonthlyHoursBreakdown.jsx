@@ -21,19 +21,37 @@ export default function MonthlyHoursBreakdown({
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
     })
 
-    function projectsFilter(projArray, selection) {
-      if (selection.id.length === 0 && selection.status.length === 0) {
-        return projects;
-      } else if (selection.id === "") {
-        return projArray.filter((proj) => selection.status === proj.status);
-      } else if (selection.status === "") {
-        return projArray.filter((proj) => selection.id === proj.id);
-      } else if (selection !== startSelectFilter) {
-        return projArray.filter((proj) => selection.id === proj.id && selection.status === proj.status);
+    const entryDateArray = 
+      entryDates
+        .reduce((a, b) => {
+            return a.concat(b)
+          }, [])
+        .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
+
+    function entriesFilter(entry, selection) {
+      if (selection.entryUserId.length === 0 && selection.month.length === 0) {
+        return entry;
+      } else if (selection.entryUserId === "") {
+        return entry.filter((obj) => selection.month.split(" ")[0] === new Date(obj.date).toLocaleString('default', { month: 'long' }));
+      } else if (selection.month === "") {
+        return entry.filter((obj) => selection.entryUserId === obj.user.id);
+      } else if (selection.entryUserId.length > 0 && selection.month.length > 0) {
+        return entry.filter((obj) => selection.entryUserId === obj.user.id && selection.month.split(" ")[0] === new Date(obj.date).toLocaleString('default', { month: 'long' }));
       }
     }
-  
-    let projectFilter = projectsFilter(projects, selectFilter);
+
+    function usersFilter(users, selection) {
+      if (selection.entryUserId.length === 0) {
+        return users
+      } else if (selection.entryUserId.length > 0) {
+        return users.filter((user) => user.id === selection.entryUserId)
+      }
+    }
+
+    
+    let entryFilter = entriesFilter(entry, selectFilter);
+    let userFilter = usersFilter(users, selectFilter)
+    console.log(userFilter)
     
     return (
         <>
@@ -41,9 +59,9 @@ export default function MonthlyHoursBreakdown({
             <h2>Hours per Person</h2>
           </div>
 
-          {console.log(entryDates)}
+          {console.log(selectFilter)}
 
-          {/* <div className="filter-bar">
+          <div className="filter-bar">
             <label className="main-label">Filter by: </label>
             <label htmlFor="entryUser" className="label">
               User: 
@@ -61,9 +79,13 @@ export default function MonthlyHoursBreakdown({
               required
               onChange={handleFilter}>
                 <option value="">Show All</option>
-                <option value="Quote">Quote</option>
-                <option value="Current">Current</option>
-                <option value="Complete">Complete</option> 
+                {users
+                  .sort((a, b) => a.name - b.name)
+                  .map((user, idx) => (
+                      <option key={idx} value={user.id}>
+                        {user.name}
+                      </option>
+                ))}
             </select>
             
             <select
@@ -75,15 +97,14 @@ export default function MonthlyHoursBreakdown({
                 required
                 onChange={handleFilter}>
                 <option value="">Show All</option>
-                {entryDates
-                    .sort((a, b) => new Date(a) - new Date(b))
-                    .map((obj, idx) => (
-                        <option key={idx} value={obj.id}>
-                            {project.projectNo} - {project.name}
+                {entryDateArray
+                    .map((month, idx) => (
+                        <option key={idx} value={month}>
+                            {month}
                         </option>
                 ))}  
             </select>
-          </div> */}
+          </div>
 
           {/* Map through users, map through entryDates(months), 
           then map through all entries and use Users and entryDates to group */}
@@ -95,13 +116,13 @@ export default function MonthlyHoursBreakdown({
               <div className="c-4 thead">Description</div>
               <div className="c-5 thead">Time</div>
             </div>
-            {users.map((user, idx) => (
+            {userFilter.map((user, idx) => (
               <div className="table" key={idx}>
                 <h2>{user.name}</h2>
                 {entryDates[idx].map((month, idx) => (
                   <React.Fragment key={idx}>
                     <h5 className="c-1">{month}</h5>
-                    {entry
+                    {entryFilter
                       .filter((obj) => obj.user.id === user.id)
                       .filter((obj) => new Date(obj.date).toLocaleString('default', { month: 'long' }) === month.split(" ")[0])
                       .sort((a, b) => new Date(a.date) - new Date(b.date))
