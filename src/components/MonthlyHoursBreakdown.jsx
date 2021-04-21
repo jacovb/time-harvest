@@ -29,7 +29,7 @@ export default function MonthlyHoursBreakdown({
           .toLocaleString('default', { month: 'long' })
           + " "
           + new Date(item.date).getFullYear())
-        .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
+        .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []); 
     }
 
     const entryDateArray = 
@@ -61,7 +61,8 @@ export default function MonthlyHoursBreakdown({
 
     
     let entryFilter = entriesFilter(entry, selectFilter);
-    let userFilter = usersFilter(users, selectFilter)
+    let userFilter = usersFilter(users, selectFilter);
+    let dateFilter = selectFilter.entryUserId === "" ? entryDates : [getEntryDates(selectFilter.entryUserId)]
     
     return (
         <>
@@ -70,6 +71,7 @@ export default function MonthlyHoursBreakdown({
           </div>
 
           {console.log(selectFilter)}
+          {console.log(entryDates)}
           {console.log(getEntryDates(selectFilter.entryUserId))}
 
           <div className="filter-bar">
@@ -130,7 +132,7 @@ export default function MonthlyHoursBreakdown({
             {userFilter.map((user, idx) => (
               <div className="table" key={idx}>
                 <h2>{user.name}</h2>
-                {entryDates[idx].map((month, idx) => (
+                {dateFilter[idx].map((month, idx) => (
                   <React.Fragment key={idx}>
                     <h5 className="c-1">{month}</h5>
                     {entryFilter
