@@ -59,10 +59,24 @@ export default function MonthlyHoursBreakdown({
       }
     }
 
+    function datesFilter(entryDates, selection) {
+      if (selection.entryUserId.length === 0 && selection.month.length === 0) {
+        return entryDates;
+      } else if (selection.entryUserId === "" && selection.month.length > 0) {
+        return entryDates.map((arr) => arr.filter((item) => item === selection.month));
+      } else if (selection.month.length > 0) {
+        return [[selection.month]]
+      } else if (selection.entryUserId.length > 0) {
+        return [getEntryDates(selection.entryUserId)]
+      } else if (selection.entryUserId.length > 0 && selection.month.length > 0) {
+        return [[selection.month]]
+      }
+    }
+
     
     let entryFilter = entriesFilter(entry, selectFilter);
     let userFilter = usersFilter(users, selectFilter);
-    let dateFilter = selectFilter.entryUserId === "" ? entryDates : [getEntryDates(selectFilter.entryUserId)]
+    let dateFilter = datesFilter(entryDates, selectFilter)
     
     return (
         <>
@@ -70,9 +84,8 @@ export default function MonthlyHoursBreakdown({
             <h2>Hours per Person</h2>
           </div>
 
-          {console.log(selectFilter)}
+          {console.log(datesFilter(entryDates, selectFilter))}
           {console.log(entryDates)}
-          {console.log(getEntryDates(selectFilter.entryUserId))}
 
           <div className="filter-bar">
             <label className="main-label">Filter by: </label>
