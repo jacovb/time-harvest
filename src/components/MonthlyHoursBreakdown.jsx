@@ -7,9 +7,9 @@ export default function MonthlyHoursBreakdown({
   selectFilter,
   startSelectFilter,
   handleFilter,
-}) {
-    
-    const entryDates = 
+}) {  
+  
+  const entryDates = 
     users.map((user) => {
       return entry
         .filter((item) => item.user.id === user.id)
@@ -56,7 +56,7 @@ export default function MonthlyHoursBreakdown({
         return users
       } else if (selection.entryUserId.length > 0) {
         return users.filter((user) => user.id === selection.entryUserId)
-      }
+      } 
     }
 
     function datesFilter(entryDates, selection) {
@@ -73,19 +73,23 @@ export default function MonthlyHoursBreakdown({
       }
     }
 
-    
     let entryFilter = entriesFilter(entry, selectFilter);
     let userFilter = usersFilter(users, selectFilter);
-    let dateFilter = datesFilter(entryDates, selectFilter)
+    let dateFilter = datesFilter(entryDates, selectFilter);
+
+    const entryFilterUsers = 
+      entryFilter
+        .map((item) => item.user)
+        //reduce this to array of users in the selected month
     
     return (
         <>
           <div className="projListHeading">
-            <h2>Hours per Person</h2>
+            <h2>Monthly Hours per Person</h2>
           </div>
 
-          {console.log(datesFilter(entryDates, selectFilter))}
-          {console.log(entryDates)}
+          {console.log(users)}
+          {console.log(entryFilterUsers)}
 
           <div className="filter-bar">
             <label className="main-label">Filter by: </label>
