@@ -80,7 +80,7 @@ export default function MonthlyHoursBreakdown({
     const entryFilterUsers = 
       entryFilter
         .map((item) => item.user)
-        //reduce this to array of users in the selected month
+        //reduce this ^^^ to array of users in the selected month
     
     return (
         <>
