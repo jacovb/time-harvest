@@ -51,12 +51,16 @@ export default function MonthlyHoursBreakdown({
       }
     }
 
-    function usersFilter(users, selection) {
+    function usersFilter(users, selection, filteredEntryUsers) {
       if (selection.entryUserId.length === 0) {
         return users
-      } else if (selection.entryUserId.length > 0) {
+      } else if (selection.entryUserId.length > 0 && selection.month.length === 0) {
         return users.filter((user) => user.id === selection.entryUserId)
-      } 
+      } else if (selection.month.length > 0 && selection.entryUserId.length === 0) {
+        return users.filter((user) => {
+           return filteredEntryUsers.map((e) => e === user.id)
+        }) //this filter is still not working ?????
+      }
     }
 
     function datesFilter(entryDates, selection) {
@@ -74,13 +78,13 @@ export default function MonthlyHoursBreakdown({
     }
 
     let entryFilter = entriesFilter(entry, selectFilter);
-    let userFilter = usersFilter(users, selectFilter);
+    let entryFilterUsers = 
+      entryFilter
+        .map((item) => item.user.id)
+        .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
+    let userFilter = usersFilter(users, selectFilter, entryFilterUsers);
     let dateFilter = datesFilter(entryDates, selectFilter);
 
-    const entryFilterUsers = 
-      entryFilter
-        .map((item) => item.user)
-        //reduce this ^^^ to array of users in the selected month
     
     return (
         <>
@@ -90,6 +94,7 @@ export default function MonthlyHoursBreakdown({
 
           {console.log(users)}
           {console.log(entryFilterUsers)}
+          {console.log(dateFilter)}
 
           <div className="filter-bar">
             <label className="main-label">Filter by: </label>
