@@ -52,11 +52,13 @@ export default function MonthlyHoursBreakdown({
     }
 
     function usersFilter(users, selection, filteredEntryUsers) {
-      if (selection.entryUserId.length === 0) {
+      if (selection.entryUserId.length === 0 && selection.month.length === 0) {
         return users
-      } else if (selection.entryUserId.length > 0) {
+      } else if (selection.entryUserId.length > 0 && selection.month.length === 0) {
         return users.filter((user) => user.id === selection.entryUserId)
-      } 
+      } else if (selection.month.length > 0 && selection.entryUserId.length === 0) {
+        return users.filter(user => filteredEntryUsers.includes(user.name))
+      } // add condition for when a 'user' and 'month' is selected
     }
 
     function datesFilter(entryDates, selection) {
@@ -79,7 +81,7 @@ export default function MonthlyHoursBreakdown({
         .map((item) => item.user.name)
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
     let userFilter = usersFilter(users, selectFilter, entryFilterUsers);
-    let dateFilter = datesFilter(entryDates, selectFilter);
+    let dateFilter = datesFilter(entryDates, selectFilter).filter(e => e.length);
 
     
     return (
@@ -88,7 +90,7 @@ export default function MonthlyHoursBreakdown({
             <h2>Monthly Hours per Person</h2>
           </div>
 
-          {console.log(users)}
+          {console.log(users.filter(user => entryFilterUsers.includes(user.name)))}
           {console.log(entryFilterUsers)}
           {console.log(dateFilter.filter(e => e.length))}
 
