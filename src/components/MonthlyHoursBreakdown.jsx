@@ -7,17 +7,24 @@ export default function MonthlyHoursBreakdown({
   handleFilter,
 }) {  
   
-  const entryDates = 
-    users.map((user) => {
-      return entry
-        .filter((item) => item.user.id === user.id)
-        .sort((a, b) => new Date(a.date) - new Date(b.date))
-        .map((item, idx) => new Date(item.date)
-          .toLocaleString('default', { month: 'long' })
-          + " "
-          + new Date(item.date).getFullYear())
-        .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
-    })
+    const entryDates = 
+      users.map((user) => {
+        return entry
+          .filter((item) => item.user.id === user.id)
+          .sort((a, b) => new Date(a.date) - new Date(b.date))
+          .map((item, idx) => new Date(item.date)
+            .toLocaleString('default', { month: 'long' })
+            + " "
+            + new Date(item.date).getFullYear())
+          .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
+      })
+
+    const entryDateArray = 
+      entryDates
+        .reduce((a, b) => {
+            return a.concat(b)
+          }, [])
+        .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
 
     function getEntryDates(userId) {
       return entry
@@ -29,13 +36,6 @@ export default function MonthlyHoursBreakdown({
           + new Date(item.date).getFullYear())
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []); 
     }
-
-    const entryDateArray = 
-      entryDates
-        .reduce((a, b) => {
-            return a.concat(b)
-          }, [])
-        .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
 
     function entriesFilter(entry, selection) {
       if (selection.entryUserId.length === 0 && selection.month.length === 0) {
@@ -76,11 +76,11 @@ export default function MonthlyHoursBreakdown({
     }
 
     let entryFilter = entriesFilter(entry, selectFilter);
-    let entryFilterUsers = 
+    let usersFromEntry = 
       entryFilter
         .map((item) => item.user.name)
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
-    let userFilter = usersFilter(users, selectFilter, entryFilterUsers);
+    let userFilter = usersFilter(users, selectFilter, usersFromEntry);
     let dateFilter = datesFilter(entryDates, selectFilter).filter(e => e.length);
 
     
@@ -89,10 +89,6 @@ export default function MonthlyHoursBreakdown({
           <div className="projListHeading">
             <h2>Monthly Hours per Person</h2>
           </div>
-
-          {console.log(users.filter(user => entryFilterUsers.includes(user.name)))}
-          {console.log(entryFilterUsers)}
-          {console.log(dateFilter.filter(e => e.length))}
 
           <div className="filter-bar">
             <label className="main-label">Filter by: </label>

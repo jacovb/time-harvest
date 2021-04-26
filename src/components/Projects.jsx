@@ -2,9 +2,8 @@ import React, { useState } from "react";
 
 import EditProjectModal from "./EditProjectModal";
 import AddProjectModal from "./AddProjectModal";
-import ProgressRing from "./ProgressRing";
+import ProjectListRow from "./ProjectListRow";
 
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import AddIcon from '@material-ui/icons/Add';
 
 export default function Projects({
@@ -69,31 +68,12 @@ export default function Projects({
             {projects
               .sort((a, b) => a.projectNo - b.projectNo)
               .map((project, idx) => (
-                <div className="projectRow" key={idx}>
-                  <div className="gridProjectNo">{project.projectNo}</div>
-                  <div className="gridProjectName">{project.name}</div>
-                  <div className="gridProjectHours">
-                    {totalAllowedTime(project)}
-                  </div>
-                  <div className="gridProjectStatus">{project.status}</div>
-                  <ProgressRing 
-                    className="gridProgress-ring"
-                    usedHours={totalUsedTime(project)}
-                    allowedHours={totalAllowedTime(project)}
-                    circleSize="90"
-                    />
-                  <button
-                    className="editButton"
-                    onClick={() => {
-                      setFormData(project);
-                      setEditModal(true);
-                      toggle();
-                    }}
-                  >
-                    <MoreHorizIcon />
-                    <span className="edit-tooltip">Edit</span>
-                  </button>
-                </div>
+                <ProjectListRow 
+                  key={idx}
+                  project={project}
+                  setFormData={setFormData} 
+                  toggle={toggle}
+                />
               ))}
             {editModal && <EditProjectModal
               isShowing={isShowing}
