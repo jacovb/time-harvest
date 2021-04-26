@@ -420,11 +420,9 @@ function App() {
 
             <Route exact path="/monthlyHours">
               <MonthlyHoursBreakdown
-                projects={projects}
                 users={users}
                 entry={entry}
                 selectFilter={selectFilter}
-                startSelectFilter={startSelectFilter}
                 handleFilter={handleFilter}
               />
             </Route>

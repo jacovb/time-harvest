@@ -1,11 +1,9 @@
 import React from "react";
 
 export default function MonthlyHoursBreakdown({
-  projects,
   users,
   entry,
   selectFilter,
-  startSelectFilter,
   handleFilter,
 }) {  
   
@@ -58,7 +56,9 @@ export default function MonthlyHoursBreakdown({
         return users.filter((user) => user.id === selection.entryUserId)
       } else if (selection.month.length > 0 && selection.entryUserId.length === 0) {
         return users.filter(user => filteredEntryUsers.includes(user.name))
-      } // add condition for when a 'user' and 'month' is selected
+      } else if (selection.entryUserId.length > 0 && selection.month.length > 0) {
+        return users.filter((user) => user.id === selection.entryUserId)
+      }
     }
 
     function datesFilter(entryDates, selection) {
