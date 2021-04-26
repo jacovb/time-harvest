@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ProgressRing from './ProgressRing';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
@@ -6,9 +6,8 @@ export default function ProjectListRow ({
   project,
   setFormData,
   toggle,
+  setEditModal
 }) {
-  
-  const [editModal, setEditModal] = useState(false);
   
   function totalAllowedTime(data) {
     return (+data.allowTimeTechnical) +

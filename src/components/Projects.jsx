@@ -22,20 +22,6 @@ export default function Projects({
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
 
-    function totalAllowedTime(data) {
-      return (+data.allowTimeTechnical) +
-      (+data.allowTimeCoordination) +
-      (+data.allowTimeEngineering) +
-      (+data.allowTimeConstruction)
-    }
-
-    function totalUsedTime(data) {
-      return (+data.usedTimeTechnical) +
-      (+data.usedTimeCoordination) +
-      (+data.usedTimeEngineering) +
-      (+data.usedTimeConstruction)
-    }
-
     return (
       <>
         {console.log(projects)}
@@ -73,6 +59,7 @@ export default function Projects({
                   project={project}
                   setFormData={setFormData} 
                   toggle={toggle}
+                  setEditModal={setEditModal}
                 />
               ))}
             {editModal && <EditProjectModal
