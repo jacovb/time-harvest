@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import CalendarHeatmap from 'react-calendar-heatmap';
 import ReactTooltip from 'react-tooltip';
 
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import AddIcon from '@material-ui/icons/Add';
 
 import AddEntryModal from "./AddEntryModal";
 import EditEntryModal from "./EditEntryModal";
+import EntryListRow from "./EntryListRow";
 
 export default function Timesheets({
   projects, 
@@ -154,39 +154,15 @@ export default function Timesheets({
           </div>
           
           {entryDates
-            .map((item, idx) => (
-              <div className="entryRow" key={idx}>
-                <div className="entryDate">{item}</div>
-                {userEntries
-                  .filter((obj) => obj.date === item)
-                  .map((obj, id) => (
-                  <React.Fragment key={id}>
-                    <div className="entryProjectNo">
-                      {obj.project.projectNo}
-                    </div>
-                    <div className="entryProjectName">
-                      {obj.project.name}
-                    </div>
-                    <div className="entryDescription">{obj.description}</div>
-                    <div className="entryTime">{obj.time}</div>
-                    <button
-                      className="editButton"
-                      onClick={() => {
-                            setEntryData({ 
-                                ...obj, 
-                                entryProjectId: obj.project.id,
-                                prevProjectId: obj.project.id
-                            })
-                            setEditModal(true);
-                            toggle();
-                      }}
-                    >
-                      <MoreHorizIcon />
-                      <span className="edit-tooltip">Edit</span>
-                    </button>
-                  </React.Fragment>
-                ))}
-              </div>
+            .map((entryDate, idx) => (
+              <EntryListRow 
+                key={idx}
+                entryDate={entryDate}
+                userEntries={userEntries}
+                setEntryData={setEntryData}
+                setEditModal={setEditModal}
+                toggle={toggle}
+              />
             ))}
           {editModal && <EditEntryModal
             isShowing={isShowing}
