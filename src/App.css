@@ -61,7 +61,6 @@ h1 {
   font-size: 16px;
   background-color: white;
   border-radius: 10px;
-  border: 2px solid var(--medium-grey);
   box-shadow: 5px 5px 5px var(--shadow);
 }
 
@@ -302,7 +301,6 @@ select:focus + .label-status {
   padding: 5px;
   margin: auto;
   margin-top: 5px;
-  border: 2px solid var(--medium-grey);
   border-radius: 10px;
   background-color: white;
   width: 95%;
@@ -395,7 +393,6 @@ select:focus + .label-status {
   font-size: 16px;
   background-color: white;
   border-radius: 10px;
-  border: 2px solid var(--medium-grey);
   box-shadow: 5px 5px 5px var(--shadow);
 }
 
@@ -494,7 +491,6 @@ select:focus + .label-status {
   padding: 5px;
   margin: auto;
   margin-top: 5px;
-  border: 2px solid var(--medium-grey);
   border-radius: 10px;
   background-color: white;
   width: 95%;
@@ -541,7 +537,7 @@ select:focus + .label-status {
   right: 2.5%;
   height: 55px;
   width: 55px;
-  border: 2px solid var(--medium-grey);
+  border: none;
   border-radius: 10px;
   background-color: white;
   box-shadow: 5px 5px 5px var(--shadow);
@@ -603,7 +599,6 @@ select:focus + .label-status {
   padding: 1rem;
   margin: auto;
   margin-top: 5px;
-  border: 2px solid var(--medium-grey);
   border-radius: 10px;
   background-color: white;
   width: 50%;
@@ -751,7 +746,6 @@ select:focus + .label-status {
   padding: 5px;
   margin: auto;
   margin-top: 5px;
-  border: 2px solid var(--medium-grey);
   border-radius: 10px;
   background-color: white;
   width: 95%;
@@ -789,7 +783,6 @@ select:focus + .label-status {
   padding: 5px;
   margin: auto;
   margin-top: 5px;
-  border: 2px solid var(--medium-grey);
   border-radius: 10px;
   background-color: white;
   width: 95%;
@@ -945,7 +938,6 @@ select:focus + .label-status {
 }
 
 .table-person .table {
-  border: 2px solid var(--medium-grey);
   border-radius: 10px;
   background-color: white;
   width: 100%;
