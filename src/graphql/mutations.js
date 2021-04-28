@@ -14,6 +14,7 @@ export const createProject = /* GraphQL */ `
       entries {
         items {
           id
+          department
           date
           description
           time
@@ -56,6 +57,7 @@ export const updateProject = /* GraphQL */ `
       entries {
         items {
           id
+          department
           date
           description
           time
@@ -98,6 +100,7 @@ export const deleteProject = /* GraphQL */ `
       entries {
         items {
           id
+          department
           date
           description
           time
@@ -288,6 +291,7 @@ export const createUser = /* GraphQL */ `
       entries {
         items {
           id
+          department
           date
           description
           time
@@ -321,6 +325,7 @@ export const updateUser = /* GraphQL */ `
       entries {
         items {
           id
+          department
           date
           description
           time
@@ -354,6 +359,7 @@ export const deleteUser = /* GraphQL */ `
       entries {
         items {
           id
+          department
           date
           description
           time
@@ -409,6 +415,7 @@ export const createEntry = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      department
       date
       description
       time
@@ -459,6 +466,7 @@ export const updateEntry = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      department
       date
       description
       time
@@ -509,6 +517,7 @@ export const deleteEntry = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      department
       date
       description
       time

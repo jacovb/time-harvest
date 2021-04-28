@@ -11,6 +11,7 @@ export const getProject = /* GraphQL */ `
       entries {
         items {
           id
+          department
           date
           description
           time
@@ -90,6 +91,7 @@ export const getUser = /* GraphQL */ `
       entries {
         items {
           id
+          department
           date
           description
           time
@@ -166,6 +168,7 @@ export const getEntry = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      department
       date
       description
       time
@@ -206,6 +209,7 @@ export const listEntrys = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        department
         date
         description
         time

@@ -10,6 +10,11 @@
       "StackName": "amplify-timeharvest-dev-63446",
       "StackId": "arn:aws:cloudformation:eu-west-2:862323471321:stack/amplify-timeharvest-dev-63446/15bcce00-61fc-11eb-b254-06dfe0db4c2c",
       "AmplifyAppId": "d13ledzsxl0qxj"
+    },
+    "categories": {
+      "auth": {
+        "timeharvest3d7be3fc": {}
+      }
     }
   }
 }

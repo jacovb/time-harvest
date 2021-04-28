@@ -16,5 +16,13 @@
         }
       }
     }
+  },
+  "auth": {
+    "timeharvest3d7be3fc": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
   }
 }
