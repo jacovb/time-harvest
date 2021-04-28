@@ -21,10 +21,14 @@
 }
 
 #navbar {
+  width: 95%;
+  margin: auto;
+  border-radius: 10px;
   background-color: var(--dark-green);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  box-shadow: 5px 5px 5px var(--shadow);
 }
 
 #navButton {
@@ -298,7 +302,6 @@ select:focus + .label-status {
   grid-template-columns: 100px auto 100px 100px 100px 40px;
   column-gap: 5px;
   align-items: center;
-  padding: 5px;
   margin: auto;
   margin-top: 5px;
   border-radius: 10px;
@@ -485,7 +488,7 @@ select:focus + .label-status {
 
 .entryRow {
   display: grid;
-  grid-template-columns: 150px 50px auto 150px 100px 40px;
+  grid-template-columns: 150px 50px auto 150px 50px 40px;
   column-gap: 5px;
   align-items: center;
   padding: 5px;
@@ -499,6 +502,7 @@ select:focus + .label-status {
 
 .entryDate {
   grid-column: 1 / 2;
+  justify-self: center;
 }
 
 .entryProjectNo {
@@ -516,6 +520,7 @@ select:focus + .label-status {
 
 .entryTime {
   grid-column: 5 / 6;
+  justify-self: center;
 }
 
 .userSelect {
@@ -754,6 +759,11 @@ select:focus + .label-status {
   position: relative;
   font-size: 14px;
   font-weight: 300;
+}
+
+.filter-bar .main-label {
+  justify-self: center;
+  font-weight: 600;
 }
 
 .filter-bar .select-status,
