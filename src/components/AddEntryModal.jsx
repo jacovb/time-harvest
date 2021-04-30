@@ -121,14 +121,23 @@ export default function AddEntryModal({
                     <label htmlFor="description" className="label-name">
                         Description:
                     </label>
-                    <input 
+                    <select 
                         type="text"
                         id="description"
                         value={entryData.description}
                         name="description"
-                        onChange={handleAddEntry}
                         required
-                    />
+                        onChange={handleAddEntry}>
+                        <option value="" disabled hidden>-- Select Description --</option>
+                        <option value="3D Modelling">3D Modelling</option>
+                        <option value="2D Drawings">2D Drawings</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Coordination">Coordination</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Connection Check">Connection Check</option>
+                        <option value="Site Inspection">Site Inspection</option>
+                        <option value="Site Management">Site Management</option>
+                    </select>
                 </div>
                 
                 <button 
