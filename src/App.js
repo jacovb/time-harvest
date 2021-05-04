@@ -368,7 +368,36 @@ function App() {
     });
   }
 
-  // const RenderAuthenticatedRoutes = ({ toggle }) => (
+  // const RenderAuthenticatedRoutes = ({
+  //   projects,
+  //   setFormData,
+  //   createProject,
+  //   deleteProject,
+  //   UpdateProject,
+  //   formData,
+  //   handleAddData,
+  //   isShowing,
+  //   toggle,
+  //   startForm,
+  //   users,
+  //   entry,
+  //   handleAddEntry,
+  //   handleSetEntryUser,
+  //   entryData,
+  //   setEntryData,
+  //   createEntry,
+  //   entryUserId,
+  //   deleteEntry,
+  //   UpdateEntry,
+  //   startEntryForm,
+  //   selectFilter,
+  //   startSelectFilter,
+  //   handleFilter,
+  //   userData,
+  //   createUser,
+  //   handleAddUser,
+  //   deleteUser,
+  // }) => (
   //   <>
   //     <Navbar />
   //     <Switch>
