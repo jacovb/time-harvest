@@ -9,10 +9,14 @@ export default function SignUpForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', maxWidth: '500px', margin: 'auto'}}> 
-      <input {...register("name", { required: true })} style={{ marginBottom: '10px'}} id="name"/>
-      <input {...register("email", { required: true })} style={{ marginBottom: '10px'}} id="email" />
-      <input {...register("password", { required: true })} style={{ marginBottom: '10px'}} id="password" />
-      <input {...register("confirmPassword", { required: true })} style={{ marginBottom: '10px'}} id="confirmPassword" />
+      <label htmlFor="name">Name:</label>
+      <input {...register("name", { required: true })} style={{ marginBottom: '10px'}} id="name" autoComplete="off"/>
+      <label htmlFor="email">Email:</label>
+      <input {...register("email", { required: true })} style={{ marginBottom: '10px'}} id="email" autoComplete="off"/>
+      <label htmlFor="password">Password:</label>
+      <input {...register("password", { required: true })} style={{ marginBottom: '10px'}} id="password" autoComplete="off" type="password"/>
+      <label htmlFor="confirmPassword">Confirm Password:</label>
+      <input {...register("confirmPassword", { required: true })} style={{ marginBottom: '10px'}} id="confirmPassword" autoComplete="off" type="password"/>
       <input type="submit" />
     </form>
   );

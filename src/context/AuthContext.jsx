@@ -20,7 +20,7 @@ export const AuthIsSignedIn = ({children}) => {
 
 export const AuthIsNotSignedIn = ({children}) => {
   const {isSignedIn} = React.useContext(AuthContext);
-  return <>{isSignedIn ? children : null}</>
+  return <>{!isSignedIn ? children : null}</>
 }
 
 const AuthProvider = ({children}) => {
