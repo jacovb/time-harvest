@@ -25,6 +25,7 @@ import Users from "./components/Users";
 import ProjectOverview from "./components/ProjectOverview";
 import MonthlyHoursBreakdown from "./components/MonthlyHoursBreakdown";
 import SignUpForm from "./components/SignUpForm";
+import SignInForm from "./components/SignInForm";
 import RenderAuthenticatedRoutes from "./components/RenderAuthenticatedRoutes";
 
 import useModal from "./hooks/useModal";
@@ -476,7 +477,7 @@ function App() {
 
   const RenderUnauthenticatedRoutes = () => (
     <Switch>
-      <Route exact path="/signup" component={SignUpForm} />
+      <Route exact path="/signin" component={SignInForm} />
     </Switch>
   );
 
@@ -485,43 +486,43 @@ function App() {
       <h1>Timesheet-App</h1>
       <Router>
         <div id="mainContainer">
-          {/* <AuthProvider>
+          <AuthProvider>
             <AuthIsNotSignedIn>
               <RenderUnauthenticatedRoutes />
             </AuthIsNotSignedIn>
-            <AuthIsSignedIn> */}
-          <RenderAuthenticatedRoutes
-            projects={projects}
-            setFormData={setFormData}
-            deleteProject={deleteProject}
-            UpdateProject={UpdateProject}
-            formData={formData}
-            handleAddData={handleAddData}
-            isShowing={isShowing}
-            toggle={toggle}
-            startForm={startForm}
-            users={users}
-            entry={entry}
-            handleAddEntry={handleAddEntry}
-            handleSetEntryUser={handleSetEntryUser}
-            entryData={entryData}
-            setEntryData={setEntryData}
-            createEntry={createEntry}
-            entryUserId={entryUserId}
-            deleteEntry={deleteEntry}
-            UpdateEntry={UpdateEntry}
-            startEntryForm={startEntryForm}
-            selectFilter={selectFilter}
-            startSelectFilter={startSelectFilter}
-            handleFilter={handleFilter}
-            userData={userData}
-            createUser={createUser}
-            handleAddUser={handleAddUser}
-            deleteUser={deleteUser}
-            createProject={createProject}
-          />
-          {/* </AuthIsSignedIn>
-          </AuthProvider> */}
+            <AuthIsSignedIn>
+              <RenderAuthenticatedRoutes
+                projects={projects}
+                setFormData={setFormData}
+                deleteProject={deleteProject}
+                UpdateProject={UpdateProject}
+                formData={formData}
+                handleAddData={handleAddData}
+                isShowing={isShowing}
+                toggle={toggle}
+                startForm={startForm}
+                users={users}
+                entry={entry}
+                handleAddEntry={handleAddEntry}
+                handleSetEntryUser={handleSetEntryUser}
+                entryData={entryData}
+                setEntryData={setEntryData}
+                createEntry={createEntry}
+                entryUserId={entryUserId}
+                deleteEntry={deleteEntry}
+                UpdateEntry={UpdateEntry}
+                startEntryForm={startEntryForm}
+                selectFilter={selectFilter}
+                startSelectFilter={startSelectFilter}
+                handleFilter={handleFilter}
+                userData={userData}
+                createUser={createUser}
+                handleAddUser={handleAddUser}
+                deleteUser={deleteUser}
+                createProject={createProject}
+              />
+            </AuthIsSignedIn>
+          </AuthProvider>
         </div>
       </Router>
     </div>
