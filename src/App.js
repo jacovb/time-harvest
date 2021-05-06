@@ -26,6 +26,7 @@ import {
 // import MonthlyHoursBreakdown from "./components/MonthlyHoursBreakdown";
 // import SignUpForm from "./components/SignUpForm";
 import SignInForm from "./components/SignInForm";
+import SignUpForm from "./components/SignUpForm";
 import RenderAuthenticatedRoutes from "./components/RenderAuthenticatedRoutes";
 
 import useModal from "./hooks/useModal";
@@ -478,6 +479,7 @@ function App() {
   const RenderUnauthenticatedRoutes = () => (
     <Switch>
       <Route exact path="/signin" component={SignInForm} />
+      <Route exact path="/signup" component={SignUpForm} />
     </Switch>
   );
 
