@@ -17,14 +17,14 @@ import {
   updateEntry as updateEntryMutation,
 } from "./graphql/mutations";
 
-import Navbar from "./components/Navbar";
-import Projects from "./components/Projects";
-import Timesheets from "./components/Timesheets";
-import Reports from "./components/Reports";
-import Users from "./components/Users";
-import ProjectOverview from "./components/ProjectOverview";
-import MonthlyHoursBreakdown from "./components/MonthlyHoursBreakdown";
-import SignUpForm from "./components/SignUpForm";
+// import Navbar from "./components/Navbar";
+// import Projects from "./components/Projects";
+// import Timesheets from "./components/Timesheets";
+// import Reports from "./components/Reports";
+// import Users from "./components/Users";
+// import ProjectOverview from "./components/ProjectOverview";
+// import MonthlyHoursBreakdown from "./components/MonthlyHoursBreakdown";
+// import SignUpForm from "./components/SignUpForm";
 import SignInForm from "./components/SignInForm";
 import RenderAuthenticatedRoutes from "./components/RenderAuthenticatedRoutes";
 
