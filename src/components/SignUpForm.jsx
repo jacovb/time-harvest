@@ -18,16 +18,16 @@ export default function SignUpForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', maxWidth: '500px', margin: 'auto'}}> 
-        <label htmlFor="name">Name:</label>
-        <input {...register("name", { required: true })} style={{ marginBottom: '10px'}} id="name" autoComplete="off"/>
-        <label htmlFor="email">Email:</label>
-        <input {...register("email", { required: true })} style={{ marginBottom: '10px'}} id="email" autoComplete="off"/>
-        <label htmlFor="password">Password:</label>
-        <input {...register("password", { required: true })} style={{ marginBottom: '10px'}} id="password" autoComplete="off" type="password"/>
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <input {...register("confirmPassword", { required: true })} style={{ marginBottom: '10px'}} id="confirmPassword" autoComplete="off" type="password"/>
-        <input type="submit" />
+      <form onSubmit={handleSubmit(onSubmit)} className="signin-form"> 
+        <label htmlFor="name" className="signin-label">Name:</label>
+        <input {...register("name", { required: true })} className="signin-input" id="name" autoComplete="off"/>
+        <label htmlFor="email" className="signin-label">Email:</label>
+        <input {...register("email", { required: true })} className="signin-input" id="email" autoComplete="off"/>
+        <label htmlFor="password" className="signin-label">Password:</label>
+        <input {...register("password", { required: true })} className="signin-input" id="password" autoComplete="off" type="password"/>
+        <label htmlFor="confirmPassword" className="signin-label">Confirm Password:</label>
+        <input {...register("confirmPassword", { required: true })} className="signin-input" id="confirmPassword" autoComplete="off" type="password"/>
+        <input type="submit" className="signin-button"/>
       </form>
       <Link to="/signin" >
         <input type="button" value="Sign In" />

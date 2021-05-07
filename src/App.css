@@ -51,6 +51,57 @@ h1 {
 }
 
 /* =============================================================== */
+/* SIGN IN & SIGN UP LAYOUT */
+/* =============================================================== */
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+}
+
+.signin-label {
+  color: white;
+  padding-left: 5px;
+  font-size: 14px;
+}
+
+.signin-input {
+  margin: 10px 0 10px 0;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: black;
+  padding-left: 5px;
+}
+
+.signin-input:focus {
+  background: #626263;
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.signin-button {
+  width: 100px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  background: var(--light-watermelon);
+}
+
+.signin-button:hover {
+  background: var(--mid-watermelon);
+  box-shadow: 2px 2px 2px var(--shadow);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* =============================================================== */
 /* NEW PROJECTS FLOAT LABEL */
 /* =============================================================== */
 
