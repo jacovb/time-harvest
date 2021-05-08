@@ -26,10 +26,10 @@ export default function SignInForm() {
         <input {...register("password", { required: true })} className="signin-input" id="password" autoComplete="off" type="password"/>
         <p style={{margin: 'auto', color: 'white'}}>{errorMessage}</p>
         <input type="submit" value="Sign In" className="signin-button" />
+        <Link to="/signup" >
+          <input type="button" value="Sign Up" className="signin-button"/>
+        </Link>
       </form>
-      <Link to="/signup" >
-        <input type="button" value="Sign Up" />
-      </Link>
     </>
   );
 }
