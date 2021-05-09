@@ -14,7 +14,7 @@ export default function Navbar() {
       }
     }
 
-    console.log(authContext.userInfo);
+    // console.log(authContext.userInfo);
 
     return (
         <div id="navbar">

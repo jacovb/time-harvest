@@ -56,9 +56,10 @@ h1 {
 
 .signin-form {
   display: flex;
-  flex-flow: column wrap;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 400px;
+  width: 400px;
   margin: auto;
 }
 
@@ -66,13 +67,14 @@ h1 {
   color: white;
   padding-left: 5px;
   font-size: 14px;
-  width: 395px;
+  width: 393px;
+  border: none;
 }
 
 .signin-input {
   margin: 10px 0 10px 0;
   height: 30px;
-  width: 395px;
+  width: 393px;
   border: none;
   border-radius: 5px;
   font-size: 16px;
@@ -102,6 +104,37 @@ h1 {
   background: var(--mid-watermelon);
   box-shadow: 2px 2px 2px var(--shadow);
   color: white;
+  transition: all 0.3s ease;
+}
+
+.forgot-password {
+  margin-top: 15px;
+  width: 300px;
+  color: white;
+  text-align: right;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  color: var(--mid-watermelon);
+  transition: all 0.3s ease;
+}
+
+.signup-link {
+  margin-top: 30px;
+  width: 400px;
+  color: white;
+  text-align: center;
+}
+
+.signup-link strong {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.signup-link strong:hover {
+  color: var(--mid-watermelon);
   transition: all 0.3s ease;
 }
 
