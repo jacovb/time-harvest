@@ -24,7 +24,6 @@ export default function Projects({
 
     return (
       <>
-        {console.log(projects)}
         <div className="projListHeading">
           <h2>Projects</h2>
           

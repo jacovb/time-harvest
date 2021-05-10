@@ -10,7 +10,6 @@ export default function Users({
 }) {
     return (
       <>
-        {console.log(users)}
         <div className="userHeading">
           <h2>Add New Users</h2>
         </div>
