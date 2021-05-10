@@ -27,6 +27,7 @@ import {
 // import SignUpForm from "./components/SignUpForm";
 import SignInForm from "./components/SignInForm";
 import SignUpForm from "./components/SignUpForm";
+import VerifySignUpForm from "./components/VerifySignUpForm";
 import RenderAuthenticatedRoutes from "./components/RenderAuthenticatedRoutes";
 
 import useModal from "./hooks/useModal";
@@ -480,6 +481,7 @@ function App() {
     <Switch>
       <Route exact path="/signin" component={SignInForm} />
       <Route exact path="/signup" component={SignUpForm} />
+      <Route exact path="/verifycode" component={VerifySignUpForm} />
     </Switch>
   );
 

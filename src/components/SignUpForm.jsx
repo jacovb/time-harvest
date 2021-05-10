@@ -28,6 +28,9 @@ export default function SignUpForm() {
         <label htmlFor="confirmPassword" className="signin-label">Confirm Password:</label>
         <input {...register("confirmPassword", { required: true })} className="signin-input" id="confirmPassword" autoComplete="off" type="password"/>
         <input type="submit" className="signin-button"/>
+        <Link to="/verifycode" className="forgot-password">
+          Verify Password...
+        </Link>
         <p className="signup-link">
           Already Signed Up? <Link to="/signin"><strong>Sign In</strong></Link>
         </p>
