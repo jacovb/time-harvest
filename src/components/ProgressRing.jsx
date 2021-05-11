@@ -8,7 +8,9 @@ export default function ProgressRing({usedHours, allowedHours, className, circle
     const radius = (size / 2) - (frontCircleWidth * 2);
     const circum = 2 * Math.PI * radius;
     const progressPercent = (usedHours / allowedHours * 100);
-    const progressStroke = (circum * ((100 - progressPercent) / 100));
+    const progressStroke = (progressPercent < 100 ? circum * ((100 - progressPercent) / 100) : 0);
+    const verylightBlue = "#6bc0fc";
+    const midWatermelon = "#ff686b";
     
     return (
         <>
@@ -24,7 +26,7 @@ export default function ProgressRing({usedHours, allowedHours, className, circle
                     r={radius}
                     cx={size/2}
                     cy={size/2}
-                    // stroke="lightgrey"
+                    stroke="lightgrey"
                     transform={`rotate(-90) translate(-${size} 0)`}
                 />
                 <circle
@@ -34,7 +36,7 @@ export default function ProgressRing({usedHours, allowedHours, className, circle
                     r={radius}
                     cx={size/2}
                     cy={size/2}
-                    // stroke={midGreen}
+                    stroke={progressPercent > 90 ? midWatermelon : verylightBlue}
                     strokeDasharray={circum}
                     strokeDashoffset={progressStroke}
                     transform={`rotate(-90) translate(-${size} 0)`}

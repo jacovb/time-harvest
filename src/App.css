@@ -8,8 +8,11 @@
   --dark-red: #8f2d56;
   --deep-pink: #d81159;
   --mustard: #ffbc42;
+  --barely-blue: #a9dafd;
+  --verylight-blue: #6bc0fc;
   --light-blue: #0496ff;
-  --dark-blue: #006ba6;
+  --mid-blue: #006ba6;
+  --dark-blue: #003c5c;
   --light-grey: #e9ecef;
   --medium-grey: #adb5bd;
   --dark-grey: #343a40;
@@ -24,7 +27,7 @@
   width: 95%;
   margin: auto;
   border-radius: 10px;
-  background-color: var(--dark-green);
+  background-color: var(--mid-blue);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -38,7 +41,7 @@
 }
 
 #navButton:hover {
-  background-color: var(--light-green);
+  background-color: var(--verylight-blue);
   color: black;
 }
 
@@ -338,7 +341,7 @@ select:focus + .label-status {
   margin-top: 10px;
   margin-bottom: 5px;
   height: 35px;
-  background: var(--light-green);
+  background: var(--barely-blue);
   border-radius: 5px;
   box-shadow: 2px 2px 2px var(--medium-grey);
   font-size: 16px;
@@ -462,14 +465,6 @@ select:focus + .label-status {
   transition: all 0.3s ease;
 }
 
-.background-circle {
-  stroke: lightgray;
-}
-
-.progress-circle {
-  stroke: var(--mid-green);
-}
-
 /* =============================================================== */
 /* ENTRY LAYOUT */
 /* =============================================================== */
@@ -556,7 +551,7 @@ select:focus + .label-status {
   margin-top: 10px;
   margin-bottom: 5px;
   height: 35px;
-  background: var(--light-green);
+  background: var(--barely-blue);
   border-radius: 5px;
   box-shadow: 2px 2px 2px var(--medium-grey);
   font-size: 16px;
@@ -977,35 +972,20 @@ select:focus + .label-status {
 }
 
 /*
- * Default color scale
+ * Color scale
  */
 
 .react-calendar-heatmap .color-empty {
-  fill: #eeeeee;
+  fill: white;
 }
-
-.react-calendar-heatmap .color-filled {
-  fill: #8cc665;
+.react-calendar-heatmap .color-1 {
+  fill: var(--verylight-blue);
 }
-
-/*
- * Github color scale
- */
-
-.react-calendar-heatmap .color-github-0 {
-  fill: #eeeeee;
+.react-calendar-heatmap .color-2 {
+  fill: var(--light-blue);
 }
-.react-calendar-heatmap .color-github-1 {
-  fill: #d6e685;
-}
-.react-calendar-heatmap .color-github-2 {
-  fill: #8cc665;
-}
-.react-calendar-heatmap .color-github-3 {
-  fill: #44a340;
-}
-.react-calendar-heatmap .color-github-4 {
-  fill: #1e6823;
+.react-calendar-heatmap .color-3 {
+  fill: var(--mid-blue);
 }
 
 /* =============================================================== */

@@ -119,11 +119,11 @@ export default function Timesheets({
                 if (!value || value.count === 0) {
                   return 'color-empty';
                 } else if (value.count < 8) {
-                  return 'color-github-1';
+                  return 'color-1';
                 } else if (value.count === 8) {
-                  return 'color-github-2';
+                  return 'color-2';
                 } else if (value.count > 8) {
-                  return 'color-github-4';
+                  return 'color-3';
                 }
               }}
               onClick={(e) => {
