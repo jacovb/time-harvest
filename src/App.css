@@ -348,6 +348,12 @@ select:focus + .label-status {
   border: 1px solid var(--dark-grey);
 }
 
+.project-form button:hover {
+  background: var(--mid-blue);
+  color: white;
+  transition: all 0.3s ease;
+}
+
 .project-form .modal-close-button {
   grid-column-start: 2;
   grid-column-end: 4;
@@ -556,6 +562,12 @@ select:focus + .label-status {
   box-shadow: 2px 2px 2px var(--medium-grey);
   font-size: 16px;
   border: 1px solid var(--dark-grey);
+}
+
+.timesheet-form button:hover {
+  background: var(--mid-blue);
+  color: white;
+  transition: all 0.3s ease;
 }
 
 .entryList {
@@ -783,6 +795,12 @@ select:focus + .label-status {
   background-color: var(--light-watermelon);
 }
 
+.modal .delete-button-projects:hover {
+  background: var(--mid-watermelon);
+  color: white;
+  transition: all 0.3s ease;
+}
+
 .modal .update-button-entry {
   grid-column-start: 1;
   grid-column-end: 2;
@@ -794,6 +812,12 @@ select:focus + .label-status {
   grid-column-end: 3;
   width: 100%;
   background-color: var(--light-watermelon);
+}
+
+.modal .delete-button-entry:hover {
+  background: var(--mid-watermelon);
+  color: white;
+  transition: all 0.3s ease;
 }
 
 /* button {
