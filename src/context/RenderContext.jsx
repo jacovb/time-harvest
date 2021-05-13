@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./App.css";
+import React, {useState, useEffect} from 'react';
 
 import { API } from "aws-amplify";
 
-import { listProjects, listUsers, listEntrys } from "./graphql/queries";
+import { listProjects, listUsers, listEntrys } from "../graphql/queries";
 
 import {
   createProject as createProjectMutation,
@@ -15,30 +13,9 @@ import {
   createEntry as createEntryMutation,
   deleteEntry as deleteEntryMutation,
   updateEntry as updateEntryMutation,
-} from "./graphql/mutations";
+} from "../graphql/mutations";
 
-// import Navbar from "./components/Navbar";
-// import Projects from "./components/Projects";
-// import Timesheets from "./components/Timesheets";
-// import Reports from "./components/Reports";
-// import Users from "./components/Users";
-// import ProjectOverview from "./components/ProjectOverview";
-// import MonthlyHoursBreakdown from "./components/MonthlyHoursBreakdown";
-// import SignUpForm from "./components/SignUpForm";
-import SignInForm from "./components/SignInForm";
-import SignUpForm from "./components/SignUpForm";
-import VerifySignUpForm from "./components/VerifySignUpForm";
-import RenderAuthenticatedRoutes from "./components/RenderAuthenticatedRoutes";
-
-import useModal from "./hooks/useModal";
-
-//Auth Context
-import AuthProvider, {
-  AuthIsNotSignedIn,
-  AuthIsSignedIn,
-} from "./context/AuthContext";
-
-import RenderContextProvider from "./context/RenderContext";
+import useModal from "../hooks/useModal";
 
 const startForm = {
   projectNo: "",
@@ -74,7 +51,9 @@ const startSelectFilter = {
   month: "",
 };
 
-function App() {
+export const RenderContext = React.createContext();
+
+const RenderContextProvider = ({children}) => {
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
   const [entry, setEntry] = useState([]);
@@ -372,169 +351,39 @@ function App() {
       entryUserDept: user.department,
     });
   }
+  
+  const state = {
+    projects,
+    createProject,
+    UpdateProject,
+    deleteProject,
+    users,
+    createUser,
+    deleteUser,
+    entry,
+    createEntry,
+    UpdateEntry,
+    deleteEntry,
+    formData,
+    setFormData,
+    isShowing,
+    toggle,
+    startForm,
+    startEntryForm,
+    startSelectFilter,
+    entryData,
+    setEntryData,
+    entryUserId,
+    selectFilter,
+    userData,
+    handleFilter,
+    handleAddData,
+    handleAddUser,
+    handleAddEntry,
+    handleSetEntryUser,
+  };
+  
+  return <RenderContext.Provider value={state}>{children}</RenderContext.Provider>
+};
 
-  // const RenderAuthenticatedRoutes = ({
-  //   projects,
-  //   setFormData,
-  //   createProject,
-  //   deleteProject,
-  //   UpdateProject,
-  //   formData,
-  //   handleAddData,
-  //   isShowing,
-  //   toggle,
-  //   startForm,
-  //   users,
-  //   entry,
-  //   handleAddEntry,
-  //   handleSetEntryUser,
-  //   entryData,
-  //   setEntryData,
-  //   createEntry,
-  //   entryUserId,
-  //   deleteEntry,
-  //   UpdateEntry,
-  //   startEntryForm,
-  //   selectFilter,
-  //   startSelectFilter,
-  //   handleFilter,
-  //   userData,
-  //   createUser,
-  //   handleAddUser,
-  //   deleteUser,
-  // }) => (
-  //   <>
-  //     <Navbar />
-  //     <Switch>
-  //       <Route exact path="/">
-  //         <p>Home</p>
-  //       </Route>
-
-  //       <Route exact path="/projects">
-  //         <Projects
-  //           projects={projects}
-  //           setFormData={setFormData}
-  //           createProject={createProject}
-  //           deleteProject={deleteProject}
-  //           UpdateProject={UpdateProject}
-  //           formData={formData}
-  //           handleAddData={handleAddData}
-  //           isShowing={isShowing}
-  //           toggle={toggle}
-  //           startForm={startForm}
-  //         />
-  //       </Route>
-
-  //       <Route exact path="/timesheets">
-  //         <Timesheets
-  //           projects={projects}
-  //           users={users}
-  //           entry={entry}
-  //           handleAddEntry={handleAddEntry}
-  //           handleSetEntryUser={handleSetEntryUser}
-  //           entryData={entryData}
-  //           setEntryData={setEntryData}
-  //           createEntry={createEntry}
-  //           entryUserId={entryUserId}
-  //           isShowing={isShowing}
-  //           toggle={toggle}
-  //           deleteEntry={deleteEntry}
-  //           UpdateEntry={UpdateEntry}
-  //           startEntryForm={startEntryForm}
-  //         />
-  //       </Route>
-
-  //       <Route exact path="/reports">
-  //         <Reports />
-  //       </Route>
-
-  //       <Route exact path="/projectOverview">
-  //         <ProjectOverview
-  //           projects={projects}
-  //           selectFilter={selectFilter}
-  //           handleFilter={handleFilter}
-  //           startSelectFilter={startSelectFilter}
-  //         />
-  //       </Route>
-
-  //       <Route exact path="/monthlyHours">
-  //         <MonthlyHoursBreakdown
-  //           users={users}
-  //           entry={entry}
-  //           selectFilter={selectFilter}
-  //           handleFilter={handleFilter}
-  //         />
-  //       </Route>
-
-  //       <Route exact path="/users">
-  //         <Users
-  //           userData={userData}
-  //           createUser={createUser}
-  //           handleAddUser={handleAddUser}
-  //           users={users}
-  //           deleteUser={deleteUser}
-  //         />
-  //       </Route>
-  //     </Switch>
-  //   </>
-  // );
-
-  const RenderUnauthenticatedRoutes = () => (
-    <Switch>
-      <Route exact path="/signin" component={SignInForm} />
-      <Route exact path="/signup" component={SignUpForm} />
-      <Route exact path="/verifycode" component={VerifySignUpForm} />
-    </Switch>
-  );
-
-  return (
-    <div className="App">
-      <h1>Timesheet-App</h1>
-      <Router>
-        <div id="mainContainer">
-          <AuthProvider>
-            <AuthIsNotSignedIn>
-              <RenderUnauthenticatedRoutes />
-            </AuthIsNotSignedIn>
-            <AuthIsSignedIn>
-              <RenderContextProvider>
-                <RenderAuthenticatedRoutes
-                  projects={projects}
-                  setFormData={setFormData}
-                  deleteProject={deleteProject}
-                  UpdateProject={UpdateProject}
-                  formData={formData}
-                  handleAddData={handleAddData}
-                  isShowing={isShowing}
-                  toggle={toggle}
-                  startForm={startForm}
-                  users={users}
-                  entry={entry}
-                  handleAddEntry={handleAddEntry}
-                  handleSetEntryUser={handleSetEntryUser}
-                  entryData={entryData}
-                  setEntryData={setEntryData}
-                  createEntry={createEntry}
-                  entryUserId={entryUserId}
-                  deleteEntry={deleteEntry}
-                  UpdateEntry={UpdateEntry}
-                  startEntryForm={startEntryForm}
-                  selectFilter={selectFilter}
-                  startSelectFilter={startSelectFilter}
-                  handleFilter={handleFilter}
-                  userData={userData}
-                  createUser={createUser}
-                  handleAddUser={handleAddUser}
-                  deleteUser={deleteUser}
-                  createProject={createProject}
-                />
-              </RenderContextProvider>
-            </AuthIsSignedIn>
-          </AuthProvider>
-        </div>
-      </Router>
-    </div>
-  );
-}
-
-export default App;
+export default RenderContextProvider;
