@@ -1,13 +1,11 @@
 import React from "react";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import { RenderContext } from "../context/RenderContext";
 
-export default function Users({
-  userData, 
-  createUser, 
-  handleAddUser, 
-  users, 
-  deleteUser
-}) {
+export default function Users() {
+
+  const context = React.useContext(RenderContext);
+
     return (
       <>
         <div className="userHeading">
@@ -19,9 +17,9 @@ export default function Users({
             <input 
                 type="text"
                 id="userField"
-                value={userData.name}
+                value={context.userData.name}
                 name="name"
-                onChange={handleAddUser}
+                onChange={context.handleAddUser}
                 required
             />
           </div>
@@ -32,9 +30,9 @@ export default function Users({
                 type="text"
                 id="addDepartment"
                 name="department"
-                value={userData.department}
+                value={context.userData.department}
                 required
-                onChange={handleAddUser}>
+                onChange={context.handleAddUser}>
                     <option value="" disabled hidden>-- Select Department --</option>
                     <option value="Coordination">Coordination</option>
                     <option value="Technical">Technical</option>
@@ -42,16 +40,16 @@ export default function Users({
                     <option value="Construction">Construction</option>   
             </select>
           </div>
-          <button onClick={createUser}>Add New User</button>
+          <button onClick={context.createUser}>Add New User</button>
         </div>
         <div className="userList">
-            {users
+            {context.users
               .map((user, idx) => (
                 <div className="userRow" key={idx}>
                   <div>{user.name}</div>
                   <div>{user.department}</div>
                   <button
-                    onClick={() => deleteUser(user)}
+                    onClick={() => context.deleteUser(user)}
                   >
                     <HighlightOffIcon />
                   </button>

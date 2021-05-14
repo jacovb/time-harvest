@@ -32,13 +32,6 @@ export default function RenderAuthenticatedRoutes({
   deleteEntry,
   UpdateEntry,
   startEntryForm,
-  selectFilter,
-  startSelectFilter,
-  handleFilter,
-  userData,
-  createUser,
-  handleAddUser,
-  deleteUser,
 }) {
   return (
     <>
@@ -87,31 +80,15 @@ export default function RenderAuthenticatedRoutes({
         </Route>
     
         <Route exact path="/projectOverview">
-          <ProjectOverview
-            projects={projects}
-            selectFilter={selectFilter}
-            handleFilter={handleFilter}
-            startSelectFilter={startSelectFilter}
-          />
+          <ProjectOverview/>
         </Route>
     
         <Route exact path="/monthlyHours">
-          <MonthlyHoursBreakdown
-            users={users}
-            entry={entry}
-            selectFilter={selectFilter}
-            handleFilter={handleFilter}
-          />
+          <MonthlyHoursBreakdown/>
         </Route>
     
         <Route exact path="/users">
-          <Users
-            userData={userData}
-            createUser={createUser}
-            handleAddUser={handleAddUser}
-            users={users}
-            deleteUser={deleteUser}
-          />
+          <Users/>
         </Route>
       </Switch>
     </>

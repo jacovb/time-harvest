@@ -1,16 +1,15 @@
 import React from "react";
+import { RenderContext } from "../context/RenderContext";
 
 import ProjectSummary from "./ProjectSummary";
 
-export default function ProjectOverview({
-  projects,
-  selectFilter,
-  handleFilter,
-}) {
+export default function ProjectOverview() {
+
+  const context = React.useContext(RenderContext);
 
   function projectsFilter(projArray, selection) {
     if (selection.id.length === 0 && selection.status.length === 0) {
-      return projects;
+      return context.projects;
     } else if (selection.id === "") {
       return projArray.filter((proj) => selection.status === proj.status);
     } else if (selection.status === "") {
@@ -20,7 +19,7 @@ export default function ProjectOverview({
     }
   }
 
-  let projectFilter = projectsFilter(projects, selectFilter);
+  let projectFilter = projectsFilter(context.projects, context.selectFilter);
 
   return (
     <>
@@ -41,10 +40,10 @@ export default function ProjectOverview({
           className="select-status"
           type="text"
           id="projStatus"
-          value={selectFilter.status}
+          value={context.selectFilter.status}
           name="status"
           required
-          onChange={handleFilter}>
+          onChange={context.handleFilter}>
             <option value="">Show All</option>
             <option value="Quote">Quote</option>
             <option value="Current">Current</option>
@@ -55,10 +54,10 @@ export default function ProjectOverview({
             className="select-no"
             type="text"
             id="projId"
-            value={selectFilter.id}
+            value={context.selectFilter.id}
             name="id"
             required
-            onChange={handleFilter}>
+            onChange={context.handleFilter}>
             <option value="">Show All</option>
             {projectFilter
                 .sort((a, b) => a.projectNo - b.projectNo)

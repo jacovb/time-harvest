@@ -1,15 +1,13 @@
 import React from "react";
+import { RenderContext } from "../context/RenderContext";
 
-export default function MonthlyHoursBreakdown({
-  users,
-  entry,
-  selectFilter,
-  handleFilter,
-}) {  
+export default function MonthlyHoursBreakdown() {  
   
+  const context = React.useContext(RenderContext);
+
     const entryDates = 
-      users.map((user) => {
-        return entry
+      context.users.map((user) => {
+        return context.entry
           .filter((item) => item.user.id === user.id)
           .sort((a, b) => new Date(a.date) - new Date(b.date))
           .map((item, idx) => new Date(item.date)
@@ -27,7 +25,7 @@ export default function MonthlyHoursBreakdown({
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
 
     function getEntryDates(userId) {
-      return entry
+      return context.entry
         .filter((item) => item.user.id === userId)
         .sort((a, b) => new Date(a.date) - new Date(b.date))
         .map((item, idx) => new Date(item.date)
@@ -75,13 +73,13 @@ export default function MonthlyHoursBreakdown({
       }
     }
 
-    let entryFilter = entriesFilter(entry, selectFilter);
+    let entryFilter = entriesFilter(context.entry, context.selectFilter);
     let usersFromEntry = 
       entryFilter
         .map((item) => item.user.name)
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
-    let userFilter = usersFilter(users, selectFilter, usersFromEntry);
-    let dateFilter = datesFilter(entryDates, selectFilter).filter(e => e.length);
+    let userFilter = usersFilter(context.users, context.selectFilter, usersFromEntry);
+    let dateFilter = datesFilter(entryDates, context.selectFilter).filter(e => e.length);
 
     
     return (
@@ -103,12 +101,12 @@ export default function MonthlyHoursBreakdown({
               className="select-user"
               type="text"
               id="entryUser"
-              value={selectFilter.entryUserId}
+              value={context.selectFilter.entryUserId}
               name="entryUserId"
               required
-              onChange={handleFilter}>
+              onChange={context.handleFilter}>
                 <option value="">Show All</option>
-                {users
+                {context.users
                   .sort((a, b) => a.name - b.name)
                   .map((user, idx) => (
                       <option key={idx} value={user.id}>
@@ -121,10 +119,10 @@ export default function MonthlyHoursBreakdown({
                 className="select-month"
                 type="text"
                 id="entryMonth"
-                value={selectFilter.month}
+                value={context.selectFilter.month}
                 name="month"
                 required
-                onChange={handleFilter}>
+                onChange={context.handleFilter}>
                 <option value="">Show All</option>
                 {entryDateArray
                     .map((month, idx) => (
@@ -165,7 +163,7 @@ export default function MonthlyHoursBreakdown({
                       </React.Fragment>
                     ))}
                     <div className="c-5 total">
-                      {entry
+                      {context.entry
                         .filter((obj) => obj.user.id === user.id)
                         .filter((obj) => new Date(obj.date).toLocaleString('default', { month: 'long' }) === month.split(" ")[0])
                         .reduce((acc, curr) => acc + curr.time, 0)}
