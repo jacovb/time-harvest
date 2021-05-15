@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { RenderContext } from "../context/RenderContext";
 
 import EditProjectModal from "./EditProjectModal";
 import AddProjectModal from "./AddProjectModal";
@@ -6,19 +7,10 @@ import ProjectListRow from "./ProjectListRow";
 
 import AddIcon from '@material-ui/icons/Add';
 
-export default function Projects({
-  projects,
-  setFormData,
-  createProject, 
-  deleteProject, 
-  UpdateProject, 
-  formData, 
-  handleAddData, 
-  isShowing, 
-  toggle,
-  startForm
-}) {
+export default function Projects() {
 
+    const context = React.useContext(RenderContext);
+  
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
 
@@ -31,7 +23,7 @@ export default function Projects({
             className="addButton"
             onClick={() => {
               setAddModal(true);
-              toggle()
+              context.toggle()
             }}>
               <AddIcon />
             <span className="edit-tooltip">New Project</span>
@@ -39,37 +31,37 @@ export default function Projects({
         </div>
 
         {addModal && <AddProjectModal 
-          isShowing={isShowing}
-          hide={toggle}
-          formData={formData}
-          handleAddData={handleAddData}
-          startForm={startForm}
-          setFormData={setFormData}
-          createProject={createProject}
+          isShowing={context.isShowing}
+          hide={context.toggle}
+          formData={context.formData}
+          handleAddData={context.handleAddData}
+          startForm={context.startForm}
+          setFormData={context.setFormData}
+          createProject={context.createProject}
           setAddModal={setAddModal}
         />}
 
         <div className="projectsList">
-            {projects
+            {context.projects
               .sort((a, b) => a.projectNo - b.projectNo)
               .map((project, idx) => (
                 <ProjectListRow 
                   key={idx}
                   project={project}
-                  setFormData={setFormData} 
-                  toggle={toggle}
+                  setFormData={context.setFormData} 
+                  toggle={context.toggle}
                   setEditModal={setEditModal}
                 />
               ))}
             {editModal && <EditProjectModal
-              isShowing={isShowing}
-              hide={toggle}
-              formData={formData}
-              updateProject={UpdateProject}
-              handleAddData={handleAddData}
-              startForm={startForm}
-              setFormData={setFormData}
-              deleteProject={deleteProject}
+              isShowing={context.isShowing}
+              hide={context.toggle}
+              formData={context.formData}
+              updateProject={context.UpdateProject}
+              handleAddData={context.handleAddData}
+              startForm={context.startForm}
+              setFormData={context.setFormData}
+              deleteProject={context.deleteProject}
               setEditModal={setEditModal}
             />}
         </div>

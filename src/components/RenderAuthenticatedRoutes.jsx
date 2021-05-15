@@ -10,29 +10,7 @@ import Users from "./Users";
 import ProjectOverview from "./ProjectOverview";
 import MonthlyHoursBreakdown from "./MonthlyHoursBreakdown";
 
-export default function RenderAuthenticatedRoutes({
-  projects,
-  setFormData,
-  createProject,
-  deleteProject,
-  UpdateProject,
-  formData,
-  handleAddData,
-  isShowing,
-  toggle,
-  startForm,
-  users,
-  entry,
-  handleAddEntry,
-  handleSetEntryUser,
-  entryData,
-  setEntryData,
-  createEntry,
-  entryUserId,
-  deleteEntry,
-  UpdateEntry,
-  startEntryForm,
-}) {
+export default function RenderAuthenticatedRoutes() {
   return (
     <>
       <Navbar />
@@ -42,37 +20,11 @@ export default function RenderAuthenticatedRoutes({
         </Route>
     
         <Route exact path="/projects">
-          <Projects
-            projects={projects}
-            setFormData={setFormData}
-            createProject={createProject}
-            deleteProject={deleteProject}
-            UpdateProject={UpdateProject}
-            formData={formData}
-            handleAddData={handleAddData}
-            isShowing={isShowing}
-            toggle={toggle}
-            startForm={startForm}
-          />
+          <Projects/>
         </Route>
     
         <Route exact path="/timesheets">
-          <Timesheets
-            projects={projects}
-            users={users}
-            entry={entry}
-            handleAddEntry={handleAddEntry}
-            handleSetEntryUser={handleSetEntryUser}
-            entryData={entryData}
-            setEntryData={setEntryData}
-            createEntry={createEntry}
-            entryUserId={entryUserId}
-            isShowing={isShowing}
-            toggle={toggle}
-            deleteEntry={deleteEntry}
-            UpdateEntry={UpdateEntry}
-            startEntryForm={startEntryForm}
-          />
+          <Timesheets/>
         </Route>
     
         <Route exact path="/reports">

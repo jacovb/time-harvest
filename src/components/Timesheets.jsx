@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { RenderContext } from "../context/RenderContext";
 import CalendarHeatmap from 'react-calendar-heatmap';
 import ReactTooltip from 'react-tooltip';
 
@@ -8,23 +9,10 @@ import AddEntryModal from "./AddEntryModal";
 import EditEntryModal from "./EditEntryModal";
 import EntryListRow from "./EntryListRow";
 
-export default function Timesheets({
-  projects, 
-  users, 
-  entry, 
-  handleAddEntry, 
-  handleSetEntryUser, 
-  entryData,
-  setEntryData, 
-  createEntry, 
-  entryUserId, 
-  toggle, 
-  isShowing,
-  deleteEntry,
-  UpdateEntry,
-  startEntryForm,
-}) {
+export default function Timesheets() {
   
+    const context = React.useContext(RenderContext)
+
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
 
@@ -45,15 +33,15 @@ export default function Timesheets({
     const dateRange = getDatesBetween(startDate, endDate);
 
     const entryDates = 
-      entry
-        .filter((item) => item.user.id === entryUserId.entryUserId)
+      context.entry
+        .filter((item) => item.user.id === context.entryUserId.entryUserId)
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .map((item, idx) => (item.date))
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
 
     const userEntries = 
-      entry
-        .filter((item) => item.user.id === entryUserId.entryUserId)
+      context.entry
+        .filter((item) => item.user.id === context.entryUserId.entryUserId)
         .sort((a, b) => new Date(b.date) - new Date(a.date))
     
     return (
@@ -65,10 +53,10 @@ export default function Timesheets({
               type="text"
               id="user"
               name="entryUserId"
-              value={entryUserId.entryUserId}
-              onChange={handleSetEntryUser}>
+              value={context.entryUserId.entryUserId}
+              onChange={context.handleSetEntryUser}>
                 <option value="" hidden>-- Select Project User --</option>
-                {users
+                {context.users
                   .sort((a, b) => a.name - b.name)
                   .map((user, idx) => (
                       <option key={idx} value={user.id}>
@@ -81,12 +69,12 @@ export default function Timesheets({
           <button
             className="addButton" 
             onClick={() => {
-              if (entryUserId.entryUserId === "") {
+              if (context.entryUserId.entryUserId === "") {
                 alert("Please select a User");
                 return;
               } else {
                 setAddModal(true)
-                toggle()
+                context.toggle()
               }
             }}>
               <AddIcon />
@@ -95,14 +83,14 @@ export default function Timesheets({
         </div>
         
         {addModal && <AddEntryModal
-            isShowing={isShowing}
-            hide={toggle}
-            entryData={entryData}
-            createEntry={createEntry}
-            handleAddEntry={handleAddEntry}
-            projects={projects}
-            startEntryForm={startEntryForm}
-            setEntryData={setEntryData}
+            isShowing={context.isShowing}
+            hide={context.toggle}
+            entryData={context.entryData}
+            createEntry={context.createEntry}
+            handleAddEntry={context.handleAddEntry}
+            projects={context.projects}
+            startEntryForm={context.startEntryForm}
+            setEntryData={context.setEntryData}
             setAddModal={setAddModal}
           />}
           
@@ -127,16 +115,16 @@ export default function Timesheets({
                 }
               }}
               onClick={(e) => {
-                if (entryUserId.entryUserId === "") {
+                if (context.entryUserId.entryUserId === "") {
                   alert("Please select a User");
                   return;
                 } else {
-                  setEntryData({
-                    ...entryData,
+                  context.setEntryData({
+                    ...context.entryData,
                     date: e.date
                   })
                   setAddModal(true)
-                  toggle()
+                  context.toggle()
                 }
               }}
               tooltipDataAttrs={value => {
@@ -159,21 +147,21 @@ export default function Timesheets({
                 key={idx}
                 entryDate={entryDate}
                 userEntries={userEntries}
-                setEntryData={setEntryData}
+                setEntryData={context.setEntryData}
                 setEditModal={setEditModal}
-                toggle={toggle}
+                toggle={context.toggle}
               />
             ))}
           {editModal && <EditEntryModal
-            isShowing={isShowing}
-            hide={toggle}
-            entryData={entryData}
-            UpdateEntry={UpdateEntry}
-            deleteEntry={deleteEntry}
-            handleAddEntry={handleAddEntry}
-            projects={projects}
-            startEntryForm={startEntryForm}
-            setEntryData={setEntryData}
+            isShowing={context.isShowing}
+            hide={context.toggle}
+            entryData={context.entryData}
+            UpdateEntry={context.UpdateEntry}
+            deleteEntry={context.deleteEntry}
+            handleAddEntry={context.handleAddEntry}
+            projects={context.projects}
+            startEntryForm={context.startEntryForm}
+            setEntryData={context.setEntryData}
             setEditModal={setEditModal}
           />}
         </div>
