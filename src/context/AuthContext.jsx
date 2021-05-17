@@ -115,6 +115,24 @@ const AuthProvider = ({children}) => {
     return Auth.signOut();
   };
 
+  const forgotPassword = async (email) => {
+    try {
+      const result = await Auth.forgotPassword(email);
+      return result;
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const forgotPasswordSubmit = async (email, code, new_password) => {
+    try {
+      const result = await Auth.forgotPasswordSubmit(email, code, new_password);
+      return result;
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const state = {
     isSignedIn,
     sessionInfo,
@@ -124,6 +142,8 @@ const AuthProvider = ({children}) => {
     signIn,
     verifySignUp,
     getCurrentSession,
+    forgotPassword,
+    forgotPasswordSubmit,
   };
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;
