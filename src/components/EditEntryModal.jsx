@@ -9,7 +9,7 @@ export default function EditEntryModal({
       isShowing, 
       hide, 
       entryData, 
-      UpdateEntry,
+      updateEntry,
       deleteEntry, 
       handleAddEntry, 
       projects, 
@@ -143,7 +143,7 @@ export default function EditEntryModal({
                     className="update-button-entry"
                     onClick={() => {
                       setEditModal(false);
-                      UpdateEntry(entryData)
+                      updateEntry(entryData)
                       }}>
                         Update
                 </button>

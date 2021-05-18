@@ -57,7 +57,7 @@ export default function Projects() {
               isShowing={context.isShowing}
               hide={context.toggle}
               formData={context.formData}
-              updateProject={context.UpdateProject}
+              updateProject={context.updateProject}
               handleAddData={context.handleAddData}
               startForm={context.startForm}
               setFormData={context.setFormData}

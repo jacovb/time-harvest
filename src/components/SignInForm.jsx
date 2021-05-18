@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 export default function SignInForm() {
+  const history = useHistory();
   const {register, handleSubmit} = useForm();
   const [errorMessage, setErrorMessage] = useState("")
   const authContext = React.useContext(AuthContext);
@@ -11,7 +12,7 @@ export default function SignInForm() {
   const onSubmit = async (data) => {
     try {
       await authContext.signIn(data.email, data.password);
-      // navigate verfication
+      history.push('./');
     } catch (err) {
       setErrorMessage(err.message);
     }

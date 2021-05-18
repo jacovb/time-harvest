@@ -1,16 +1,17 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 export default function VerifySignUpForm() {
+  const history = useHistory()
   const {register, handleSubmit} = useForm();
   const authContext = React.useContext(AuthContext);
 
   const onSubmit = async (data) => {
     try {
       await authContext.verifySignUp(data.email, data.verificationCode);
-      // navigate verfication
+      history.push('./signin');
     } catch (err) {
       console.log(err);
     }

@@ -18,7 +18,7 @@ export default function RenderAuthenticatedRoutes() {
       <Switch>
         <Route exact path="/">
           <p>Home</p>
-          {console.log(Auth.user.attributes)}
+          {console.log(Auth)}
         </Route>
     
         <Route exact path="/projects">

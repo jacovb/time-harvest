@@ -1,16 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 export default function ForgotPassword() {
+  const history = useHistory();
   const {register, handleSubmit} = useForm();
   const authContext = React.useContext(AuthContext);
 
   const onSubmit = async (data) => {
     try {
       await authContext.forgotPassword(data.email);
-      // navigate verfication
+      history.push('./forgotpasswordsubmit')
     } catch (err) {
       console.log(err)
     }
@@ -23,9 +24,9 @@ export default function ForgotPassword() {
         <input {...register("email", { required: true })} className="signin-input" id="email" autoComplete="off"/>
         <input type="submit" value="Submit" className="signin-button" />
         
-        <Link to="/forgotpasswordsubmit" className="forgot-password">
+        {/* <Link to="/forgotpasswordsubmit" className="forgot-password">
           Renew Password...
-        </Link>
+        </Link> */}
 
         <p className="signup-link">
           Remember your Password? - please <Link to="/signin"><strong>Sign In</strong></Link>

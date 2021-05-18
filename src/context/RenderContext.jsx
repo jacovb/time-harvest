@@ -222,7 +222,7 @@ const RenderContextProvider = ({children}) => {
     }
   }
 
-  async function UpdateProject({ id }) {
+  async function updateProject({ id }) {
     const newProjectsArray = [...projects];
     setIndex(projects.findIndex((item) => item.id === id));
     newProjectsArray[index] = formData;
@@ -251,7 +251,7 @@ const RenderContextProvider = ({children}) => {
     }
   }
 
-  async function UpdateEntry(entryData) {
+  async function updateEntry(entryData) {
     try {
       await API.graphql({
         query: updateEntryMutation,
@@ -355,14 +355,14 @@ const RenderContextProvider = ({children}) => {
   const state = {
     projects,
     createProject,
-    UpdateProject,
+    updateProject,
     deleteProject,
     users,
     createUser,
     deleteUser,
     entry,
     createEntry,
-    UpdateEntry,
+    updateEntry,
     deleteEntry,
     formData,
     setFormData,

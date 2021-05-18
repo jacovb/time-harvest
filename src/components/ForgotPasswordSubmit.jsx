@@ -1,16 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 export default function ForgotPasswordSubmit() {
+  const history = useHistory();
   const {register, handleSubmit} = useForm();
   const authContext = React.useContext(AuthContext);
 
   const onSubmit = async (data) => {
     try {
-      await authContext.forgotPasswordSubmit(data.email, data.code, data.newPassword);
-      // navigate verfication
+      await authContext.forgotPasswordSubmit(data.email, data.code, data.newPassword)
+      history.push('./signin');
     } catch (err) {
       console.log(err)
     }

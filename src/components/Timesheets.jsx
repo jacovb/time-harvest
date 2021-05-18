@@ -156,7 +156,7 @@ export default function Timesheets() {
             isShowing={context.isShowing}
             hide={context.toggle}
             entryData={context.entryData}
-            UpdateEntry={context.UpdateEntry}
+            updateEntry={context.updateEntry}
             deleteEntry={context.deleteEntry}
             handleAddEntry={context.handleAddEntry}
             projects={context.projects}
