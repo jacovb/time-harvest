@@ -10,6 +10,7 @@ import Reports from "./Reports";
 import Users from "./Users";
 import ProjectOverview from "./ProjectOverview";
 import MonthlyHoursBreakdown from "./MonthlyHoursBreakdown";
+import WeeklyHoursBreakdown from "./WeeklyHoursBreakdown";
 
 export default function RenderAuthenticatedRoutes() {
   return (
@@ -39,6 +40,10 @@ export default function RenderAuthenticatedRoutes() {
     
         <Route exact path="/monthlyHours">
           <MonthlyHoursBreakdown/>
+        </Route>
+
+        <Route exact path="/weeklyHours">
+          <WeeklyHoursBreakdown/>
         </Route>
     
         <Route exact path="/users">

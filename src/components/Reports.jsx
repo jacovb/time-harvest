@@ -13,13 +13,19 @@ export default function Reports({
           <div className="report-links">
             <Link to="/projectOverview">
               <button>
-                Project Overview
+                Projects: Overview
               </button>
             </Link>
 
             <Link to="/monthlyHours">
               <button>
-                Monthly Hours Breakdown
+                Users: Monthly Hours Breakdown
+              </button>
+            </Link>
+
+            <Link to="/weeklyHours">
+              <button>
+                Users: Weekly Hours Breakdown
               </button>
             </Link>
           </div>
