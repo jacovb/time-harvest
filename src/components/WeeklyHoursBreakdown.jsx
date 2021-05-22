@@ -14,24 +14,19 @@ export default function WeeklyHoursBreakdown() {
     return [d.getFullYear(), weekNo]
   }
 
-  // function getFirstAndLastDayOfWeek(day) {
-  //   let d = new Date(day);
-  //   let first = d.getDate() - d.getDay();
-  //   let last = first + 6;
-  
-  //   let firstday = new Date(d.setDate(first)).toISOString().split('T')[0];
-  //   let lastday = new Date(d.setDate(last)).toISOString().split('T')[0];
-  //   return [firstday, lastday];
-  // }
-
   function getFirstAndLastDayOfWeek(week) {
     let year = week[0];
     let weekNo = week[1];
+    let oneday = new Date(year, 0, 1).getDay();
     let d = new Date("Jan 01, " + year + " 01:00:00");
-    let w = d.getTime() + 604800000 * (weekNo - 1); // 1 week in milliseconds
+    let w = d.getTime() - (3600000 * 24 * (oneday)) + 604800000 * (weekNo); // 1 week in milliseconds
     let firstday = new Date(w);
     let lastday = new Date(w + 518400000) // 6 days in milliseconds
-    return [firstday.toISOString().split('T')[0], lastday.toISOString().split('T')[0]] 
+    return [firstday, lastday] 
+  }
+
+  function weekArray(weekNumbersArray) {
+    return weekNumbersArray.map((week) => getFirstAndLastDayOfWeek(week))
   }
 
   const entryDates = 
@@ -51,21 +46,112 @@ export default function WeeklyHoursBreakdown() {
         }, [])
       .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
 
+  
   const weekNumbersRaw = entryDateArray
     .map((date, idx) => getWeekNumber(date))
-    .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
+
+  const weekNumbersArray = Array.from(new Set(weekNumbersRaw.map(JSON.stringify)), JSON.parse).sort((a, b) => b[0] - a[0]).sort((a, b) => b[1] - a[1])
   
-  const weekNumbersArray = Array.from(new Set(weekNumbersRaw.map(JSON.stringify)), JSON.parse)
   
-  console.log(entryDates);
-  console.log(entryDateArray);
-  console.log(weekNumbersArray.sort((a, b) => a[0] - b[0]).sort((a, b) => a[1] - b[1]));
-  console.log(getFirstAndLastDayOfWeek([2021, 11]));
+  
+  const userWeekNumbersRaw = entryDates.map((userDates, idx) => userDates.map((date, idx) => getWeekNumber(date)))
+  const userWeekNumbersArray = userWeekNumbersRaw
+    .map((userWeeks, idx) => Array.from(new Set(userWeeks.map(JSON.stringify)), JSON.parse)
+    .sort((a, b) => a[0] - b[0])
+    .sort((a, b) => a[1] - b[1]))
+  const userWeekRangeArray = userWeekNumbersArray.map((usersWeek, idx) => weekArray(usersWeek));
+
+  console.log(context.selectFilter);
+  
   
   return (
       <>
         <div className="projListHeading">
           <h2>Weekly Hours per Person</h2>
+        </div>
+
+        <div className="filter-bar">
+            <label className="main-label">Filter by: </label>
+            <label htmlFor="entryUser" className="label">
+              User: 
+            </label>
+            <label htmlFor="entryWeek" className="label">
+              Week:
+            </label>
+            
+            <select
+              className="select-user"
+              type="text"
+              id="entryUser"
+              value={context.selectFilter.entryUserId}
+              name="entryUserId"
+              required
+              onChange={context.handleFilter}>
+                <option value="">Show All</option>
+                {context.users
+                  .sort((a, b) => a.name - b.name)
+                  .map((user, idx) => (
+                      <option key={idx} value={user.id}>
+                        {user.name}
+                      </option>
+                ))}
+            </select>
+            
+            <select
+                className="select-month"
+                type="text"
+                id="entryWeek"
+                value={context.selectFilter.week}
+                name="week"
+                required
+                onChange={context.handleFilter}>
+                <option value="">Show All</option>
+                {weekNumbersArray
+                    .map((week, idx) => (
+                        <option key={idx} value={week}>
+                            {"Week " + week[1] + ", " + week[0]}
+                        </option>
+                ))}  
+            </select>
+          </div>
+
+        <div className="table-person">
+          <div className="table-heading">
+            <div className="c-1 thead">Date</div>
+            <div className="c-2 thead">Project No.</div>
+            <div className="c-3 thead">Name</div>
+            <div className="c-4 thead">Description</div>
+            <div className="c-5 thead">Time</div>
+          </div>
+          {context.users.map((user, idx1) => (
+            <div className="table" key={idx1}>
+              <h2>{user.name}</h2>
+                {userWeekNumbersArray[idx1].map((week, idx2) => (
+                  <React.Fragment key={idx2}>
+                    <h5 className="c-1" key={idx2}>{"Week " + week[1] + ", " + week[0]}</h5>
+                    {context.entry
+                      .filter((obj) => obj.user.id === user.id)
+                      .filter((obj) => (new Date(obj.date) > userWeekRangeArray[idx1][idx2][0]) && (new Date(obj.date) < userWeekRangeArray[idx1][idx2][1]))
+                      .sort((a, b) => new Date(a.date) - new Date(b.date))
+                      .map((obj, idx3) => (
+                        <React.Fragment key={idx3}>
+                          <div className="c-1">{obj.date}</div>
+                          <div className="c-2">{obj.project.projectNo}</div>
+                          <div className="c-3">{obj.project.name}</div>
+                          <div className="c-4">{obj.description}</div>
+                          <div className="c-5">{obj.time}</div>
+                      </React.Fragment>
+                      ))}
+                      <div className="c-5 total">
+                        {context.entry
+                          .filter((obj) => obj.user.id === user.id)
+                          .filter((obj) => (new Date(obj.date) > userWeekRangeArray[idx1][idx2][0]) && (new Date(obj.date) < userWeekRangeArray[idx1][idx2][1]))
+                          .reduce((acc, curr) => acc + curr.time, 0)}
+                      </div>
+                  </React.Fragment> 
+                ))}
+            </div>
+          ))}
         </div>
       </>
   )
