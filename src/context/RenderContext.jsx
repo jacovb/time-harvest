@@ -49,6 +49,7 @@ const startSelectFilter = {
   id: "",
   entryUserId: "",
   month: "",
+  week: "",
 };
 
 export const RenderContext = React.createContext();
@@ -375,6 +376,7 @@ const RenderContextProvider = ({children}) => {
     setEntryData,
     entryUserId,
     selectFilter,
+    setSelectFilter,
     userData,
     handleFilter,
     handleAddData,

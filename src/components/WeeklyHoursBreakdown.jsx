@@ -4,6 +4,7 @@ import { RenderContext } from "../context/RenderContext";
 export default function WeeklyHoursBreakdown() {  
   
   const context = React.useContext(RenderContext);
+  //context.setSelectFilter(context.startSelectFilter);
 
   function getWeekNumber(day) {
     let d = new Date(day);
@@ -29,8 +30,18 @@ export default function WeeklyHoursBreakdown() {
     return weekNumbersArray.map((week) => getFirstAndLastDayOfWeek(week))
   }
 
+  function usersFilter(users, selection) {
+    if (selection.entryUserId.length === 0 && selection.week.length === 0) {
+      return users;
+    } else if (selection.entryUserId.length > 0 && selection.week.length === 0) {
+      return users.filter((user) => user.id === selection.entryUserId)
+    }
+  }
+
+  let userFilter = usersFilter(context.users, context.selectFilter)
+
   const entryDates = 
-    context.users.map((user) => {
+    userFilter.map((user) => {
       return context.entry
         .filter((item) => item.user.id === user.id)
         .sort((a, b) => new Date(a.date) - new Date(b.date))
@@ -61,7 +72,8 @@ export default function WeeklyHoursBreakdown() {
     .sort((a, b) => a[1] - b[1]))
   const userWeekRangeArray = userWeekNumbersArray.map((usersWeek, idx) => weekArray(usersWeek));
 
-  console.log(context.selectFilter);
+  // console.log(context.setSelectFilter);
+  
   
   
   return (
@@ -123,7 +135,7 @@ export default function WeeklyHoursBreakdown() {
             <div className="c-4 thead">Description</div>
             <div className="c-5 thead">Time</div>
           </div>
-          {context.users.map((user, idx1) => (
+          {userFilter.map((user, idx1) => (
             <div className="table" key={idx1}>
               <h2>{user.name}</h2>
                 {userWeekNumbersArray[idx1].map((week, idx2) => (
