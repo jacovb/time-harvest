@@ -36,7 +36,8 @@ export default function WeeklyHoursBreakdown() {
     } else if (selection.entryUserId.length > 0 && selection.week.length === 0) {
       return users.filter((user) => user.id === selection.entryUserId)
     } else if (selection.entryUserId.length === 0 && selection.week.length > 0) {
-      const weekRange = getFirstAndLastDayOfWeek(selection.week); 
+      const weekRange = getFirstAndLastDayOfWeek(selection.week.split(",")); 
+      console.log(weekRange);
       return users;
       //return users.filter((user) => filteredEntryUsers.includes(user.name));
     } else if (selection.entryUserId.length > 0 && selection.week.length > 0) {
@@ -50,7 +51,7 @@ export default function WeeklyHoursBreakdown() {
     if (selection.entryUserId.length === 0 && selection.week.length === 0) {
       return entry;
     } else if (selection.entryUserId === "") {
-      let weekRange = getFirstAndLastDayOfWeek(selection.week)
+      let weekRange = getFirstAndLastDayOfWeek(selection.week.split(","))
       return entry.filter((obj) => (new Date(obj.date) > weekRange[0]) && (new Date(obj.date) < weekRange[1]))
     } else if (selection.week === "") {
       return entry.filter((obj) => selection.entryUserId === obj.user.id)
@@ -94,7 +95,7 @@ export default function WeeklyHoursBreakdown() {
     .sort((a, b) => a[1] - b[1]))
   const userWeekRangeArray = userWeekNumbersArray.map((usersWeek, idx) => weekArray(usersWeek));
 
-  console.log(context.users);
+  console.log(context.selectFilter);
   
   
   
@@ -133,7 +134,6 @@ export default function WeeklyHoursBreakdown() {
             
             <select
                 className="select-month"
-                type="text"
                 id="entryWeek"
                 value={context.selectFilter.week}
                 name="week"
