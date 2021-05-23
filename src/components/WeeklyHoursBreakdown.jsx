@@ -35,9 +35,31 @@ export default function WeeklyHoursBreakdown() {
       return users;
     } else if (selection.entryUserId.length > 0 && selection.week.length === 0) {
       return users.filter((user) => user.id === selection.entryUserId)
+    } else if (selection.entryUserId.length === 0 && selection.week.length > 0) {
+      const weekRange = getFirstAndLastDayOfWeek(selection.week); 
+      return users;
+      //return users.filter((user) => filteredEntryUsers.includes(user.name));
+    } else if (selection.entryUserId.length > 0 && selection.week.length > 0) {
+      return users.filter((user) => user.id === selection.entryUserId)
     }
   }
 
+  //usersFilter not done yet - if week is selected, it needs a list of users who have entries in the particular week. Needs info from EntriesFilter
+  //entriesFilter not working yet
+  function entriesFilter(entry, selection) {
+    if (selection.entryUserId.length === 0 && selection.week.length === 0) {
+      return entry;
+    } else if (selection.entryUserId === "") {
+      let weekRange = getFirstAndLastDayOfWeek(selection.week)
+      return entry.filter((obj) => (new Date(obj.date) > weekRange[0]) && (new Date(obj.date) < weekRange[1]))
+    } else if (selection.week === "") {
+      return entry.filter((obj) => selection.entryUserId === obj.user.id)
+    } else if (selection.entryUserId.length > 0 && selection.week.length > 0) {
+      return entry;
+    }
+  }
+
+  let entryFilter = entriesFilter(context.entry, context.selectFilter);
   let userFilter = usersFilter(context.users, context.selectFilter)
 
   const entryDates = 
@@ -72,7 +94,7 @@ export default function WeeklyHoursBreakdown() {
     .sort((a, b) => a[1] - b[1]))
   const userWeekRangeArray = userWeekNumbersArray.map((usersWeek, idx) => weekArray(usersWeek));
 
-  // console.log(context.setSelectFilter);
+  console.log(context.users);
   
   
   
@@ -141,7 +163,7 @@ export default function WeeklyHoursBreakdown() {
                 {userWeekNumbersArray[idx1].map((week, idx2) => (
                   <React.Fragment key={idx2}>
                     <h5 className="c-1" key={idx2}>{"Week " + week[1] + ", " + week[0]}</h5>
-                    {context.entry
+                    {entryFilter
                       .filter((obj) => obj.user.id === user.id)
                       .filter((obj) => (new Date(obj.date) > userWeekRangeArray[idx1][idx2][0]) && (new Date(obj.date) < userWeekRangeArray[idx1][idx2][1]))
                       .sort((a, b) => new Date(a.date) - new Date(b.date))
