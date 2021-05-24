@@ -30,16 +30,14 @@ export default function WeeklyHoursBreakdown() {
     return weekNumbersArray.map((week) => getFirstAndLastDayOfWeek(week))
   }
 
-  function usersFilter(users, selection) {
+  function usersFilter(users, selection, filteredEntryUsers) {
     if (selection.entryUserId.length === 0 && selection.week.length === 0) {
       return users;
     } else if (selection.entryUserId.length > 0 && selection.week.length === 0) {
       return users.filter((user) => user.id === selection.entryUserId)
     } else if (selection.entryUserId.length === 0 && selection.week.length > 0) {
       const weekRange = getFirstAndLastDayOfWeek(selection.week.split(",")); 
-      console.log(weekRange);
-      return users;
-      //return users.filter((user) => filteredEntryUsers.includes(user.name));
+      return users.filter((user) => filteredEntryUsers.includes(user.name));
     } else if (selection.entryUserId.length > 0 && selection.week.length > 0) {
       return users.filter((user) => user.id === selection.entryUserId)
     }
@@ -56,12 +54,31 @@ export default function WeeklyHoursBreakdown() {
     } else if (selection.week === "") {
       return entry.filter((obj) => selection.entryUserId === obj.user.id)
     } else if (selection.entryUserId.length > 0 && selection.week.length > 0) {
-      return entry;
+      let weekRange = getFirstAndLastDayOfWeek(selection.week.split(","))
+      return entry.filter((obj) => selection.entryUserId === obj.user.id && (new Date(obj.date) > weekRange[0]) && (new Date(obj.date) < weekRange[1]));
     }
   }
 
+  // function datesFilter(entryDates, selection) {
+  //   if (selection.entryUserId.length === 0 && selection.week.length === 0) {
+  //     return entryDates;
+  //   } else if (selection.entryUserId === "" && selection.week.length > 0) {
+  //     let weekRange = getFirstAndLastDayOfWeek(selection.week.split(","))
+  //     return entryDates.map((arr) => arr.map((userArr) => userArr.filter((date) => (new Date(date) > weekRange[0]) && (new Date(date) < weekRange[1]))));
+  //   } else if (selection.entryUserId.length > 0 && selection.week.length === 0) {
+  //     return entryDates;
+  //   } else if (selection.entryUserId > 0 && selection.week.length > 0) {
+  //     let weekRange = getFirstAndLastDayOfWeek(selection.week.split(","))
+  //     return entryDates.map((arr) => arr.map((userArr) => userArr.filter((date) => (new Date(date) > weekRange[0]) && (new Date(date) < weekRange[1]))));
+  //   }
+  // }
+
   let entryFilter = entriesFilter(context.entry, context.selectFilter);
-  let userFilter = usersFilter(context.users, context.selectFilter)
+  let usersFromEntry = 
+    entryFilter
+      .map((item) => item.user.name)
+      .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
+  let userFilter = usersFilter(context.users, context.selectFilter, usersFromEntry)
 
   const entryDates = 
     userFilter.map((user) => {
@@ -73,6 +90,8 @@ export default function WeeklyHoursBreakdown() {
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
     })
 
+  // let dateFilter = datesFilter(entryDates, context.selectFilter).filter(e => e.length)
+  
   const entryDateArray = 
     entryDates
       .reduce((a, b) => {
@@ -95,7 +114,7 @@ export default function WeeklyHoursBreakdown() {
     .sort((a, b) => a[1] - b[1]))
   const userWeekRangeArray = userWeekNumbersArray.map((usersWeek, idx) => weekArray(usersWeek));
 
-  console.log(context.selectFilter);
+  console.log(entryDates);
   
   
   
