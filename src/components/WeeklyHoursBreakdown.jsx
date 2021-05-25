@@ -68,22 +68,17 @@ export default function WeeklyHoursBreakdown() {
     }
   }
 
-  function datesFilter(entryDates, selection) {
+  function datesFilter(weekNumbers, selection) {
     if (selection.entryUserId.length === 0 && selection.week.length === 0) {
-      let entryWeekNumbersRaw = entryDates.map((dateRange) => dateRange.map((date) => getWeekNumber(date)))
-      return entryWeekNumbersRaw
-        .map((userWeeks, idx) => Array.from(new Set(userWeeks.map(JSON.stringify)), JSON.parse)
-        .sort((a, b) => a[0] - b[0])
-        .sort((a, b) => a[1] - b[1])) 
+      return weekNumbers; 
     } else if (selection.entryUserId === "" && selection.week.length > 0) {
       let selectedWeek = selection.week.split(",").map((el) => +el)
-      let weekRange = getFirstAndLastDayOfWeek(selectedWeek)
-      return entryDates.map((arr) => arr.filter((date) => (new Date(date) > weekRange[0]) && (new Date(date) < weekRange[1])));
+      return weekNumbers.map((arr) => arr.filter((week) => JSON.stringify(week) === JSON.stringify(selectedWeek)));
     } else if (selection.entryUserId.length > 0 && selection.week.length === 0) {
       return [getEntryDates(selection.entryUserId)];
     } else if (selection.entryUserId > 0 && selection.week.length > 0) {
-      let weekRange = getFirstAndLastDayOfWeek(selection.week.split(","))
-      return entryDates.map((arr) => arr.map((userArr) => userArr.filter((date) => (new Date(date) > weekRange[0]) && (new Date(date) < weekRange[1]))));
+      let selectedWeek = selection.week.split(",").map((el) => +el)
+      return weekNumbers.map((arr) => arr.filter((week) => JSON.stringify(week) === JSON.stringify(selectedWeek)));
     }
   }
 
@@ -104,7 +99,7 @@ export default function WeeklyHoursBreakdown() {
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
     })
 
-  let dateFilter = datesFilter(entryDates, context.selectFilter).filter(e => e.length)
+  
   
   // Get weekNumbersArray is used in the Filter Drop-down list
 
@@ -122,17 +117,20 @@ export default function WeeklyHoursBreakdown() {
   
   // -------------------------------------------------------------------- //
   
-  const userWeekNumbersRaw = entryDates.map((userDates, idx) => userDates.map((date, idx) => getWeekNumber(date)))
-  const userWeekNumbersArray = userWeekNumbersRaw
+  const datesToWeekNumbers = entryDates.map((userDates, idx) => userDates.map((date, idx) => getWeekNumber(date)))
+  const userWeekNumbers = datesToWeekNumbers
     .map((userWeeks, idx) => Array.from(new Set(userWeeks.map(JSON.stringify)), JSON.parse)
     .sort((a, b) => a[0] - b[0])
     .sort((a, b) => a[1] - b[1]))
-  const userWeekRangeArray = userWeekNumbersArray.map((usersWeek, idx) => weekArray(usersWeek));
+  const userWeekRangeArray = userWeekNumbers.map((usersWeek, idx) => weekArray(usersWeek));
+
+  let dateFilter = datesFilter(userWeekNumbers, context.selectFilter).filter(e => e.length)
 
   // console.log("userWeekNumbersRaw", userWeekNumbersRaw);
-  // console.log("DateFilter", dateFilter);
-  console.log("userWeekNumbersArray",userWeekNumbersArray);
+  console.log("DateFilter", dateFilter);
+  // console.log("userWeekNumbersArray",userWeekNumbers);
   // console.log(context.selectFilter.week.split(",").map((el) => +el));
+  // console.log(userWeekNumbers);
   
   return (
       <>
