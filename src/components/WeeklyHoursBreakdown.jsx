@@ -76,9 +76,9 @@ export default function WeeklyHoursBreakdown() {
         .sort((a, b) => a[0] - b[0])
         .sort((a, b) => a[1] - b[1])) 
     } else if (selection.entryUserId === "" && selection.week.length > 0) {
-      let weekRange = getFirstAndLastDayOfWeek(selection.week.split(","))
-      //something wrong here!!!! When "week" is selected it bombs. DatesFilter should return an array of WeekNumbers!!!
-      return entryDates.map((arr) => arr.map((userArr) => userArr.filter((date) => (new Date(date) > weekRange[0]) && (new Date(date) < weekRange[1]))));
+      let selectedWeek = selection.week.split(",").map((el) => +el)
+      let weekRange = getFirstAndLastDayOfWeek(selectedWeek)
+      return entryDates.map((arr) => arr.filter((date) => (new Date(date) > weekRange[0]) && (new Date(date) < weekRange[1])));
     } else if (selection.entryUserId.length > 0 && selection.week.length === 0) {
       return [getEntryDates(selection.entryUserId)];
     } else if (selection.entryUserId > 0 && selection.week.length > 0) {
@@ -131,8 +131,7 @@ export default function WeeklyHoursBreakdown() {
   console.log("entryDates", entryDates);
   console.log("DateFilter", dateFilter);
   console.log("userWeekNumbersArray",userWeekNumbersArray);
-  
-  
+  console.log(context.selectFilter.week.split(",").map((el) => +el));
   
   return (
       <>
