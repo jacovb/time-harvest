@@ -106,6 +106,8 @@ export default function WeeklyHoursBreakdown() {
 
   let dateFilter = datesFilter(entryDates, context.selectFilter).filter(e => e.length)
   
+  // Get weekNumbersArray is used in the Filter Drop-down list
+
   const entryDateArray = 
     entryDates
       .reduce((a, b) => {
@@ -113,13 +115,12 @@ export default function WeeklyHoursBreakdown() {
         }, [])
       .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
 
-  
   const weekNumbersRaw = entryDateArray
     .map((date, idx) => getWeekNumber(date))
 
   const weekNumbersArray = Array.from(new Set(weekNumbersRaw.map(JSON.stringify)), JSON.parse).sort((a, b) => b[0] - a[0]).sort((a, b) => b[1] - a[1])
   
-  
+  // -------------------------------------------------------------------- //
   
   const userWeekNumbersRaw = entryDates.map((userDates, idx) => userDates.map((date, idx) => getWeekNumber(date)))
   const userWeekNumbersArray = userWeekNumbersRaw
@@ -128,10 +129,10 @@ export default function WeeklyHoursBreakdown() {
     .sort((a, b) => a[1] - b[1]))
   const userWeekRangeArray = userWeekNumbersArray.map((usersWeek, idx) => weekArray(usersWeek));
 
-  console.log("entryDates", entryDates);
-  console.log("DateFilter", dateFilter);
+  // console.log("userWeekNumbersRaw", userWeekNumbersRaw);
+  // console.log("DateFilter", dateFilter);
   console.log("userWeekNumbersArray",userWeekNumbersArray);
-  console.log(context.selectFilter.week.split(",").map((el) => +el));
+  // console.log(context.selectFilter.week.split(",").map((el) => +el));
   
   return (
       <>
@@ -213,7 +214,7 @@ export default function WeeklyHoursBreakdown() {
                       <div className="c-5 total">
                         {context.entry
                           .filter((obj) => obj.user.id === user.id)
-                          .filter((obj) => (new Date(obj.date) > userWeekRangeArray[idx1][idx2][0]) && (new Date(obj.date) < userWeekRangeArray[idx1][idx2][1]))
+                          .filter((obj) => (new Date(obj.date) > getFirstAndLastDayOfWeek(week)[0]) && (new Date(obj.date) < getFirstAndLastDayOfWeek(week)[1]))
                           .reduce((acc, curr) => acc + curr.time, 0)}
                       </div>
                   </React.Fragment> 
