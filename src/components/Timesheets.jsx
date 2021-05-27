@@ -14,7 +14,7 @@ export default function Timesheets() {
   
     const context = React.useContext(RenderContext)
     const authContext = React.useContext(AuthContext)
-    console.log("AuthContext", authContext.userInfo);
+    // console.log("AuthContext", authContext.userInfo);
 
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);

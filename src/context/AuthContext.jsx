@@ -101,7 +101,10 @@ const AuthProvider = ({children}) => {
   const signIn = async (email, password) => {
     try {
       const result = await Auth.signIn(email, password);
+      // let userInformation = await getCurrentUser();
+      // console.log("userInfo", userInformation.username); //use this in SignUp to create a new user
       setIsSignedIn(true);
+      console.log(result); //use this to get userInfo to setUser - in SignUp, use "user" to create a new User
       return result;
     } catch (err) {
       setIsSignedIn(false);

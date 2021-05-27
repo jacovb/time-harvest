@@ -81,7 +81,8 @@ export default function MonthlyHoursBreakdown() {
     let userFilter = usersFilter(context.users, context.selectFilter, usersFromEntry);
     let dateFilter = datesFilter(entryDates, context.selectFilter).filter(e => e.length);
 
-    console.log("entryDates", entryDates);
+    console.log("entryFilter", entryFilter);
+    console.log("userFilter", userFilter);
     console.log("dateFilter", dateFilter);
     
     return (

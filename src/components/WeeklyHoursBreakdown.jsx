@@ -72,7 +72,7 @@ export default function WeeklyHoursBreakdown() {
       return weekNumbers.map((arr) => arr.filter((week) => JSON.stringify(week) === JSON.stringify(selectedWeek)));
     } else if (selection.entryUserId.length > 0 && selection.week.length === 0) {
       return [getEntryDates(selection.entryUserId)];
-    } else if (selection.entryUserId > 0 && selection.week.length > 0) {
+    } else if (selection.entryUserId.length > 0 && selection.week.length > 0) {
       let selectedWeek = selection.week.split(",").map((el) => +el)
       return [[selectedWeek]]
     }
@@ -121,14 +121,10 @@ export default function WeeklyHoursBreakdown() {
   const userWeekRangeArray = userWeekNumbers.map((usersWeek, idx) => weekArray(usersWeek));
 
   let dateFilter = datesFilter(userWeekNumbers, context.selectFilter).filter(e => e.length);
-        // .filter above giving issues!!!!!!!
-
-  // console.log("userWeekNumbersRaw", userWeekNumbersRaw);
-  console.log("DateFilter", dateFilter);
-  // console.log("userWeekNumbersArray",userWeekNumbers);
-  // console.log(context.selectFilter.week.split(",").map((el) => +el));
-  // console.log(userWeekNumbers);
-  console.log("Dates select Both", [[context.selectFilter.week.split(",").map((el) => +el)]].filter(e => e.length));
+  
+  console.log("entryFilter-week",entryFilter);
+  console.log("userFilter-week", userFilter);
+  console.log("DateFilter-week", dateFilter);
   
   return (
       <>
