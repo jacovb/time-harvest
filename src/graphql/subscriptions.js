@@ -128,6 +128,7 @@ export const onCreateUserProject = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -135,6 +136,8 @@ export const onCreateUserProject = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -172,6 +175,7 @@ export const onUpdateUserProject = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -179,6 +183,8 @@ export const onUpdateUserProject = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -216,6 +222,7 @@ export const onDeleteUserProject = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -223,6 +230,8 @@ export const onDeleteUserProject = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -258,6 +267,7 @@ export const onCreateUser = /* GraphQL */ `
     onCreateUser {
       id
       name
+      surname
       department
       projects {
         items {
@@ -279,6 +289,8 @@ export const onCreateUser = /* GraphQL */ `
         }
         nextToken
       }
+      email
+      admin
       createdAt
       updatedAt
     }
@@ -289,6 +301,7 @@ export const onUpdateUser = /* GraphQL */ `
     onUpdateUser {
       id
       name
+      surname
       department
       projects {
         items {
@@ -310,6 +323,8 @@ export const onUpdateUser = /* GraphQL */ `
         }
         nextToken
       }
+      email
+      admin
       createdAt
       updatedAt
     }
@@ -320,6 +335,7 @@ export const onDeleteUser = /* GraphQL */ `
     onDeleteUser {
       id
       name
+      surname
       department
       projects {
         items {
@@ -341,6 +357,8 @@ export const onDeleteUser = /* GraphQL */ `
         }
         nextToken
       }
+      email
+      admin
       createdAt
       updatedAt
     }
@@ -375,6 +393,7 @@ export const onCreateEntry = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -382,6 +401,8 @@ export const onCreateEntry = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -423,6 +444,7 @@ export const onUpdateEntry = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -430,6 +452,8 @@ export const onUpdateEntry = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -471,6 +495,7 @@ export const onDeleteEntry = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -478,6 +503,8 @@ export const onDeleteEntry = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }

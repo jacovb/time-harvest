@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RenderContext } from "../context/RenderContext";
-import { AuthContext } from "../context/AuthContext";
+// import { AuthContext } from "../context/AuthContext";
 import CalendarHeatmap from 'react-calendar-heatmap';
 import ReactTooltip from 'react-tooltip';
 
@@ -13,7 +13,7 @@ import EntryListRow from "./EntryListRow";
 export default function Timesheets() {
   
     const context = React.useContext(RenderContext)
-    const authContext = React.useContext(AuthContext)
+    // const authContext = React.useContext(AuthContext)
     // console.log("AuthContext", authContext.userInfo);
 
     const [addModal, setAddModal] = useState(false);

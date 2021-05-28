@@ -79,6 +79,7 @@ export const getUser = /* GraphQL */ `
     getUser(id: $id) {
       id
       name
+      surname
       department
       projects {
         items {
@@ -100,6 +101,8 @@ export const getUser = /* GraphQL */ `
         }
         nextToken
       }
+      email
+      admin
       createdAt
       updatedAt
     }
@@ -115,6 +118,7 @@ export const listUsers = /* GraphQL */ `
       items {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -122,6 +126,8 @@ export const listUsers = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -158,6 +164,7 @@ export const getEntry = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -165,6 +172,8 @@ export const getEntry = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -205,7 +214,10 @@ export const listEntrys = /* GraphQL */ `
         user {
           id
           name
+          surname
           department
+          email
+          admin
           createdAt
           updatedAt
         }

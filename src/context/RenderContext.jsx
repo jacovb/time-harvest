@@ -29,7 +29,10 @@ const startForm = {
 
 const startUserForm = {
   name: "",
+  surname: "",
+  email: "",
   department: "",
+  admin: false,
 };
 
 const startEntryUserId = {

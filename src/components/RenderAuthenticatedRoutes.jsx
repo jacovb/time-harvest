@@ -1,7 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Auth } from 'aws-amplify';
 
 import Navbar from "./Navbar";
 import Projects from "./Projects";
@@ -19,7 +18,6 @@ export default function RenderAuthenticatedRoutes() {
       <Switch>
         <Route exact path="/">
           <p>Home</p>
-          {console.log(Auth)}
         </Route>
     
         <Route exact path="/projects">

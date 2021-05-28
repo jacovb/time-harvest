@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Reports({
-  projects,
-}) {
+export default function Reports() {
     return (
         <>
           <div className="projListHeading">

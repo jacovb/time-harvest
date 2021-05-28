@@ -13,12 +13,36 @@ export default function Users() {
         </div>
         <div className="project-form">
           <div className="fullwidth-input">
-            <label htmlFor="userField">User Name: </label>
+            <label htmlFor="userName">Name: </label>
             <input 
                 type="text"
-                id="userField"
+                id="userName"
                 value={context.userData.name}
                 name="name"
+                onChange={context.handleAddUser}
+                required
+            />
+          </div>
+
+          <div className="fullwidth-input">
+            <label htmlFor="userSurname">Surname: </label>
+            <input 
+                type="text"
+                id="userSurname"
+                value={context.userData.surname}
+                name="surname"
+                onChange={context.handleAddUser}
+                required
+            />
+          </div>
+
+          <div className="fullwidth-input">
+            <label htmlFor="userEmail">Email Address: </label>
+            <input 
+                type="email"
+                id="userEmail"
+                value={context.userData.email}
+                name="email"
                 onChange={context.handleAddUser}
                 required
             />

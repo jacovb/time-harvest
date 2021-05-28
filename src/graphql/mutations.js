@@ -140,6 +140,7 @@ export const createUserProject = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -147,6 +148,8 @@ export const createUserProject = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -187,6 +190,7 @@ export const updateUserProject = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -194,6 +198,8 @@ export const updateUserProject = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -234,6 +240,7 @@ export const deleteUserProject = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -241,6 +248,8 @@ export const deleteUserProject = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -279,6 +288,7 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       name
+      surname
       department
       projects {
         items {
@@ -300,6 +310,8 @@ export const createUser = /* GraphQL */ `
         }
         nextToken
       }
+      email
+      admin
       createdAt
       updatedAt
     }
@@ -313,6 +325,7 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       name
+      surname
       department
       projects {
         items {
@@ -334,6 +347,8 @@ export const updateUser = /* GraphQL */ `
         }
         nextToken
       }
+      email
+      admin
       createdAt
       updatedAt
     }
@@ -347,6 +362,7 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       name
+      surname
       department
       projects {
         items {
@@ -368,6 +384,8 @@ export const deleteUser = /* GraphQL */ `
         }
         nextToken
       }
+      email
+      admin
       createdAt
       updatedAt
     }
@@ -405,6 +423,7 @@ export const createEntry = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -412,6 +431,8 @@ export const createEntry = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -456,6 +477,7 @@ export const updateEntry = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -463,6 +485,8 @@ export const updateEntry = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }
@@ -507,6 +531,7 @@ export const deleteEntry = /* GraphQL */ `
       user {
         id
         name
+        surname
         department
         projects {
           nextToken
@@ -514,6 +539,8 @@ export const deleteEntry = /* GraphQL */ `
         entries {
           nextToken
         }
+        email
+        admin
         createdAt
         updatedAt
       }

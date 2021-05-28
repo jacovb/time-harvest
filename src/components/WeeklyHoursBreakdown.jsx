@@ -25,10 +25,6 @@ export default function WeeklyHoursBreakdown() {
     return [firstday, lastday] 
   }
 
-  function weekArray(weekNumbersArray) {
-    return weekNumbersArray.map((week) => getFirstAndLastDayOfWeek(week))
-  }
-
   function getEntryDates(userId) {
     let userEntryDates = context.entry
       .filter((item) => item.user.id === userId)
@@ -94,37 +90,28 @@ export default function WeeklyHoursBreakdown() {
           .toISOString().split('T')[0])
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
     })
-
-  
-  
-  // Get weekNumbersArray is used in the Filter Drop-down list
-
-  const entryDateArray = 
+    
+    const entryDateArray = 
     entryDates
-      .reduce((a, b) => {
-          return a.concat(b)
-        }, [])
-      .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
-
-  const weekNumbersRaw = entryDateArray
+    .reduce((a, b) => {
+      return a.concat(b)
+    }, [])
+    .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
+    
+    const weekNumbersRaw = entryDateArray
     .map((date, idx) => getWeekNumber(date))
-
+    
+  // Get weekNumbersArray is used in the Filter Drop-down list
   const weekNumbersArray = Array.from(new Set(weekNumbersRaw.map(JSON.stringify)), JSON.parse).sort((a, b) => b[0] - a[0]).sort((a, b) => b[1] - a[1])
   
-  // -------------------------------------------------------------------- //
   
   const datesToWeekNumbers = entryDates.map((userDates, idx) => userDates.map((date, idx) => getWeekNumber(date)))
   const userWeekNumbers = datesToWeekNumbers
     .map((userWeeks, idx) => Array.from(new Set(userWeeks.map(JSON.stringify)), JSON.parse)
     .sort((a, b) => a[0] - b[0])
     .sort((a, b) => a[1] - b[1]))
-  const userWeekRangeArray = userWeekNumbers.map((usersWeek, idx) => weekArray(usersWeek));
 
   let dateFilter = datesFilter(userWeekNumbers, context.selectFilter).filter(e => e.length);
-  
-  console.log("entryFilter-week",entryFilter);
-  console.log("userFilter-week", userFilter);
-  console.log("DateFilter-week", dateFilter);
   
   return (
       <>
