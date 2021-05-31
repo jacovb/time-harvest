@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { Auth } from 'aws-amplify';
+import { Auth, API } from 'aws-amplify';
+
+import {
+  createUser as createUserMutation,
+} from "../graphql/mutations";
 
 const defaultState = {
   sessionInfo: {},
@@ -60,6 +64,7 @@ const AuthProvider = ({children}) => {
           accessToken,
           refreshToken,
         });
+        console.log("sessionInfo", sessionInfo);
         window.localStorage.setItem('accessToken', `${accessToken}`);
         window.localStorage.setItem('refreshToken', `${refreshToken}`);
         setUserInfo({
@@ -67,6 +72,7 @@ const AuthProvider = ({children}) => {
           isContributor: user.attributes['custom:type'] === 'contributor',
           username: user.username,
         });
+        console.log("userInfo", userInfo);
         setIsSignedIn(true);
       } catch (err) {
         setIsSignedIn(false);
@@ -82,19 +88,37 @@ const AuthProvider = ({children}) => {
   const signUp = async (
     email, 
     password,
+    name,
+    surname,
+    department,
+    // admin,
   ) => {
-    const { user } = await Auth.signUp({
+    const result = await Auth.signUp({
       username: email,
       password,
       attributes: {
         email,
       },
     });
-    return user;
+    console.log("return signup result", result);
+    await API.graphql({
+      query: createUserMutation,
+      variables: { input: {
+        id: result.userSub,
+        name: name,
+        surname: surname,
+        department: department,
+        email: email,
+        admin: false,
+      }},
+    });
+    return result;
+
   }
 
   const verifySignUp = async (email, code) => {
     const result = await Auth.confirmSignUp(email, code);
+    console.log("return verify result", result);
     return result;
   }
 

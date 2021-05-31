@@ -10,7 +10,7 @@ export default function SignUpForm() {
 
   const onSubmit = async (data) => {
     try {
-      await authContext.signUp(data.email, data.password);
+      await authContext.signUp(data.email, data.password, data.name, data.surname, data.department);
       history.push('./verifycode')
     } catch (err) {
       console.log(err);
@@ -22,8 +22,18 @@ export default function SignUpForm() {
       <form onSubmit={handleSubmit(onSubmit)} className="signin-form"> 
         <label htmlFor="name" className="signin-label">Name:</label>
         <input {...register("name", { required: true })} className="signin-input" id="name" autoComplete="off"/>
+        <label htmlFor="surname" className="signin-label">Surname:</label>
+        <input {...register("surname", { required: true })} className="signin-input" id="surname" autoComplete="off"/>
         <label htmlFor="email" className="signin-label">Email:</label>
         <input {...register("email", { required: true })} className="signin-input" id="email" autoComplete="off"/>
+        <label htmlFor="department" className="signin-label">Department:</label>
+        <select {...register("department", { required: true })}>
+          <option value="" disabled hidden>-- Select Department --</option>
+          <option value="Coordination">Coordination</option>
+          <option value="Technical">Technical</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Construction">Construction</option>
+        </select>
         <label htmlFor="password" className="signin-label">Password:</label>
         <input {...register("password", { required: true })} className="signin-input" id="password" autoComplete="off" type="password"/>
         <label htmlFor="confirmPassword" className="signin-label">Confirm Password:</label>
