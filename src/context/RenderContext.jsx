@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 import { API } from "aws-amplify";
+import { AuthContext } from "../context/AuthContext";
 
 import { listProjects, listUsers, listEntrys } from "../graphql/queries";
 

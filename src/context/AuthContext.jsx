@@ -64,7 +64,7 @@ const AuthProvider = ({children}) => {
           accessToken,
           refreshToken,
         });
-        console.log("sessionInfo", sessionInfo);
+        // console.log("sessionInfo", sessionInfo);
         window.localStorage.setItem('accessToken', `${accessToken}`);
         window.localStorage.setItem('refreshToken', `${refreshToken}`);
         setUserInfo({
@@ -72,7 +72,7 @@ const AuthProvider = ({children}) => {
           isContributor: user.attributes['custom:type'] === 'contributor',
           username: user.username,
         });
-        console.log("userInfo", userInfo);
+        // console.log("userInfo", userInfo);
         setIsSignedIn(true);
       } catch (err) {
         setIsSignedIn(false);
@@ -100,7 +100,6 @@ const AuthProvider = ({children}) => {
         email,
       },
     });
-    console.log("return signup result", result);
     await API.graphql({
       query: createUserMutation,
       variables: { input: {
