@@ -14,7 +14,8 @@ export default function Timesheets() {
   
     const context = React.useContext(RenderContext)
     const authContext = React.useContext(AuthContext)
-    console.log("AuthContext", authContext.userInfo);
+    console.log("AuthContext", authContext.userInfo.username);
+    console.log("Users", context.users);
 
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -47,8 +48,11 @@ export default function Timesheets() {
         .filter((item) => item.user.id === context.entryUserId.entryUserId)
         .sort((a, b) => new Date(b.date) - new Date(a.date))
     
+    const currentUser = context.users.filter((item) => item.id === authContext.userInfo.username)[0];
+    
     return (
       <>
+        <h3>Welcome, {currentUser.name + " " + currentUser.surname}</h3>
         <div className="entryHeader">
           <div className="project-form">
             <label htmlFor="user">Project User: </label>
