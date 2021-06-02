@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 
 import { API } from "aws-amplify";
+import { AuthContext } from "../context/AuthContext";
 
 import { listProjects, listUsers, listEntrys } from "../graphql/queries";
 
@@ -69,6 +70,8 @@ const RenderContextProvider = ({children}) => {
   const { isShowing, toggle } = useModal();
   const [index, setIndex] = useState(null);
 
+  const { userInfo, isSignedIn } = useContext(AuthContext);
+
   useEffect(() => {
     fetchProjects();
     fetchUsers();
@@ -82,6 +85,10 @@ const RenderContextProvider = ({children}) => {
     }
     // eslint-disable-next-line
   }, [entry]);
+
+  // useEffect(() => {
+  //   setEntryUserId({ ...entryUserId, entryUserId: userInfo.username });
+  // }, [isSignedIn])
 
   // ===============
   // List Properties
