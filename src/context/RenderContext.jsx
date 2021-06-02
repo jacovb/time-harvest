@@ -160,8 +160,8 @@ const RenderContextProvider = ({children}) => {
   }
 
   async function createEntry() {
-    if (!entryData.date || entryUserId.entryUserId === "") return;
-    entryData.entryUserId = entryUserId.entryUserId;
+    // if (!entryData.date || entryUserId.entryUserId === "") return;
+    entryData.entryUserId = userInfo.username;
     console.log(entryData);
     try {
       await API.graphql({
@@ -185,8 +185,8 @@ const RenderContextProvider = ({children}) => {
       return deptUser.department;
     }
 
-    console.log(getDept(entryUserId.entryUserId));
-    const dept = getDept(entryUserId.entryUserId);
+    // console.log(getDept(entryUserId.entryUserId));
+    const dept = getDept(userInfo.username);
 
     function getUsedHours(projectId) {
       const usedTime = entry
@@ -354,14 +354,14 @@ const RenderContextProvider = ({children}) => {
     setSelectFilter({ ...selectFilter, [e.target.name]: e.target.value });
   }
 
-  function handleSetEntryUser(e) {
-    let user = users.filter((item) => item.id === e.target.value)[0];
-    setEntryUserId({
-      ...entryUserId,
-      [e.target.name]: e.target.value,
-      entryUserDept: user.department,
-    });
-  }
+  // function handleSetEntryUser(e) {
+  //   let user = users.filter((item) => item.id === e.target.value)[0];
+  //   setEntryUserId({
+  //     ...entryUserId,
+  //     [e.target.name]: e.target.value,
+  //     entryUserDept: user.department,
+  //   });
+  // }
   
   const state = {
     projects,
@@ -384,8 +384,8 @@ const RenderContextProvider = ({children}) => {
     startSelectFilter,
     entryData,
     setEntryData,
-    entryUserId,
-    setEntryUserId,
+    // entryUserId,
+    // setEntryUserId,
     selectFilter,
     setSelectFilter,
     userData,
@@ -393,7 +393,7 @@ const RenderContextProvider = ({children}) => {
     handleAddData,
     handleAddUser,
     handleAddEntry,
-    handleSetEntryUser,
+    // handleSetEntryUser,
   };
   
   return <RenderContext.Provider value={state}>{children}</RenderContext.Provider>

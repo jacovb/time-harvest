@@ -13,7 +13,7 @@ import EntryListRow from "./EntryListRow";
 export default function Timesheets() {
   
     const context = React.useContext(RenderContext)
-    const authContext = React.useContext(AuthContext)
+    const { userInfo } = React.useContext(AuthContext)
     // console.log("AuthContext", authContext.userInfo.username);
     // console.log("Users", context.users);
 
@@ -38,23 +38,23 @@ export default function Timesheets() {
 
     const entryDates = 
       context.entry
-        .filter((item) => item.user.id === context.entryUserId.entryUserId)
+        .filter((item) => item.user.id === userInfo.username)
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .map((item, idx) => (item.date))
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
 
     const userEntries = 
       context.entry
-        .filter((item) => item.user.id === context.entryUserId.entryUserId)
+        .filter((item) => item.user.id === userInfo.username)
         .sort((a, b) => new Date(b.date) - new Date(a.date))
     
-    const currentUser = context.users.filter((item) => item.id === authContext.userInfo.username)[0];
+    const currentUser = context.users.filter((item) => item.id === userInfo.username)[0];
     
     return (
       <>
-        <h3>Welcome, {currentUser.name + " " + currentUser.surname}</h3>
         <div className="entryHeader">
-          <div className="project-form">
+          <h3>Welcome, {currentUser.name + " " + currentUser.surname}</h3>
+          {/* <div className="project-form">
             <label htmlFor="user">Project User: </label>
             <select 
               type="text"
@@ -71,19 +71,15 @@ export default function Timesheets() {
                       </option>
                 ))}  
             </select>
-          </div>
+          </div> */}
 
           <button
             className="addButton" 
             onClick={() => {
-              if (context.entryUserId.entryUserId === "") {
-                alert("Please select a User");
-                return;
-              } else {
                 setAddModal(true)
                 context.toggle()
               }
-            }}>
+            }>
               <AddIcon />
             <span className="edit-tooltip">Add Entry</span>
           </button>
@@ -122,10 +118,6 @@ export default function Timesheets() {
                 }
               }}
               onClick={(e) => {
-                if (context.entryUserId.entryUserId === "") {
-                  alert("Please select a User");
-                  return;
-                } else {
                   context.setEntryData({
                     ...context.entryData,
                     date: e.date
@@ -133,7 +125,7 @@ export default function Timesheets() {
                   setAddModal(true)
                   context.toggle()
                 }
-              }}
+              }
               tooltipDataAttrs={value => {
                 return {
                   'data-tip': value.count === 0 
