@@ -1,5 +1,5 @@
 import React from "react";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { RenderContext } from "../context/RenderContext";
 
 export default function Users() {
@@ -9,9 +9,9 @@ export default function Users() {
     return (
       <>
         <div className="userHeading">
-          <h2>Add New Users</h2>
+          <h2>Users</h2>
         </div>
-        <div className="project-form">
+        {/* <div className="project-form">
           <div className="fullwidth-input">
             <label htmlFor="userName">Name: </label>
             <input 
@@ -65,17 +65,17 @@ export default function Users() {
             </select>
           </div>
           <button onClick={context.createUser}>Add New User</button>
-        </div>
+        </div> */}
         <div className="userList">
             {context.users
               .map((user, idx) => (
                 <div className="userRow" key={idx}>
-                  <div>{user.name}</div>
+                  <div>{`${user.name} ${user.surname}`}</div>
                   <div>{user.department}</div>
                   <button
                     onClick={() => context.deleteUser(user)}
                   >
-                    <HighlightOffIcon />
+                    <MoreHorizIcon />
                   </button>
                 </div>
               ))}

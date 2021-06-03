@@ -8,6 +8,7 @@ import Timesheets from "./Timesheets";
 import Reports from "./Reports";
 import Users from "./Users";
 import ProjectOverview from "./ProjectOverview";
+import ProjectDistribution from "./ProjectDistribution";
 import MonthlyHoursBreakdown from "./MonthlyHoursBreakdown";
 import WeeklyHoursBreakdown from "./WeeklyHoursBreakdown";
 
@@ -34,6 +35,10 @@ export default function RenderAuthenticatedRoutes() {
     
         <Route exact path="/projectOverview">
           <ProjectOverview/>
+        </Route>
+
+        <Route exact path="/projectDistribution">
+          <ProjectDistribution/>
         </Route>
     
         <Route exact path="/monthlyHours">

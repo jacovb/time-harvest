@@ -15,6 +15,12 @@ export default function Reports() {
               </button>
             </Link>
 
+            <Link to="/projectDistribution">
+              <button>
+                Projects: Hours Distribution
+              </button>
+            </Link>
+
             <Link to="/monthlyHours">
               <button>
                 Users: Monthly Hours Breakdown

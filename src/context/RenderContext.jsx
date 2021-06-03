@@ -36,10 +36,10 @@ const startUserForm = {
   admin: false,
 };
 
-const startEntryUserId = {
-  entryUserId: "",
-  entryUserDept: "",
-};
+// const startEntryUserId = {
+//   entryUserId: "",
+//   entryUserDept: "",
+// };
 
 const startEntryForm = {
   entryProjectId: "",
@@ -65,12 +65,12 @@ const RenderContextProvider = ({children}) => {
   const [formData, setFormData] = useState(startForm);
   const [userData, setUserData] = useState(startUserForm);
   const [entryData, setEntryData] = useState(startEntryForm);
-  const [entryUserId, setEntryUserId] = useState(startEntryUserId);
+  // const [entryUserId, setEntryUserId] = useState(startEntryUserId);
   const [selectFilter, setSelectFilter] = useState(startSelectFilter);
   const { isShowing, toggle } = useModal();
   const [index, setIndex] = useState(null);
 
-  const { userInfo, isSignedIn } = useContext(AuthContext);
+  const { userInfo } = useContext(AuthContext);
 
   useEffect(() => {
     fetchProjects();
@@ -85,10 +85,6 @@ const RenderContextProvider = ({children}) => {
     }
     // eslint-disable-next-line
   }, [entry]);
-
-  // useEffect(() => {
-  //   setEntryUserId({ ...entryUserId, entryUserId: userInfo.username });
-  // }, [isSignedIn])
 
   // ===============
   // List Properties
@@ -389,6 +385,7 @@ const RenderContextProvider = ({children}) => {
     selectFilter,
     setSelectFilter,
     userData,
+    setUserData,
     handleFilter,
     handleAddData,
     handleAddUser,
