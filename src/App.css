@@ -1098,3 +1098,30 @@ select:focus + .label-status {
 .table h5 {
   margin: 10px 0 10px 0;
 }
+
+/* =============================================================== */
+/* REPORT: PROJECT DISTRIBUTION LAYOUT */
+/* =============================================================== */
+
+.dist-table {
+  display: grid;
+  grid-template-columns: 100px repeat(13, 50px);
+  grid-template-rows: 120px;
+}
+
+.dist-headings {
+  transform: rotate(-90deg);
+  width: 100px;
+  height: 50px;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.d-1 {
+  grid-column: 1 / 2;
+}
+
+.d-2 {
+  grid-column: 2 / 3;
+}
