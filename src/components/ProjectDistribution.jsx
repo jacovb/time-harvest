@@ -22,18 +22,40 @@ export default function ProjectDistribution() {
 
 
   
-  console.log(getLastMonth())
+  console.log(lastMonth);
+  console.log(context.entry);
+  console.log(context.projects);
 
   return (
     <>
+      <div className="projListHeading">
+        <h2>Monthly Hour Distribution per Project</h2>
+      </div>
+      
       <div className={"dist-table"}>
         {months.map((month, idx) => (
-          <div key={idx} className={`d-${idx+2} dist-headings`}>{month}</div>
+            <div key={idx} className={`d-${idx+2} dist-headings`}>{month}</div>
         ))}
+        <div className="dist-headings dist-strong">TOTAL</div>
         {context.projects
           .sort((a, b) => a.projectNo - b.projectNo)
           .map((project, idx) => (
-            <div key={idx} className="d-1">{`${project.projectNo} - ${project.name}`}</div>
+            <React.Fragment key={idx}>
+              <div className="d-1 dist-project">{`${project.projectNo} - ${project.name}`}</div>
+              {months.map((month, idx) => (
+                <div key={idx} className="dist-cell">
+                  {context.entry
+                  .filter((obj) => obj.project.id === project.id)
+                  .filter((obj) => new Date(obj.date).toLocaleString('default', { month: 'long' }) === month.split(" ")[0])
+                  .reduce((acc, curr) => acc + curr.time, 0)}
+                </div>
+              ))}
+              <div className="dist-cell dist-strong">
+                {context.entry
+                  .filter((obj) => obj.project.id === project.id)
+                  .reduce((acc, curr) => acc + curr.time, 0)}
+              </div>
+            </React.Fragment>
           ))}
       </div>
     </>

@@ -41,6 +41,14 @@ export default function Projects() {
           setAddModal={setAddModal}
         />}
 
+        <div className="projects-heading">
+          <div className="p-1 gridProjectNo">No.</div>
+          <div className="p-2">Name</div>
+          <div className="p-3">Hours Quoted</div>
+          <div className="p-4">Status</div>
+          <div className="p-5">Hours Used</div>
+        </div>
+        
         <div className="projectsList">
             {context.projects
               .sort((a, b) => a.projectNo - b.projectNo)
