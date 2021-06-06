@@ -36,10 +36,10 @@ const startUserForm = {
   admin: false,
 };
 
-// const startEntryUserId = {
-//   entryUserId: "",
-//   entryUserDept: "",
-// };
+const startEntryUserId = {
+  entryUserId: "",
+  entryUserDept: "",
+};
 
 const startEntryForm = {
   entryProjectId: "",
@@ -65,7 +65,7 @@ const RenderContextProvider = ({children}) => {
   const [formData, setFormData] = useState(startForm);
   const [userData, setUserData] = useState(startUserForm);
   const [entryData, setEntryData] = useState(startEntryForm);
-  // const [entryUserId, setEntryUserId] = useState(startEntryUserId);
+  const [entryUserId, setEntryUserId] = useState(startEntryUserId);
   const [selectFilter, setSelectFilter] = useState(startSelectFilter);
   const { isShowing, toggle } = useModal();
   const [index, setIndex] = useState(null);
@@ -156,8 +156,12 @@ const RenderContextProvider = ({children}) => {
   }
 
   async function createEntry() {
-    // if (!entryData.date || entryUserId.entryUserId === "") return;
-    entryData.entryUserId = userInfo.username;
+    if (!entryData.date) return;
+    if (!entryUserId === startEntryUserId) {
+      entryData.entryUserId = entryUserId.entryUserId
+    } else {
+      entryData.entryUserId = userInfo.username;
+    }
     console.log(entryData);
     try {
       await API.graphql({
@@ -182,7 +186,13 @@ const RenderContextProvider = ({children}) => {
     }
 
     // console.log(getDept(entryUserId.entryUserId));
-    const dept = getDept(userInfo.username);
+    const dept = () => {
+      if (!entryUserId === startEntryUserId) {
+        return getDept(entryUserId.entryUserId)
+      } else {
+        return getDept(userInfo.username);
+      }
+    }
 
     function getUsedHours(projectId) {
       const usedTime = entry
@@ -350,14 +360,14 @@ const RenderContextProvider = ({children}) => {
     setSelectFilter({ ...selectFilter, [e.target.name]: e.target.value });
   }
 
-  // function handleSetEntryUser(e) {
-  //   let user = users.filter((item) => item.id === e.target.value)[0];
-  //   setEntryUserId({
-  //     ...entryUserId,
-  //     [e.target.name]: e.target.value,
-  //     entryUserDept: user.department,
-  //   });
-  // }
+  function handleSetEntryUser(e) {
+    let user = users.filter((item) => item.id === e.target.value)[0];
+    setEntryUserId({
+      ...entryUserId,
+      [e.target.name]: e.target.value,
+      entryUserDept: user.department,
+    });
+  }
   
   const state = {
     projects,
@@ -380,8 +390,8 @@ const RenderContextProvider = ({children}) => {
     startSelectFilter,
     entryData,
     setEntryData,
-    // entryUserId,
-    // setEntryUserId,
+    entryUserId,
+    setEntryUserId,
     selectFilter,
     setSelectFilter,
     userData,
@@ -390,7 +400,7 @@ const RenderContextProvider = ({children}) => {
     handleAddData,
     handleAddUser,
     handleAddEntry,
-    // handleSetEntryUser,
+    handleSetEntryUser,
   };
   
   return <RenderContext.Provider value={state}>{children}</RenderContext.Provider>
