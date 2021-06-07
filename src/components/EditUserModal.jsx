@@ -12,7 +12,7 @@ export default function EditUserModal({
       updateUser,
       deleteUser, 
       handleAddUser, 
-      users, 
+      // users, 
       setUserData, 
       startUserForm,
       setEditModal 
@@ -86,9 +86,14 @@ export default function EditUserModal({
                 </div>
 
                 <div className="fullwidth-input">
+                    <label className="label-name">
+                        Email:
+                    </label>
                     <p>{userData.email}</p>     
                 </div>
 
+                
+                
                 {/* department
                 is User Admin? */}
                 
@@ -105,7 +110,7 @@ export default function EditUserModal({
                     className="delete-button-entry"
                     onClick={() => {
                       setEditModal(false);
-                      deleteEntry(userData);
+                      deleteUser(userData);
                     }}>
                         Delete User
                 </button>

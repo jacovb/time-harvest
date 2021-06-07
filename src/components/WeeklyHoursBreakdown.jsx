@@ -173,7 +173,7 @@ export default function WeeklyHoursBreakdown() {
           </div>
           {userFilter.map((user, idx1) => (
             <div className="table" key={idx1}>
-              <h2>{user.name}</h2>
+              <h2>{`${user.name} ${user.surname}`}</h2>
                 {dateFilter[idx1].map((week, idx2) => (
                   <React.Fragment key={idx2}>
                     <h5 className="c-1" key={idx2}>{"Week " + week[1] + ", " + week[0]}</h5>

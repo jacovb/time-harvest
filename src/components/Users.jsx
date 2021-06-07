@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { RenderContext } from "../context/RenderContext";
-// import EditUserModal from "./EditUserModal";
+import EditUserModal from "./EditUserModal";
 
 export default function Users() {
 
@@ -86,7 +86,17 @@ export default function Users() {
                   </button>
                 </div>
               ))}
-              {/* {editModal && <EditUserModal />} */}
+              {editModal && <EditUserModal 
+                isShowing={context.isShowing}
+                hide={context.toggle}
+                userData={context.userData}
+                updateUser={context.updateUser}
+                deleteUser={context.deleteUser}
+                handleAddUser={context.handleAddUser}
+                setUserData={context.setUserData}
+                startUserForm={context.startUserForm}
+                setEditModal={setEditModal}
+              />}
           </div>
       </>
     )

@@ -11,9 +11,11 @@ import {
   updateProject as updateProjectMutation,
   createUser as createUserMutation,
   deleteUser as deleteUserMutation,
+  updateUser as updateUserMutation,
   createEntry as createEntryMutation,
   deleteEntry as deleteEntryMutation,
   updateEntry as updateEntryMutation,
+
 } from "../graphql/mutations";
 
 import useModal from "../hooks/useModal";
@@ -289,6 +291,27 @@ const RenderContextProvider = ({children}) => {
     }
   }
 
+  async function updateUser(userData) {
+    try {
+      await API.graphql({
+        query: updateUserMutation,
+        variables: {
+          input: {
+            id: userData.id,
+            name: userData.name,
+            surname: userData.surname,
+            department: userData.department,
+            admin: userData.admin,
+          },
+        },
+      });
+      toggle();
+      fetchUsers();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   // =================
   // Delete Properties
   // =================
@@ -376,6 +399,7 @@ const RenderContextProvider = ({children}) => {
     deleteProject,
     users,
     createUser,
+    updateUser,
     deleteUser,
     entry,
     createEntry,

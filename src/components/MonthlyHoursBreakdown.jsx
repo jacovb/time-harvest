@@ -148,7 +148,7 @@ export default function MonthlyHoursBreakdown() {
             </div>
             {userFilter.map((user, idx) => (
               <div className="table" key={idx}>
-                <h2>{user.name}</h2>
+                <h2>{`${user.name} ${user.surname}`}</h2>
                 {dateFilter[idx].map((month, idx) => (
                   <React.Fragment key={idx}>
                     <h5 className="c-1">{month}</h5>
