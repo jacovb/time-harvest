@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { RenderContext } from "../context/RenderContext";
+// import EditUserModal from "./EditUserModal";
 
 export default function Users() {
 
+  const [editModal, setEditModal] = useState(false);
   const context = React.useContext(RenderContext);
 
     return (
@@ -73,12 +75,18 @@ export default function Users() {
                   <div>{`${user.name} ${user.surname}`}</div>
                   <div>{user.department}</div>
                   <button
-                    onClick={() => context.deleteUser(user)}
+                    onClick={() => {
+                      context.setUserData(user);
+                      setEditModal(true);
+                      context.toggle()
+                      // context.deleteUser(user)
+                    }}
                   >
                     <MoreHorizIcon />
                   </button>
                 </div>
               ))}
+              {/* {editModal && <EditUserModal />} */}
           </div>
       </>
     )
