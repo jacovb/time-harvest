@@ -188,13 +188,10 @@ const RenderContextProvider = ({children}) => {
     }
 
     // console.log(getDept(entryUserId.entryUserId));
-    const dept = () => {
-      if (!entryUserId === startEntryUserId) {
-        return getDept(entryUserId.entryUserId)
-      } else {
-        return getDept(userInfo.username);
-      }
-    }
+
+    const dept = entryUserId === !startEntryUserId ? 
+      getDept(entryUserId.entryUserId) :
+      getDept(userInfo.username);
 
     function getUsedHours(projectId) {
       const usedTime = entry
