@@ -91,7 +91,7 @@ const AuthProvider = ({children}) => {
     name,
     surname,
     department,
-    // admin,
+    admin,
   ) => {
     const result = await Auth.signUp({
       username: email,
@@ -108,7 +108,7 @@ const AuthProvider = ({children}) => {
         surname: surname,
         department: department,
         email: email,
-        admin: false,
+        admin: admin,
       }},
     });
     return result;

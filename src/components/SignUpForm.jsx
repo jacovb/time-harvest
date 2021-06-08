@@ -26,14 +26,22 @@ export default function SignUpForm() {
         <input {...register("surname", { required: true })} className="signin-input" id="surname" autoComplete="off"/>
         <label htmlFor="email" className="signin-label">Email:</label>
         <input {...register("email", { required: true })} className="signin-input" id="email" autoComplete="off"/>
-        <label htmlFor="department" className="signin-label">Department:</label>
-        <select {...register("department", { required: true })}>
+        <label htmlFor="department" className="signin-label-left">Department:</label>
+        <label htmlFor="admin" className="signin-label-right">Is this an Admin Role?</label>
+        <select {...register("department", { required: true })} className="signin-option" id="department">
           <option value="" disabled hidden>-- Select Department --</option>
           <option value="Coordination">Coordination</option>
           <option value="Technical">Technical</option>
           <option value="Engineering">Engineering</option>
           <option value="Construction">Construction</option>
         </select>
+        <input 
+          {...register("admin", {required: true})}
+          name="admin"
+          value="false"
+          className="checkbox"
+          type="checkbox"
+        />
         <label htmlFor="password" className="signin-label">Password:</label>
         <input {...register("password", { required: true })} className="signin-input" id="password" autoComplete="off" type="password"/>
         <label htmlFor="confirmPassword" className="signin-label">Confirm Password:</label>
