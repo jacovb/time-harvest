@@ -88,6 +88,9 @@ const RenderContextProvider = ({children}) => {
     // eslint-disable-next-line
   }, [entry]);
 
+  const tempUser = users.filter((item) => item.id === userInfo.username)[0];
+  const [theCurrentUser, setTheCurrentUser] = useState(tempUser);
+
   // ===============
   // List Properties
   // ===============
@@ -159,7 +162,7 @@ const RenderContextProvider = ({children}) => {
 
   async function createEntry() {
     if (!entryData.date) return;
-    if (!entryUserId === startEntryUserId) {
+    if (entryUserId !== startEntryUserId) {
       entryData.entryUserId = entryUserId.entryUserId
     } else {
       entryData.entryUserId = userInfo.username;
@@ -189,7 +192,7 @@ const RenderContextProvider = ({children}) => {
 
     // console.log(getDept(entryUserId.entryUserId));
 
-    const dept = entryUserId === !startEntryUserId ? 
+    const dept = entryUserId !== startEntryUserId ? 
       getDept(entryUserId.entryUserId) :
       getDept(userInfo.username);
 
@@ -409,6 +412,7 @@ const RenderContextProvider = ({children}) => {
     startForm,
     startEntryForm,
     startSelectFilter,
+    startEntryUserId,
     entryData,
     setEntryData,
     entryUserId,
@@ -422,6 +426,7 @@ const RenderContextProvider = ({children}) => {
     handleAddUser,
     handleAddEntry,
     handleSetEntryUser,
+    theCurrentUser,
   };
   
   return <RenderContext.Provider value={state}>{children}</RenderContext.Provider>

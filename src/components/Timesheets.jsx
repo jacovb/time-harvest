@@ -36,16 +36,20 @@ export default function Timesheets() {
 
     const dateRange = getDatesBetween(startDate, endDate);
 
+    const activeUser = context.entryUserId.entryUserId !== context.startEntryUserId.entryUserId ?
+      context.entryUserId.entryUserId :
+      userInfo.username
+    
     const entryDates = 
       context.entry
-        .filter((item) => item.user.id === userInfo.username)
+        .filter((item) => item.user.id === activeUser)
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .map((item, idx) => (item.date))
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
 
     const userEntries = 
       context.entry
-        .filter((item) => item.user.id === userInfo.username)
+        .filter((item) => item.user.id === activeUser)
         .sort((a, b) => new Date(b.date) - new Date(a.date))
     
     const currentUser = context.users.filter((item) => item.id === userInfo.username)[0];
@@ -53,16 +57,22 @@ export default function Timesheets() {
     return (
       <>
         <div className="entryHeader">
-          <h3>Welcome, {currentUser.name + " " + currentUser.surname}</h3>
-          {/* <div className="project-form">
-            <label htmlFor="user">Project User: </label>
+          {/* <h3>Welcome, {currentUser.name + " " + currentUser.surname}</h3> */}
+
+          {currentUser.admin && <div className="project-form">
+            <label 
+              htmlFor="user" 
+              className="userSelectLabel">
+                Change Project User: 
+            </label>
             <select 
+              className="userSelect"
               type="text"
               id="user"
               name="entryUserId"
               value={context.entryUserId.entryUserId}
               onChange={context.handleSetEntryUser}>
-                <option value="" hidden>-- Select Project User --</option>
+                <option value="" hidden>-- Select Different User --</option>
                 {context.users
                   .sort((a, b) => a.name - b.name)
                   .map((user, idx) => (
@@ -71,7 +81,12 @@ export default function Timesheets() {
                       </option>
                 ))}  
             </select>
-          </div> */}
+            <button 
+              className="userResetButton"
+              onClick={() => context.setEntryUserId(context.startEntryUserId)}>
+              Reset
+            </button>
+          </div>}
 
           <button
             className="addButton" 

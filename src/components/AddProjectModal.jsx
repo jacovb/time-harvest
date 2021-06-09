@@ -175,7 +175,9 @@ export default function AddProjectModal({
                     </select>
                 </div>
                 
-                <button onClick={() => {
+                <button 
+                  className="addProjectButton"
+                  onClick={() => {
                       setAddModal(false);
                       createProject(formData);
                       }}>

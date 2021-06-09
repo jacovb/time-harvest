@@ -11,21 +11,16 @@ import ProjectOverview from "./ProjectOverview";
 import ProjectDistribution from "./ProjectDistribution";
 import MonthlyHoursBreakdown from "./MonthlyHoursBreakdown";
 import WeeklyHoursBreakdown from "./WeeklyHoursBreakdown";
-// import AuthContext from "../context/AuthContext";
-// import RenderContext from "../context/RenderContext";
+import Home from "./Home";
 
 export default function RenderAuthenticatedRoutes() {
-  // const authContext = React.useContext(AuthContext);
-  // const context = React.useContext(RenderContext);
-  // const currentUser = context.users.filter((item) => item.id === authontext.userInfo.username)[0];
 
   return (
     <>
       <Navbar />
       <Switch>
         <Route exact path="/">
-          {/* <h3>Welcome, {currentUser.name + " " + currentUser.surname}</h3> */}
-          <p>Home</p>
+          <Home />
         </Route>
     
         <Route exact path="/projects">
