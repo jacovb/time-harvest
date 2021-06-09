@@ -60,6 +60,13 @@ export default function EditUserModal({
                 </div>
                 
                 <div className="fullwidth-input">
+                    <label className="label-name">
+                        Email:
+                    </label>
+                    <p>{userData.email}</p>     
+                </div>
+                
+                <div className="fullwidth-input">
                     <label htmlFor="name" className="label-name">
                         Name:
                     </label>
@@ -86,13 +93,26 @@ export default function EditUserModal({
                 </div>
 
                 <div className="fullwidth-input">
-                    <label className="label-name">
-                        Email:
-                    </label>
-                    <p>{userData.email}</p>     
+                  <label htmlFor="department" className="label-name">
+                    Department:
+                  </label>
+                  <br/>
+                  <select
+                    type="text"
+                    id="department"
+                    value={userData.department}
+                    name="department"
+                    required
+                    onChange={handleAddUser}>
+                    <option value="" disabled hidden>-- Select Department --</option>
+                    <option value="Coordination">Coordination</option>
+                    <option value="Technical">Technical</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Construction">Construction</option>
+                  </select>
                 </div>
 
-                
+
                 
                 {/* department
                 is User Admin? */}

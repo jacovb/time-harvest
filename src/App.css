@@ -521,6 +521,10 @@ select:focus + .label-status {
   transition: all 0.3s ease;
 }
 
+.userEditButton {
+  grid-column: 3 / 4;
+}
+
 /* =============================================================== */
 /* ENTRY LAYOUT */
 /* =============================================================== */
@@ -562,6 +566,11 @@ select:focus + .label-status {
   left: 50%;
   transform: translateX(-50%);
   height: 65px;
+}
+
+.fullwidth-input p {
+  font-size: 17px;
+  font-weight: 500;
 }
 
 .halfwidth-input-left {
@@ -744,7 +753,7 @@ select:focus + .label-status {
 
 .userRow {
   display: grid;
-  grid-template-columns: 200px 150px 40px;
+  grid-template-columns: auto 150px 40px;
   column-gap: 5px;
   align-items: center;
   padding: 1rem;

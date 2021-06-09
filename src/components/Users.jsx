@@ -75,6 +75,7 @@ export default function Users() {
                   <div>{`${user.name} ${user.surname}`}</div>
                   <div>{user.department}</div>
                   <button
+                    className="editButton userEditButton"
                     onClick={() => {
                       context.setUserData(user);
                       setEditModal(true);
@@ -83,6 +84,7 @@ export default function Users() {
                     }}
                   >
                     <MoreHorizIcon />
+                    <span className="edit-tooltip">Edit</span>
                   </button>
                 </div>
               ))}

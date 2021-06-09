@@ -5,12 +5,16 @@ import { AuthContext } from '../context/AuthContext';
 
 export default function SignUpForm() {
   const history = useHistory();
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit} = useForm({
+    defaultValues: {
+      department: "",
+    }
+  });
   const authContext = React.useContext(AuthContext);
 
   const onSubmit = async (data) => {
     try {
-      await authContext.signUp(data.email, data.password, data.name, data.surname, data.department);
+      await authContext.signUp(data.email, data.password, data.name, data.surname, data.department, data.admin);
       history.push('./verifycode')
     } catch (err) {
       console.log(err);
@@ -36,9 +40,7 @@ export default function SignUpForm() {
           <option value="Construction">Construction</option>
         </select>
         <input 
-          {...register("admin", {required: true})}
-          name="admin"
-          value="false"
+          {...register("admin", {})}
           className="checkbox"
           type="checkbox"
         />
@@ -47,9 +49,7 @@ export default function SignUpForm() {
         <label htmlFor="confirmPassword" className="signin-label">Confirm Password:</label>
         <input {...register("confirmPassword", { required: true })} className="signin-input" id="confirmPassword" autoComplete="off" type="password"/>
         <input type="submit" className="signin-button"/>
-        {/* <Link to="/verifycode" className="forgot-password">
-          Verify Password...
-        </Link> */}
+        
         <p className="signup-link">
           Already Signed Up? <Link to="/signin"><strong>Sign In</strong></Link>
         </p>
