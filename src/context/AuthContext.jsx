@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Auth, API } from 'aws-amplify';
 
+import { getUser } from "../graphql/queries";
+
 import {
   createUser as createUserMutation,
 } from "../graphql/mutations";
@@ -27,10 +29,20 @@ export const AuthIsNotSignedIn = ({children}) => {
   return <>{!isSignedIn ? children : null}</>
 }
 
+const initializeUser = {
+  name: "",
+  surname: "",
+  admin: false,
+  department: "",
+  email: "",
+  id: "",
+}
+
 const AuthProvider = ({children}) => {
   const [isSignedIn, setIsSignedIn] = React.useState();
   const [sessionInfo, setSessionInfo] = React.useState({});
   const [userInfo, setUserInfo] = React.useState();
+  const [currentUserDetails, setCurrentUserDetails] = React.useState(initializeUser);
 
   const getCurrentSession = async () => {
     try {
@@ -52,11 +64,22 @@ const AuthProvider = ({children}) => {
     }
   }
 
+  const getUserDetails = async (userId) => {
+    try {
+      const currentUserData = await API.graphql({ query: getUser, variables: { id: userId } });
+      return currentUserData;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
   React.useEffect(() => {
     async function getSessionInfo() {
       try {
         const session = await getCurrentSession();
         const user = await getCurrentUser();
+        // console.log("user", user);
 
         const accessToken = session.getAccessToken();
         const refreshToken = session.getRefreshToken();
@@ -80,6 +103,18 @@ const AuthProvider = ({children}) => {
     }
     getSessionInfo();
   }, [setIsSignedIn, isSignedIn]);
+
+  React.useEffect(() => {
+    async function getCurrentUserDetails() {
+      try {
+        const userDetails = await getUserDetails(userInfo.username);
+        setCurrentUserDetails(userDetails.data.getUser);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getCurrentUserDetails(); 
+  }, [userInfo, setUserInfo]);
 
   if (isSignedIn === null || undefined) {
     return null;
@@ -163,6 +198,7 @@ const AuthProvider = ({children}) => {
     isSignedIn,
     sessionInfo,
     userInfo,
+    currentUserDetails,
     signUp,
     signOut,
     signIn,

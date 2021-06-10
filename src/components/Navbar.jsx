@@ -1,15 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { RenderContext } from '../context/RenderContext';
 
-
-
-export default function Navbar() {
-  const context = React.useContext(RenderContext);  
+export default function Navbar() { 
   const authContext = React.useContext(AuthContext);
-  const currentUser = context.users
-    .filter((item) => item.id === authContext.userInfo.username)[0];
+  const currentUser = authContext.currentUserDetails
 
   const handleLogOut = async () => {
     try {
@@ -35,11 +30,11 @@ export default function Navbar() {
             <Link to="/reports" id="navButton">
                 Reports
             </Link>
-            {/* {currentUser.admin &&  */}
+            {currentUser.admin && 
             <Link to="/users" id="navButton">
                 Users
             </Link>
-            {/* } */}
+            }
             <Link to="/signin" id="navButton" onClick={handleLogOut}>
               Log Out
             </Link>
