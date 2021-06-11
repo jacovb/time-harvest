@@ -12,8 +12,11 @@ import ProjectDistribution from "./ProjectDistribution";
 import MonthlyHoursBreakdown from "./MonthlyHoursBreakdown";
 import WeeklyHoursBreakdown from "./WeeklyHoursBreakdown";
 import Home from "./Home";
+import { AuthContext } from "../context/AuthContext";
 
 export default function RenderAuthenticatedRoutes() {
+
+  const { currentUserDetails } = React.useContext(AuthContext);
 
   return (
     <>
@@ -51,9 +54,9 @@ export default function RenderAuthenticatedRoutes() {
           <WeeklyHoursBreakdown/>
         </Route>
     
-        <Route exact path="/users">
+        {currentUserDetails.admin && <Route exact path="/users">
           <Users/>
-        </Route>
+        </Route>}
       </Switch>
     </>
   )

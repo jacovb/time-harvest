@@ -177,7 +177,7 @@ export default function EditProjectModal({
                 </div>
                 
                 <button 
-                    className="delete-button-projects" 
+                    className="project-form-button delete-button-projects" 
                     onClick={() => {
                       setEditModal(false);
                       deleteProject(formData);
@@ -187,7 +187,7 @@ export default function EditProjectModal({
                 </button>
                 
                 <button 
-                    className="update-button-projects" 
+                    className="project-form-button update-button-projects" 
                     onClick={() => {
                       setEditModal(false);
                       updateProject(formData);

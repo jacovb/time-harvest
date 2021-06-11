@@ -88,9 +88,6 @@ const RenderContextProvider = ({children}) => {
     // eslint-disable-next-line
   }, [entry]);
 
-  const tempUser = users.filter((item) => item.id === userInfo.username)[0];
-  const [theCurrentUser, setTheCurrentUser] = useState(tempUser);
-
   // ===============
   // List Properties
   // ===============
@@ -426,7 +423,6 @@ const RenderContextProvider = ({children}) => {
     handleAddUser,
     handleAddEntry,
     handleSetEntryUser,
-    theCurrentUser,
   };
   
   return <RenderContext.Provider value={state}>{children}</RenderContext.Provider>

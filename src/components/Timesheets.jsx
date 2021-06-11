@@ -6,6 +6,7 @@ import ReactTooltip from 'react-tooltip';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import EntryChangeUser from "./EntryChangeUser";
 import AddEntryModal from "./AddEntryModal";
 import EditEntryModal from "./EditEntryModal";
 import EntryListRow from "./EntryListRow";
@@ -13,9 +14,7 @@ import EntryListRow from "./EntryListRow";
 export default function Timesheets() {
   
     const context = React.useContext(RenderContext)
-    const { userInfo } = React.useContext(AuthContext)
-    // console.log("AuthContext", authContext.userInfo.username);
-    // console.log("Users", context.users);
+    const { currentUserDetails } = React.useContext(AuthContext)
 
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -38,7 +37,7 @@ export default function Timesheets() {
 
     const activeUser = context.entryUserId.entryUserId !== context.startEntryUserId.entryUserId ?
       context.entryUserId.entryUserId :
-      userInfo.username
+      currentUserDetails.id
     
     const entryDates = 
       context.entry
@@ -52,41 +51,12 @@ export default function Timesheets() {
         .filter((item) => item.user.id === activeUser)
         .sort((a, b) => new Date(b.date) - new Date(a.date))
     
-    const currentUser = context.users.filter((item) => item.id === userInfo.username)[0];
-    
     return (
       <>
         <div className="entryHeader">
-          {/* <h3>Welcome, {currentUser.name + " " + currentUser.surname}</h3> */}
+          <h3 className="homePageWelcome">{currentUserDetails.name + " " + currentUserDetails.surname}</h3>
 
-          {currentUser.admin && <div className="project-form">
-            <label 
-              htmlFor="user" 
-              className="userSelectLabel">
-                Change Project User: 
-            </label>
-            <select 
-              className="userSelect"
-              type="text"
-              id="user"
-              name="entryUserId"
-              value={context.entryUserId.entryUserId}
-              onChange={context.handleSetEntryUser}>
-                <option value="" hidden>-- Select Different User --</option>
-                {context.users
-                  .sort((a, b) => a.name - b.name)
-                  .map((user, idx) => (
-                      <option key={idx} value={user.id}>
-                        {user.name}
-                      </option>
-                ))}  
-            </select>
-            <button 
-              className="userResetButton"
-              onClick={() => context.setEntryUserId(context.startEntryUserId)}>
-              Reset
-            </button>
-          </div>}
+          {currentUserDetails.admin && <EntryChangeUser />}
 
           <button
             className="addButton" 
