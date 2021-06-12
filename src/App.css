@@ -43,6 +43,7 @@
 #navButton:hover {
   background-color: var(--verylight-blue);
   color: black;
+  transition: all 0.3s ease;
 }
 
 body {
@@ -56,6 +57,43 @@ h1 {
 .homePageWelcome {
   text-align: center;
   color: white;
+  margin-top: 40px;
+  font-size: 24px;
+}
+
+.home-menu {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.home-menu-button {
+  width: 150px;
+  height: 120px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  color: var(--dark-grey);
+  font-size: 20px;
+  margin: 0 5px 0 5px;
+}
+
+.home-menu-button p {
+  margin: 0;
+}
+
+.home-menu-button svg {
+  height: 50px;
+  width: 50px;
+}
+
+.home-menu-button:hover {
+  background: var(--mid-watermelon);
+  color: white;
+  box-shadow: 10px 10px 10px var(--shadow);
+  transition: all 0.3s ease;
 }
 
 /* =============================================================== */

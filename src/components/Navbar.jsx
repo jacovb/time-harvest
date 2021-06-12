@@ -25,7 +25,7 @@ export default function Navbar() {
                 Projects
             </Link>
             <Link to="/timesheets" id="navButton">
-                Time Sheets
+                Timesheets
             </Link>
             <Link to="/reports" id="navButton">
                 Reports
