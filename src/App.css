@@ -1145,12 +1145,12 @@ select:focus + .label-status {
   align-items: center;
   width: 400px;
   margin: auto;
-  display: grid;
-  grid-template-columns: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .report-links a button {
-  justify-self: center;
   margin: 5px 50px 0 50px;
   width: 350px;
   height: 35px;

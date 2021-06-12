@@ -21,9 +21,11 @@ export default function Navbar() {
             <Link to="/" id="navButton">
                 Home
             </Link>
+            {currentUser.admin &&
             <Link to="/Projects" id="navButton">
                 Projects
             </Link>
+            }
             <Link to="/timesheets" id="navButton">
                 Timesheets
             </Link>

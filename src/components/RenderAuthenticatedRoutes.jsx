@@ -26,9 +26,9 @@ export default function RenderAuthenticatedRoutes() {
           <Home />
         </Route>
     
-        <Route exact path="/projects">
+        {currentUserDetails.admin &&<Route exact path="/projects">
           <Projects/>
-        </Route>
+        </Route>}
     
         <Route exact path="/timesheets">
           <Timesheets/>
