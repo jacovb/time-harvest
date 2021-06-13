@@ -12,7 +12,6 @@ export default function EditUserModal({
       updateUser,
       deleteUser, 
       handleAddUser, 
-      // users, 
       setUserData, 
       startUserForm,
       setEditModal 
@@ -30,7 +29,6 @@ export default function EditUserModal({
     
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
-        {console.log(userData)}
         <div className="modal-overlay" />
         <div 
             className="modal-wrapper" 
@@ -105,17 +103,25 @@ export default function EditUserModal({
                   </select>
                 </div>
 
+                <label className="label-admin">
+                  Is this an Admin Role?
+                </label>
+                
+                <input 
+                  name="admin"
+                  id="admin"
+                  className="checkbox"
+                  type="checkbox"
+                  checked={userData.admin}
+                  onChange={() => setUserData({...userData, admin: !userData.admin})}
+                />
+
                 <div className="fullwidth-input">
                     <label className="label-name">
                         Email:
                     </label>
                     <p>{userData.email}</p>     
                 </div>
-
-                
-                
-                {/* department
-                is User Admin? */}
                 
                 <button 
                     className="update-button-entry"

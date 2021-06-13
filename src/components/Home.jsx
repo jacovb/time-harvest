@@ -3,13 +3,10 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from "../context/AuthContext";
 
 import TimerIcon from '@material-ui/icons/Timer';
-import AssessmentIcon from '@material-ui/icons/Assessment';
 import TimelineIcon from '@material-ui/icons/Timeline';
 
 export default function Home() {
-  const { currentUserDetails } = React.useContext(AuthContext)  
-  
-  console.log("currentUserDetails", currentUserDetails);
+  const { currentUserDetails } = React.useContext(AuthContext);
 
   return (
     <>

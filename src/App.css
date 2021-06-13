@@ -614,6 +614,7 @@ select:focus + .label-status {
 .fullwidth-input p {
   font-size: 17px;
   font-weight: 500;
+  margin: 8px 0 8px 0;
 }
 
 .halfwidth-input-left {
@@ -782,6 +783,10 @@ select:focus + .label-status {
 
 .userSelectLabel {
   padding-top: 5px;
+}
+
+.label-admin {
+  margin: 10px 0 20px 0;
 }
 
 /* =============================================================== */
