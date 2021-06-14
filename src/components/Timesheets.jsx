@@ -26,8 +26,8 @@ export default function Timesheets() {
       return resultDate;
     }
     
-    const endDate = new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split('T')[0];
-    const startDate = new Date(new Date().setMonth(new Date().getMonth() - 5)).toISOString().split('T')[0];
+    const endDate = getDayOfWeek(new Date().setMonth(new Date().getMonth() + 1), 6).toISOString().split('T')[0];
+    const startDate = getDayOfWeek(new Date().setMonth(new Date().getMonth() - 5), -1).toISOString().split('T')[0];
 
     // console.log("startDate", startDate);
     // console.log("Get Saturday After", getDayOfWeek(endDate, 6));
@@ -46,6 +46,7 @@ export default function Timesheets() {
     }
 
     const dateRange = getDatesBetween(startDate, endDate);
+    console.log("dateRange", dateRange)
 
     const activeUser = context.entryUserId.entryUserId !== context.startEntryUserId.entryUserId ?
       context.entryUserId.entryUserId :
