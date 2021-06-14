@@ -19,8 +19,20 @@ export default function Timesheets() {
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
 
-    const endDate = new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split('T')[0]
-    const startDate = new Date(new Date().setMonth(new Date().getMonth() - 5)).toISOString().split('T')[0]
+    function getDayOfWeek(date, dayOfWeek) {
+      const d = new Date(date);
+      let resultDate = new Date(d.getTime());
+      resultDate.setDate(d.getDate() + (7 + dayOfWeek - d.getDay()) % 7)
+      return resultDate;
+    }
+    
+    const endDate = new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split('T')[0];
+    const startDate = new Date(new Date().setMonth(new Date().getMonth() - 5)).toISOString().split('T')[0];
+
+    // console.log("startDate", startDate);
+    // console.log("Get Saturday After", getDayOfWeek(endDate, 6));
+    // console.log("Get Sunday Before", getDayOfWeek(startDate, 0));
+
 
     const getDatesBetween = (startDate, endDate) => {
       let dates = []
