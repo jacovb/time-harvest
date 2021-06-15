@@ -29,11 +29,6 @@ export default function Timesheets() {
     const endDate = getDayOfWeek(new Date().setMonth(new Date().getMonth() + 1), 6).toISOString().split('T')[0];
     const startDate = getDayOfWeek(new Date().setMonth(new Date().getMonth() - 5), -1).toISOString().split('T')[0];
 
-    // console.log("startDate", startDate);
-    // console.log("Get Saturday After", getDayOfWeek(endDate, 6));
-    // console.log("Get Sunday Before", getDayOfWeek(startDate, 0));
-
-
     const getDatesBetween = (startDate, endDate) => {
       let dates = []
       const theDate = new Date(startDate)
@@ -46,7 +41,6 @@ export default function Timesheets() {
     }
 
     const dateRange = getDatesBetween(startDate, endDate);
-    console.log("dateRange", dateRange)
 
     const activeUser = context.entryUserId.entryUserId !== context.startEntryUserId.entryUserId ?
       context.entryUserId.entryUserId :
@@ -67,7 +61,7 @@ export default function Timesheets() {
     return (
       <>
         <div className="entryHeader">
-          <h3 className="homePageWelcome">{currentUserDetails.name + " " + currentUserDetails.surname}</h3>
+          <h3 className="homePageWelcome">{`${currentUserDetails.name} ${currentUserDetails.surname}`}</h3>
 
           {currentUserDetails.admin && <EntryChangeUser />}
 

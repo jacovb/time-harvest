@@ -36,6 +36,7 @@ const startUserForm = {
   email: "",
   department: "",
   admin: false,
+  status: "",
 };
 
 const startEntryUserId = {
@@ -299,6 +300,7 @@ const RenderContextProvider = ({children}) => {
             surname: userData.surname,
             department: userData.department,
             admin: userData.admin,
+            status: userData.status,
           },
         },
       });

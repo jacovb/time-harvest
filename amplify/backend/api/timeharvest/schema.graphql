@@ -30,6 +30,7 @@ type User @model {
   entries: [Entry] @connection(name: "UserEntries")
   email: AWSEmail
   admin: Boolean
+  status: String
 }
 
 type Entry @model {

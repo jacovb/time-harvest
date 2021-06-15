@@ -122,6 +122,24 @@ export default function EditUserModal({
                     </label>
                     <p>{userData.email}</p>     
                 </div>
+
+                <div className="fullwidth-input">
+                  <label htmlFor="department" className="label-name">
+                    Employment Status:
+                  </label>
+                  <br/>
+                  <select
+                    type="text"
+                    id="status"
+                    value={userData.status}
+                    name="status"
+                    required
+                    onChange={handleAddUser}>
+                    <option value="" disabled hidden>-- Select Status --</option>
+                    <option value="Employed">Employed</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </div>
                 
                 <button 
                     className="update-button-entry"

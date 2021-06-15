@@ -138,6 +138,7 @@ export const onCreateUserProject = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -185,6 +186,7 @@ export const onUpdateUserProject = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -232,6 +234,7 @@ export const onDeleteUserProject = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -291,6 +294,7 @@ export const onCreateUser = /* GraphQL */ `
       }
       email
       admin
+      status
       createdAt
       updatedAt
     }
@@ -325,6 +329,7 @@ export const onUpdateUser = /* GraphQL */ `
       }
       email
       admin
+      status
       createdAt
       updatedAt
     }
@@ -359,6 +364,7 @@ export const onDeleteUser = /* GraphQL */ `
       }
       email
       admin
+      status
       createdAt
       updatedAt
     }
@@ -403,6 +409,7 @@ export const onCreateEntry = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -454,6 +461,7 @@ export const onUpdateEntry = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -505,6 +513,7 @@ export const onDeleteEntry = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }

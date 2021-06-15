@@ -150,6 +150,7 @@ export const createUserProject = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -200,6 +201,7 @@ export const updateUserProject = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -250,6 +252,7 @@ export const deleteUserProject = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -312,6 +315,7 @@ export const createUser = /* GraphQL */ `
       }
       email
       admin
+      status
       createdAt
       updatedAt
     }
@@ -349,6 +353,7 @@ export const updateUser = /* GraphQL */ `
       }
       email
       admin
+      status
       createdAt
       updatedAt
     }
@@ -386,6 +391,7 @@ export const deleteUser = /* GraphQL */ `
       }
       email
       admin
+      status
       createdAt
       updatedAt
     }
@@ -433,6 +439,7 @@ export const createEntry = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -487,6 +494,7 @@ export const updateEntry = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -541,6 +549,7 @@ export const deleteEntry = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }

@@ -103,6 +103,7 @@ export const getUser = /* GraphQL */ `
       }
       email
       admin
+      status
       createdAt
       updatedAt
     }
@@ -128,6 +129,7 @@ export const listUsers = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -174,6 +176,7 @@ export const getEntry = /* GraphQL */ `
         }
         email
         admin
+        status
         createdAt
         updatedAt
       }
@@ -218,6 +221,7 @@ export const listEntrys = /* GraphQL */ `
           department
           email
           admin
+          status
           createdAt
           updatedAt
         }
