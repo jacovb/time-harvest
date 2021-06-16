@@ -1,30 +1,22 @@
-import React, {useContext} from 'react';
+import React, { useContext, useState } from 'react';
 import { RenderContext } from "../context/RenderContext";
 
 export default function ProjectDistribution() {
   const context = useContext(RenderContext);
+  const [day, setDay] = useState(new Date());
 
-  function getLastMonth() {
-    return context.entry
-      .sort((a, b) => new Date(a.date) - new Date(b.date))
-      .map((item, idx) => new Date(item.date)
-        .toLocaleString('default', { month: 'long' })
-        + " "
-        + new Date(item.date).getFullYear())
-      .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
-      .reverse()[0];
+  function getLast12Months(d) {
+    const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    let monthArray = [];
+    d.setDate(1);
+    for (let i = 0; i <= 11; i++) {
+      monthArray.push(monthName[d.getMonth()] + " " + d.getFullYear());
+      d.setMonth(d.getMonth() - 1)
+    }
+    return monthArray.reverse();
   }
 
-  const months = ["July 2020", "August 2020", "September 2020", "October 2020", "November 2020", "December 2020", "January 2021", "February 2021", "March 2021", "April 2021", "May 2021", "June 2021"];
-  
-  const lastMonth = getLastMonth()
-
-
-
-  
-  console.log(lastMonth);
-  console.log(context.entry);
-  console.log(context.projects);
+  const months = getLast12Months(day);
 
   return (
     <>
