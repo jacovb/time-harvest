@@ -1236,7 +1236,7 @@ select:focus + .label-status {
 .dist-table {
   display: grid;
   grid-template-columns: auto repeat(13, 50px);
-  grid-template-rows: 150px;
+  grid-template-rows: 35px 150px;
   grid-auto-rows: 40px;
   grid-gap: 1px;
   width: 90%;
@@ -1278,4 +1278,40 @@ select:focus + .label-status {
 
 .d-2 {
   grid-column: 2 / 3;
+}
+
+.d-14 {
+  grid-column: 14 / 15;
+}
+
+.year-slider {
+  width: 40px;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.year-slider svg {
+  height: 35px;
+  width: 35px;
+}
+
+.year-slider:hover {
+  color: var(--mid-watermelon);
+  transition: all 0.3s ease;
+}
+
+.dist-date-range {
+  grid-column: 2 / 14;
+  justify-self: center;
+  color: white;
+  font-weight: 800;
+}
+
+.year-back {
+  justify-self: right;
+}
+
+.year-forward {
+  justify-self: left;
 }
