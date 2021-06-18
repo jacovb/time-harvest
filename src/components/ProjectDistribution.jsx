@@ -20,7 +20,14 @@ export default function ProjectDistribution() {
     return monthArray.reverse();
   }
 
-  // add slider buttons - onClick, setDay to a year ago / ahead
+  function convertDateToMonthAndYear(d) {
+    let monthAndYear = new Date(d)
+    .toLocaleString('default', { month: 'long' })
+    + " "
+    + new Date(d).getFullYear()
+    return monthAndYear
+  }
+
   const months = getLast12Months(day);
 
   return (
@@ -28,8 +35,8 @@ export default function ProjectDistribution() {
       <div className="projListHeading">
         <h2>Monthly Hour Distribution per Project</h2>
       </div>
-      
-      <div className={"dist-table"}>
+
+      <div className="dist-table">
         <button 
           className="year-back d-1 year-slider"
           onClick={() => {
@@ -69,7 +76,7 @@ export default function ProjectDistribution() {
                 <div key={idx} className="dist-cell">
                   {context.entry
                   .filter((obj) => obj.project.id === project.id)
-                  .filter((obj) => new Date(obj.date).toLocaleString('default', { month: 'long' }) === month.split(" ")[0])
+                  .filter((obj) => convertDateToMonthAndYear(obj.date) === month)
                   .reduce((acc, curr) => acc + curr.time, 0)}
                 </div>
               ))}
