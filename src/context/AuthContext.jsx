@@ -38,10 +38,14 @@ const initializeUser = {
   id: "",
 }
 
+const initializeInfo = {
+  username: ""
+}
+
 const AuthProvider = ({children}) => {
   const [isSignedIn, setIsSignedIn] = React.useState();
   const [sessionInfo, setSessionInfo] = React.useState({});
-  const [userInfo, setUserInfo] = React.useState();
+  const [userInfo, setUserInfo] = React.useState(initializeInfo);
   const [currentUserDetails, setCurrentUserDetails] = React.useState(initializeUser);
 
   const getCurrentSession = async () => {

@@ -17,12 +17,13 @@ export default function MonthlyHoursBreakdown() {
           .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
       })
 
-    const entryDateArray = 
-      entryDates
-        .reduce((a, b) => {
-            return a.concat(b)
-          }, [])
-        .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], [])
+    const entryDateArray = context.entry
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .map((item, idx) => new Date(item.date)
+            .toLocaleString('default', { month: 'long' })
+            + " "
+            + new Date(item.date).getFullYear())
+      .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
 
     function getEntryDates(userId) {
       return context.entry
@@ -80,10 +81,6 @@ export default function MonthlyHoursBreakdown() {
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
     let userFilter = usersFilter(context.users, context.selectFilter, usersFromEntry);
     let dateFilter = datesFilter(entryDates, context.selectFilter).filter(e => e.length);
-
-    console.log("entryFilter", entryFilter);
-    console.log("userFilter", userFilter);
-    console.log("dateFilter", dateFilter);
     
     return (
         <>
