@@ -9,7 +9,7 @@ export default function EntryChangeUser() {
       <label 
         htmlFor="user" 
         className="userSelectLabel">
-          Change Project User: 
+          Change User: 
       </label>
       <select 
         className="userSelect"

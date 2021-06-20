@@ -30,7 +30,6 @@ export default function EditEntryModal({
     
     return isShowing ? ReactDOM.createPortal(
     <React.Fragment>
-        {console.log(entryData)}
         <div className="modal-overlay" />
         <div 
             className="modal-wrapper" 

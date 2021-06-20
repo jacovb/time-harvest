@@ -53,6 +53,13 @@ export default function Timesheets() {
         .map((item, idx) => (item.date))
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
 
+    const entryDatesMonthArray = entryDates
+      .map((item, idx) => new Date(item)
+            .toLocaleString('default', { month: 'long' })
+            + " "
+            + new Date(item).getFullYear())
+      .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
+
     const userEntries = 
       context.entry
         .filter((item) => item.user.id === activeUser)
@@ -132,17 +139,26 @@ export default function Timesheets() {
             />
           </div>
           
-          {entryDates
-            .map((entryDate, idx) => (
-              <EntryListRow 
-                key={idx}
-                entryDate={entryDate}
-                userEntries={userEntries}
-                setEntryData={context.setEntryData}
-                setEditModal={setEditModal}
-                toggle={context.toggle}
-              />
-            ))}
+          {entryDatesMonthArray.map((month, idx) => (
+            <React.Fragment key={idx}>
+              <h4 className="monthHeading">{month}</h4>
+              {entryDates
+                .filter((date) => (new Date(date)
+                  .toLocaleString('default', { month: 'long' })
+                  + " "
+                  + new Date(date).getFullYear()) === month)
+                .map((entryDate, idx) => (
+                  <EntryListRow 
+                    key={idx}
+                    entryDate={entryDate}
+                    userEntries={userEntries}
+                    setEntryData={context.setEntryData}
+                    setEditModal={setEditModal}
+                    toggle={context.toggle}
+                  />
+                ))}
+            </React.Fragment>
+          ))}
           {editModal && <EditEntryModal
             isShowing={context.isShowing}
             hide={context.toggle}

@@ -231,7 +231,7 @@ h1 {
 .project-form {
   display: grid;
   width: 70%;
-  margin: 1.75rem auto;
+  margin: auto;
   margin-top: 20px;
   padding: 1rem;
   grid-template-columns: 1fr 1fr 1fr;
@@ -565,7 +565,7 @@ select:focus + .label-status {
 }
 
 .userEditButton {
-  grid-column: 3 / 4;
+  grid-column: 4 / 5;
 }
 
 /* =============================================================== */
@@ -671,6 +671,15 @@ select:focus + .label-status {
   background: var(--mid-blue);
   color: white;
   transition: all 0.3s ease;
+}
+
+.monthHeading {
+  color: white;
+  width: 95%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 20px;
 }
 
 .entryList {
@@ -810,9 +819,21 @@ select:focus + .label-status {
   text-align: center;
 }
 
+.userListHeading {
+  display: grid;
+  grid-template-columns: auto 150px 80px 40px;
+  column-gap: 5px;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: auto;
+  width: 60%;
+  color: white;
+}
+
 .userRow {
   display: grid;
-  grid-template-columns: auto 150px 40px;
+  grid-template-columns: auto 150px 80px 40px;
   column-gap: 5px;
   align-items: center;
   padding: 1rem;
@@ -820,8 +841,12 @@ select:focus + .label-status {
   margin-top: 5px;
   border-radius: 10px;
   background-color: white;
-  width: 50%;
+  width: 60%;
   box-shadow: 5px 5px 5px var(--shadow);
+}
+
+.checkIcon {
+  margin: auto;
 }
 
 .userName {
