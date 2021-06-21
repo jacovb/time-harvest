@@ -57,6 +57,7 @@ const startSelectFilter = {
   entryUserId: "",
   month: "",
   week: "",
+  userStatus: "",
 };
 
 export const RenderContext = React.createContext();

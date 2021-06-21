@@ -1047,6 +1047,24 @@ select:focus + .label-status {
   margin-top: 5px;
 }
 
+.filter-bar-users {
+  display: grid;
+  grid-template-columns: auto 200px 200px;
+  column-gap: 5px;
+  align-items: center;
+  padding: 5px;
+  margin: auto;
+  margin-top: 5px;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: white;
+  width: 60%;
+  box-shadow: 5px 5px 5px var(--shadow);
+  position: relative;
+  font-size: 14px;
+  font-weight: 300;
+}
+
 .projectContainer {
   display: grid;
   grid-template-columns: 150px 150px 150px 150px;
