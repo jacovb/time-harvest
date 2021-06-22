@@ -68,10 +68,7 @@ export default function Timesheets() {
     return (
       <>
         <div className="entryHeader">
-          <h3 className="homePageWelcome">{`${currentUserDetails.name} ${currentUserDetails.surname}`}</h3>
-
-          {currentUserDetails.admin && <EntryChangeUser />}
-
+          <h3 className="timesheet-page-name-header">{`${currentUserDetails.name} ${currentUserDetails.surname}`}</h3>
           <button
             className="addButton" 
             onClick={() => {
@@ -83,6 +80,8 @@ export default function Timesheets() {
             <span className="edit-tooltip">Add Entry</span>
           </button>
         </div>
+          
+        {currentUserDetails.admin && <EntryChangeUser />}
         
         {addModal && <AddEntryModal
             isShowing={context.isShowing}

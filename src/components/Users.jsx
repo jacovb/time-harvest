@@ -26,7 +26,7 @@ export default function Users() {
       </div>
 
       <div className="filter-bar-users">
-        <label className="main-label">Filter by: </label>
+        <label className="main-label">Filter by</label>
         <label htmlFor="userStatus" className="label">
           Currently Employed: 
         </label>
