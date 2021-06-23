@@ -461,16 +461,20 @@ select:focus + .label-status {
 /* =============================================================== */
 
 .projListHeading {
-  position: relative;
-  height: 55px;
-  margin: 20px 0 20px 0;
+  display: grid;
+  grid-template-columns: auto 55px;
+  width: 95%;
+  margin: auto;
+  margin-top: 15px;
 }
 
 .projListHeading h2 {
-  position: relative;
-  top: 10px;
-  color: white;
   text-align: center;
+  align-self: center;
+  color: white;
+  font-size: 24px;
+  margin: 0;
+  margin-right: -55px;
 }
 
 .projects-heading {
@@ -579,6 +583,21 @@ select:focus + .label-status {
   font-size: 24px;
   margin: 0;
   margin-right: -55px;
+}
+
+.change-user-box {
+  display: grid;
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  font-size: 16px;
+  background-color: var(--dark-blue);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px var(--shadow);
+  color: white;
 }
 
 .timesheet-form {
@@ -746,7 +765,6 @@ select:focus + .label-status {
 
 .userSelect {
   grid-column: 2 / 3;
-  background: white;
   border: 1px solid var(--dark-grey);
   border-radius: 5px;
   background: white;
@@ -761,11 +779,14 @@ select:focus + .label-status {
   background-color: white;
   box-shadow: 5px 5px 5px var(--shadow);
   align-self: center;
+  position: relative;
 }
 
 .addButton:hover {
-  border: 2px solid var(--mid-watermelon);
+  background-color: var(--mid-watermelon);
+  color: white;
   box-shadow: 10px 10px 10px var(--shadow);
+  transition: all 0.3s ease;
 }
 
 .addButton .edit-tooltip {
@@ -797,8 +818,14 @@ select:focus + .label-status {
   height: 30px;
   background: white;
   border-radius: 5px;
-  box-shadow: 2px 2px 2px var(--medium-grey);
-  border: 1px solid var(--dark-grey);
+  box-shadow: 2px 2px 2px var(--shadow);
+  border: none;
+}
+
+.userResetButton:hover {
+  background: var(--mid-blue);
+  color: white;
+  transition: all 0.3s ease;
 }
 
 .userSelectLabel {

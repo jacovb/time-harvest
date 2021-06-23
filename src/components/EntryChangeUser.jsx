@@ -5,7 +5,7 @@ export default function EntryChangeUser() {
   const context = React.useContext(RenderContext);
 
   return (
-    <div className="project-form">
+    <div className="change-user-box">
       <label 
         htmlFor="user" 
         className="userSelectLabel">
