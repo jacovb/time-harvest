@@ -17,7 +17,7 @@ import RenderContextProvider from "./context/RenderContext";
 function App() {
   return (
     <div className="App">
-      <h1>Timesheet-App</h1>
+      <h1>Punch-Card</h1>
       <Router>
         <div id="mainContainer">
           <AuthProvider>

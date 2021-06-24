@@ -22,41 +22,15 @@ export default function RenderAuthenticatedRoutes() {
     <>
       <Navbar />
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-    
-        {currentUserDetails.admin &&<Route exact path="/projects">
-          <Projects/>
-        </Route>}
-    
-        <Route exact path="/timesheets">
-          <Timesheets/>
-        </Route>
-    
-        <Route exact path="/reports">
-          <Reports />
-        </Route>
-    
-        <Route exact path="/projectOverview">
-          <ProjectOverview/>
-        </Route>
-
-        <Route exact path="/projectDistribution">
-          <ProjectDistribution/>
-        </Route>
-    
-        <Route exact path="/monthlyHours">
-          <MonthlyHoursBreakdown/>
-        </Route>
-
-        <Route exact path="/weeklyHours">
-          <WeeklyHoursBreakdown/>
-        </Route>
-    
-        {currentUserDetails.admin && <Route exact path="/users">
-          <Users/>
-        </Route>}
+        <Route exact path="/" component={Home} />
+        {currentUserDetails.admin && <Route exact path="/projects" component={Projects} />}
+        <Route exact path="/timesheets" component={Timesheets} />
+        <Route exact path="/reports" component={Reports} />
+        <Route exact path="/projectOverview" component={ProjectOverview} />
+        <Route exact path="/projectDistribution" component={ProjectDistribution} />
+        <Route exact path="/monthlyHours" component={MonthlyHoursBreakdown} />
+        <Route exact path="/weeklyHours" component={WeeklyHoursBreakdown} />
+        {currentUserDetails.admin && <Route exact path="/users" component={Users} />}
       </Switch>
     </>
   )
