@@ -1,12 +1,22 @@
 # Punch-Card / Timesheet-App
 
-## Problems we want to solve?
+## Problems this app aim to solve?
 
-My current employer has a very dated method for employees to do their timesheets, ⋅⋅* It takes very long, especially if done remotely
-⋅⋅* If you've missed a day, it's hard to spot when that day was
-⋅⋅\* Employees don't see how this information is used, therefore unknowingly accumulating hours on projects that wasn't quoted for.
+My current employer has a very dated method for employees to do their timesheets:
 
-An app that allows
+- It takes very long, especially if done remotely
+- If you've missed a day, it's hard to spot when that day was
+- Employees don't see how this information is used, therefore unknowingly accumulating hours on projects that wasn't quoted for.
+
+## What this app does?
+
+- New users / employees create an account
+- They upload the amount of time they spend on each project and shows on a GitHub-style Calender when completed
+- Reports are automatically generated to show much of the allowed / quoted time has already been used
+- Some users / employees have Admin-right, which allows them to:
+  - Add new projects to the database
+  - Edit user details and award them admin-rights
+  - Enter timesheet entries for other users who might not be able to do it
 
 ## Available Scripts
 
