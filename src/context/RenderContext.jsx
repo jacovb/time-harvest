@@ -166,7 +166,6 @@ const RenderContextProvider = ({children}) => {
     } else {
       entryData.entryUserId = userInfo.username;
     }
-    console.log(entryData);
     try {
       await API.graphql({
         query: createEntryMutation,
