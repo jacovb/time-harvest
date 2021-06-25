@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { RenderContext } from "../context/RenderContext";
 import { AuthContext } from "../context/AuthContext";
-import CalendarHeatmap from 'react-calendar-heatmap';
-import ReactTooltip from 'react-tooltip';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import PunchCard from "./PunchCard";
 import EntryChangeUser from "./EntryChangeUser";
 import AddEntryModal from "./AddEntryModal";
 import EditEntryModal from "./EditEntryModal";
@@ -96,47 +95,16 @@ export default function Timesheets() {
           />}
           
         <div className="entryList">
-          <div className="calender-heatmap-container">
-            <CalendarHeatmap
-              startDate={new Date(startDate)}
-              endDate={new Date(endDate)}
-              values={dateRange.map((item) => {
-                const totalDailyTime = userEntries.filter((obj) => obj.date === item).reduce((acc, curr) => acc + curr.time, 0)
-                return {date: item, count: totalDailyTime}
-              })}
-              classForValue={(value) => {
-                if (!value || value.count === 0) {
-                  return 'color-empty';
-                } else if (value.count < 8) {
-                  return 'color-1';
-                } else if (value.count === 8) {
-                  return 'color-2';
-                } else if (value.count > 8) {
-                  return 'color-3';
-                }
-              }}
-              onClick={(e) => {
-                  context.setEntryData({
-                    ...context.entryData,
-                    date: e.date
-                  })
-                  setAddModal(true)
-                  context.toggle()
-                }
-              }
-              tooltipDataAttrs={value => {
-                return {
-                  'data-tip': value.count === 0 
-                    ? `${value.date}` 
-                    : `${value.date} : ${value.count} Hours`,
-                };
-              }}
-            />
-            <ReactTooltip 
-              delayShow={3}
-              delayHide={3}
-            />
-          </div>
+          <PunchCard 
+            startDate={startDate}
+            endDate={endDate}
+            dateRange={dateRange}
+            userEntries={userEntries}
+            setAddModal={setAddModal}
+            entryData={context.entryData}
+            setEntryData={context.setEntryData}
+            toggle={context.toggle}
+          />
           
           {entryDatesMonthArray.map((month, idx) => (
             <React.Fragment key={idx}>
