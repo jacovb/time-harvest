@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { RenderContext } from "../context/RenderContext";
 
+import ProjectDistributionGraph from './ProjectDistributionGraph';
+
 import FastRewindIcon from '@material-ui/icons/FastRewind';
 import FastForwardIcon from '@material-ui/icons/FastForward';
 
@@ -144,6 +146,7 @@ export default function ProjectDistribution() {
             </React.Fragment>
           ))}
       </div>
+      <ProjectDistributionGraph />
     </>
   )
 }
