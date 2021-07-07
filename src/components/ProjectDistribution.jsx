@@ -45,7 +45,19 @@ export default function ProjectDistribution() {
   }
 
   let projectFilter = projectsFilter(context.projects, context.selectFilter);
+  let entryFilter = projectFilter
+    .sort((a, b) => a.projectNo - b.projectNo)
+    .map((project, idx) => (
+      months.map((month, idx) => (
+          context.entry
+          .filter((obj) => obj.project.id === project.id)
+          .filter((obj) => convertDateToMonthAndYear(obj.date) === month)
+          .reduce((acc, curr) => acc + curr.time, 0)
+        ))
+      )
+    )
 
+  
   return (
     <>
       <div className="projListHeading">
@@ -146,7 +158,11 @@ export default function ProjectDistribution() {
             </React.Fragment>
           ))}
       </div>
-      <ProjectDistributionGraph months={months}/>
+      <ProjectDistributionGraph 
+        months={months} 
+        projects={projectFilter} 
+        entries={entryFilter}
+      />
     </>
   )
 }
