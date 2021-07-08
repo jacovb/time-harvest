@@ -19,7 +19,7 @@ export default function ProjectDistributionGraph({
     height: "200px",
   }
 
-  useEffect(() => {
+  function drawChart() {
     const canvas = d3.select(svgRef.current)
     const xScale = d3.scaleLinear()
       .domain([0, months.length - 1])
@@ -47,25 +47,27 @@ export default function ProjectDistributionGraph({
       .y(value => yScale(value))
       .curve(d3.curveCardinal)
 
-    entries.map((entry) => {
       canvas
         .selectAll(".line")
-        .data([entry])
+        .data([data])
         .join("path")
         .attr("class", "line")
         .attr("d", value => myLine(value))
         .attr("fill", "none")
-        .attr("stroke", "blue")
+        .attr("stroke", "#0496ff")
       canvas
         .selectAll("circle")
-        .data(entry)
+        .data(data)
         .join("circle")
-        .attr("r", 5)
+        .attr("r", 2)
         .attr("cx", (value, index) => xScale(index))
         .attr("cy", value => yScale(value))
         .attr("stroke", "black")
         .attr("fill", "white")
-    })
+  }
+
+  useEffect(() => {
+    drawChart();
   }, [data])
 
   return (
