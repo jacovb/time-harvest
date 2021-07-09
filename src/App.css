@@ -1396,3 +1396,12 @@ select:focus + .label-status {
 .year-forward {
   justify-self: left;
 }
+
+.chart {
+  background-color: white;
+  width: 95%;
+  margin: auto;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

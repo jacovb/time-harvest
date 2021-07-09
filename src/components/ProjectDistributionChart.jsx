@@ -7,7 +7,7 @@ export default function ProjectDistricutionChart ({
   entries,
 }) {
 
-  let myDataSet = projects.map((project, idx) => (
+  let dataForChart = projects.map((project, idx) => (
     { 
       label: `${projects[idx].projectNo} - ${projects[idx].name}`,
       data: entries[idx]
@@ -18,14 +18,14 @@ export default function ProjectDistricutionChart ({
     type: 'line',
     data: {
       labels: months,
-      datasets: myDataSet
+      datasets: dataForChart
     }
   }
 
   const chartContainer = useRef(null);
   const [chartInstance, setChartInstance] = useState(null);
   console.log("projects", projects)
-  console.log("myDataSet", myDataSet)
+  console.log("dataForChart", dataForChart)
 
   useEffect(() => {
     if (chartContainer && chartContainer.current) {
@@ -36,7 +36,10 @@ export default function ProjectDistricutionChart ({
 
   return (
     <div>
-      <canvas ref={chartContainer}/>
+      <canvas 
+        className="chart" 
+        ref={chartContainer}
+      />
     </div>
   )
 

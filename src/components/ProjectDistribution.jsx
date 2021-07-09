@@ -158,7 +158,7 @@ export default function ProjectDistribution() {
             </React.Fragment>
           ))}
       </div>
-      <ProjectDistributionChart 
+      <ProjectDistributionChart
         months={months} 
         projects={projectFilter} 
         entries={entryFilter}
