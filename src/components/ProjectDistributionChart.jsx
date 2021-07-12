@@ -43,13 +43,36 @@ export default function ProjectDistricutionChart ({
               }
           }
       }
+    },
+    transitions: {
+      show: {
+        animations: {
+          x: {
+            from: 0
+          },
+          y: {
+            from: 0
+          }
+        }
+      },
+      hide: {
+        animations: {
+          x: {
+            to: 0
+          },
+          y: {
+            to: 0
+          }
+        }
+      }
     }
   }
 
   const chartContainer = useRef(null);
   const [chartInstance, setChartInstance] = useState(null);
-  console.log("projects", projects)
-  console.log("dataForChart", dataForChart)
+  // console.log("projects", projects)
+  // console.log("dataForChart", dataForChart)
+  // console.log("chartInstance", chartInstance)
 
   useEffect(() => {
     if (chartContainer && chartContainer.current) {
@@ -57,6 +80,28 @@ export default function ProjectDistricutionChart ({
       setChartInstance(newChartInstance)
     }
   }, [chartContainer])
+
+  const updateDataset = (newData) => {
+    if (chartInstance) {
+      chartInstance.data.datasets = newData;
+      chartInstance.update();
+    }
+  }
+
+  const updateMonthLabels = (newMonthRange) => {
+    if (chartInstance) {
+      chartInstance.data.labels = newMonthRange;
+      chartInstance.update();
+    }
+  }
+
+  useEffect(() => {
+    updateDataset(dataForChart);
+  }, [dataForChart])
+
+  useEffect(() => {
+    updateMonthLabels(months);
+  }, [months])
 
   return (
     <div>
