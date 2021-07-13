@@ -70,9 +70,6 @@ export default function ProjectDistricutionChart ({
 
   const chartContainer = useRef(null);
   const [chartInstance, setChartInstance] = useState(null);
-  // console.log("projects", projects)
-  // console.log("dataForChart", dataForChart)
-  // console.log("chartInstance", chartInstance)
 
   useEffect(() => {
     if (chartContainer && chartContainer.current) {
@@ -108,6 +105,7 @@ export default function ProjectDistricutionChart ({
       <canvas 
         className="chart" 
         ref={chartContainer}
+        width={window.innerWidth}
       />
     </div>
   )

@@ -1406,3 +1406,7 @@ select:focus + .label-status {
   margin-bottom: 20px;
   border-radius: 10px;
 }
+
+.MuiFormGroup-root {
+  justify-content: center;
+}

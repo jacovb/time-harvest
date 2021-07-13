@@ -5,10 +5,18 @@ import ProjectDistributionChart from './ProjectDistributionChart';
 
 import FastRewindIcon from '@material-ui/icons/FastRewind';
 import FastForwardIcon from '@material-ui/icons/FastForward';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch'
 
 export default function ProjectDistribution() {
   const context = useContext(RenderContext);
   const [day, setDay] = useState(new Date());
+  const [toggleSwitch, setToggleSwitch] = useState({checked: true});
+
+  const handleToggle = (e) => {
+    setToggleSwitch({...toggleSwitch, [e.target.name]: e.target.checked})
+  }
 
   function getLast12Months(d) {
     const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -105,6 +113,20 @@ export default function ProjectDistribution() {
             ))}  
         </select>
       </div>
+
+      <FormGroup row>
+        <FormControlLabel 
+          control={
+            <Switch
+              checked={toggleSwitch.checked}
+              onChange={handleToggle}
+              color="primary"
+              name="checked"
+            />
+          }
+          label="Primary"
+        />
+      </FormGroup>
 
       <div className="dist-table">
         <button 
