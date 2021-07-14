@@ -12,10 +12,10 @@ import Switch from '@material-ui/core/Switch'
 export default function ProjectDistribution() {
   const context = useContext(RenderContext);
   const [day, setDay] = useState(new Date());
-  const [toggleSwitch, setToggleSwitch] = useState({checked: true});
+  const [toggleGraphTable, setToggleGraphTable] = useState({checked: true});
 
   const handleToggle = (e) => {
-    setToggleSwitch({...toggleSwitch, [e.target.name]: e.target.checked})
+    setToggleGraphTable({...toggleGraphTable, [e.target.name]: e.target.checked})
   }
 
   function getLast12Months(d) {
@@ -115,20 +115,19 @@ export default function ProjectDistribution() {
       </div>
 
       <FormGroup row>
-        <FormControlLabel 
+        <FormControlLabel
           control={
             <Switch
-              checked={toggleSwitch.checked}
+              checked={toggleGraphTable.checked}
               onChange={handleToggle}
-              color="primary"
               name="checked"
             />
           }
-          label="Primary"
+          label="Table / Graph"
         />
       </FormGroup>
 
-      <div className="dist-table">
+      {!toggleGraphTable.checked && <div className="dist-table">
         <button 
           className="year-back d-1 year-slider"
           onClick={() => {
@@ -179,12 +178,13 @@ export default function ProjectDistribution() {
               </div>
             </React.Fragment>
           ))}
-      </div>
-      <ProjectDistributionChart
+      </div>}
+
+      {toggleGraphTable.checked && <ProjectDistributionChart
         months={months} 
         projects={projectFilter} 
         entries={entryFilter}
-      />
+      />}
 
     </>
   )
