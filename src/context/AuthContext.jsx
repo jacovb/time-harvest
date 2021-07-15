@@ -83,7 +83,6 @@ const AuthProvider = ({children}) => {
       try {
         const session = await getCurrentSession();
         const user = await getCurrentUser();
-        // console.log("user", user);
 
         const accessToken = session.getAccessToken();
         const refreshToken = session.getRefreshToken();
@@ -91,7 +90,7 @@ const AuthProvider = ({children}) => {
           accessToken,
           refreshToken,
         });
-        // console.log("sessionInfo", sessionInfo);
+        
         window.localStorage.setItem('accessToken', `${accessToken}`);
         window.localStorage.setItem('refreshToken', `${refreshToken}`);
         setUserInfo({
@@ -99,7 +98,7 @@ const AuthProvider = ({children}) => {
           isContributor: user.attributes['custom:type'] === 'contributor',
           username: user.username,
         });
-        // console.log("userInfo", userInfo);
+        
         setIsSignedIn(true);
       } catch (err) {
         setIsSignedIn(false);
@@ -163,10 +162,7 @@ const AuthProvider = ({children}) => {
   const signIn = async (email, password) => {
     try {
       const result = await Auth.signIn(email, password);
-      // let userInformation = await getCurrentUser();
-      // console.log("userInfo", userInformation.username); //use this in SignUp to create a new user
       setIsSignedIn(true);
-      console.log(result); //use this to get userInfo to setUser - in SignUp, use "user" to create a new User
       return result;
     } catch (err) {
       setIsSignedIn(false);

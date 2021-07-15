@@ -63,7 +63,6 @@ export default function Users() {
                     context.setUserData(user);
                     setEditModal(true);
                     context.toggle()
-                    // context.deleteUser(user)
                   }}
                 >
                   <MoreHorizIcon />

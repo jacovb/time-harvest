@@ -126,6 +126,12 @@ export default function ProjectDistribution() {
         />
       </FormGroup>
 
+      {toggleGraphTable.checked && <ProjectDistributionChart
+        months={months} 
+        projects={projectFilter} 
+        entries={entryFilter}
+      />}
+
       {!toggleGraphTable.checked && <ProjectDistributionTable
         day={day}
         setDay={setDay}
@@ -133,13 +139,6 @@ export default function ProjectDistribution() {
         projectFilter={projectFilter}
         convertDateToMonthAndYear={convertDateToMonthAndYear}
       />}
-
-      {toggleGraphTable.checked && <ProjectDistributionChart
-        months={months} 
-        projects={projectFilter} 
-        entries={entryFilter}
-      />}
-
     </>
   )
 }

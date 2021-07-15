@@ -77,8 +77,7 @@ export default function ProjectOverview() {
               key={idx}
               project={project}
             />
-          ))
-        
+          )) 
         }
 
       </div>

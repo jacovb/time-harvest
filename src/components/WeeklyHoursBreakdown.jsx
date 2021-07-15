@@ -101,7 +101,7 @@ export default function WeeklyHoursBreakdown() {
     const weekNumbersRaw = entryDateArray
     .map((date, idx) => getWeekNumber(date))
     
-  // Get weekNumbersArray is used in the Filter Drop-down list
+  // Result from weekNumbersArray is used in the Filter Drop-down list
   const weekNumbersArray = Array.from(new Set(weekNumbersRaw.map(JSON.stringify)), JSON.parse).sort((a, b) => b[0] - a[0]).sort((a, b) => b[1] - a[1])
   
   

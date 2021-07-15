@@ -134,7 +134,7 @@ export default function MonthlyHoursBreakdown() {
           </div>
 
           {/* Map through users, map through entryDates(months), 
-          then map through all entries and use Users and entryDates to group */}
+          then map through all entries and use Users and entryDates to group / filter */}
           <div className="table-person">
             <div className="table-heading">
               <div className="c-1 thead">Date</div>

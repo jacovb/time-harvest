@@ -188,7 +188,7 @@ const RenderContextProvider = ({children}) => {
       return deptUser.department;
     }
 
-    const dept = entryUserId !== startEntryUserId ? 
+    const dept = (entryUserId !== startEntryUserId) ? 
       getDept(entryUserId.entryUserId) :
       getDept(userInfo.username);
 
