@@ -1,6 +1,6 @@
 # Punch-Card / Timesheet-App
 
-## The Problems:
+## The Problem:
 
 My current employer has a very dated method for employees to do their timesheets:
 
@@ -14,7 +14,7 @@ An app to easily complete Timesheets - wherever you are - and visualising this d
 
 - Improve Project Management
 - Quote better on future projects using historical data
-- Creates commercial awareness of projects for employees
+- Create commercial awareness of projects for employees
 
 ## What this app does?
 
