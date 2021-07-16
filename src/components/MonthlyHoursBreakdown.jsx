@@ -5,8 +5,17 @@ export default function MonthlyHoursBreakdown() {
   
   const context = React.useContext(RenderContext);
 
+  function getEntryUsers (entries) {
+    let ids = entries.map((entry) => entry.user.id)
+    return entries
+      .map((entry) => entry.user)
+      .filter(({id}, index) => !ids.includes(id, index + 1))
+  }
+
+  let entryUsers = getEntryUsers(context.entry);
+
     const entryDates = 
-      context.users.map((user) => {
+      entryUsers.map((user) => {
         return context.entry
           .filter((item) => item.user.id === user.id)
           .sort((a, b) => new Date(a.date) - new Date(b.date))
@@ -79,7 +88,7 @@ export default function MonthlyHoursBreakdown() {
       entryFilter
         .map((item) => item.user.name)
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
-    let userFilter = usersFilter(context.users, context.selectFilter, usersFromEntry);
+    let userFilter = usersFilter(entryUsers, context.selectFilter, usersFromEntry);
     let dateFilter = datesFilter(entryDates, context.selectFilter).filter(e => e.length);
     
     return (
@@ -106,7 +115,7 @@ export default function MonthlyHoursBreakdown() {
               required
               onChange={context.handleFilter}>
                 <option value="">Show All</option>
-                {context.users
+                {entryUsers
                   .sort((a, b) => a.name - b.name)
                   .map((user, idx) => (
                       <option key={idx} value={user.id}>
