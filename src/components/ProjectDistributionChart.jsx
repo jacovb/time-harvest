@@ -76,6 +76,7 @@ export default function ProjectDistricutionChart ({
       const newChartInstance = new Chart(chartContainer.current, chartConfig);
       setChartInstance(newChartInstance)
     }
+    // eslint-disable-next-line
   }, [chartContainer])
 
   const updateDataset = (newData) => {
@@ -94,10 +95,12 @@ export default function ProjectDistricutionChart ({
 
   useEffect(() => {
     updateDataset(dataForChart);
+    // eslint-disable-next-line
   }, [dataForChart])
 
   useEffect(() => {
     updateMonthLabels(months);
+    // eslint-disable-next-line
   }, [months])
 
   return (
