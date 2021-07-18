@@ -109,11 +109,13 @@ const AuthProvider = ({children}) => {
 
   React.useEffect(() => {
     async function getCurrentUserDetails() {
-      try {
-        const userDetails = await getUserDetails(userInfo.username);
-        setCurrentUserDetails(userDetails.data.getUser);
-      } catch (err) {
-        console.log(err);
+      if (userInfo !== initializeInfo) {
+        try {
+          const userDetails = await getUserDetails(userInfo.username);
+          setCurrentUserDetails(userDetails.data.getUser);
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
     getCurrentUserDetails(); 
