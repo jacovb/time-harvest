@@ -15,7 +15,6 @@ import {
   createEntry as createEntryMutation,
   deleteEntry as deleteEntryMutation,
   updateEntry as updateEntryMutation,
-
 } from "../graphql/mutations";
 
 import useModal from "../hooks/useModal";
