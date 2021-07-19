@@ -6,8 +6,8 @@ import { AuthContext } from "../context/AuthContext";
 import { listProjects, listUsers, listEntrys } from "../graphql/queries";
 
 import {
-  createProject as createProjectMutation,
-  deleteProject as deleteProjectMutation,
+  // createProject as createProjectMutation,
+  // deleteProject as deleteProjectMutation,
   updateProject as updateProjectMutation,
   createUser as createUserMutation,
   deleteUser as deleteUserMutation,
@@ -19,15 +19,15 @@ import {
 
 import useModal from "../hooks/useModal";
 
-const startForm = {
-  projectNo: "",
-  name: "",
-  allowTimeTechnical: "",
-  allowTimeCoordination: "",
-  allowTimeEngineering: "",
-  allowTimeConstruction: "",
-  status: "",
-};
+// const startForm = {
+//   projectNo: "",
+//   name: "",
+//   allowTimeTechnical: "",
+//   allowTimeCoordination: "",
+//   allowTimeEngineering: "",
+//   allowTimeConstruction: "",
+//   status: "",
+// };
 
 const startUserForm = {
   name: "",
@@ -65,18 +65,18 @@ const RenderContextProvider = ({children}) => {
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
   const [entry, setEntry] = useState([]);
-  const [formData, setFormData] = useState(startForm);
+  // const [formData, setFormData] = useState(startForm);
   const [userData, setUserData] = useState(startUserForm);
   const [entryData, setEntryData] = useState(startEntryForm);
   const [entryUserId, setEntryUserId] = useState(startEntryUserId);
   const [selectFilter, setSelectFilter] = useState(startSelectFilter);
   const { isShowing, toggle } = useModal();
-  const [index, setIndex] = useState(null);
+  // const [index, setIndex] = useState(null);
 
   const { userInfo } = useContext(AuthContext);
 
   useEffect(() => {
-    fetchProjects();
+    // fetchProjects();
     fetchUsers();
     fetchEntries();
   }, []);
@@ -124,24 +124,24 @@ const RenderContextProvider = ({children}) => {
   // Create Properties
   // =================
 
-  async function createProject() {
-    if (!formData.projectNo || !formData.name) return;
-    if (projects.some((item) => item.projectNo === formData.projectNo)) {
-      alert("Project Number Already Exists ");
-    } else {
-      try {
-        await API.graphql({
-          query: createProjectMutation,
-          variables: { input: formData },
-        });
-        setProjects([...projects, formData]);
-        setFormData(startForm);
-        fetchProjects();
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
+  // async function createProject() {
+  //   if (!formData.projectNo || !formData.name) return;
+  //   if (projects.some((item) => item.projectNo === formData.projectNo)) {
+  //     alert("Project Number Already Exists ");
+  //   } else {
+  //     try {
+  //       await API.graphql({
+  //         query: createProjectMutation,
+  //         variables: { input: formData },
+  //       });
+  //       setProjects([...projects, formData]);
+  //       setFormData(startForm);
+  //       fetchProjects();
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // }
 
   async function createUser() {
     if (!userData.name) return;
@@ -236,34 +236,34 @@ const RenderContextProvider = ({children}) => {
     }
   }
 
-  async function updateProject({ id }) {
-    const newProjectsArray = [...projects];
-    setIndex(projects.findIndex((item) => item.id === id));
-    newProjectsArray[index] = formData;
-    setProjects(newProjectsArray);
-    try {
-      await API.graphql({
-        query: updateProjectMutation,
-        variables: {
-          input: {
-            id: formData.id,
-            name: formData.name,
-            projectNo: formData.projectNo,
-            status: formData.status,
-            allowTimeTechnical: formData.allowTimeTechnical,
-            allowTimeCoordination: formData.allowTimeCoordination,
-            allowTimeEngineering: formData.allowTimeEngineering,
-            allowTimeConstruction: formData.allowTimeConstruction,
-          },
-        },
-      });
-      setFormData(startForm);
-      toggle();
-      fetchProjects();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function updateProject({ id }) {
+  //   const newProjectsArray = [...projects];
+  //   setIndex(projects.findIndex((item) => item.id === id));
+  //   newProjectsArray[index] = formData;
+  //   setProjects(newProjectsArray);
+  //   try {
+  //     await API.graphql({
+  //       query: updateProjectMutation,
+  //       variables: {
+  //         input: {
+  //           id: formData.id,
+  //           name: formData.name,
+  //           projectNo: formData.projectNo,
+  //           status: formData.status,
+  //           allowTimeTechnical: formData.allowTimeTechnical,
+  //           allowTimeCoordination: formData.allowTimeCoordination,
+  //           allowTimeEngineering: formData.allowTimeEngineering,
+  //           allowTimeConstruction: formData.allowTimeConstruction,
+  //         },
+  //       },
+  //     });
+  //     setFormData(startForm);
+  //     toggle();
+  //     fetchProjects();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   async function updateEntry(entryData) {
     try {
@@ -312,20 +312,20 @@ const RenderContextProvider = ({children}) => {
   // Delete Properties
   // =================
 
-  async function deleteProject({ id }) {
-    const newProjectsArray = projects.filter((proj) => proj.id !== id);
-    setProjects(newProjectsArray);
-    try {
-      await API.graphql({
-        query: deleteProjectMutation,
-        variables: { input: { id } },
-      });
-      fetchProjects();
-      toggle();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function deleteProject({ id }) {
+  //   const newProjectsArray = projects.filter((proj) => proj.id !== id);
+  //   setProjects(newProjectsArray);
+  //   try {
+  //     await API.graphql({
+  //       query: deleteProjectMutation,
+  //       variables: { input: { id } },
+  //     });
+  //     fetchProjects();
+  //     toggle();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   async function deleteUser({ id }) {
     const newUsersArray = users.filter((user) => user.id !== id);
@@ -363,9 +363,9 @@ const RenderContextProvider = ({children}) => {
   // Event Handlers
   // ==============
 
-  function handleAddData(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
+  // function handleAddData(e) {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // }
 
   function handleAddUser(e) {
     setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -389,10 +389,10 @@ const RenderContextProvider = ({children}) => {
   }
   
   const state = {
-    projects,
-    createProject,
-    updateProject,
-    deleteProject,
+    // projects,
+    // createProject,
+    // updateProject,
+    // deleteProject,
     users,
     createUser,
     updateUser,
@@ -401,11 +401,11 @@ const RenderContextProvider = ({children}) => {
     createEntry,
     updateEntry,
     deleteEntry,
-    formData,
-    setFormData,
+    // formData,
+    // setFormData,
     isShowing,
     toggle,
-    startForm,
+    // startForm,
     startEntryForm,
     startSelectFilter,
     startEntryUserId,
@@ -418,7 +418,7 @@ const RenderContextProvider = ({children}) => {
     userData,
     setUserData,
     handleFilter,
-    handleAddData,
+    // handleAddData,
     handleAddUser,
     handleAddEntry,
     handleSetEntryUser,

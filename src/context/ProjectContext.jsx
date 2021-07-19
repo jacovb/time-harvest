@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { API } from "aws-amplify";
 import { listProjects } from "../graphql/queries";
@@ -7,6 +7,8 @@ import {
   deleteProject as deleteProjectMutation,
   updateProject as updateProjectMutation,
 } from "../graphql/mutations";
+
+import { RenderContext } from '../context/RenderContext'
 
 const startForm = {
   projectNo: "",
@@ -23,6 +25,9 @@ export const ProjectContext = React.createContext();
 const ProjectContextProvider = ({children}) => {
   const [projects, setProjects] = useState([]);
   const [formData, setFormData] = useState(startForm);
+  const [index, setIndex] = useState(null);
+
+  const renderContext = useContext(RenderContext);
 
   useEffect(() => {
     fetchProjects();
@@ -90,7 +95,7 @@ const ProjectContextProvider = ({children}) => {
         },
       });
       setFormData(startForm);
-      toggle();
+      renderContext.toggle();
       fetchProjects();
     } catch (error) {
       console.log(error);
@@ -110,10 +115,18 @@ const ProjectContextProvider = ({children}) => {
         variables: { input: { id } },
       });
       fetchProjects();
-      toggle();
+      renderContext.toggle();
     } catch (error) {
       console.log(error);
     }
+  }
+
+  // ==============
+  // Event Handlers
+  // ==============
+
+  function handleAddData(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
 
@@ -122,6 +135,10 @@ const ProjectContextProvider = ({children}) => {
     createProject,
     updateProject,
     deleteProject,
+    handleAddData,
+    formData,
+    setFormData,
+    startForm,
   };
 
   return <ProjectContext.Provider value={state}>{children}</ProjectContext.Provider>

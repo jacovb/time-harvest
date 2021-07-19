@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { RenderContext } from "../context/RenderContext";
+import { ProjectContext } from "../context/ProjectContext";
 
 import EditProjectModal from "./EditProjectModal";
 import AddProjectModal from "./AddProjectModal";
@@ -9,7 +10,8 @@ import AddIcon from '@material-ui/icons/Add';
 
 export default function Projects() {
 
-    const context = React.useContext(RenderContext);
+    const renderContext = useContext(RenderContext);
+    const projectContext = useContext(ProjectContext);
   
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -23,7 +25,7 @@ export default function Projects() {
             className="addButton"
             onClick={() => {
               setAddModal(true);
-              context.toggle()
+              renderContext.toggle()
             }}>
               <AddIcon />
             <span className="edit-tooltip">New Project</span>
@@ -31,13 +33,13 @@ export default function Projects() {
         </div>
 
         {addModal && <AddProjectModal 
-          isShowing={context.isShowing}
-          hide={context.toggle}
-          formData={context.formData}
-          handleAddData={context.handleAddData}
-          startForm={context.startForm}
-          setFormData={context.setFormData}
-          createProject={context.createProject}
+          isShowing={renderContext.isShowing}
+          hide={renderContext.toggle}
+          formData={projectContext.formData}
+          handleAddData={projectContext.handleAddData}
+          startForm={projectContext.startForm}
+          setFormData={projectContext.setFormData}
+          createProject={projectContext.createProject}
           setAddModal={setAddModal}
         />}
 
@@ -50,26 +52,26 @@ export default function Projects() {
         </div>
         
         <div className="projectsList">
-            {context.projects
+            {projectContext.projects
               .sort((a, b) => a.projectNo - b.projectNo)
               .map((project, idx) => (
                 <ProjectListRow 
                   key={idx}
                   project={project}
-                  setFormData={context.setFormData} 
-                  toggle={context.toggle}
+                  setFormData={projectContext.setFormData} 
+                  toggle={renderContext.toggle}
                   setEditModal={setEditModal}
                 />
               ))}
             {editModal && <EditProjectModal
-              isShowing={context.isShowing}
-              hide={context.toggle}
-              formData={context.formData}
-              updateProject={context.updateProject}
-              handleAddData={context.handleAddData}
-              startForm={context.startForm}
-              setFormData={context.setFormData}
-              deleteProject={context.deleteProject}
+              isShowing={renderContext.isShowing}
+              hide={renderContext.toggle}
+              formData={projectContext.formData}
+              updateProject={projectContext.updateProject}
+              handleAddData={projectContext.handleAddData}
+              startForm={projectContext.startForm}
+              setFormData={projectContext.setFormData}
+              deleteProject={projectContext.deleteProject}
               setEditModal={setEditModal}
             />}
         </div>
