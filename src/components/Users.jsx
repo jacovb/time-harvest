@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import CheckIcon from '@material-ui/icons/Check';
 import { RenderContext } from "../context/RenderContext";
+import { UserContext } from "../context/UserContext";
 import EditUserModal from "./EditUserModal";
 
 export default function Users() {
 
   const [editModal, setEditModal] = useState(false);
   const context = React.useContext(RenderContext);
+  const userContext = React.useContext(UserContext);
 
   function usersFilter(users, selection) {
     if (selection.userStatus.length > 0) {
-      return context.users.filter((user) => user.status === context.selectFilter.userStatus)
+      return userContext.users.filter((user) => user.status === context.selectFilter.userStatus)
     } else {
-      return context.users
+      return userContext.users
     }
   } 
 
-  const userFilter = usersFilter(context.users, context.selectFilter);
+  const userFilter = usersFilter(userContext.users, context.selectFilter);
 
   return (
     <>
@@ -60,7 +62,7 @@ export default function Users() {
                 <button
                   className="editButton userEditButton"
                   onClick={() => {
-                    context.setUserData(user);
+                    userContext.setUserData(user);
                     setEditModal(true);
                     context.toggle()
                   }}
@@ -73,12 +75,12 @@ export default function Users() {
             {editModal && <EditUserModal 
               isShowing={context.isShowing}
               hide={context.toggle}
-              userData={context.userData}
-              updateUser={context.updateUser}
-              deleteUser={context.deleteUser}
-              handleAddUser={context.handleAddUser}
-              setUserData={context.setUserData}
-              startUserForm={context.startUserForm}
+              userData={userContext.userData}
+              updateUser={userContext.updateUser}
+              deleteUser={userContext.deleteUser}
+              handleAddUser={userContext.handleAddUser}
+              setUserData={userContext.setUserData}
+              startUserForm={userContext.startUserForm}
               setEditModal={setEditModal}
             />}
         </div>

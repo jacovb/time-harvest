@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { RenderContext } from "../context/RenderContext";
+import { ProjectContext } from "../context/ProjectContext";
 
 import ProjectDistributionTable from './ProjectDistributionTable';
 import ProjectDistributionChart from './ProjectDistributionChart';
@@ -10,6 +11,8 @@ import Switch from '@material-ui/core/Switch'
 
 export default function ProjectDistribution() {
   const context = useContext(RenderContext);
+  const projectContext = useContext(ProjectContext);
+
   const [day, setDay] = useState(new Date());
   const [toggleGraphTable, setToggleGraphTable] = useState({checked: true});
 
@@ -41,7 +44,7 @@ export default function ProjectDistribution() {
 
   function projectsFilter(projArray, selection) {
     if (selection.id.length === 0 && selection.status.length === 0) {
-      return context.projects;
+      return projectContext.projects;
     } else if (selection.id === "") {
       return projArray.filter((proj) => selection.status === proj.status);
     } else if (selection.status === "") {
@@ -51,7 +54,7 @@ export default function ProjectDistribution() {
     }
   }
 
-  let projectFilter = projectsFilter(context.projects, context.selectFilter);
+  let projectFilter = projectsFilter(projectContext.projects, context.selectFilter);
   let entryFilter = projectFilter
     .sort((a, b) => a.projectNo - b.projectNo)
     .map((project, idx) => (

@@ -1,15 +1,17 @@
 import React from "react";
 import { RenderContext } from "../context/RenderContext";
+import { ProjectContext } from "../context/ProjectContext";
 
 import ProjectSummary from "./ProjectSummary";
 
 export default function ProjectOverview() {
 
   const context = React.useContext(RenderContext);
+  const userContext = React.useContext(ProjectContext);
 
   function projectsFilter(projArray, selection) {
     if (selection.id.length === 0 && selection.status.length === 0) {
-      return context.projects;
+      return userContext.projects;
     } else if (selection.id === "") {
       return projArray.filter((proj) => selection.status === proj.status);
     } else if (selection.status === "") {
@@ -19,7 +21,7 @@ export default function ProjectOverview() {
     }
   }
 
-  let projectFilter = projectsFilter(context.projects, context.selectFilter);
+  let projectFilter = projectsFilter(userContext.projects, context.selectFilter);
 
   return (
     <>

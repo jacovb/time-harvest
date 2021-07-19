@@ -3,15 +3,15 @@ import React, {useContext, useState, useEffect} from 'react';
 import { API } from "aws-amplify";
 import { AuthContext } from "../context/AuthContext";
 
-import { listProjects, listUsers, listEntrys } from "../graphql/queries";
+import { listProjects, listEntrys } from "../graphql/queries";
 
 import {
   // createProject as createProjectMutation,
   // deleteProject as deleteProjectMutation,
   updateProject as updateProjectMutation,
-  createUser as createUserMutation,
-  deleteUser as deleteUserMutation,
-  updateUser as updateUserMutation,
+  // createUser as createUserMutation,
+  // deleteUser as deleteUserMutation,
+  // updateUser as updateUserMutation,
   createEntry as createEntryMutation,
   deleteEntry as deleteEntryMutation,
   updateEntry as updateEntryMutation,
@@ -29,14 +29,14 @@ import useModal from "../hooks/useModal";
 //   status: "",
 // };
 
-const startUserForm = {
-  name: "",
-  surname: "",
-  email: "",
-  department: "",
-  admin: false,
-  status: "",
-};
+// const startUserForm = {
+//   name: "",
+//   surname: "",
+//   email: "",
+//   department: "",
+//   admin: false,
+//   status: "",
+// };
 
 const startEntryUserId = {
   entryUserId: "",
@@ -66,7 +66,7 @@ const RenderContextProvider = ({children}) => {
   const [users, setUsers] = useState([]);
   const [entry, setEntry] = useState([]);
   // const [formData, setFormData] = useState(startForm);
-  const [userData, setUserData] = useState(startUserForm);
+  // const [userData, setUserData] = useState(startUserForm);
   const [entryData, setEntryData] = useState(startEntryForm);
   const [entryUserId, setEntryUserId] = useState(startEntryUserId);
   const [selectFilter, setSelectFilter] = useState(startSelectFilter);
@@ -77,7 +77,7 @@ const RenderContextProvider = ({children}) => {
 
   useEffect(() => {
     // fetchProjects();
-    fetchUsers();
+    // fetchUsers();
     fetchEntries();
   }, []);
 
@@ -102,14 +102,14 @@ const RenderContextProvider = ({children}) => {
     }
   }
 
-  async function fetchUsers() {
-    try {
-      const apiData = await API.graphql({ query: listUsers });
-      setUsers(apiData.data.listUsers.items);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function fetchUsers() {
+  //   try {
+  //     const apiData = await API.graphql({ query: listUsers });
+  //     setUsers(apiData.data.listUsers.items);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   async function fetchEntries() {
     try {
@@ -143,20 +143,20 @@ const RenderContextProvider = ({children}) => {
   //   }
   // }
 
-  async function createUser() {
-    if (!userData.name) return;
-    try {
-      await API.graphql({
-        query: createUserMutation,
-        variables: { input: userData },
-      });
-      setUsers([...users, userData]);
-      setUserData(startUserForm);
-      fetchUsers();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function createUser() {
+  //   if (!userData.name) return;
+  //   try {
+  //     await API.graphql({
+  //       query: createUserMutation,
+  //       variables: { input: userData },
+  //     });
+  //     setUsers([...users, userData]);
+  //     setUserData(startUserForm);
+  //     fetchUsers();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   async function createEntry() {
     if (!entryData.date) return;
@@ -286,27 +286,27 @@ const RenderContextProvider = ({children}) => {
     }
   }
 
-  async function updateUser(userData) {
-    try {
-      await API.graphql({
-        query: updateUserMutation,
-        variables: {
-          input: {
-            id: userData.id,
-            name: userData.name,
-            surname: userData.surname,
-            department: userData.department,
-            admin: userData.admin,
-            status: userData.status,
-          },
-        },
-      });
-      toggle();
-      fetchUsers();
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // async function updateUser(userData) {
+  //   try {
+  //     await API.graphql({
+  //       query: updateUserMutation,
+  //       variables: {
+  //         input: {
+  //           id: userData.id,
+  //           name: userData.name,
+  //           surname: userData.surname,
+  //           department: userData.department,
+  //           admin: userData.admin,
+  //           status: userData.status,
+  //         },
+  //       },
+  //     });
+  //     toggle();
+  //     fetchUsers();
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   // =================
   // Delete Properties
@@ -327,19 +327,19 @@ const RenderContextProvider = ({children}) => {
   //   }
   // }
 
-  async function deleteUser({ id }) {
-    const newUsersArray = users.filter((user) => user.id !== id);
-    setUsers(newUsersArray);
-    try {
-      await API.graphql({
-        query: deleteUserMutation,
-        variables: { input: { id } },
-      });
-      fetchUsers();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function deleteUser({ id }) {
+  //   const newUsersArray = users.filter((user) => user.id !== id);
+  //   setUsers(newUsersArray);
+  //   try {
+  //     await API.graphql({
+  //       query: deleteUserMutation,
+  //       variables: { input: { id } },
+  //     });
+  //     fetchUsers();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   async function deleteEntry({ id }) {
     // get deleted entry's Project ID - this is needed to update Project Used Hours
@@ -367,9 +367,9 @@ const RenderContextProvider = ({children}) => {
   //   setFormData({ ...formData, [e.target.name]: e.target.value });
   // }
 
-  function handleAddUser(e) {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
-  }
+  // function handleAddUser(e) {
+  //   setUserData({ ...userData, [e.target.name]: e.target.value });
+  // }
 
   function handleAddEntry(e) {
     setEntryData({ ...entryData, [e.target.name]: e.target.value });
@@ -393,10 +393,10 @@ const RenderContextProvider = ({children}) => {
     // createProject,
     // updateProject,
     // deleteProject,
-    users,
-    createUser,
-    updateUser,
-    deleteUser,
+    // users,
+    // createUser,
+    // updateUser,
+    // deleteUser,
     entry,
     createEntry,
     updateEntry,
@@ -415,11 +415,11 @@ const RenderContextProvider = ({children}) => {
     setEntryUserId,
     selectFilter,
     setSelectFilter,
-    userData,
-    setUserData,
+    // userData,
+    // setUserData,
     handleFilter,
     // handleAddData,
-    handleAddUser,
+    // handleAddUser,
     handleAddEntry,
     handleSetEntryUser,
   };
