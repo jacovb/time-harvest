@@ -10,6 +10,7 @@ export default function PunchCard ({
   setAddModal,
   entryData,
   setEntryData,
+  startEntryForm,
   toggle,
 }) {
 
@@ -34,8 +35,8 @@ export default function PunchCard ({
               return 'color-3';
             }
           }}
-          onClick={(e) => {
-              setEntryData({
+          onClick={(e) => {  
+            setEntryData({
                 ...entryData,
                 date: e.date
               })

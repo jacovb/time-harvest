@@ -132,6 +132,7 @@ const ProjectContextProvider = ({children}) => {
 
   const state = {
     projects,
+    fetchProjects,
     createProject,
     updateProject,
     deleteProject,

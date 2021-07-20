@@ -116,6 +116,15 @@ const UserContextProvider = ({children}) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   }
 
+  function handleSetEntryUser(e) {
+    let user = users.filter((item) => item.id === e.target.value)[0];
+    renderContext.setEntryUserId({
+      ...renderContext.entryUserId,
+      [e.target.name]: e.target.value,
+      entryUserDept: user.department,
+    });
+  }
+
   const state = {
     users,
     createUser,
@@ -124,6 +133,7 @@ const UserContextProvider = ({children}) => {
     userData,
     setUserData,
     handleAddUser,
+    handleSetEntryUser,
     startUserForm,
   }
 

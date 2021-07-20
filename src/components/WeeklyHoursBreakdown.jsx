@@ -5,6 +5,15 @@ export default function WeeklyHoursBreakdown() {
   
   const context = React.useContext(RenderContext);
 
+  function getEntryUsers (entries) {
+    let ids = entries.map((entry) => entry.user.id)
+    return entries
+      .map((entry) => entry.user)
+      .filter(({id}, index) => !ids.includes(id, index + 1))
+  }
+
+  let entryUsers = getEntryUsers(context.entry);
+
   function getWeekNumber(day) {
     let d = new Date(day);
     d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -79,10 +88,10 @@ export default function WeeklyHoursBreakdown() {
     entryFilter
       .map((item) => item.user.name)
       .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
-  let userFilter = usersFilter(context.users, context.selectFilter, usersFromEntry)
+  let userFilter = usersFilter(entryUsers, context.selectFilter, usersFromEntry)
 
   const entryDates = 
-    context.users.map((user) => {
+    entryUsers.map((user) => {
       return context.entry
         .filter((item) => item.user.id === user.id)
         .sort((a, b) => new Date(a.date) - new Date(b.date))
@@ -137,7 +146,7 @@ export default function WeeklyHoursBreakdown() {
               required
               onChange={context.handleFilter}>
                 <option value="">Show All</option>
-                {context.users
+                {entryUsers
                   .sort((a, b) => a.name - b.name)
                   .map((user, idx) => (
                       <option key={idx} value={user.id}>

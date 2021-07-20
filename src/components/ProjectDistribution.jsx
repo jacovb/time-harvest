@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { RenderContext } from "../context/RenderContext";
 import { ProjectContext } from "../context/ProjectContext";
+import { EntryContext } from "../context/EntryContext";
 
 import ProjectDistributionTable from './ProjectDistributionTable';
 import ProjectDistributionChart from './ProjectDistributionChart';
@@ -12,6 +13,7 @@ import Switch from '@material-ui/core/Switch'
 export default function ProjectDistribution() {
   const context = useContext(RenderContext);
   const projectContext = useContext(ProjectContext);
+  const entryContext = useContext(EntryContext);
 
   const [day, setDay] = useState(new Date());
   const [toggleGraphTable, setToggleGraphTable] = useState({checked: true});
@@ -59,7 +61,7 @@ export default function ProjectDistribution() {
     .sort((a, b) => a.projectNo - b.projectNo)
     .map((project, idx) => (
       months.map((month, idx) => (
-          context.entry
+          entryContext.entry
           .filter((obj) => obj.project.id === project.id)
           .filter((obj) => convertDateToMonthAndYear(obj.date) === month)
           .reduce((acc, curr) => acc + curr.time, 0)

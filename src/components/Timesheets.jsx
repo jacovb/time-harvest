@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { RenderContext } from "../context/RenderContext";
 import { AuthContext } from "../context/AuthContext";
+import { EntryContext } from "../context/EntryContext";
+import { ProjectContext } from "../context/ProjectContext";
 
 import AddIcon from '@material-ui/icons/Add';
 
@@ -12,8 +14,10 @@ import EntryListRow from "./EntryListRow";
 
 export default function Timesheets() {
   
-    const context = React.useContext(RenderContext)
-    const { currentUserDetails } = React.useContext(AuthContext)
+    const context = useContext(RenderContext)
+    const { currentUserDetails } = useContext(AuthContext)
+    const entryContext = useContext(EntryContext);
+    const projectContext = useContext(ProjectContext);
 
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -46,7 +50,7 @@ export default function Timesheets() {
       currentUserDetails.id
     
     const entryDates = 
-      context.entry
+      entryContext.entry
         .filter((item) => item.user.id === activeUser)
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .map((item, idx) => (item.date))
@@ -60,7 +64,7 @@ export default function Timesheets() {
       .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
 
     const userEntries = 
-      context.entry
+      entryContext.entry
         .filter((item) => item.user.id === activeUser)
         .sort((a, b) => new Date(b.date) - new Date(a.date))
     
@@ -85,12 +89,12 @@ export default function Timesheets() {
         {addModal && <AddEntryModal
             isShowing={context.isShowing}
             hide={context.toggle}
-            entryData={context.entryData}
-            createEntry={context.createEntry}
-            handleAddEntry={context.handleAddEntry}
-            projects={context.projects}
-            startEntryForm={context.startEntryForm}
-            setEntryData={context.setEntryData}
+            entryData={entryContext.entryData}
+            createEntry={entryContext.createEntry}
+            handleAddEntry={entryContext.handleAddEntry}
+            projects={projectContext.projects}
+            startEntryForm={entryContext.startEntryForm}
+            setEntryData={entryContext.setEntryData}
             setAddModal={setAddModal}
           />}
           
@@ -101,8 +105,9 @@ export default function Timesheets() {
             dateRange={dateRange}
             userEntries={userEntries}
             setAddModal={setAddModal}
-            entryData={context.entryData}
-            setEntryData={context.setEntryData}
+            entryData={entryContext.entryData}
+            startEntryForm={entryContext.startEntryForm}
+            setEntryData={entryContext.setEntryData}
             toggle={context.toggle}
           />
           
@@ -119,7 +124,7 @@ export default function Timesheets() {
                     key={idx}
                     entryDate={entryDate}
                     userEntries={userEntries}
-                    setEntryData={context.setEntryData}
+                    setEntryData={entryContext.setEntryData}
                     setEditModal={setEditModal}
                     toggle={context.toggle}
                   />
@@ -129,13 +134,13 @@ export default function Timesheets() {
           {editModal && <EditEntryModal
             isShowing={context.isShowing}
             hide={context.toggle}
-            entryData={context.entryData}
-            updateEntry={context.updateEntry}
-            deleteEntry={context.deleteEntry}
-            handleAddEntry={context.handleAddEntry}
-            projects={context.projects}
-            startEntryForm={context.startEntryForm}
-            setEntryData={context.setEntryData}
+            entryData={entryContext.entryData}
+            updateEntry={entryContext.updateEntry}
+            deleteEntry={entryContext.deleteEntry}
+            handleAddEntry={entryContext.handleAddEntry}
+            projects={projectContext.projects}
+            startEntryForm={entryContext.startEntryForm}
+            setEntryData={entryContext.setEntryData}
             setEditModal={setEditModal}
           />}
         </div>

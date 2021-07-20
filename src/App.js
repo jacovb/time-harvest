@@ -15,6 +15,8 @@ import AuthProvider, {
 import RenderContextProvider from "./context/RenderContext";
 import ProjectContextProvider from "./context/ProjectContext";
 import UserContextProvider from "./context/UserContext";
+import EntryContextProvider from "./context/EntryContext";
+import UsedHoursContextProvider from "./context/UsedHoursContext";
 
 function App() {
   return (
@@ -30,7 +32,11 @@ function App() {
               <RenderContextProvider>
                 <ProjectContextProvider>
                   <UserContextProvider>
-                    <RenderAuthenticatedRoutes />
+                    <EntryContextProvider>
+                      <UsedHoursContextProvider>
+                        <RenderAuthenticatedRoutes />
+                      </UsedHoursContextProvider>
+                    </EntryContextProvider>
                   </UserContextProvider>
                 </ProjectContextProvider>
               </RenderContextProvider>
