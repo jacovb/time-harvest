@@ -1,9 +1,11 @@
 import React from "react";
 import { RenderContext } from "../context/RenderContext";
+import { EntryContext } from "../context/EntryContext";
 
 export default function WeeklyHoursBreakdown() {  
   
-  const context = React.useContext(RenderContext);
+  const renderContext = React.useContext(RenderContext);
+  const entryContext = React.useContext(EntryContext);
 
   function getEntryUsers (entries) {
     let ids = entries.map((entry) => entry.user.id)
@@ -12,7 +14,7 @@ export default function WeeklyHoursBreakdown() {
       .filter(({id}, index) => !ids.includes(id, index + 1))
   }
 
-  let entryUsers = getEntryUsers(context.entry);
+  let entryUsers = getEntryUsers(entryContext.entry);
 
   function getWeekNumber(day) {
     let d = new Date(day);
@@ -35,7 +37,7 @@ export default function WeeklyHoursBreakdown() {
   }
 
   function getEntryDates(userId) {
-    let userEntryDates = context.entry
+    let userEntryDates = entryContext.entry
       .filter((item) => item.user.id === userId)
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .map((item, idx) => getWeekNumber(item.date))
@@ -83,16 +85,16 @@ export default function WeeklyHoursBreakdown() {
     }
   }
 
-  let entryFilter = entriesFilter(context.entry, context.selectFilter);
+  let entryFilter = entriesFilter(entryContext.entry, renderContext.selectFilter);
   let usersFromEntry = 
     entryFilter
       .map((item) => item.user.name)
       .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
-  let userFilter = usersFilter(entryUsers, context.selectFilter, usersFromEntry)
+  let userFilter = usersFilter(entryUsers, renderContext.selectFilter, usersFromEntry)
 
   const entryDates = 
     entryUsers.map((user) => {
-      return context.entry
+      return entryContext.entry
         .filter((item) => item.user.id === user.id)
         .sort((a, b) => new Date(a.date) - new Date(b.date))
         .map((item, idx) => new Date(item.date)
@@ -120,7 +122,7 @@ export default function WeeklyHoursBreakdown() {
     .sort((a, b) => a[0] - b[0])
     .sort((a, b) => a[1] - b[1]))
 
-  let dateFilter = datesFilter(userWeekNumbers, context.selectFilter).filter(e => e.length);
+  let dateFilter = datesFilter(userWeekNumbers, renderContext.selectFilter).filter(e => e.length);
   
   return (
       <>
@@ -141,10 +143,10 @@ export default function WeeklyHoursBreakdown() {
               className="select-user"
               type="text"
               id="entryUser"
-              value={context.selectFilter.entryUserId}
+              value={renderContext.selectFilter.entryUserId}
               name="entryUserId"
               required
-              onChange={context.handleFilter}>
+              onChange={renderContext.handleFilter}>
                 <option value="">Show All</option>
                 {entryUsers
                   .sort((a, b) => a.name - b.name)
@@ -158,10 +160,10 @@ export default function WeeklyHoursBreakdown() {
             <select
                 className="select-month"
                 id="entryWeek"
-                value={context.selectFilter.week}
+                value={renderContext.selectFilter.week}
                 name="week"
                 required
-                onChange={context.handleFilter}>
+                onChange={renderContext.handleFilter}>
                 <option value="">Show All</option>
                 {weekNumbersArray
                     .map((week, idx) => (
@@ -200,7 +202,7 @@ export default function WeeklyHoursBreakdown() {
                       </React.Fragment>
                       ))}
                       <div className="c-5 total">
-                        {context.entry
+                        {entryContext.entry
                           .filter((obj) => obj.user.id === user.id)
                           .filter((obj) => (new Date(obj.date) > getFirstAndLastDayOfWeek(week)[0]) && (new Date(obj.date) < getFirstAndLastDayOfWeek(week)[1]))
                           .reduce((acc, curr) => acc + curr.time, 0)}

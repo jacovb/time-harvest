@@ -106,7 +106,7 @@ export default function EditEntryModal({
                         Time:
                     </label>
                     <input 
-                        type="text"
+                        type="number"
                         id="editTime"
                         value={entryData.time}
                         name="time"

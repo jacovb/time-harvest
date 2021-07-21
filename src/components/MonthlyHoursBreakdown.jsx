@@ -1,9 +1,11 @@
 import React from "react";
 import { RenderContext } from "../context/RenderContext";
+import { EntryContext } from "../context/EntryContext";
 
 export default function MonthlyHoursBreakdown() {  
   
-  const context = React.useContext(RenderContext);
+  const renderContext = React.useContext(RenderContext);
+  const entryContext = React.useContext(EntryContext);
 
   function getEntryUsers (entries) {
     let ids = entries.map((entry) => entry.user.id)
@@ -12,11 +14,11 @@ export default function MonthlyHoursBreakdown() {
       .filter(({id}, index) => !ids.includes(id, index + 1))
   }
 
-  let entryUsers = getEntryUsers(context.entry);
+  let entryUsers = getEntryUsers(entryContext.entry);
 
     const entryDates = 
       entryUsers.map((user) => {
-        return context.entry
+        return entryContext.entry
           .filter((item) => item.user.id === user.id)
           .sort((a, b) => new Date(a.date) - new Date(b.date))
           .map((item, idx) => new Date(item.date)
@@ -26,7 +28,7 @@ export default function MonthlyHoursBreakdown() {
           .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
       })
 
-    const entryDateArray = context.entry
+    const entryDateArray = entryContext.entry
       .sort((a, b) => new Date(a.date) - new Date(b.date))
       .map((item, idx) => new Date(item.date)
             .toLocaleString('default', { month: 'long' })
@@ -35,7 +37,7 @@ export default function MonthlyHoursBreakdown() {
       .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
 
     function getEntryDates(userId) {
-      return context.entry
+      return entryContext.entry
         .filter((item) => item.user.id === userId)
         .sort((a, b) => new Date(a.date) - new Date(b.date))
         .map((item, idx) => new Date(item.date)
@@ -83,13 +85,13 @@ export default function MonthlyHoursBreakdown() {
       }
     }
 
-    let entryFilter = entriesFilter(context.entry, context.selectFilter);
+    let entryFilter = entriesFilter(entryContext.entry, renderContext.selectFilter);
     let usersFromEntry = 
       entryFilter
         .map((item) => item.user.name)
         .reduce((acc, curr) => acc.includes(curr) ? acc : [...acc, curr], []);
-    let userFilter = usersFilter(entryUsers, context.selectFilter, usersFromEntry);
-    let dateFilter = datesFilter(entryDates, context.selectFilter).filter(e => e.length);
+    let userFilter = usersFilter(entryUsers, renderContext.selectFilter, usersFromEntry);
+    let dateFilter = datesFilter(entryDates, renderContext.selectFilter).filter(e => e.length);
     
     return (
         <>
@@ -110,10 +112,10 @@ export default function MonthlyHoursBreakdown() {
               className="select-user"
               type="text"
               id="entryUser"
-              value={context.selectFilter.entryUserId}
+              value={renderContext.selectFilter.entryUserId}
               name="entryUserId"
               required
-              onChange={context.handleFilter}>
+              onChange={renderContext.handleFilter}>
                 <option value="">Show All</option>
                 {entryUsers
                   .sort((a, b) => a.name - b.name)
@@ -128,10 +130,10 @@ export default function MonthlyHoursBreakdown() {
                 className="select-month"
                 type="text"
                 id="entryMonth"
-                value={context.selectFilter.month}
+                value={renderContext.selectFilter.month}
                 name="month"
                 required
-                onChange={context.handleFilter}>
+                onChange={renderContext.handleFilter}>
                 <option value="">Show All</option>
                 {entryDateArray
                     .map((month, idx) => (
@@ -172,7 +174,7 @@ export default function MonthlyHoursBreakdown() {
                       </React.Fragment>
                     ))}
                     <div className="c-5 total">
-                      {context.entry
+                      {entryContext.entry
                         .filter((obj) => obj.user.id === user.id)
                         .filter((obj) => new Date(obj.date).toLocaleString('default', { month: 'long' }) === month.split(" ")[0])
                         .reduce((acc, curr) => acc + curr.time, 0)}

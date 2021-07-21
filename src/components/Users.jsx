@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import CheckIcon from '@material-ui/icons/Check';
 import { RenderContext } from "../context/RenderContext";
@@ -8,18 +8,18 @@ import EditUserModal from "./EditUserModal";
 export default function Users() {
 
   const [editModal, setEditModal] = useState(false);
-  const context = React.useContext(RenderContext);
-  const userContext = React.useContext(UserContext);
+  const renderContext = useContext(RenderContext);
+  const userContext = useContext(UserContext);
 
   function usersFilter(users, selection) {
     if (selection.userStatus.length > 0) {
-      return userContext.users.filter((user) => user.status === context.selectFilter.userStatus)
+      return userContext.users.filter((user) => user.status === renderContext.selectFilter.userStatus)
     } else {
       return userContext.users
     }
   } 
 
-  const userFilter = usersFilter(userContext.users, context.selectFilter);
+  const userFilter = usersFilter(userContext.users, renderContext.selectFilter);
 
   return (
     <>
@@ -37,10 +37,10 @@ export default function Users() {
           className="select-status"
           type="text"
           id="userStatus"
-          value={context.selectFilter.userStatus}
+          value={renderContext.selectFilter.userStatus}
           name="userStatus"
           required
-          onChange={context.handleFilter}>
+          onChange={renderContext.handleFilter}>
             <option value="">Show All</option>
             <option value="Employed">Yes</option>
             <option value="Inactive">No</option>
@@ -64,7 +64,7 @@ export default function Users() {
                   onClick={() => {
                     userContext.setUserData(user);
                     setEditModal(true);
-                    context.toggle()
+                    renderContext.toggle()
                   }}
                 >
                   <MoreHorizIcon />
@@ -73,8 +73,8 @@ export default function Users() {
               </div>
             ))}
             {editModal && <EditUserModal 
-              isShowing={context.isShowing}
-              hide={context.toggle}
+              isShowing={renderContext.isShowing}
+              hide={renderContext.toggle}
               userData={userContext.userData}
               updateUser={userContext.updateUser}
               deleteUser={userContext.deleteUser}

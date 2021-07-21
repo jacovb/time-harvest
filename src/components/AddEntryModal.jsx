@@ -108,7 +108,7 @@ export default function AddEntryModal({
                         Time:
                     </label>
                     <input 
-                        type="text"
+                        type="number"
                         id="time"
                         value={entryData.time}
                         name="time"

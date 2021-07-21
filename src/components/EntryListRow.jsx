@@ -8,6 +8,7 @@ export default function EntryListRow({
   setEditModal,
   toggle,
 }) {
+  
   return (
     <div className="entryRow">
       <div className="entryDate">{entryDate}</div>

@@ -11,7 +11,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch'
 
 export default function ProjectDistribution() {
-  const context = useContext(RenderContext);
+  const renderContext = useContext(RenderContext);
   const projectContext = useContext(ProjectContext);
   const entryContext = useContext(EntryContext);
 
@@ -56,7 +56,7 @@ export default function ProjectDistribution() {
     }
   }
 
-  let projectFilter = projectsFilter(projectContext.projects, context.selectFilter);
+  let projectFilter = projectsFilter(projectContext.projects, renderContext.selectFilter);
   let entryFilter = projectFilter
     .sort((a, b) => a.projectNo - b.projectNo)
     .map((project, idx) => (
@@ -89,10 +89,10 @@ export default function ProjectDistribution() {
           className="select-status"
           type="text"
           id="projStatus"
-          value={context.selectFilter.status}
+          value={renderContext.selectFilter.status}
           name="status"
           required
-          onChange={context.handleFilter}>
+          onChange={renderContext.handleFilter}>
             <option value="">Show All</option>
             <option value="Quote">Quote</option>
             <option value="Current">Current</option>
@@ -103,10 +103,10 @@ export default function ProjectDistribution() {
             className="select-no"
             type="text"
             id="projId"
-            value={context.selectFilter.id}
+            value={renderContext.selectFilter.id}
             name="id"
             required
-            onChange={context.handleFilter}>
+            onChange={renderContext.handleFilter}>
             <option value="">Show All</option>
             {projectFilter
                 .sort((a, b) => a.projectNo - b.projectNo)

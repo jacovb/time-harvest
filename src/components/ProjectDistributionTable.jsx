@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { RenderContext } from "../context/RenderContext";
+import { EntryContext } from "../context/EntryContext";
 
 import FastRewindIcon from '@material-ui/icons/FastRewind';
 import FastForwardIcon from '@material-ui/icons/FastForward';
@@ -12,7 +12,7 @@ export default function ProjectDistributionTable({
   convertDateToMonthAndYear,
 }) {
   
-  const context = useContext(RenderContext);
+  const entryContext = useContext(EntryContext);
 
   return (
     <div className="dist-table">
@@ -53,14 +53,14 @@ export default function ProjectDistributionTable({
               <div className="d-1 dist-project">{`${project.projectNo} - ${project.name}`}</div>
               {months.map((month, idx) => (
                 <div key={idx} className="dist-cell">
-                  {context.entry
+                  {entryContext.entry
                   .filter((obj) => obj.project.id === project.id)
                   .filter((obj) => convertDateToMonthAndYear(obj.date) === month)
                   .reduce((acc, curr) => acc + curr.time, 0)}
                 </div>
               ))}
               <div className="dist-cell dist-strong">
-                {context.entry
+                {entryContext.entry
                   .filter((obj) => obj.project.id === project.id)
                   .reduce((acc, curr) => acc + curr.time, 0)}
               </div>

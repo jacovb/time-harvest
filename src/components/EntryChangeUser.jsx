@@ -3,7 +3,7 @@ import { RenderContext } from "../context/RenderContext";
 import { UserContext } from "../context/UserContext";
 
 export default function EntryChangeUser() {
-  const context = React.useContext(RenderContext);
+  const renderContext = React.useContext(RenderContext);
   const userContext = React.useContext(UserContext);
 
   return (
@@ -18,7 +18,7 @@ export default function EntryChangeUser() {
         type="text"
         id="user"
         name="entryUserId"
-        value={context.entryUserId.entryUserId}
+        value={renderContext.entryUserId.entryUserId}
         onChange={userContext.handleSetEntryUser}>
           <option value="" hidden>-- Select Different User --</option>
           {userContext.users
@@ -31,7 +31,7 @@ export default function EntryChangeUser() {
       </select>
       <button 
         className="userResetButton"
-        onClick={() => context.setEntryUserId(context.startEntryUserId)}>
+        onClick={() => renderContext.setEntryUserId(renderContext.startEntryUserId)}>
         Reset
       </button>
     </div>

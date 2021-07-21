@@ -10,7 +10,6 @@ export default function PunchCard ({
   setAddModal,
   entryData,
   setEntryData,
-  startEntryForm,
   toggle,
 }) {
 

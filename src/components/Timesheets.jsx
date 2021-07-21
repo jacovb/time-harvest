@@ -14,7 +14,7 @@ import EntryListRow from "./EntryListRow";
 
 export default function Timesheets() {
   
-    const context = useContext(RenderContext)
+    const renderContext = useContext(RenderContext)
     const { currentUserDetails } = useContext(AuthContext)
     const entryContext = useContext(EntryContext);
     const projectContext = useContext(ProjectContext);
@@ -45,8 +45,8 @@ export default function Timesheets() {
 
     const dateRange = getDatesBetween(startDate, endDate);
 
-    const activeUser = context.entryUserId.entryUserId !== context.startEntryUserId.entryUserId ?
-      context.entryUserId.entryUserId :
+    const activeUser = renderContext.entryUserId.entryUserId !== renderContext.startEntryUserId.entryUserId ?
+      renderContext.entryUserId.entryUserId :
       currentUserDetails.id
     
     const entryDates = 
@@ -76,7 +76,7 @@ export default function Timesheets() {
             className="addButton" 
             onClick={() => {
                 setAddModal(true)
-                context.toggle()
+                renderContext.toggle()
               }
             }>
               <AddIcon />
@@ -87,8 +87,8 @@ export default function Timesheets() {
         {currentUserDetails.admin && <EntryChangeUser />}
         
         {addModal && <AddEntryModal
-            isShowing={context.isShowing}
-            hide={context.toggle}
+            isShowing={renderContext.isShowing}
+            hide={renderContext.toggle}
             entryData={entryContext.entryData}
             createEntry={entryContext.createEntry}
             handleAddEntry={entryContext.handleAddEntry}
@@ -106,9 +106,8 @@ export default function Timesheets() {
             userEntries={userEntries}
             setAddModal={setAddModal}
             entryData={entryContext.entryData}
-            startEntryForm={entryContext.startEntryForm}
             setEntryData={entryContext.setEntryData}
-            toggle={context.toggle}
+            toggle={renderContext.toggle}
           />
           
           {entryDatesMonthArray.map((month, idx) => (
@@ -126,14 +125,14 @@ export default function Timesheets() {
                     userEntries={userEntries}
                     setEntryData={entryContext.setEntryData}
                     setEditModal={setEditModal}
-                    toggle={context.toggle}
+                    toggle={renderContext.toggle}
                   />
                 ))}
             </React.Fragment>
           ))}
           {editModal && <EditEntryModal
-            isShowing={context.isShowing}
-            hide={context.toggle}
+            isShowing={renderContext.isShowing}
+            hide={renderContext.toggle}
             entryData={entryContext.entryData}
             updateEntry={entryContext.updateEntry}
             deleteEntry={entryContext.deleteEntry}
