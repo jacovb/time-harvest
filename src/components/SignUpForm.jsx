@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 export default function SignUpForm() {
   const history = useHistory();
+  const [errorMessage, setErrorMessage] = useState("")
   const {register, handleSubmit} = useForm({
     defaultValues: {
       department: "",
@@ -13,11 +14,15 @@ export default function SignUpForm() {
   const authContext = React.useContext(AuthContext);
 
   const onSubmit = async (data) => {
-    try {
-      await authContext.signUp(data.email, data.password, data.name, data.surname, data.department, data.admin);
-      history.push('./verifycode')
-    } catch (err) {
-      console.log(err);
+    if (data.password !== data.confirmPassword) {
+      setErrorMessage("Password is not the same")
+    } else {
+      try {
+        await authContext.signUp(data.email, data.password, data.name, data.surname, data.department, data.admin);
+        history.push('./verifycode')
+      } catch (err) {
+        setErrorMessage(err.message);
+      }
     }
   }
 
@@ -48,7 +53,11 @@ export default function SignUpForm() {
         <input {...register("password", { required: true })} className="signin-input" id="password" autoComplete="off" type="password"/>
         <label htmlFor="confirmPassword" className="signin-label">Confirm Password:</label>
         <input {...register("confirmPassword", { required: true })} className="signin-input" id="confirmPassword" autoComplete="off" type="password"/>
-        <input type="submit" className="signin-button"/>
+        <div className="auth-error">{errorMessage}</div>
+        <input type="submit" value="Sign Up" className="signin-button"/>
+        <Link to="/verifycode" className="small-link">
+          Enter Verification Code...
+        </Link>
         
         <p className="signup-link">
           Already Signed Up? <Link to="/signin"><strong>Sign In</strong></Link>

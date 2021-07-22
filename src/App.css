@@ -192,7 +192,7 @@ h1 {
   transition: all 0.3s ease;
 }
 
-.forgot-password {
+.small-link {
   font-size: 14px;
   margin-top: 15px;
   width: 300px;
@@ -201,7 +201,7 @@ h1 {
   text-decoration: none;
 }
 
-.forgot-password:hover {
+.small-link:hover {
   color: var(--mid-watermelon);
   transition: all 0.3s ease;
 }
@@ -222,6 +222,13 @@ h1 {
 .signup-link strong:hover {
   color: var(--mid-watermelon);
   transition: all 0.3s ease;
+}
+
+.auth-error {
+  margin: auto;
+  color: var(--mid-watermelon);
+  width: 400px;
+  text-align: center;
 }
 
 /* =============================================================== */

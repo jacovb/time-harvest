@@ -25,9 +25,9 @@ export default function SignInForm() {
         <input {...register("email", { required: true })} className="signin-input" id="email" autoComplete="off"/>
         <label htmlFor="password" className="signin-label">Password:</label>
         <input {...register("password", { required: true })} className="signin-input" id="password" autoComplete="off" type="password"/>
-        <p style={{margin: 'auto', color: 'white'}}>{errorMessage}</p>
+        <div className="auth-error">{errorMessage}</div>
         <input type="submit" value="Sign In" className="signin-button" />
-        <Link to="/forgotpassword" className="forgot-password">
+        <Link to="/forgotpassword" className="small-link">
           Forgot Password...
         </Link>
         <p className="signup-link">
