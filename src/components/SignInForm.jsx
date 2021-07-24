@@ -12,7 +12,7 @@ export default function SignInForm() {
   const onSubmit = async (data) => {
     try {
       await authContext.signIn(data.email, data.password);
-      history.push('./');
+      history.push('./home');
     } catch (err) {
       setErrorMessage(err.message);
     }
