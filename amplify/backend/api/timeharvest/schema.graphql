@@ -1,4 +1,4 @@
-type Project @model {
+type Project @model @auth(rules: [{allow: public}]) {
   id: ID!
   projectNo: Int
   name: String
@@ -15,13 +15,13 @@ type Project @model {
   usedTimeConstruction: Float
 }
 
-type UserProject @model(queries: null) {
+type UserProject @model(queries: null) @auth(rules: [{allow: public}]) {
   id: ID!
   user: User @connection(name: "UserProjects")
   project: Project @connection(name: "ProjectUsers")
 }
 
-type User @model {
+type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   surname: String
@@ -33,7 +33,7 @@ type User @model {
   status: String
 }
 
-type Entry @model {
+type Entry @model @auth(rules: [{allow: public}]) {
   id: ID!
   project: Project @connection(name: "ProjectEntries")
   user: User @connection(name: "UserEntries")
@@ -42,3 +42,4 @@ type Entry @model {
   description: String
   time: Float
 }
+ 
