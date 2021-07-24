@@ -12,6 +12,7 @@ export default function RenderUnAuthenticatedRoutes() {
   return (
     <>
       <Switch>
+        <Route exact path="/" component={SignInForm} />
         <Route exact path="/signin" component={SignInForm} />
         <Route exact path="/signup" component={SignUpForm} />
         <Route exact path="/verifycode" component={VerifySignUpForm} />
