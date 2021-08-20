@@ -53,16 +53,16 @@ const UsedHoursContextProvider = ({children}) => {
     }
 
     if (
-      entryContext.entryData.prevProjectId &&
-      entryContext.entryData.entryProjectId !== entryContext.entryData.prevProjectId
+      entryData.prevProjectId &&
+      entryData.entryProjectId !== entryData.prevProjectId
     ) {
       try {
         await API.graphql({
           query: updateProjectMutation,
           variables: {
             input: {
-              id: entryContext.entryData.prevProjectId,
-              [`usedTime${dept}`]: getUsedHours(entryContext.entryData.prevProjectId),
+              id: entryData.prevProjectId,
+              [`usedTime${dept}`]: getUsedHours(entryData.prevProjectId),
             },
           },
         });
@@ -76,8 +76,8 @@ const UsedHoursContextProvider = ({children}) => {
         query: updateProjectMutation,
         variables: {
           input: {
-            id: entryContext.entryData.entryProjectId,
-            [`usedTime${dept}`]: getUsedHours(entryContext.entryData.entryProjectId),
+            id: entryData.entryProjectId,
+            [`usedTime${dept}`]: getUsedHours(entryData.entryProjectId),
           },
         },
       });
