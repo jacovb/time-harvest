@@ -25,6 +25,7 @@
 
 #navbar {
   width: 95%;
+  max-width: 950px;
   margin: auto;
   border-radius: 10px;
   background-color: var(--mid-blue);
@@ -595,6 +596,7 @@ select:focus + .label-status {
 .change-user-box {
   display: grid;
   width: 70%;
+  max-width: 950px;
   margin: auto;
   margin-top: 20px;
   padding: 1rem;
@@ -725,6 +727,7 @@ select:focus + .label-status {
   display: grid;
   grid-template-columns: auto 55px;
   width: 95%;
+  max-width: 950px;
   margin: auto;
   margin-top: 15px;
 }
@@ -744,6 +747,7 @@ select:focus + .label-status {
   border-radius: 10px;
   background-color: white;
   width: 95%;
+  max-width: 950px;
   box-shadow: 5px 5px 5px var(--shadow);
 }
 
@@ -1189,10 +1193,11 @@ select:focus + .label-status {
 .calender-heatmap-container {
   margin: auto;
   padding: 5px 5px 10px 5px;
-  /* border: 2px solid var(--medium-grey);
-  border-radius: 10px; */
   width: 95%;
+  max-width: 950px;
   max-height: 200px;
+  display: flex;
+  justify-content: center;
 }
 
 .react-calendar-heatmap {
