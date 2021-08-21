@@ -11,6 +11,24 @@ export const createProject = /* GraphQL */ `
       projectNo
       name
       status
+      allowTimeTechnical
+      allowTimeEngineering
+      allowTimeCoordination
+      allowTimeConstruction
+      usedTimeTechnical
+      usedTimeEngineering
+      usedTimeCoordination
+      usedTimeConstruction
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       entries {
         items {
           id
@@ -23,24 +41,6 @@ export const createProject = /* GraphQL */ `
         }
         nextToken
       }
-      users {
-        items {
-          id
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      allowTimeTechnical
-      allowTimeEngineering
-      allowTimeCoordination
-      allowTimeConstruction
-      usedTimeTechnical
-      usedTimeEngineering
-      usedTimeCoordination
-      usedTimeConstruction
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -54,6 +54,24 @@ export const updateProject = /* GraphQL */ `
       projectNo
       name
       status
+      allowTimeTechnical
+      allowTimeEngineering
+      allowTimeCoordination
+      allowTimeConstruction
+      usedTimeTechnical
+      usedTimeEngineering
+      usedTimeCoordination
+      usedTimeConstruction
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       entries {
         items {
           id
@@ -66,24 +84,6 @@ export const updateProject = /* GraphQL */ `
         }
         nextToken
       }
-      users {
-        items {
-          id
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      allowTimeTechnical
-      allowTimeEngineering
-      allowTimeCoordination
-      allowTimeConstruction
-      usedTimeTechnical
-      usedTimeEngineering
-      usedTimeCoordination
-      usedTimeConstruction
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -97,6 +97,24 @@ export const deleteProject = /* GraphQL */ `
       projectNo
       name
       status
+      allowTimeTechnical
+      allowTimeEngineering
+      allowTimeCoordination
+      allowTimeConstruction
+      usedTimeTechnical
+      usedTimeEngineering
+      usedTimeCoordination
+      usedTimeConstruction
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       entries {
         items {
           id
@@ -109,24 +127,6 @@ export const deleteProject = /* GraphQL */ `
         }
         nextToken
       }
-      users {
-        items {
-          id
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      allowTimeTechnical
-      allowTimeEngineering
-      allowTimeCoordination
-      allowTimeConstruction
-      usedTimeTechnical
-      usedTimeEngineering
-      usedTimeCoordination
-      usedTimeConstruction
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -137,34 +137,13 @@ export const createUserProject = /* GraphQL */ `
   ) {
     createUserProject(input: $input, condition: $condition) {
       id
-      user {
-        id
-        name
-        surname
-        department
-        projects {
-          nextToken
-        }
-        entries {
-          nextToken
-        }
-        email
-        admin
-        status
-        createdAt
-        updatedAt
-      }
+      createdAt
+      updatedAt
       project {
         id
         projectNo
         name
         status
-        entries {
-          nextToken
-        }
-        users {
-          nextToken
-        }
         allowTimeTechnical
         allowTimeEngineering
         allowTimeCoordination
@@ -175,9 +154,30 @@ export const createUserProject = /* GraphQL */ `
         usedTimeConstruction
         createdAt
         updatedAt
+        users {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
+      user {
+        id
+        name
+        surname
+        department
+        email
+        admin
+        status
+        createdAt
+        updatedAt
+        projects {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
+      }
     }
   }
 `;
@@ -188,34 +188,13 @@ export const updateUserProject = /* GraphQL */ `
   ) {
     updateUserProject(input: $input, condition: $condition) {
       id
-      user {
-        id
-        name
-        surname
-        department
-        projects {
-          nextToken
-        }
-        entries {
-          nextToken
-        }
-        email
-        admin
-        status
-        createdAt
-        updatedAt
-      }
+      createdAt
+      updatedAt
       project {
         id
         projectNo
         name
         status
-        entries {
-          nextToken
-        }
-        users {
-          nextToken
-        }
         allowTimeTechnical
         allowTimeEngineering
         allowTimeCoordination
@@ -226,9 +205,30 @@ export const updateUserProject = /* GraphQL */ `
         usedTimeConstruction
         createdAt
         updatedAt
+        users {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
+      user {
+        id
+        name
+        surname
+        department
+        email
+        admin
+        status
+        createdAt
+        updatedAt
+        projects {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
+      }
     }
   }
 `;
@@ -239,34 +239,13 @@ export const deleteUserProject = /* GraphQL */ `
   ) {
     deleteUserProject(input: $input, condition: $condition) {
       id
-      user {
-        id
-        name
-        surname
-        department
-        projects {
-          nextToken
-        }
-        entries {
-          nextToken
-        }
-        email
-        admin
-        status
-        createdAt
-        updatedAt
-      }
+      createdAt
+      updatedAt
       project {
         id
         projectNo
         name
         status
-        entries {
-          nextToken
-        }
-        users {
-          nextToken
-        }
         allowTimeTechnical
         allowTimeEngineering
         allowTimeCoordination
@@ -277,9 +256,30 @@ export const deleteUserProject = /* GraphQL */ `
         usedTimeConstruction
         createdAt
         updatedAt
+        users {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
+      user {
+        id
+        name
+        surname
+        department
+        email
+        admin
+        status
+        createdAt
+        updatedAt
+        projects {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
+      }
     }
   }
 `;
@@ -293,6 +293,11 @@ export const createUser = /* GraphQL */ `
       name
       surname
       department
+      email
+      admin
+      status
+      createdAt
+      updatedAt
       projects {
         items {
           id
@@ -313,11 +318,6 @@ export const createUser = /* GraphQL */ `
         }
         nextToken
       }
-      email
-      admin
-      status
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -331,6 +331,11 @@ export const updateUser = /* GraphQL */ `
       name
       surname
       department
+      email
+      admin
+      status
+      createdAt
+      updatedAt
       projects {
         items {
           id
@@ -351,11 +356,6 @@ export const updateUser = /* GraphQL */ `
         }
         nextToken
       }
-      email
-      admin
-      status
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -369,6 +369,11 @@ export const deleteUser = /* GraphQL */ `
       name
       surname
       department
+      email
+      admin
+      status
+      createdAt
+      updatedAt
       projects {
         items {
           id
@@ -389,11 +394,6 @@ export const deleteUser = /* GraphQL */ `
         }
         nextToken
       }
-      email
-      admin
-      status
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -404,17 +404,17 @@ export const createEntry = /* GraphQL */ `
   ) {
     createEntry(input: $input, condition: $condition) {
       id
+      department
+      date
+      description
+      time
+      createdAt
+      updatedAt
       project {
         id
         projectNo
         name
         status
-        entries {
-          nextToken
-        }
-        users {
-          nextToken
-        }
         allowTimeTechnical
         allowTimeEngineering
         allowTimeCoordination
@@ -425,30 +425,30 @@ export const createEntry = /* GraphQL */ `
         usedTimeConstruction
         createdAt
         updatedAt
+        users {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
       }
       user {
         id
         name
         surname
         department
+        email
+        admin
+        status
+        createdAt
+        updatedAt
         projects {
           nextToken
         }
         entries {
           nextToken
         }
-        email
-        admin
-        status
-        createdAt
-        updatedAt
       }
-      department
-      date
-      description
-      time
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -459,17 +459,17 @@ export const updateEntry = /* GraphQL */ `
   ) {
     updateEntry(input: $input, condition: $condition) {
       id
+      department
+      date
+      description
+      time
+      createdAt
+      updatedAt
       project {
         id
         projectNo
         name
         status
-        entries {
-          nextToken
-        }
-        users {
-          nextToken
-        }
         allowTimeTechnical
         allowTimeEngineering
         allowTimeCoordination
@@ -480,30 +480,30 @@ export const updateEntry = /* GraphQL */ `
         usedTimeConstruction
         createdAt
         updatedAt
+        users {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
       }
       user {
         id
         name
         surname
         department
+        email
+        admin
+        status
+        createdAt
+        updatedAt
         projects {
           nextToken
         }
         entries {
           nextToken
         }
-        email
-        admin
-        status
-        createdAt
-        updatedAt
       }
-      department
-      date
-      description
-      time
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -514,17 +514,17 @@ export const deleteEntry = /* GraphQL */ `
   ) {
     deleteEntry(input: $input, condition: $condition) {
       id
+      department
+      date
+      description
+      time
+      createdAt
+      updatedAt
       project {
         id
         projectNo
         name
         status
-        entries {
-          nextToken
-        }
-        users {
-          nextToken
-        }
         allowTimeTechnical
         allowTimeEngineering
         allowTimeCoordination
@@ -535,30 +535,30 @@ export const deleteEntry = /* GraphQL */ `
         usedTimeConstruction
         createdAt
         updatedAt
+        users {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
       }
       user {
         id
         name
         surname
         department
+        email
+        admin
+        status
+        createdAt
+        updatedAt
         projects {
           nextToken
         }
         entries {
           nextToken
         }
-        email
-        admin
-        status
-        createdAt
-        updatedAt
       }
-      department
-      date
-      description
-      time
-      createdAt
-      updatedAt
     }
   }
 `;

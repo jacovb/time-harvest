@@ -472,6 +472,7 @@ select:focus + .label-status {
   display: grid;
   grid-template-columns: auto 55px;
   width: 95%;
+  max-width: 950px;
   margin: auto;
   margin-top: 15px;
 }

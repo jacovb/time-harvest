@@ -1,46 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getProject = /* GraphQL */ `
-  query GetProject($id: ID!) {
-    getProject(id: $id) {
-      id
-      projectNo
-      name
-      status
-      entries {
-        items {
-          id
-          department
-          date
-          description
-          time
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      users {
-        items {
-          id
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      allowTimeTechnical
-      allowTimeEngineering
-      allowTimeCoordination
-      allowTimeConstruction
-      usedTimeTechnical
-      usedTimeEngineering
-      usedTimeCoordination
-      usedTimeConstruction
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const listProjects = /* GraphQL */ `
   query ListProjects(
     $filter: ModelProjectFilterInput
@@ -53,12 +13,6 @@ export const listProjects = /* GraphQL */ `
         projectNo
         name
         status
-        entries {
-          nextToken
-        }
-        users {
-          nextToken
-        }
         allowTimeTechnical
         allowTimeEngineering
         allowTimeCoordination
@@ -69,6 +23,80 @@ export const listProjects = /* GraphQL */ `
         usedTimeConstruction
         createdAt
         updatedAt
+        users {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getProject = /* GraphQL */ `
+  query GetProject($id: ID!) {
+    getProject(id: $id) {
+      id
+      projectNo
+      name
+      status
+      allowTimeTechnical
+      allowTimeEngineering
+      allowTimeCoordination
+      allowTimeConstruction
+      usedTimeTechnical
+      usedTimeEngineering
+      usedTimeCoordination
+      usedTimeConstruction
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      entries {
+        items {
+          id
+          department
+          date
+          description
+          time
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        surname
+        department
+        email
+        admin
+        status
+        createdAt
+        updatedAt
+        projects {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
       }
       nextToken
     }
@@ -81,6 +109,11 @@ export const getUser = /* GraphQL */ `
       name
       surname
       department
+      email
+      admin
+      status
+      createdAt
+      updatedAt
       projects {
         items {
           id
@@ -101,39 +134,6 @@ export const getUser = /* GraphQL */ `
         }
         nextToken
       }
-      email
-      admin
-      status
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listUsers = /* GraphQL */ `
-  query ListUsers(
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        surname
-        department
-        projects {
-          nextToken
-        }
-        entries {
-          nextToken
-        }
-        email
-        admin
-        status
-        createdAt
-        updatedAt
-      }
-      nextToken
     }
   }
 `;
@@ -141,17 +141,17 @@ export const getEntry = /* GraphQL */ `
   query GetEntry($id: ID!) {
     getEntry(id: $id) {
       id
+      department
+      date
+      description
+      time
+      createdAt
+      updatedAt
       project {
         id
         projectNo
         name
         status
-        entries {
-          nextToken
-        }
-        users {
-          nextToken
-        }
         allowTimeTechnical
         allowTimeEngineering
         allowTimeCoordination
@@ -162,30 +162,30 @@ export const getEntry = /* GraphQL */ `
         usedTimeConstruction
         createdAt
         updatedAt
+        users {
+          nextToken
+        }
+        entries {
+          nextToken
+        }
       }
       user {
         id
         name
         surname
         department
+        email
+        admin
+        status
+        createdAt
+        updatedAt
         projects {
           nextToken
         }
         entries {
           nextToken
         }
-        email
-        admin
-        status
-        createdAt
-        updatedAt
       }
-      department
-      date
-      description
-      time
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -198,6 +198,12 @@ export const listEntrys = /* GraphQL */ `
     listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        department
+        date
+        description
+        time
+        createdAt
+        updatedAt
         project {
           id
           projectNo
@@ -225,12 +231,6 @@ export const listEntrys = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        department
-        date
-        description
-        time
-        createdAt
-        updatedAt
       }
       nextToken
     }
